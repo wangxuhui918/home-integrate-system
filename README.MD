@@ -20,7 +20,7 @@ mvn install ../home-integrate-system
 ```xml
         <!-- 单jar包方式引入-->
         <dependency>
-            <groupId>com.guoshiyao.home</groupId>
+            <groupId>com.guoshiyao.rely</groupId>
             <version>9.0.1-SNAPSHOT</version>
             <artifactId>home-integrate-systemall</artifactId>
         </dependency>
@@ -28,7 +28,7 @@ mvn install ../home-integrate-system
 ```xml
         <!-- pom关联方式引入-->
         <dependency>
-            <groupId>com.guoshiyao.home</groupId>
+            <groupId>com.guoshiyao.rely</groupId>
             <version>9.0.1-SNAPSHOT</version>
             <artifactId>home-integrate-systemallpom</artifactId>
         </dependency>
