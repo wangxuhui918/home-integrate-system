@@ -1,0 +1,52 @@
+
+
+<!--
+  ~ /*
+  ~  * Copyright (c) 2022
+  ~  * http://license.coscl.org.cn/MulanPSL2
+  ~  * 汪旭辉 wangxuhui918@163.com
+  ~  */
+  -->
+
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.guoshiyao.rely</groupId>
+        <version>00000.05.27.092423-SNAPSHOT</version>
+        <artifactId>home-integrate-third</artifactId>
+    </parent>
+    <artifactId>home-integrate-datat</artifactId>
+    <name>home-integrate-datat</name>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.guoshiyao.rely</groupId>
+            <version>00000.05.27.092423-SNAPSHOT</version>
+            <artifactId>home-integrate-coreapi</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.guoshiyao.rely</groupId>
+            <version>00000.05.27.092423-SNAPSHOT</version>
+            <artifactId>home-integrate-corespringboot</artifactId>
+
+        </dependency>
+
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>8.0.12</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/com.alibaba/druid -->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid</artifactId>
+            <version>1.2.7</version>
+        </dependency>
+
+    </dependencies>
+
+
+</project>

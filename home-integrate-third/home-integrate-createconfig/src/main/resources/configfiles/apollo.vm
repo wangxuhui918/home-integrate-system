@@ -1,0 +1,10 @@
+###管理端
+#home.apollo.url=阿波罗管理地址,如果不填写则阿波罗不加载
+#home.apollo.username=阿波罗管理用户名
+#home.apollo.password=阿波罗管理密码
+
+###客户端
+#home.apollo.app.id=${idKey}
+#home.apollo.apollo.meta=http://106.54.227.205:8080
+#dev,uat,pro 可以通过系统env传入,注释后自动通过传入变量决定,这个建议不传,系统自动识别
+#home.apollo.apollo.env=${env}

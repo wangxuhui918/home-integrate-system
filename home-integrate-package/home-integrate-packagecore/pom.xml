@@ -1,0 +1,164 @@
+
+
+<!--
+  ~ /*
+  ~  * Copyright (c) 2022
+  ~  * http://license.coscl.org.cn/MulanPSL2
+  ~  * 汪旭辉 wangxuhui918@163.com
+  ~  */
+  -->
+
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.guoshiyao.rely</groupId>
+        <artifactId>home-integrate-package</artifactId>
+        <version>00000.05.27.092423-SNAPSHOT</version>
+    </parent>
+    <artifactId>home-integrate-packagecore</artifactId>
+
+
+    <dependencies>
+        <dependency>
+            <groupId>com.guoshiyao.rely</groupId>
+            <version>00000.05.27.092423-SNAPSHOT</version>
+            <artifactId>home-integrate-basevo</artifactId>
+
+        </dependency>
+
+        <dependency>
+            <groupId>com.guoshiyao.rely</groupId>
+            <version>00000.05.27.092423-SNAPSHOT</version>
+            <artifactId>home-integrate-coreapi</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.guoshiyao.rely</groupId>
+            <version>00000.05.27.092423-SNAPSHOT</version>
+            <artifactId>home-integrate-coreutils</artifactId>
+
+        </dependency>
+        <dependency>
+            <groupId>com.guoshiyao.rely</groupId>
+            <version>00000.05.27.092423-SNAPSHOT</version>
+            <artifactId>home-integrate-systemconfig</artifactId>
+
+        </dependency>
+        <dependency>
+            <groupId>com.guoshiyao.rely</groupId>
+            <version>00000.05.27.092423-SNAPSHOT</version>
+            <artifactId>home-integrate-exception</artifactId>
+
+        </dependency>
+        <dependency>
+            <groupId>com.guoshiyao.rely</groupId>
+            <version>00000.05.27.092423-SNAPSHOT</version>
+            <artifactId>home-integrate-message</artifactId>
+
+        </dependency>
+        <dependency>
+            <groupId>com.guoshiyao.rely</groupId>
+            <version>00000.05.27.092423-SNAPSHOT</version>
+            <artifactId>home-integrate-corespringboot</artifactId>
+
+        </dependency>
+        <dependency>
+            <groupId>com.guoshiyao.rely</groupId>
+            <version>00000.05.27.092423-SNAPSHOT</version>
+            <artifactId>home-integrate-actut</artifactId>
+
+        </dependency>
+        <dependency>
+            <groupId>com.guoshiyao.rely</groupId>
+            <version>00000.05.27.092423-SNAPSHOT</version>
+            <artifactId>home-integrate-sysuser</artifactId>
+
+        </dependency>
+        <dependency>
+            <groupId>com.guoshiyao.rely</groupId>
+            <version>00000.05.27.092423-SNAPSHOT</version>
+            <artifactId>home-integrate-apollot</artifactId>
+
+        </dependency>
+        <dependency>
+            <groupId>com.guoshiyao.rely</groupId>
+            <version>00000.05.27.092423-SNAPSHOT</version>
+            <artifactId>home-integrate-datat</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.guoshiyao.rely</groupId>
+            <version>00000.05.27.092423-SNAPSHOT</version>
+            <artifactId>home-integrate-dubbot</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.guoshiyao.rely</groupId>
+            <version>00000.05.27.092423-SNAPSHOT</version>
+            <artifactId>home-integrate-faitht</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.guoshiyao.rely</groupId>
+            <version>00000.05.27.092423-SNAPSHOT</version>
+            <artifactId>home-integrate-logback</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.guoshiyao.rely</groupId>
+            <version>00000.05.27.092423-SNAPSHOT</version>
+            <artifactId>home-integrate-mybatist</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.guoshiyao.rely</groupId>
+            <version>00000.05.27.092423-SNAPSHOT</version>
+            <artifactId>home-integrate-swaggert</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.guoshiyao.rely</groupId>
+            <version>00000.05.27.092423-SNAPSHOT</version>
+            <artifactId>home-integrate-outgoing</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.guoshiyao.rely</groupId>
+            <version>00000.05.27.092423-SNAPSHOT</version>
+            <artifactId>home-integrate-swaggert</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.guoshiyao.rely</groupId>
+            <version>00000.05.27.092423-SNAPSHOT</version>
+            <artifactId>home-integrate-snowflake</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.guoshiyao.rely</groupId>
+            <version>00000.05.27.092423-SNAPSHOT</version>
+            <artifactId>home-integrate-flywayt</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.guoshiyao.rely</groupId>
+            <version>00000.05.27.092423-SNAPSHOT</version>
+            <artifactId>home-integrate-createconfig</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.guoshiyao.rely</groupId>
+            <version>00000.05.27.092423-SNAPSHOT</version>
+            <artifactId>home-integrate-gittools</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.guoshiyao.rely</groupId>
+            <version>00000.05.27.092423-SNAPSHOT</version>
+            <artifactId>home-integrate-redis</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.guoshiyao.rely</groupId>
+            <version>00000.05.27.092423-SNAPSHOT</version>
+            <artifactId>home-integrate-minio</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>io.minio</groupId>
+                    <artifactId>minio</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>com.squareup.okhttp3</groupId>
+                    <artifactId>okhttp</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+    </dependencies>
+</project>

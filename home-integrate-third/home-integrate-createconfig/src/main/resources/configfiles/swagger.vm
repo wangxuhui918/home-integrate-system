@@ -1,0 +1,4 @@
+#swagger 默认扫描 api路径为启动类所在目录下的 api目录
+#home.swagger.basepackage=${projectPackage}.api
+#swagger命名,暂时命名为SwaggerAPI
+#home.swagger.name=SwaggeAPI

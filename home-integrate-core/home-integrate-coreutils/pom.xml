@@ -1,0 +1,39 @@
+<!--
+  ~ /*
+  ~  * Copyright (c) 2022
+  ~  * http://license.coscl.org.cn/MulanPSL2
+  ~  * 汪旭辉 wangxuhui918@163.com
+  ~  */
+  -->
+
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.guoshiyao.rely</groupId>
+        <version>00000.05.27.092423-SNAPSHOT</version>
+        <artifactId>home-integrate-core</artifactId>
+    </parent>
+    <artifactId>home-integrate-coreutils</artifactId>
+    <name>home-integrate-coreutils</name>
+
+
+    <dependencies>
+
+        <dependency>
+            <artifactId>home-integrate-basevo</artifactId>
+            <groupId>com.guoshiyao.rely</groupId>
+            <version>00000.05.27.092423-SNAPSHOT</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.apache.poi/poi-ooxml -->
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi-ooxml</artifactId>
+            <version>4.1.2</version>
+        </dependency>
+
+    </dependencies>
+
+
+</project>

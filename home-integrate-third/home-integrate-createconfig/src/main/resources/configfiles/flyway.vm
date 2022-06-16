@@ -1,0 +1,8 @@
+#flyway jdbc连接地址,如果为空取数据库连接地址
+#home.flywaydb.url=
+#flyway 如果为空,取数据库用户名
+#home.flywaydb.username=
+#flyway 如果为空,去数据库密码
+#home.flywaydb.password=
+#flyway 版本管理表
+#home.flywaydb.table=flyway_schema_history

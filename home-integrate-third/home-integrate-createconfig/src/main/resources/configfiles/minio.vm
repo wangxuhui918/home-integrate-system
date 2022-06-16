@@ -1,0 +1,10 @@
+#api 请求地址 必填
+#home.minio.endpoint=http://localhost:9000
+#api 请求用户名
+#home.minio.accesskey=SDS*DSJDlerw9(were)
+#api 请求密钥
+#home.minio.secretKey=SDS*DSJDlerdsfsdf
+#桶命名空间,必填
+#home.minio.namespace_re=${idKey}
+#测试增加数据
+#home.minio.deom=demop
