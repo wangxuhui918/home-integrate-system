@@ -15,7 +15,7 @@
     <parent>
         <artifactId>home-integrate-third</artifactId>
         <groupId>com.guoshiyao.rely</groupId>
-        <version>00000.05.27.092423-SNAPSHOT</version>
+        <version>9.0.1-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -30,7 +30,7 @@
     <dependencies>
         <dependency>
             <groupId>com.guoshiyao.rely</groupId>
-            <version>00000.05.27.092423-SNAPSHOT</version>
+            <version>9.0.1-SNAPSHOT</version>
             <artifactId>home-integrate-corespringboot</artifactId>
         </dependency>
         <dependency>

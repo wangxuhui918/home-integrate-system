@@ -12,7 +12,7 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.guoshiyao.rely</groupId>
-        <version>00000.05.27.092423-SNAPSHOT</version>
+        <version>9.0.1-SNAPSHOT</version>
         <artifactId>home-integrate-core</artifactId>
     </parent>
     <artifactId>home-integrate-coreextend</artifactId>

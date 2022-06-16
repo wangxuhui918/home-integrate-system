@@ -14,7 +14,7 @@
     <parent>
         <groupId>com.guoshiyao.rely</groupId>
         <artifactId>home-integrate-packageextends</artifactId>
-        <version>00000.05.27.092423-SNAPSHOT</version>
+        <version>9.0.1-SNAPSHOT</version>
     </parent>
     <artifactId>home-integrate-systemallpom</artifactId>
     <name>home-integrate-systemallpom</name>
@@ -24,7 +24,7 @@
     <dependencies>
         <dependency>
             <groupId>com.guoshiyao.rely</groupId>
-            <version>00000.05.27.092423-SNAPSHOT</version>
+            <version>9.0.1-SNAPSHOT</version>
             <artifactId>home-integrate-packagecore</artifactId>
         </dependency>
     </dependencies>
