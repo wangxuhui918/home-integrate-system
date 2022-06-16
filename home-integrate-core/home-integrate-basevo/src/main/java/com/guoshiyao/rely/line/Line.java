@@ -61,12 +61,12 @@ public class Line {
     /**
      * 工程资源目录
      */
-    public static String projectresourcepath = (StrUtil.subBefore(ClassUtil.loadClass(Line.class.getName()).getResource("").getPath(), "target" + File.separator + "classes", true) + File.separator + "src"
+    public static String projectresourcepath = (StrUtil.subBefore(ClassUtil.loadClass(Line.class.getName()).getClassLoader().getResource("").getPath(), "target" + File.separator + "classes", true) + File.separator + "src"
             + File.separator + "main" + File.separator + "resources" + File.separator);
     /**
      * 工程源码目录
      */
-    public static String projectcodesourcepath = (StrUtil.subBefore(ClassUtil.loadClass(Line.class.getName()).getResource("").getPath(), "target" + File.separator + "classes", true) + File.separator + "src"
+    public static String projectcodesourcepath = (StrUtil.subBefore(ClassUtil.loadClass(Line.class.getName()).getClassLoader().getResource("").getPath(), "target" + File.separator + "classes", true) + File.separator + "src"
             + File.separator + "main" + File.separator + "java" + File.separator);
     /**
      * 用户唯一标志
