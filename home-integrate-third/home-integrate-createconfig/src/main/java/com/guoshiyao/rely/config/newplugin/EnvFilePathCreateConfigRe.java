@@ -74,16 +74,16 @@ public class EnvFilePathCreateConfigRe implements CreateConfigAb {
     @Override
     public void after() {
         try {
-            ClassUtil.loadClass(Line.projectPackage + ".HomeProperties").newInstance();
-            String path = Line.projectcodesourcepath + StrUtil.replace(Line.projectPackage, ".", File.separator) + File.separator + "HomeProperties.java";
-            String context = FileUtil.readUtf8String(path);
-            for (String key : Line.properties.keySet()) {
-                String k = StrUtil.replace(key, ".", "_");
-                if (!StrUtil.containsAny(context, k, key)) {
-                    createHomePropertiesModel();
-                    break;
-                }
-            }
+//            ClassUtil.loadClass(Line.projectPackage + ".HomeProperties").newInstance();
+//            String path = Line.projectcodesourcepath + StrUtil.replace(Line.projectPackage, ".", File.separator) + File.separator + "HomeProperties.java";
+//            String context = FileUtil.readUtf8String(path);
+//            for (String key : Line.properties.keySet()) {
+//                String k = StrUtil.replace(key, ".", "_");
+//                if (!StrUtil.containsAny(context, k, key)) {
+//                    createHomePropertiesModel();
+//                    break;
+//                }
+//            }
         } catch (Exception e) {//不存在则创建
             createHomePropertiesModel();
         }
