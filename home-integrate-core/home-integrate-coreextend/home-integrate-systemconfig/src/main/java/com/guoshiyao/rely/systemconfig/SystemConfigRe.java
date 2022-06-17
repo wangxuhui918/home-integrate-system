@@ -46,13 +46,10 @@ public class SystemConfigRe implements SystemConfigAb {
 
     @Override
     public HashMap<String, PropertiesMap<String, LinePropertiesAb>> writeProperties() {
-//        String PROPERTIES = Line.envFileUtil.getThisEnvResourceConfigPath(1000014);
         HashMap<String, PropertiesMap<String, LinePropertiesAb>> map = new HashMap<>();
-        HashMap<String, String> params2 =  ProjectCoreConfUtils.getEnvPropertiesByCode("1000014");
+        HashMap<String, String> params2 = ProjectCoreConfUtils.getEnvPropertiesByCode("1000014");
         map.put(getName(),
                 LinePropertiesAb.convertLineProperties(params2));
-//        map.put(getname(),
-//                linepropertiesab.convertlineproperties(propertiesutils.getproperties(line.mainclass, properties)));
         return map;
     }
 
@@ -60,5 +57,6 @@ public class SystemConfigRe implements SystemConfigAb {
     public LinkedHashMap<String, List<Class>> writeClasss() {
         return new LinkedHashMap<>();
     }
+
 
 }

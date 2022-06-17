@@ -48,14 +48,10 @@ public class PortConfigRe implements SystemConfigAb {
 
     @Override
     public HashMap<String, PropertiesMap<String, LinePropertiesAb>> writeProperties() {
-//        String PROPERTIES = Line.envFileUtil.getThisEnvResourceConfigPath(1000014);
         HashMap<String, String> params = ProjectCoreConfUtils.getEnvPropertiesByCode("1000014");
-
         HashMap<String, PropertiesMap<String, LinePropertiesAb>> map = new HashMap<>();
         map.put(getName(),
                 LinePropertiesAb.convertLineProperties(params));
-//        map.put(getName(),
-//                LinePropertiesAb.convertLineProperties(PropertiesUtils.getProperties(Line.mainClass, PROPERTIES)));
         conf = map;
         return map;
     }
