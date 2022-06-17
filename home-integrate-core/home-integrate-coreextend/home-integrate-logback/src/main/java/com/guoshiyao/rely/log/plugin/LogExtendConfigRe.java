@@ -23,14 +23,6 @@ import java.util.Map;
 @RuleAnnotation
 public class LogExtendConfigRe implements SystemConfigAb {
 
-
-    public final static String logappid = "home.log.appid";
-    public final static String loglevel = "home.log.syslevel";
-    public final static String rootlevel = "home.log.rootlevel";
-    public final static String businlevel = "home.log.businlevel";
-    public final static String businpackage = "home.log.businpackage";
-    public final static String logdir = "home.log.dir";
-
     @Override
     public void after() {
         LoggerBaseAb.info("开始翻转日志管理器!!");
@@ -59,21 +51,6 @@ public class LogExtendConfigRe implements SystemConfigAb {
 
     @Override
     public Map<String, String> writeProperties() {
-//        HashMap<String, PropertiesMap<String, LinePropertiesAb>> map = new HashMap<>();
-//        HashMap<String, String> params1 = new LinkedHashMap<>();
-//        try {
-//            HashMap<String, String> params2 = ProjectCoreConfUtils.getEnvPropertiesByCode("1000008");
-//            for (String key : params2.keySet()) {
-//                if (StrUtil.isNotBlank(params2.get(key))) {
-//                    params1.put(key, params2.get(key));
-//                }
-//            }
-//        } catch (Exception e) {
-//            LoggerBaseAb.warn("系统错误,采用默认");
-//            LoggerBaseAb.warn(JSONUtil.toJsonStr(params1));
-//        }
-//        map.put(getName(), LinePropertiesAb.convertLineProperties(params1));
-//        return map;
         return new HashMap<>();
     }
 
