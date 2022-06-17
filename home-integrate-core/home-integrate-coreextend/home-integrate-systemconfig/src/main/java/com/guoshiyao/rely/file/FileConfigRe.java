@@ -17,15 +17,7 @@ import org.springframework.util.unit.DataUnit;
 import javax.servlet.MultipartConfigElement;
 
 public class FileConfigRe {
-    @Bean
-    public MultipartConfigElement multipartConfigElement() {
-        MultipartConfigFactory factory = new MultipartConfigFactory();
-        factory.setLocation(Line.properties.get("system.servlet.multipart.location").getValue());
-        factory.setMaxFileSize(DataSize.of(Line.properties.get("system.servlet.multipart.max-file-size").getInteger(), DataUnit.MEGABYTES));
-        factory.setMaxRequestSize(DataSize.of(Line.properties.get("system.servlet.multipart.max-request-size").getInteger(), DataUnit.MEGABYTES));
-        factory.setFileSizeThreshold(DataSize.of(Line.properties.get("system.servlet.multipart.file-size-threshold").getInteger(), DataUnit.MEGABYTES));
-        return factory.createMultipartConfig();
-    }
+
 
 }
 

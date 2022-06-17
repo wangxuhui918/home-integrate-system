@@ -17,7 +17,12 @@ import com.guoshiyao.rely.log.base.LoggerBaseAb;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.web.server.ConfigurableWebServerFactory;
 import org.springframework.boot.web.server.WebServerFactoryCustomizer;
+import org.springframework.boot.web.servlet.MultipartConfigFactory;
 import org.springframework.context.annotation.Bean;
+import org.springframework.util.unit.DataSize;
+import org.springframework.util.unit.DataUnit;
+
+import javax.servlet.MultipartConfigElement;
 
 /**
  * @author 汪旭辉
@@ -46,5 +51,15 @@ public class SystemServletPort {
             }
         };
         return portBean;
+    }
+
+    @Bean
+    public MultipartConfigElement multipartConfigElement() {
+        MultipartConfigFactory factory = new MultipartConfigFactory();
+        factory.setLocation(Line.properties.get("system.servlet.multipart.location").getValue());
+        factory.setMaxFileSize(DataSize.of(Line.properties.get("system.servlet.multipart.max-file-size").getInteger(), DataUnit.MEGABYTES));
+        factory.setMaxRequestSize(DataSize.of(Line.properties.get("system.servlet.multipart.max-request-size").getInteger(), DataUnit.MEGABYTES));
+        factory.setFileSizeThreshold(DataSize.of(Line.properties.get("system.servlet.multipart.file-size-threshold").getInteger(), DataUnit.MEGABYTES));
+        return factory.createMultipartConfig();
     }
 }
