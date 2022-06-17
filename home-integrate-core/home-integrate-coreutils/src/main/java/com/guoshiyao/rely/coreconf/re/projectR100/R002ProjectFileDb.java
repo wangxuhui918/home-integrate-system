@@ -78,7 +78,13 @@ public class R002ProjectFileDb implements ProjectCoreConfAb {
                 for (int j = 0; j < groups.size(); j++) {
                     String s = groups.get(j);
                     if (s.contains("-" + Line.env.getLocalName() + "-")) {
+//                        for (String key : allEnvSetting.getMap(s).keySet()) {
+//                            String value = allEnvSetting.getMap(s).get(key);
+//                            if (value != null && StrUtil.isNotBlank(value)) {
+//                                thisEnvKeyValues.put(key, allEnvSetting.getMap(s).get(key));
+//                            }
                         thisEnvKeyValues.putAll(allEnvSetting.getMap(s));
+//                        }
                     }
                 }
             }

@@ -10,11 +10,11 @@
 
 package com.guoshiyao.rely.flyway.plugin;
 
+import cn.hutool.setting.Setting;
 import com.guoshiyao.rely.coreannotation.rule.RuleAnnotation;
 import com.guoshiyao.rely.flyway.bean.FlywayBean;
 import com.guoshiyao.rely.line.Line;
-import com.guoshiyao.rely.line.ab.re.LinePropertiesAb;
-import com.guoshiyao.rely.line.propertiesmap.PropertiesMap;
+
 import com.guoshiyao.rely.third.ThirdExtendConfigAb;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
@@ -50,7 +50,7 @@ public class FlywayExtendConfig implements ThirdExtendConfigAb {
             if (source.length == 0) {
                 return new LinkedHashMap<>();
             }
-            if (Line.properties.get("home.flywaydb.url").isBlank()) {
+            if (!Line.setting.containsKey("home.flywaydb.url")) {
                 return new LinkedHashMap<>();
             }
         } catch (Exception e) {
@@ -67,33 +67,33 @@ public class FlywayExtendConfig implements ThirdExtendConfigAb {
     }
 
     @Override
-    public void callProperties(PropertiesMap<String, LinePropertiesAb> properties) {
+    public void callProperties(Setting properties) {
         {
             String key = "home.flywaydb.url";
-            if (properties.get(key).isBlank()) {
-                if (Line.properties.get("home.db.url") != null)
-                    properties.put(key, new LinePropertiesAb(key, Line.properties.get("home.db.url").getString()));
+            if (!properties.containsKey(key)) {
+                if (Line.setting.get("home.db.url") != null)
+                    properties.put(key, ( Line.setting.get("home.db.url")));
             }
         }
         {
             String key = "home.flywaydb.username";
-            if (properties.get(key).isBlank()) {
-                if (Line.properties.get("home.db.username") != null)
-                    properties.put(key, new LinePropertiesAb(key, Line.properties.get("home.db.username").getString()));
+            if (!properties.containsKey(key)) {
+                if (Line.setting.get("home.db.username") != null)
+                    properties.put(key, ( Line.setting.get("home.db.username")));
             }
         }
         {
             String key = "home.flywaydb.password";
-            if (properties.get(key).isBlank()) {
-                if (Line.properties.get("home.db.password") != null)
-                    properties.put(key, new LinePropertiesAb(key, Line.properties.get("home.db.password").getString()));
+            if (!properties.containsKey(key)) {
+                if (Line.setting.get("home.db.password") != null)
+                    properties.put(key, ( Line.setting.get("home.db.password")));
             }
         }
         {
             String key = "home.flywaydb.table";
-            if (properties.get(key).isBlank()) {
-                if (Line.properties.get("home.db.table") != null)
-                    properties.put(key, new LinePropertiesAb(key, "flyway_schema_history"));
+            if (!properties.containsKey(key)) {
+                if (Line.setting.get("home.db.table") != null)
+                    properties.put(key, ( "flyway_schema_history"));
             }
         }
     }

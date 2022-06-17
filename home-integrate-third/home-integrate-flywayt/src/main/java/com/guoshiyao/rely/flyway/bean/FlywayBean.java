@@ -22,10 +22,10 @@ public class FlywayBean {
 //        System.setProperty("spring.flyway.baseline-on-migrate", "true");
 //        System.setProperty("spring.flyway.out-of-order", "true");
 //        System.setProperty("spring.flyway.validate-on-migrate", "false");
-        String dbUrl = Line.properties.get("home.flywaydb.url").getString();
-        String dbUserName = Line.properties.get("home.flywaydb.username").getString();
-        String dbPassword = Line.properties.get("home.flywaydb.password").getString();
-        String table = Line.properties.get("home.flywaydb.table").getString();
+        String dbUrl = Line.setting.get("home.flywaydb.url");
+        String dbUserName = Line.setting.get("home.flywaydb.username");
+        String dbPassword = Line.setting.get("home.flywaydb.password");
+        String table = Line.setting.get("home.flywaydb.table");
         //flyway_schema_history
         // 创建Flyway实例
         Flyway flyway = Flyway.configure().dataSource(dbUrl, dbUserName, dbPassword).table(table).load();

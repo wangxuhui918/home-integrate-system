@@ -22,7 +22,7 @@ public class DubboAutoConfiguration3 {
     @ConditionalOnMissingBean(ConsumerConfig.class) // 容器中如果没有这个类,那么自动配置这个类
     public ConsumerConfig consumerconfig() {
         ConsumerConfig sddf = new ConsumerConfig();
-        sddf.setTimeout(Line.properties.get("home.dubbo.reference.timeout").getInteger());
+        sddf.setTimeout(Line.setting.getInt("home.dubbo.reference.timeout"));
         sddf.setCheck(false);
         sddf.setFilter("transactionFilter");
         return sddf;

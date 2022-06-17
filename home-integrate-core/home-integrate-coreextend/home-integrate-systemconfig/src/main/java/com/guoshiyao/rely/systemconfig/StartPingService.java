@@ -22,7 +22,7 @@ public class StartPingService implements CommandLineRunner {
      */
     @Override
     public void run(String... args) throws Exception {
-        java.net.URI uri = java.net.URI.create("http://127.0.0.1:" + Line.properties.get("system.servlet.port") + "/swagger-ui/index.html");
+        java.net.URI uri = java.net.URI.create("http://127.0.0.1:" + Line.setting.get("system.servlet.port") + "/swagger-ui/index.html");
 //        if (java.awt.Desktop.isDesktopSupported() && Line.isNotJar) {
 //            try {
 //                // 获取当前系统桌面扩展
@@ -37,7 +37,7 @@ public class StartPingService implements CommandLineRunner {
 //            }
 //
 //        }
-        LoggerBaseAb.info("swagger 地址: " + "http://127.0.0.1:" + Line.properties.get("system.servlet.port") + "/swagger-ui/index.html");
+        LoggerBaseAb.info("swagger 地址: " + "http://127.0.0.1:" + Line.setting.get("system.servlet.port") + "/swagger-ui/index.html");
 
     }
 }

@@ -10,11 +10,10 @@
 
 package com.guoshiyao.rely.message;
 
+import cn.hutool.setting.Setting;
 import com.guoshiyao.rely.coreannotation.rule.RuleAnnotation;
 import com.guoshiyao.rely.coreconf.utils.ProjectCoreConfUtils;
 import com.guoshiyao.rely.line.Line;
-import com.guoshiyao.rely.line.ab.re.LinePropertiesAb;
-import com.guoshiyao.rely.line.propertiesmap.PropertiesMap;
 import com.guoshiyao.rely.message.ab.MessageConfigAb;
 import com.guoshiyao.rely.message.utils.NodeUtils;
 
@@ -64,7 +63,7 @@ public class MessageExtendConfigRe implements MessageConfigAb {
     }
 
     @Override
-    public void callProperties(PropertiesMap<String, LinePropertiesAb> properties) {
+    public void callProperties(Setting properties) {
     }
 
 }

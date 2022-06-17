@@ -9,12 +9,11 @@
 
 package com.guoshiyao.rely.line.propertiesmap;
 
-import cn.hutool.core.util.ClassUtil;
-import cn.hutool.setting.Setting;
 import com.guoshiyao.rely.line.ab.re.LinePropertiesAb;
 
 import java.util.HashMap;
 
+@Deprecated
 public class PropertiesMap<K, V extends LinePropertiesAb> extends HashMap<K, V> {
 
     /**

@@ -21,7 +21,7 @@ public class MapperConfiguration {
     public MapperScannerConfigurer mapperScannerConfigurer() {
         MapperScannerConfigurer mapperScannerConfigurer = new MapperScannerConfigurer();
         mapperScannerConfigurer.setSqlSessionFactoryBeanName("sqlSessionFactory");
-        mapperScannerConfigurer.setBasePackage(Line.properties.get("home.mybatis.basepackage").getString());
+        mapperScannerConfigurer.setBasePackage(Line.setting.get("home.mybatis.basepackage"));
         return mapperScannerConfigurer;
     }
 }

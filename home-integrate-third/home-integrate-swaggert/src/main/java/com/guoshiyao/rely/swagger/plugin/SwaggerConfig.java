@@ -10,14 +10,14 @@
 
 package com.guoshiyao.rely.swagger.plugin;
 
+import cn.hutool.setting.Setting;
 import com.guoshiyao.rely.coreannotation.AnnotationTools;
 import com.guoshiyao.rely.coreannotation.rule.RuleAnnotation;
 import com.guoshiyao.rely.hand.ControllerParamHandV1;
 import com.guoshiyao.rely.hand.ExceptionHandV1;
 import com.guoshiyao.rely.hand.ResponseHandV1;
 import com.guoshiyao.rely.line.Line;
-import com.guoshiyao.rely.line.ab.re.LinePropertiesAb;
-import com.guoshiyao.rely.line.propertiesmap.PropertiesMap;
+
 import com.guoshiyao.rely.swagger.bean.RomensWebMvcConfigurationSupport;
 import com.guoshiyao.rely.swagger.bean.SwaggerConfigRe;
 import com.guoshiyao.rely.third.ThirdExtendConfigAb;
@@ -65,17 +65,17 @@ public class SwaggerConfig implements ThirdExtendConfigAb {
     }
 
     @Override
-    public void callProperties(PropertiesMap<String, LinePropertiesAb> properties) {
+    public void callProperties(Setting properties) {
         {
             String key = "home.swagger.basepackage";
-            if (properties.get(key).isBlank()) {
-                properties.put(key, new LinePropertiesAb(key, Line.projectPackage + ".api"));
+            if (!properties.containsKey(key)) {
+                properties.put(key, ( Line.projectPackage + ".api"));
             }
         }
         {
             String key = "home.swagger.name";
-            if (properties.get(key).isBlank()) {
-                properties.put(key, new LinePropertiesAb(key, "Swagger API"));
+            if (!properties.containsKey(key)) {
+                properties.put(key, ( "Swagger API"));
             }
         }
     }

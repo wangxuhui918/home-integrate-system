@@ -11,9 +11,8 @@
 
 package com.guoshiyao.rely.third;
 
+import cn.hutool.setting.Setting;
 import com.guoshiyao.rely.coreab.RunModelConfigRe;
-import com.guoshiyao.rely.line.ab.re.LinePropertiesAb;
-import com.guoshiyao.rely.line.propertiesmap.PropertiesMap;
 
 public interface ThirdExtendConfigAb extends RunModelConfigRe {
     /**
@@ -24,5 +23,5 @@ public interface ThirdExtendConfigAb extends RunModelConfigRe {
      * @date 2021年12月1日
      * @readme
      */
-    void callProperties(PropertiesMap<String, LinePropertiesAb> properties);
+    void callProperties(Setting properties);
 }

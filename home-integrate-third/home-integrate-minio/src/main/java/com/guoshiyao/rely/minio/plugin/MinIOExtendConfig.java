@@ -11,10 +11,10 @@
 package com.guoshiyao.rely.minio.plugin;
 
 
+import cn.hutool.setting.Setting;
 import com.guoshiyao.rely.coreannotation.rule.RuleAnnotation;
 import com.guoshiyao.rely.line.Line;
-import com.guoshiyao.rely.line.ab.re.LinePropertiesAb;
-import com.guoshiyao.rely.line.propertiesmap.PropertiesMap;
+
 import com.guoshiyao.rely.minio.utils.MinIOGen;
 import com.guoshiyao.rely.third.ThirdExtendConfigAb;
 
@@ -30,7 +30,7 @@ public class MinIOExtendConfig implements ThirdExtendConfigAb {
     @Override
     public LinkedHashMap<String, List<Class>> writeClasss() {
         //第0 个数据库
-        if (!Line.properties.get("home.minio.endpoint").isBlank() && !Line.properties.get("home.minio.namespace_re").isBlank()) {
+        if (Line.setting.containsKey("home.minio.endpoint") && Line.setting.containsKey("home.minio.namespace_re")) {
             MinIOGen.intiConect();
             LinkedHashMap<String, List<Class>> map = new LinkedHashMap<>();
             return map;
@@ -60,29 +60,29 @@ public class MinIOExtendConfig implements ThirdExtendConfigAb {
     }
 
     @Override
-    public void callProperties(PropertiesMap<String, LinePropertiesAb> properties) {
+    public void callProperties(Setting properties) {
         {
             String key = "home.minio.namespace_re";
-            if (properties.get(key).isBlank()) {
-                properties.put(key, new LinePropertiesAb(key, Line.idKey));
+            if (!properties.containsKey(key)) {
+                properties.put(key, ( Line.idKey));
             }
         }
         {
             String key = "home.minio.endpoint";
-            if (properties.get(key).isBlank()) {
-                properties.put(key, new LinePropertiesAb(key, ""));
+            if (!properties.containsKey(key)) {
+                properties.put(key, ( ""));
             }
         }
         {
             String key = "home.minio.accesskey";
-            if (properties.get(key).isBlank()) {
-                properties.put(key, new LinePropertiesAb(key, ""));
+            if (!properties.containsKey(key)) {
+                properties.put(key, ( ""));
             }
         }
         {
             String key = "home.minio.secretKey";
-            if (properties.get(key).isBlank()) {
-                properties.put(key, new LinePropertiesAb(key, ""));
+            if (!properties.containsKey(key)) {
+                properties.put(key, ( ""));
             }
         }
     }

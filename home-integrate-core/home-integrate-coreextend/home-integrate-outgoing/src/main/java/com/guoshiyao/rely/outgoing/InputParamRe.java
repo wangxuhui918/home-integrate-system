@@ -13,7 +13,6 @@ package com.guoshiyao.rely.outgoing;
 import cn.hutool.json.JSONObject;
 import cn.hutool.json.JSONUtil;
 import com.guoshiyao.rely.exception.ExceptionAb;
-import com.guoshiyao.rely.line.ab.re.LineJsonPropertiesRe;
 
 import java.util.List;
 import java.util.Map;
@@ -29,13 +28,6 @@ public class InputParamRe<G> extends InputParamAb<cn.hutool.json.JSONObject> {
     public void setInputData(G inputData) {
         super.setData(JSONUtil.parseObj(inputData));
         this.inputData = inputData;
-    }
-
-
-    public LineJsonPropertiesRe getProperties(String expression) {
-        java.lang.Object object = getData().getByPath(expression);
-        LineJsonPropertiesRe pro = new LineJsonPropertiesRe(JSONUtil.parse(object));
-        return pro;
     }
 
     /**

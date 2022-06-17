@@ -22,8 +22,8 @@ import java.util.List;
 public class GitGTools {
 
     public static void downloadUserAllForContains(String string) {
-        GitlabAPI api = GitlabAPI.connect(Line.properties.get("home.gitlab.gitlaburl").getValue(),
-                Line.properties.get("home.gitlab.token").getValue());
+        GitlabAPI api = GitlabAPI.connect(Line.setting.get("home.gitlab.gitlaburl"),
+                Line.setting.get("home.gitlab.token"));
         List<GitlabProject> group = api.getAllProjects();
         List<GitlabProject> gits = new ArrayList<>();
         for (GitlabProject gitlabProject : group) {
@@ -44,7 +44,7 @@ public class GitGTools {
         String line = "giturl:----" + git.getHttpUrl() + "gitname:----" + git.getName() + "gitdesc:----"
                 + git.getDescription() + "\n";
         GitLabBean v2 = new GitLabBean(git.getHttpUrl());
-        FileUtil.appendUtf8String(line, Line.properties.get("home.gitlab.log").getValue());
+        FileUtil.appendUtf8String(line, Line.setting.get("home.gitlab.log"));
         v2.init();
     }
 }

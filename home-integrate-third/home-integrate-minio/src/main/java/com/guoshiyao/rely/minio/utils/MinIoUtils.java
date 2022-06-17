@@ -157,7 +157,7 @@ public class MinIoUtils {
                     .bucket(namespace).object(storagname).build());//60 * 60 * 24 * 9 .expiry(60 * 60 * 24)
             url = StrUtil.subBefore(url, "?", true);
             int px = StrUtil.ordinalIndexOf(url, "/", 3);
-            url = Line.properties.get("home.minio.endpoint").toString() + url.substring(px);
+            url = Line.setting.get("home.minio.endpoint") + url.substring(px);
             {
                 gui.put(MinIOGen.storagname, storagname);
                 gui.put(MinIOGen.namespace, namespace);

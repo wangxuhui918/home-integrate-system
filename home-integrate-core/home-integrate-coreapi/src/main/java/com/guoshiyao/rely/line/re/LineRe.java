@@ -15,16 +15,13 @@ import com.guoshiyao.rely.coreab.ClassModelConfigRe;
 import com.guoshiyao.rely.coreab.RunModelConfigRe;
 import com.guoshiyao.rely.coreannotation.rule.RuleAnnotation;
 import com.guoshiyao.rely.coreconf.utils.HomeCoreConfUtils;
-import com.guoshiyao.rely.coreconf.utils.ProjectCoreConfUtils;
 import com.guoshiyao.rely.createconfig.CreateConfigAb;
 import com.guoshiyao.rely.line.Line;
 import com.guoshiyao.rely.line.LineAb;
 import com.guoshiyao.rely.line.ab.re.LinePropertiesAb;
-import com.guoshiyao.rely.line.propertiesmap.PropertiesMap;
 import com.guoshiyao.rely.sys.SystemConfigAb;
 import com.guoshiyao.rely.third.ThirdExtendConfigAb;
 
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -61,6 +58,7 @@ public class LineRe implements LineAb<Line> {
                 }
             }
         }
+
         {//运行时模式需要处理的部分
             for (int i = 0; i < runmodelconfigrerules.size(); i++) {
                 RunModelConfigRe info = runmodelconfigrerules.get(i);
@@ -99,9 +97,6 @@ public class LineRe implements LineAb<Line> {
                     Line.setting.putAll(properties);
                 }
             }
-            {//兼容老数据
-                Line.properties.putAll(LinePropertiesAb.convertLineProperties(Line.setting));
-            }
         }
         //额外参数处理器,比如配置参数变动值
         for (int i = 0; i < runmodelconfigrerules.size(); i++) {
@@ -109,15 +104,17 @@ public class LineRe implements LineAb<Line> {
             if (info1 instanceof ThirdExtendConfigAb) {
                 for (RunModelConfigRe info : runmodelconfigrerules) {
                     if (info instanceof ThirdExtendConfigAb) {
-                        ((ThirdExtendConfigAb) info).callProperties(Line.properties);
+                        ((ThirdExtendConfigAb) info).callProperties(Line.setting);
                     }
                 }
             }
         }
-
+        {//兼容老数据
+            Line.properties.putAll(LinePropertiesAb.convertLineProperties(Line.setting));
+        }
         //写入系统变量
-        for (String key : Line.properties.keySet()) {
-            System.setProperty(key, Line.properties.get(key) == null ? null : Line.properties.get(key).getString());
+        for (String key : Line.setting.keySet()) {
+            System.setProperty(key, Line.setting.get(key) == null ? null : Line.setting.getStr(key));
         }
     }
 
@@ -162,10 +159,12 @@ public class LineRe implements LineAb<Line> {
                 info.after();
             }
         }
-
+        {//兼容老数据
+            Line.properties.putAll(LinePropertiesAb.convertLineProperties(Line.setting));
+        }
         //写入系统变量
-        for (String key : Line.properties.keySet()) {//防止一些额外的变量未写入到系统参数中
-            System.setProperty(key, Line.properties.get(key).getString());
+        for (String key : Line.setting.keySet()) {//防止一些额外的变量未写入到系统参数中
+            System.setProperty(key, Line.setting.get(key));
         }
     }
 

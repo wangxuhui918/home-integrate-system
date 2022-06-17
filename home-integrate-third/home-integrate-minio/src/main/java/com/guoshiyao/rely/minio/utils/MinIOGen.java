@@ -28,14 +28,14 @@ public class MinIOGen {
 
     public static void intiConect() {
         if (client == null) {
-            namespace_re = Line.properties.get("home.minio.namespace_re").toString();
-            client = MinioClient.builder().endpoint(Line.properties.get("home.minio.endpoint").toString()).credentials(Line.properties.get("home.minio.accesskey").toString(), Line.properties.get("home.minio.secretKey").toString()).build();
+            namespace_re = Line.setting.get("home.minio.namespace_re");
+            client = MinioClient.builder().endpoint(Line.setting.get("home.minio.endpoint")).credentials(Line.setting.get("home.minio.accesskey"), Line.setting.get("home.minio.secretKey")).build();
         }
     }
 
     public static void checkMinIOState() {
         if (client == null) {
-            throw new ExceptionError("MinIO连接失败,请检查相关参数是否正常,{},{},{},{}", Line.properties.get("home.minio.namespace_re").toString(), Line.properties.get("home.minio.endpoint").toString(), Line.properties.get("home.minio.accesskey").toString(), Line.properties.get("home.minio.secretKey").toString());
+            throw new ExceptionError("MinIO连接失败,请检查相关参数是否正常,{},{},{},{}", Line.setting.get("home.minio.namespace_re"), Line.setting.get("home.minio.endpoint"), Line.setting.get("home.minio.accesskey"), Line.setting.get("home.minio.secretKey"));
         }
     }
 

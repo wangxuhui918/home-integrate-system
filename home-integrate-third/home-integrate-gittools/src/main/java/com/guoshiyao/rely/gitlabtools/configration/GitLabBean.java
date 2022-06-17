@@ -39,18 +39,18 @@ public class GitLabBean {
     private String name;
     private String desc;
     private String githttpurl;
-    private String branch = Line.properties.get("home.gitlab.branch").getValue();
+    private String branch = Line.setting.get("home.gitlab.branch");
     private String gitdir;
-    private String gitlaburl = Line.properties.get("home.gitlab.gitlaburl").getValue();
-    private String token = Line.properties.get("home.gitlab.token").getValue();
+    private String gitlaburl = Line.setting.get("home.gitlab.gitlaburl");
+    private String token = Line.setting.get("home.gitlab.token");
     private UsernamePasswordCredentialsProvider user = new UsernamePasswordCredentialsProvider(
-            Line.properties.get("home.gitlab.username").getValue(),
-            Line.properties.get("home.gitlab.password").getValue());
+            Line.setting.get("home.gitlab.username"),
+            Line.setting.get("home.gitlab.password"));
 
     public GitLabBean(String githttpurl) {
         this.githttpurl = githttpurl;
         this.name = StrUtil.subBefore(StrUtil.subAfter(this.githttpurl, "/", true), ".git", true);
-        this.gitdir = Line.properties.get("home.gitlab.gitdir").getValue() + File.separator + this.name;
+        this.gitdir = Line.setting.get("home.gitlab.gitdir") + File.separator + this.name;
         init(branch);
     }
 

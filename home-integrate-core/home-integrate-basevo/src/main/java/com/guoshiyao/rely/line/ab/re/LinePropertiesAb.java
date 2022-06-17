@@ -28,6 +28,7 @@ import java.util.Map;
  * @date 2021年9月28日
  * @readme
  */
+@Deprecated
 public class LinePropertiesAb extends Setting {
     private String key;
 

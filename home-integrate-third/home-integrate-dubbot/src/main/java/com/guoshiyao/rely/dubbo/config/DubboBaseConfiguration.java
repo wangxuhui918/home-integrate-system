@@ -25,9 +25,9 @@ public class DubboBaseConfiguration {
     @Bean
     @ConditionalOnMissingBean(ProtocolConfig.class) // 容器中如果没有这个类,那么自动配置这个类
     public ProtocolConfig protocolconfig() {
-        ProtocolConfig sddf = new ProtocolConfig(Line.properties.get("home.dubbo.reference.agreement").getString(),
-                Line.properties.get("home.dubbo.reference.port").getInteger());
-        sddf.setHost(Line.properties.get("home.dubbo.reference.host").getString());
+        ProtocolConfig sddf = new ProtocolConfig(Line.setting.get("home.dubbo.reference.agreement"),
+                Line.setting.getInt("home.dubbo.reference.port"));
+        sddf.setHost(Line.setting.get("home.dubbo.reference.host"));
 
         //		Dispatcher
 //		all 所有消息都派发到线程池，包括请求，响应，连接事件，断开事件，心跳等。
@@ -39,12 +39,12 @@ public class DubboBaseConfiguration {
 //		fixed 固定大小线程池，启动时建立线程，不关闭，一直持有。(缺省)
 //		cached 缓存线程池，空闲一分钟自动删除，需要时重建。
 //		limited 可伸缩线程池，但池中的线程数只会增长不会收缩。(为避免收缩时突然来了大流量引起的性能问题)
-        Integer protocolthreadsnum = Line.properties.get("home.dubbo.protocolconfig.threads").getInteger();
+        Integer protocolthreadsnum = Line.setting.getInt("home.dubbo.protocolconfig.threads");
 //        if (protocolthreadsnum != null) {
         sddf.setThreads(protocolthreadsnum);
         sddf.setDispatcher("all");
 //        }
-        String protocolthreadpool = Line.properties.get("home.dubbo.protocolconfig.threadpool").getString();
+        String protocolthreadpool = Line.setting.get("home.dubbo.protocolconfig.threadpool");
 //        if (protocolthreadpool != null && !protocolthreadpool.trim().equals("")) {
         sddf.setThreadpool(protocolthreadpool);
 //        } else {
@@ -58,7 +58,7 @@ public class DubboBaseConfiguration {
     @ConditionalOnMissingBean(AnnotationBean.class) // 容器中如果没有这个类,那么自动配置这个类
     public AnnotationBean annotationbean() {
         AnnotationBean sddf = new AnnotationBean();
-        sddf.setPackage(Line.properties.get("home.dubbo.reference.package").getString());
+        sddf.setPackage(Line.setting.get("home.dubbo.reference.package"));
         return sddf;
     }
 
@@ -76,9 +76,9 @@ public class DubboBaseConfiguration {
     @Bean
     @ConditionalOnMissingBean(value = {RegistryConfig.class}) // 容器中如果没有这个类,那么自动配置这个类
     public RegistryConfig registryconfig() {
-        RegistryConfig sddf = new RegistryConfig(Line.properties.get("home.dubbo.reference.url").getString());
-        sddf.setProtocol(Line.properties.get("home.dubbo.reference.agreement").getString());
-        sddf.setTimeout(Line.properties.get("home.dubbo.reference.timeout").getInteger());
+        RegistryConfig sddf = new RegistryConfig(Line.setting.get("home.dubbo.reference.url"));
+        sddf.setProtocol(Line.setting.get("home.dubbo.reference.agreement"));
+        sddf.setTimeout(Line.setting.getInt("home.dubbo.reference.timeout"));
         sddf.setClient("curator");
         sddf.setCheck(false);
         return sddf;
@@ -88,7 +88,7 @@ public class DubboBaseConfiguration {
     @ConditionalOnMissingBean(ApplicationConfig.class) // 容器中如果没有这个类,那么自动配置这个类
     public ApplicationConfig applicationconfig(RegistryConfig registryconfig) {
         ApplicationConfig sddf = new ApplicationConfig();
-        sddf.setName(Line.properties.get("home.dubbo.reference.agreement").getString());
+        sddf.setName(Line.setting.get("home.dubbo.reference.agreement"));
         sddf.setRegistry(registryconfig);
         sddf.setQosEnable(false);
         //		sddf.setQosAcceptForeignIp(false);

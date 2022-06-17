@@ -34,12 +34,12 @@ public class DataSourcesConfig {
     //    @ConditionalOnMissingBean(DataSource.class) //取消这个注释 容器中如果没有这个类,那么自动配置这个类PropertiesValue.
     public DruidDataSource druidDataSource() {
         DruidDataSource druidDataSource = new DruidDataSource();
-        druidDataSource.setUrl(Line.properties.get("home.db.url").getString());
-        druidDataSource.setUsername(Line.properties.get("home.db.username").getString());
-        druidDataSource.setPassword(Line.properties.get("home.db.password").getString());
+        druidDataSource.setUrl(Line.setting.get("home.db.url"));
+        druidDataSource.setUsername(Line.setting.get("home.db.username"));
+        druidDataSource.setPassword(Line.setting.get("home.db.password"));
 
-        if (!Line.properties.get("home.db.driverclassname").isBlank()) {
-            druidDataSource.setDriverClassName(Line.properties.get("home.db.driverclassname").getString());
+        if (Line.setting.containsKey("home.db.driverclassname")) {
+            druidDataSource.setDriverClassName(Line.setting.get("home.db.driverclassname"));
         } else if (StrUtil.isNotBlank(Line.main_jdbc_jar_fullpath)) {
             LoggerBaseAb.info("开始联机驱动!");
             try {
@@ -52,24 +52,23 @@ public class DataSourcesConfig {
             }
         }
 
-        druidDataSource.setMaxActive(Line.properties.get("home.db.maxactive").getInteger());
-        druidDataSource.setInitialSize(Line.properties.get("home.db.initialsize").getInteger());
-        druidDataSource.setMaxWait(Line.properties.get("home.db.maxwait").getInteger());
-        druidDataSource.setMinIdle(Line.properties.get("home.db.minidle").getInteger());
-        druidDataSource.setTimeBetweenEvictionRunsMillis(
-                Line.properties.get("home.db.timebetweenevictionrunsmillis").getInteger());
+        druidDataSource.setMaxActive(Line.setting.getInt("home.db.maxactive"));
+        druidDataSource.setInitialSize(Line.setting.getInt("home.db.initialsize"));
+        druidDataSource.setMaxWait(Line.setting.getInt("home.db.maxwait"));
+        druidDataSource.setMinIdle(Line.setting.getInt("home.db.minidle"));
+        druidDataSource.setTimeBetweenEvictionRunsMillis(Line.setting.getInt("home.db.timebetweenevictionrunsmillis"));
         druidDataSource
-                .setMinEvictableIdleTimeMillis(Line.properties.get("home.db.minevictableidletimemillis").getInteger());
-        druidDataSource.setValidationQuery(Line.properties.get("home.db.validationquery").getString());
-        druidDataSource.setTestWhileIdle(Line.properties.get("home.db.testwhileidle").getBoolean());
-        druidDataSource.setTestOnBorrow(Line.properties.get("home.db.testonborrow").getBoolean());
-        druidDataSource.setTestOnReturn(Line.properties.get("home.db.testonreturn").getBoolean());
-        druidDataSource.setPoolPreparedStatements(Line.properties.get("home.db.poolpreparedstatements").getBoolean());
-        druidDataSource.setRemoveAbandoned(Line.properties.get("home.db.removeabandoned").getBoolean());
-        druidDataSource.setRemoveAbandonedTimeout(Line.properties.get("home.db.removeabandonedtimeout").getInteger());
-        druidDataSource.setNumTestsPerEvictionRun(Line.properties.get("home.db.numtestsperevictionrun").getInteger());
+                .setMinEvictableIdleTimeMillis(Line.setting.getInt("home.db.minevictableidletimemillis"));
+        druidDataSource.setValidationQuery(Line.setting.get("home.db.validationquery"));
+        druidDataSource.setTestWhileIdle(Line.setting.getBool("home.db.testwhileidle"));
+        druidDataSource.setTestOnBorrow(Line.setting.getBool("home.db.testonborrow"));
+        druidDataSource.setTestOnReturn(Line.setting.getBool("home.db.testonreturn"));
+        druidDataSource.setPoolPreparedStatements(Line.setting.getBool("home.db.poolpreparedstatements"));
+        druidDataSource.setRemoveAbandoned(Line.setting.getBool("home.db.removeabandoned"));
+        druidDataSource.setRemoveAbandonedTimeout(Line.setting.getInt("home.db.removeabandonedtimeout"));
+        druidDataSource.setNumTestsPerEvictionRun(Line.setting.getInt("home.db.numtestsperevictionrun"));
         druidDataSource
-                .setMaxOpenPreparedStatements(Line.properties.get("home.db.maxopenpreparedstatements").getInteger());
+                .setMaxOpenPreparedStatements(Line.setting.getInt("home.db.maxopenpreparedstatements"));
 //		druidDataSource.allowMultiQueries
 //		druidDataSource.setstatv
         System.setProperty("spring.datasource.druid.web-stat-filter.enabled", "true");
@@ -77,7 +76,7 @@ public class DataSourcesConfig {
                 "*.js,*.gif,*.jpg,*.png,*.css,*.ico,/druid/*");
         com.guoshiyao.rely.line.Line.dataSource = druidDataSource;
         try {
-            druidDataSource.setFilters(Line.properties.get("home.db.filters").getString());
+            druidDataSource.setFilters(Line.setting.get("home.db.filters"));
         } catch (SQLException e) {
             throw new ExceptionError("设置数据库参数filters错误,请检查,系统退出!");
 
@@ -91,7 +90,7 @@ public class DataSourcesConfig {
                 new StatViewServlet(), "/druid/*");
         Map<String, String> initParams = new HashMap<>();
         // 可配的属性都在 StatViewServlet 和其父类下
-         servletRegistrationBean.setInitParameters(initParams);
+        servletRegistrationBean.setInitParameters(initParams);
         return servletRegistrationBean;
     }
 

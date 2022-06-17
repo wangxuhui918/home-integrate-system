@@ -37,7 +37,7 @@ public class SystemServletPort {
         WebServerFactoryCustomizer<ConfigurableWebServerFactory> portBean = new WebServerFactoryCustomizer<ConfigurableWebServerFactory>() {
             @Override
             public void customize(ConfigurableWebServerFactory factory) {
-                Long port = Line.properties.get("system.servlet.port").getLong();
+                Long port = Line.setting.getLong("system.servlet.port");
                 if (port == null) {
                     port = 8080L;
                 }
@@ -56,10 +56,10 @@ public class SystemServletPort {
     @Bean
     public MultipartConfigElement multipartConfigElement() {
         MultipartConfigFactory factory = new MultipartConfigFactory();
-        factory.setLocation(Line.properties.get("system.servlet.multipart.location").getValue());
-        factory.setMaxFileSize(DataSize.of(Line.properties.get("system.servlet.multipart.max-file-size").getInteger(), DataUnit.MEGABYTES));
-        factory.setMaxRequestSize(DataSize.of(Line.properties.get("system.servlet.multipart.max-request-size").getInteger(), DataUnit.MEGABYTES));
-        factory.setFileSizeThreshold(DataSize.of(Line.properties.get("system.servlet.multipart.file-size-threshold").getInteger(), DataUnit.MEGABYTES));
+        factory.setLocation(Line.setting.get("system.servlet.multipart.location"));
+        factory.setMaxFileSize(DataSize.of(Line.setting.getInt("system.servlet.multipart.max-file-size"), DataUnit.MEGABYTES));
+        factory.setMaxRequestSize(DataSize.of(Line.setting.getInt("system.servlet.multipart.max-request-size"), DataUnit.MEGABYTES));
+        factory.setFileSizeThreshold(DataSize.of(Line.setting.getInt("system.servlet.multipart.file-size-threshold"), DataUnit.MEGABYTES));
         return factory.createMultipartConfig();
     }
 }

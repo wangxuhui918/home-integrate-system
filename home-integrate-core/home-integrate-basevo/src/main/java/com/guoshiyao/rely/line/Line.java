@@ -23,6 +23,7 @@ import cn.hutool.setting.Setting;
 import cn.hutool.system.SystemUtil;
 import com.guoshiyao.rely.environment.ENV;
 import com.guoshiyao.rely.exception.re.ex.ExceptionError;
+
 import com.guoshiyao.rely.line.ab.re.LinePropertiesAb;
 import com.guoshiyao.rely.line.propertiesmap.PropertiesMap;
 import com.guoshiyao.rely.log.base.LoggerBaseAb;
@@ -80,8 +81,9 @@ public class Line {
      */
     public final static LinkedHashMap<String, List<Class>> iocclasses = (new LinkedHashMap<>());
     /**
-     * 项目+系统所有配置信息
+     * 建议使用com.guoshiyao.rely.line.Line.setting
      */
+    @Deprecated
     public final static PropertiesMap<String, LinePropertiesAb> properties = (new PropertiesMap<>());
     public final static Setting setting = new Setting();
     /**
@@ -163,6 +165,7 @@ public class Line {
     public static Integer home_system_version;//框架版本号
 
     private static int count = (0);
+
 
     public static void init(String mainClassx, String i18nx, String projectPackagex, String idkeyx, ENV envx, Level loglevelx, boolean updatePropertiesx) {
         if (count != 0) {

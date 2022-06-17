@@ -46,7 +46,7 @@ public class SwaggerConfigRe implements WebMvcConfigurer {
                 //  定义是否开启swagger，false为关闭，可以通过变量控制,默认为true
                 .enable(true).select()
                 //RequestHandlerSelectors 配置要扫描接口的方式
-                .apis(RequestHandlerSelectors.basePackage(Line.properties.get("home.swagger.basepackage").getString()))
+                .apis(RequestHandlerSelectors.basePackage(Line.setting.get("home.swagger.basepackage")))
                 //paths() 过滤什么路径
                 .paths(PathSelectors.any()).build().globalRequestParameters(parameters);
         return doc;
@@ -56,7 +56,7 @@ public class SwaggerConfigRe implements WebMvcConfigurer {
         //作者信息
         springfox.documentation.service.Contact contact = new springfox.documentation.service.Contact("wanguhui918",
                 "www.guoshiyao.com", "wangxuhui918@163.om");
-        return new ApiInfo(Line.properties.get("home.swagger.name").getString(), "你要快快长大哦", "1.0", "urn:tos", contact,
+        return new ApiInfo(Line.setting.get("home.swagger.name"), "你要快快长大哦", "1.0", "urn:tos", contact,
                 "Apache 2.0", "http://www.apache.org/licenses/LICENSE-2.0", new ArrayList());
     }
 

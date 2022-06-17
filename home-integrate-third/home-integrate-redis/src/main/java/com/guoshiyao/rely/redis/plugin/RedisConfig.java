@@ -16,8 +16,6 @@ import cn.hutool.setting.Setting;
 import com.guoshiyao.rely.coreannotation.rule.RuleAnnotation;
 import com.guoshiyao.rely.exception.re.ex.ExceptionError;
 import com.guoshiyao.rely.line.Line;
-import com.guoshiyao.rely.line.ab.re.LinePropertiesAb;
-import com.guoshiyao.rely.line.propertiesmap.PropertiesMap;
 import com.guoshiyao.rely.third.ThirdExtendConfigAb;
 
 import java.util.HashMap;
@@ -39,10 +37,6 @@ public class RedisConfig implements ThirdExtendConfigAb {
 
     @Override
     public Map<String, String> writeProperties() {
-//        HashMap<String, String> params = ProjectCoreConfUtils.getEnvPropertiesByCode("1000012");
-//        HashMap<String, PropertiesMap<String, LinePropertiesAb>> map = new HashMap<>();
-//        map.put(NAME, LinePropertiesAb.convertLineProperties(params));
-//        return map;
         return new HashMap<>();
     }
 
@@ -63,26 +57,27 @@ public class RedisConfig implements ThirdExtendConfigAb {
     public void after() {
         Setting setting = new Setting();
         //        Map<String, String> thisproperties = new HashMap<String, String>();
-        for (String key : Line.properties.keySet()) {//筛选 redis 的内容
+        for (String key : Line.setting.keySet()) {//筛选 redis 的内容
             if (StrUtil.startWith(key, "home.redis.")) {
-                setting.putByGroup(key, Line.env.getName(), Line.properties.get(key).getValue());
-//                thisproperties.put(StrUtil.sub(key, "home.redis.".length(), key.length()), Line.properties.get(key).getValue());
+                setting.putByGroup(key, Line.env.getName(), Line.setting.get(key));
+//                thisproperties.put(StrUtil.sub(key, "home.redis.".length(), key.length()), Line.setting.get(key).getValue());
             }
         }
 //        setting.putAll(Line.env.getName(), thisproperties);
-        if (!Line.properties.get("home.redis.host").isBlank()) {
+        if (Line.setting.containsKey("home.redis.host")) {
             try {
                 Line.redisds = RedisDS.create(setting, Line.env.getName());
             } catch (Exception e) {
                 e.printStackTrace();
-                throw new ExceptionError("Redis 服务 {} 连接失败!如需关闭redis功能,请直接将home.redis.host重置为\"\"/null", Line.properties.get("home.redis.host").getString());
+                throw new ExceptionError("Redis 服务 {} 连接失败!如需关闭redis功能,请直接将home.redis.host重置为\"\"/null", Line.setting.get("home.redis.host"))
+                        ;
             }
         }
     }
 
 
     @Override
-    public void callProperties(PropertiesMap<String, LinePropertiesAb> properties) {
+    public void callProperties(Setting properties) {
 
 
     }

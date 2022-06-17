@@ -40,7 +40,7 @@ public class TkMybatisAutoConfiguration {
     public SqlSessionFactory sqlSessionFactoryBean(@Qualifier("druidDataSource") DataSource dataSource) {
         SqlSessionFactoryBean bean = new SqlSessionFactoryBean();
         bean.setDataSource(dataSource);// AwAValue.env.getMybatisconf().getBasePackage().getValue()
-        bean.setTypeAliasesPackage(Line.properties.get("home.mybatis.typealiasespackage").getString());
+        bean.setTypeAliasesPackage(Line.setting.get("home.mybatis.typealiasespackage"));
         // 分页插件
         PageInterceptor pageHelper = new PageInterceptor();
         // 添加XML目录
@@ -48,15 +48,15 @@ public class TkMybatisAutoConfiguration {
         Interceptor[] plugins = new Interceptor[]{pageHelper};
         bean.setPlugins(plugins);
         try {
-            Resource[] s = resolver.getResources(Line.properties.get("home.mybatis.mapperlocations").getString());
+            Resource[] s = resolver.getResources(Line.setting.get("home.mybatis.mapperlocations"));
         } catch (Exception e) {
             e.printStackTrace();
             throw new ExceptionError(
-                    "请在资源目录下创建文件夹并创建Mapper.xml文件:" + Line.properties.get("home.mybatis.mapperlocations").getString());
+                    "请在资源目录下创建文件夹并创建Mapper.xml文件:" + Line.setting.get("home.mybatis.mapperlocations"));
         }
         try {
             bean.setMapperLocations(
-                    resolver.getResources(Line.properties.get("home.mybatis.mapperlocations").getString()));
+                    resolver.getResources(Line.setting.get("home.mybatis.mapperlocations")));
             bean.setConfigLocation(resolver.getResource("classpath:mybatis.xml"));
             return bean.getObject();
         } catch (Exception e) {
