@@ -11,12 +11,10 @@
 package com.guoshiyao.rely.coreab.ab;
 
 import com.guoshiyao.rely.coreab.ab.base.BaseConfigAb;
-import com.guoshiyao.rely.line.ab.re.LinePropertiesAb;
-import com.guoshiyao.rely.line.propertiesmap.PropertiesMap;
 
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 核心通用配置读取器
@@ -72,6 +70,6 @@ public interface BaseConfigRe extends BaseConfigAb {
      * @date 2021年12月2日
      * @readme
      */
-    HashMap<String, PropertiesMap<String, LinePropertiesAb>> writeProperties();
+    Map<String, String> writeProperties();
 
 }

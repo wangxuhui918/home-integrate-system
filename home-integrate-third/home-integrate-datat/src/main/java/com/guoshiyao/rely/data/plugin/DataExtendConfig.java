@@ -15,7 +15,6 @@ import cn.hutool.core.io.StreamProgress;
 import cn.hutool.core.lang.Console;
 import cn.hutool.http.HttpUtil;
 import com.guoshiyao.rely.coreannotation.rule.RuleAnnotation;
-import com.guoshiyao.rely.coreconf.utils.ProjectCoreConfUtils;
 import com.guoshiyao.rely.data.DataSourcesConfig;
 import com.guoshiyao.rely.line.Line;
 import com.guoshiyao.rely.line.ab.re.LinePropertiesAb;
@@ -24,10 +23,7 @@ import com.guoshiyao.rely.third.ThirdExtendConfigAb;
 import com.guoshiyao.rely.tools.system.JdbcFind;
 
 import java.io.File;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.List;
+import java.util.*;
 
 @RuleAnnotation
 public class DataExtendConfig implements ThirdExtendConfigAb {
@@ -47,7 +43,7 @@ public class DataExtendConfig implements ThirdExtendConfigAb {
     }
 
     @Override
-    public HashMap<String, PropertiesMap<String, LinePropertiesAb>> writeProperties() {
+    public Map<String, String> writeProperties() {
         return new HashMap<>();
     }
 

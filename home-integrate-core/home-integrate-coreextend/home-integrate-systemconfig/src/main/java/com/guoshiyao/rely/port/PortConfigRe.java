@@ -11,18 +11,13 @@
 package com.guoshiyao.rely.port;
 
 import com.guoshiyao.rely.coreannotation.rule.RuleAnnotation;
-import com.guoshiyao.rely.coreconf.utils.ProjectCoreConfUtils;
 import com.guoshiyao.rely.line.Line;
 import com.guoshiyao.rely.line.ab.re.LinePropertiesAb;
-import com.guoshiyao.rely.line.propertiesmap.PropertiesMap;
 import com.guoshiyao.rely.port.config.SystemServletPort;
 import com.guoshiyao.rely.sys.SystemConfigAb;
 
 import java.io.File;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.List;
+import java.util.*;
 
 /**
  * 读取系统配置文件
@@ -49,7 +44,7 @@ public class PortConfigRe implements SystemConfigAb {
     }
 
     @Override
-    public HashMap<String, PropertiesMap<String, LinePropertiesAb>> writeProperties() {
+    public Map<String, String> writeProperties() {
         {
             String key = "system.servlet.multipart.location";
             if (Line.properties.get(key).isBlank()) {

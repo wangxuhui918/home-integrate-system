@@ -19,6 +19,7 @@ import cn.hutool.core.net.NetUtil;
 import cn.hutool.core.util.ClassUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.db.nosql.redis.RedisDS;
+import cn.hutool.setting.Setting;
 import cn.hutool.system.SystemUtil;
 import com.guoshiyao.rely.environment.ENV;
 import com.guoshiyao.rely.exception.re.ex.ExceptionError;
@@ -82,6 +83,7 @@ public class Line {
      * 项目+系统所有配置信息
      */
     public final static PropertiesMap<String, LinePropertiesAb> properties = (new PropertiesMap<>());
+    public final static Setting setting = new Setting();
     /**
      * 消息码信息
      */

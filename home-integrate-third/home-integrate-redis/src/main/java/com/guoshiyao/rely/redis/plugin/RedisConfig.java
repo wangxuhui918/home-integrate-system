@@ -14,7 +14,6 @@ import cn.hutool.core.util.StrUtil;
 import cn.hutool.db.nosql.redis.RedisDS;
 import cn.hutool.setting.Setting;
 import com.guoshiyao.rely.coreannotation.rule.RuleAnnotation;
-import com.guoshiyao.rely.coreconf.utils.ProjectCoreConfUtils;
 import com.guoshiyao.rely.exception.re.ex.ExceptionError;
 import com.guoshiyao.rely.line.Line;
 import com.guoshiyao.rely.line.ab.re.LinePropertiesAb;
@@ -39,7 +38,7 @@ public class RedisConfig implements ThirdExtendConfigAb {
 
 
     @Override
-    public HashMap<String, PropertiesMap<String, LinePropertiesAb>> writeProperties() {
+    public Map<String, String> writeProperties() {
 //        HashMap<String, String> params = ProjectCoreConfUtils.getEnvPropertiesByCode("1000012");
 //        HashMap<String, PropertiesMap<String, LinePropertiesAb>> map = new HashMap<>();
 //        map.put(NAME, LinePropertiesAb.convertLineProperties(params));

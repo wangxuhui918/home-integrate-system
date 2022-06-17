@@ -12,7 +12,6 @@ package com.guoshiyao.rely.swagger.plugin;
 
 import com.guoshiyao.rely.coreannotation.AnnotationTools;
 import com.guoshiyao.rely.coreannotation.rule.RuleAnnotation;
-import com.guoshiyao.rely.coreconf.utils.ProjectCoreConfUtils;
 import com.guoshiyao.rely.hand.ControllerParamHandV1;
 import com.guoshiyao.rely.hand.ExceptionHandV1;
 import com.guoshiyao.rely.hand.ResponseHandV1;
@@ -24,10 +23,7 @@ import com.guoshiyao.rely.swagger.bean.SwaggerConfigRe;
 import com.guoshiyao.rely.third.ThirdExtendConfigAb;
 import org.springframework.stereotype.Controller;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.List;
+import java.util.*;
 
 @RuleAnnotation
 public class SwaggerConfig implements ThirdExtendConfigAb {
@@ -50,7 +46,7 @@ public class SwaggerConfig implements ThirdExtendConfigAb {
     }
 
     @Override
-    public HashMap<String, PropertiesMap<String, LinePropertiesAb>> writeProperties() {
+    public Map<String, String> writeProperties() {
         return new HashMap<>();
     }
 

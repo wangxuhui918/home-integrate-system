@@ -11,7 +11,6 @@
 package com.guoshiyao.rely.flyway.plugin;
 
 import com.guoshiyao.rely.coreannotation.rule.RuleAnnotation;
-import com.guoshiyao.rely.coreconf.utils.ProjectCoreConfUtils;
 import com.guoshiyao.rely.flyway.bean.FlywayBean;
 import com.guoshiyao.rely.line.Line;
 import com.guoshiyao.rely.line.ab.re.LinePropertiesAb;
@@ -22,10 +21,7 @@ import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.core.io.support.ResourcePatternResolver;
 
 import java.io.File;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.List;
+import java.util.*;
 
 @RuleAnnotation
 public class FlywayExtendConfig implements ThirdExtendConfigAb {
@@ -66,7 +62,7 @@ public class FlywayExtendConfig implements ThirdExtendConfigAb {
     }
 
     @Override
-    public HashMap<String, PropertiesMap<String, LinePropertiesAb>> writeProperties() {
+    public Map<String, String> writeProperties() {
         return new HashMap<>();
     }
 

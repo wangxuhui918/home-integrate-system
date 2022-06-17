@@ -12,15 +12,9 @@ package com.guoshiyao.rely.systemconfig;
 
 import com.guoshiyao.rely.bean.Bean;
 import com.guoshiyao.rely.coreannotation.rule.RuleAnnotation;
-import com.guoshiyao.rely.coreconf.utils.ProjectCoreConfUtils;
-import com.guoshiyao.rely.line.ab.re.LinePropertiesAb;
-import com.guoshiyao.rely.line.propertiesmap.PropertiesMap;
 import com.guoshiyao.rely.sys.SystemConfigAb;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.List;
+import java.util.*;
 
 /**
  * 读取系统配置文件
@@ -47,7 +41,7 @@ public class SystemExtendConfigRe implements SystemConfigAb {
     }
 
     @Override
-    public HashMap<String, PropertiesMap<String, LinePropertiesAb>> writeProperties() {
+    public Map<String, String> writeProperties() {
         return new HashMap<>();
     }
 

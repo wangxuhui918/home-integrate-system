@@ -13,16 +13,12 @@ package com.guoshiyao.rely.apollo.config;
 import com.ctrip.framework.apollo.Config;
 import com.ctrip.framework.apollo.ConfigService;
 import com.guoshiyao.rely.coreannotation.rule.RuleAnnotation;
-import com.guoshiyao.rely.coreconf.utils.ProjectCoreConfUtils;
 import com.guoshiyao.rely.line.Line;
 import com.guoshiyao.rely.line.ab.re.LinePropertiesAb;
 import com.guoshiyao.rely.line.propertiesmap.PropertiesMap;
 import com.guoshiyao.rely.third.ThirdExtendConfigAb;
 
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @RuleAnnotation
 public class ApolloExtendsConfigAe implements ThirdExtendConfigAb {
@@ -56,7 +52,7 @@ public class ApolloExtendsConfigAe implements ThirdExtendConfigAb {
     }
 
     @Override
-    public HashMap<String, PropertiesMap<String, LinePropertiesAb>> writeProperties() {
+    public Map<String, String> writeProperties() {
         return new HashMap<>();
     }
 

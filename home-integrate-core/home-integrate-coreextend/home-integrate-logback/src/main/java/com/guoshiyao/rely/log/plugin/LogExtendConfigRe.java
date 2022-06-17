@@ -10,19 +10,15 @@
 
 package com.guoshiyao.rely.log.plugin;
 
-import cn.hutool.core.util.StrUtil;
-import cn.hutool.json.JSONUtil;
 import com.guoshiyao.rely.coreannotation.rule.RuleAnnotation;
-import com.guoshiyao.rely.coreconf.utils.ProjectCoreConfUtils;
 import com.guoshiyao.rely.exception.re.ex.ExceptionError;
-import com.guoshiyao.rely.line.ab.re.LinePropertiesAb;
-import com.guoshiyao.rely.line.propertiesmap.PropertiesMap;
 import com.guoshiyao.rely.log.base.LoggerBaseAb;
 import com.guoshiyao.rely.sys.SystemConfigAb;
 
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 @RuleAnnotation
 public class LogExtendConfigRe implements SystemConfigAb {
@@ -62,7 +58,7 @@ public class LogExtendConfigRe implements SystemConfigAb {
     }
 
     @Override
-    public HashMap<String, PropertiesMap<String, LinePropertiesAb>> writeProperties() {
+    public Map<String, String> writeProperties() {
 //        HashMap<String, PropertiesMap<String, LinePropertiesAb>> map = new HashMap<>();
 //        HashMap<String, String> params1 = new LinkedHashMap<>();
 //        try {

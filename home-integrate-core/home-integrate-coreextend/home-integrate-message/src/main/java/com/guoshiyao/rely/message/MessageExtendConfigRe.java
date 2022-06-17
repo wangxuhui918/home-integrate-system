@@ -59,7 +59,7 @@ public class MessageExtendConfigRe implements MessageConfigAb {
     }
 
     @Override
-    public HashMap<String, PropertiesMap<String, LinePropertiesAb>> writeProperties() {
+    public Map<String, String> writeProperties() {
         return new LinkedHashMap<>();
     }
 
