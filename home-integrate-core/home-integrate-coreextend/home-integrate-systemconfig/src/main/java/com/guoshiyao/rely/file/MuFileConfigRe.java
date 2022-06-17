@@ -81,7 +81,7 @@ public class MuFileConfigRe implements ThirdExtendConfigAb {
         {
             String key = "system.servlet.multipart.file-size-threshold";
             if (properties.get(key).isBlank()) {
-                properties.put(key, new LinePropertiesAb(key, "1MB"));
+                properties.put(key, new LinePropertiesAb(key, "1"));
             }
         }
     }
