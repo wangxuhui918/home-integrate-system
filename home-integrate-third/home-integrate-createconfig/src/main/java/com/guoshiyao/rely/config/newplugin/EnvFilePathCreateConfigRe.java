@@ -70,42 +70,9 @@ public class EnvFilePathCreateConfigRe implements CreateConfigAb {
         ProjectCoreConfUtils.writeModelConfig();
     }
 
-    //通用 Class 变量类生成
     @Override
     public void after() {
-        try {
-//            ClassUtil.loadClass(Line.projectPackage + ".HomeProperties").newInstance();
-//            String path = Line.projectcodesourcepath + StrUtil.replace(Line.projectPackage, ".", File.separator) + File.separator + "HomeProperties.java";
-//            String context = FileUtil.readUtf8String(path);
-//            for (String key : Line.properties.keySet()) {
-//                String k = StrUtil.replace(key, ".", "_");
-//                if (!StrUtil.containsAny(context, k, key)) {
-//                    createHomePropertiesModel();
-//                    break;
-//                }
-//            }
-        } catch (Exception e) {//不存在则创建
-            createHomePropertiesModel();
-        }
-    }
 
-    private void createHomePropertiesModel() {
-        VelocityContext context = new VelocityContext();
-        context.put("projectPackage", Line.projectPackage);
-        List<DefaultKeyValue> list = new ArrayList<>();
-        Map<String, String> map = new HashMap<>();
-
-        for (String key : Line.properties.keySet()) {
-            String k = StrUtil.replace(key, ".", "_");
-            k = StrUtil.toCamelCase(k);
-            k = StrUtil.upperFirst(k);
-            list.add(new DefaultKeyValue(k, Line.properties.get(key).getValue()));
-            map.put(k, key);
-        }
-        context.put("list", list);
-        context.put("map", map);
-        String str = VelocityUtils.convert(ResourceUtil.readUtf8Str("configfiles" + File.separator + "homeproperties.vm"), context);
-        FileUtil.writeUtf8String(str, Line.projectcodesourcepath + StrUtil.replace(Line.projectPackage, ".", File.separator) + File.separator + "HomeProperties.java");
     }
 
 

@@ -48,9 +48,6 @@ public class DataExtendConfig implements ThirdExtendConfigAb {
 
     @Override
     public HashMap<String, PropertiesMap<String, LinePropertiesAb>> writeProperties() {
-//        HashMap<String, String> params = ProjectCoreConfUtils.getEnvPropertiesByCode("1000003");
-//        HashMap<String, PropertiesMap<String, LinePropertiesAb>> map = new HashMap<>();
-//        map.put(NAME, LinePropertiesAb.convertLineProperties(params));
         return new HashMap<>();
     }
 
@@ -97,127 +94,127 @@ public class DataExtendConfig implements ThirdExtendConfigAb {
         {
             String key = "home.db.url";
             if (properties.get(key).isBlank()) {
-                properties.put(key, new LinePropertiesAb(key,""));
+                properties.put(key, new LinePropertiesAb(key, ""));
             }
         }
         {
             String key = "home.db.username";
             if (properties.get(key).isBlank()) {
-                properties.put(key, new LinePropertiesAb(key,""));
+                properties.put(key, new LinePropertiesAb(key, ""));
             }
         }
         {
             String key = "home.db.password";
             if (properties.get(key).isBlank()) {
-                properties.put(key, new LinePropertiesAb(key,""));
+                properties.put(key, new LinePropertiesAb(key, ""));
             }
         }
         {
             String key = "home.db.driverclassname";
             if (properties.get(key).isBlank()) {
-                properties.put(key, new LinePropertiesAb(key,""));
+                properties.put(key, new LinePropertiesAb(key, ""));
             }
         }
         {
             String key = "home.db.driverclass.downloadurl";
             if (properties.get(key).isBlank()) {
-                properties.put(key, new LinePropertiesAb(key,""));
+                properties.put(key, new LinePropertiesAb(key, ""));
             }
         }
         {
             String key = "home.db.maxactive";
             if (properties.get(key).isBlank()) {
-                properties.put(key, new LinePropertiesAb(key,"30"));
+                properties.put(key, new LinePropertiesAb(key, "30"));
             }
         }
         {
             String key = "home.db.initialsize";
             if (properties.get(key).isBlank()) {
-                properties.put(key, new LinePropertiesAb(key,"1"));
+                properties.put(key, new LinePropertiesAb(key, "1"));
             }
         }
         {
             String key = "home.db.maxwait";
             if (properties.get(key).isBlank()) {
-                properties.put(key, new LinePropertiesAb(key,"60000"));
+                properties.put(key, new LinePropertiesAb(key, "60000"));
             }
         }
         {
             String key = "home.db.minidle";
             if (properties.get(key).isBlank()) {
-                properties.put(key, new LinePropertiesAb(key,"3"));
+                properties.put(key, new LinePropertiesAb(key, "3"));
             }
         }
         {
             String key = "home.db.timebetweenevictionrunsmillis";
             if (properties.get(key).isBlank()) {
-                properties.put(key, new LinePropertiesAb(key,"60000"));
+                properties.put(key, new LinePropertiesAb(key, "60000"));
             }
         }
         {
             String key = "home.db.minevictableidletimemillis";
             if (properties.get(key).isBlank()) {
-                properties.put(key, new LinePropertiesAb(key,"300000"));
+                properties.put(key, new LinePropertiesAb(key, "300000"));
             }
         }
         {
             String key = "home.db.validationquery";
             if (properties.get(key).isBlank()) {
-                properties.put(key, new LinePropertiesAb(key,""));
+                properties.put(key, new LinePropertiesAb(key, ""));
             }
         }
         {
             String key = "home.db.testwhileidle";
             if (properties.get(key).isBlank()) {
-                properties.put(key, new LinePropertiesAb(key,"true"));
+                properties.put(key, new LinePropertiesAb(key, "true"));
             }
         }
         {
             String key = "home.db.testonborrow";
             if (properties.get(key).isBlank()) {
-                properties.put(key, new LinePropertiesAb(key,"false"));
+                properties.put(key, new LinePropertiesAb(key, "false"));
             }
         }
         {
             String key = "home.db.testonreturn";
             if (properties.get(key).isBlank()) {
-                properties.put(key, new LinePropertiesAb(key,"false"));
+                properties.put(key, new LinePropertiesAb(key, "false"));
             }
         }
         {
             String key = "home.db.poolpreparedstatements";
             if (properties.get(key).isBlank()) {
-                properties.put(key, new LinePropertiesAb(key,"true"));
+                properties.put(key, new LinePropertiesAb(key, "true"));
             }
         }
         {
             String key = "home.db.removeabandoned";
             if (properties.get(key).isBlank()) {
-                properties.put(key, new LinePropertiesAb(key,"true"));
+                properties.put(key, new LinePropertiesAb(key, "true"));
             }
         }
         {
             String key = "home.db.removeabandonedtimeout";
             if (properties.get(key).isBlank()) {
-                properties.put(key, new LinePropertiesAb(key,"60"));
+                properties.put(key, new LinePropertiesAb(key, "60"));
             }
         }
         {
             String key = "home.db.numtestsperevictionrun";
             if (properties.get(key).isBlank()) {
-                properties.put(key, new LinePropertiesAb(key,"60"));
+                properties.put(key, new LinePropertiesAb(key, "60"));
             }
         }
         {
             String key = "home.db.maxopenpreparedstatements";
             if (properties.get(key).isBlank()) {
-                properties.put(key, new LinePropertiesAb(key,"20"));
+                properties.put(key, new LinePropertiesAb(key, "20"));
             }
         }
         {
             String key = "home.db.filters";
             if (properties.get(key).isBlank()) {
-                properties.put(key, new LinePropertiesAb(key,"stat,wall"));
+                properties.put(key, new LinePropertiesAb(key, "stat,wall"));
             }
         }
 

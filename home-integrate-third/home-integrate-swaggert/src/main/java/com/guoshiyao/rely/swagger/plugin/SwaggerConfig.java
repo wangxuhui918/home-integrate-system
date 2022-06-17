@@ -51,9 +51,6 @@ public class SwaggerConfig implements ThirdExtendConfigAb {
 
     @Override
     public HashMap<String, PropertiesMap<String, LinePropertiesAb>> writeProperties() {
-//        HashMap<String, String> params = ProjectCoreConfUtils.getEnvPropertiesByCode("1000013");
-//        HashMap<String, PropertiesMap<String, LinePropertiesAb>> map = new HashMap<>();
-//        map.put(NAME, LinePropertiesAb.convertLineProperties(params));
         return new HashMap<>();
     }
 

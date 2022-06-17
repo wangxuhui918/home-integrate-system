@@ -57,10 +57,6 @@ public class ApolloExtendsConfigAe implements ThirdExtendConfigAb {
 
     @Override
     public HashMap<String, PropertiesMap<String, LinePropertiesAb>> writeProperties() {
-//         HashMap<String, String> params = ProjectCoreConfUtils.getEnvPropertiesByCode("1000001");
-//         HashMap<String, PropertiesMap<String, LinePropertiesAb>> map = new HashMap<>();
-//        PropertiesMap<String, LinePropertiesAb> lineProperties = LinePropertiesAb.convertLineProperties(params);
-//        map.put(getName(), lineProperties);
         return new HashMap<>();
     }
 

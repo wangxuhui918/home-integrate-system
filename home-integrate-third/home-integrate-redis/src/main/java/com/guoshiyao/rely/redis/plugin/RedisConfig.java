@@ -30,7 +30,7 @@ import java.util.Map;
 public class RedisConfig implements ThirdExtendConfigAb {
     public final static String NAME = "redis";
 
-    private static final Map<String, String> thisproperties = new HashMap<String, String>();
+//    private static final Map<String, String> thisproperties = new HashMap<String, String>();
 
     @Override
     public LinkedHashMap<String, List<Class>> writeClasss() {
@@ -40,15 +40,11 @@ public class RedisConfig implements ThirdExtendConfigAb {
 
     @Override
     public HashMap<String, PropertiesMap<String, LinePropertiesAb>> writeProperties() {
-        HashMap<String, String> params = ProjectCoreConfUtils.getEnvPropertiesByCode("1000012");
-        for (String key : params.keySet()) {//筛选 redis 的内容
-            if (StrUtil.startWith(key, "home.redis.")) {
-                thisproperties.put(StrUtil.sub(key, "home.redis.".length(), key.length()), params.get(key));
-            }
-        }
-        HashMap<String, PropertiesMap<String, LinePropertiesAb>> map = new HashMap<>();
-        map.put(NAME, LinePropertiesAb.convertLineProperties(params));
-        return map;
+//        HashMap<String, String> params = ProjectCoreConfUtils.getEnvPropertiesByCode("1000012");
+//        HashMap<String, PropertiesMap<String, LinePropertiesAb>> map = new HashMap<>();
+//        map.put(NAME, LinePropertiesAb.convertLineProperties(params));
+//        return map;
+        return new HashMap<>();
     }
 
     @Override
@@ -67,7 +63,14 @@ public class RedisConfig implements ThirdExtendConfigAb {
     @Override
     public void after() {
         Setting setting = new Setting();
-        setting.putAll(Line.env.getName(), thisproperties);
+        //        Map<String, String> thisproperties = new HashMap<String, String>();
+        for (String key : Line.properties.keySet()) {//筛选 redis 的内容
+            if (StrUtil.startWith(key, "home.redis.")) {
+                setting.putByGroup(key, Line.env.getName(), Line.properties.get(key).getValue());
+//                thisproperties.put(StrUtil.sub(key, "home.redis.".length(), key.length()), Line.properties.get(key).getValue());
+            }
+        }
+//        setting.putAll(Line.env.getName(), thisproperties);
         if (!Line.properties.get("home.redis.host").isBlank()) {
             try {
                 Line.redisds = RedisDS.create(setting, Line.env.getName());

@@ -63,23 +63,22 @@ public class LogExtendConfigRe implements SystemConfigAb {
 
     @Override
     public HashMap<String, PropertiesMap<String, LinePropertiesAb>> writeProperties() {
-//        String PROPERTIES = Line.envFileUtil.getThisEnvResourceConfigPath(1000008);
-        HashMap<String, PropertiesMap<String, LinePropertiesAb>> map = new HashMap<>();
-        HashMap<String, String> params1 = new LinkedHashMap<>();
-        try {
-//            HashMap<String, String> params2 = PropertiesUtils.getProperties(Line.mainClass, PROPERTIES);
-            HashMap<String, String> params2 =  ProjectCoreConfUtils.getEnvPropertiesByCode("1000008");
-            for (String key : params2.keySet()) {
-                if (StrUtil.isNotBlank(params2.get(key))) {
-                    params1.put(key, params2.get(key));
-                }
-            }
-        } catch (Exception e) {
-            LoggerBaseAb.warn("系统错误,采用默认");
-            LoggerBaseAb.warn(JSONUtil.toJsonStr(params1));
-        }
-        map.put(getName(), LinePropertiesAb.convertLineProperties(params1));
-        return map;
+//        HashMap<String, PropertiesMap<String, LinePropertiesAb>> map = new HashMap<>();
+//        HashMap<String, String> params1 = new LinkedHashMap<>();
+//        try {
+//            HashMap<String, String> params2 = ProjectCoreConfUtils.getEnvPropertiesByCode("1000008");
+//            for (String key : params2.keySet()) {
+//                if (StrUtil.isNotBlank(params2.get(key))) {
+//                    params1.put(key, params2.get(key));
+//                }
+//            }
+//        } catch (Exception e) {
+//            LoggerBaseAb.warn("系统错误,采用默认");
+//            LoggerBaseAb.warn(JSONUtil.toJsonStr(params1));
+//        }
+//        map.put(getName(), LinePropertiesAb.convertLineProperties(params1));
+//        return map;
+        return new HashMap<>();
     }
 
 }

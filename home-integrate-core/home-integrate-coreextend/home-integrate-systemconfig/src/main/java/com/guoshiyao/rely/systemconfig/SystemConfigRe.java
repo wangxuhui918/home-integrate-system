@@ -46,11 +46,7 @@ public class SystemConfigRe implements SystemConfigAb {
 
     @Override
     public HashMap<String, PropertiesMap<String, LinePropertiesAb>> writeProperties() {
-        HashMap<String, PropertiesMap<String, LinePropertiesAb>> map = new HashMap<>();
-        HashMap<String, String> params2 = ProjectCoreConfUtils.getEnvPropertiesByCode("1000014");
-        map.put(getName(),
-                LinePropertiesAb.convertLineProperties(params2));
-        return map;
+        return new HashMap<>();
     }
 
     @Override

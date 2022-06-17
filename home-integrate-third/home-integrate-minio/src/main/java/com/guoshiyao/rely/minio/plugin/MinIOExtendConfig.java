@@ -42,9 +42,6 @@ public class MinIOExtendConfig implements ThirdExtendConfigAb {
 
     @Override
     public HashMap<String, PropertiesMap<String, LinePropertiesAb>> writeProperties() {
-//        HashMap<String, String> params = ProjectCoreConfUtils.getEnvPropertiesByCode("1000016");
-//        HashMap<String, PropertiesMap<String, LinePropertiesAb>> map = new HashMap<>();
-//        map.put(NAME, LinePropertiesAb.convertLineProperties(params));
         return new HashMap<>();
     }
 
@@ -67,25 +64,25 @@ public class MinIOExtendConfig implements ThirdExtendConfigAb {
         {
             String key = "home.minio.namespace_re";
             if (properties.get(key).isBlank()) {
-                properties.put(key, new LinePropertiesAb(key,Line.idKey));
+                properties.put(key, new LinePropertiesAb(key, Line.idKey));
             }
         }
         {
             String key = "home.minio.endpoint";
             if (properties.get(key).isBlank()) {
-                properties.put(key, new LinePropertiesAb(key,""));
+                properties.put(key, new LinePropertiesAb(key, ""));
             }
         }
         {
             String key = "home.minio.accesskey";
             if (properties.get(key).isBlank()) {
-                properties.put(key, new LinePropertiesAb(key,""));
+                properties.put(key, new LinePropertiesAb(key, ""));
             }
         }
         {
             String key = "home.minio.secretKey";
             if (properties.get(key).isBlank()) {
-                properties.put(key, new LinePropertiesAb(key,""));
+                properties.put(key, new LinePropertiesAb(key, ""));
             }
         }
     }

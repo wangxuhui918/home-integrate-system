@@ -74,11 +74,6 @@ public class PortConfigRe implements SystemConfigAb {
                 Line.properties.put(key, new LinePropertiesAb(key, "1"));
             }
         }
-//        HashMap<String, String> params = ProjectCoreConfUtils.getEnvPropertiesByCode("1000014");
-//        HashMap<String, PropertiesMap<String, LinePropertiesAb>> map = new HashMap<>();
-//        map.put(getName(),
-//                LinePropertiesAb.convertLineProperties(params));
-//        conf = map;
         return new HashMap<>();
     }
 

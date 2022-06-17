@@ -67,9 +67,6 @@ public class FlywayExtendConfig implements ThirdExtendConfigAb {
 
     @Override
     public HashMap<String, PropertiesMap<String, LinePropertiesAb>> writeProperties() {
-//        HashMap<String, String> params = ProjectCoreConfUtils.getEnvPropertiesByCode("1000006");
-//        HashMap<String, PropertiesMap<String, LinePropertiesAb>> map = new HashMap<>();
-//        map.put(getName(), LinePropertiesAb.convertLineProperties(params));
         return new HashMap<>();
     }
 
@@ -79,28 +76,28 @@ public class FlywayExtendConfig implements ThirdExtendConfigAb {
             String key = "home.flywaydb.url";
             if (properties.get(key).isBlank()) {
                 if (Line.properties.get("home.db.url") != null)
-                    properties.put(key, new LinePropertiesAb(key,Line.properties.get("home.db.url").getString()));
+                    properties.put(key, new LinePropertiesAb(key, Line.properties.get("home.db.url").getString()));
             }
         }
         {
             String key = "home.flywaydb.username";
             if (properties.get(key).isBlank()) {
                 if (Line.properties.get("home.db.username") != null)
-                    properties.put(key, new LinePropertiesAb(key,Line.properties.get("home.db.username").getString()));
+                    properties.put(key, new LinePropertiesAb(key, Line.properties.get("home.db.username").getString()));
             }
         }
         {
             String key = "home.flywaydb.password";
             if (properties.get(key).isBlank()) {
                 if (Line.properties.get("home.db.password") != null)
-                    properties.put(key, new LinePropertiesAb(key,Line.properties.get("home.db.password").getString()));
+                    properties.put(key, new LinePropertiesAb(key, Line.properties.get("home.db.password").getString()));
             }
         }
         {
             String key = "home.flywaydb.table";
             if (properties.get(key).isBlank()) {
                 if (Line.properties.get("home.db.table") != null)
-                    properties.put(key, new LinePropertiesAb(key,"flyway_schema_history"));
+                    properties.put(key, new LinePropertiesAb(key, "flyway_schema_history"));
             }
         }
     }
