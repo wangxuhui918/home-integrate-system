@@ -22,9 +22,6 @@ import org.springframework.context.annotation.ImportSelector;
 import org.springframework.core.annotation.AnnotationAttributes;
 import org.springframework.core.type.AnnotationMetadata;
 
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map.Entry;
 import java.util.logging.Level;
 
 public class BeforeRegistrar implements ImportSelector {
@@ -104,16 +101,12 @@ public class BeforeRegistrar implements ImportSelector {
     private String[] getIocClasses() {
         String[] all = new String[0];
         if (Line.iocclasses != null && Line.iocclasses.size() > 0) {
-            for (Iterator it = Line.iocclasses.entrySet().iterator(); it.hasNext(); ) {
-                Entry<String, List<Class>> entry = (Entry<String, List<Class>>) it.next();
-                List<Class> listClass = entry.getValue();
-                String[] selecterExtends = new String[listClass.size()];
-                for (int i = 0; i < listClass.size(); i++) {
-                    Class reloadClass = listClass.get(i);
-                    selecterExtends[i] = reloadClass.getTypeName();
-                }
-                all = ArrayUtil.addAll(all, selecterExtends);
+            String[] selecterExtends = new String[Line.iocclasses.size()];
+            for (int i = 0; i < Line.iocclasses.size(); i++) {
+                Class reloadClass = Line.iocclasses.get(i);
+                selecterExtends[i] = reloadClass.getTypeName();
             }
+            all = ArrayUtil.addAll(all, selecterExtends);
         }
         return all;
     }

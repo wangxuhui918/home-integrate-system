@@ -37,27 +37,23 @@ public class FlywayExtendConfig implements ThirdExtendConfigAb {
 
     }
 
-    private String getName() {
-        return "数据库版本管理器";
-    }
 
     @Override
-    public LinkedHashMap<String, List<Class>> writeClasss() {
+    public List<Class> writeClasss() {
         try {
             ResourcePatternResolver resourceLoader = new PathMatchingResourcePatternResolver();
             Resource[] source = resourceLoader.getResources(filep);
             if (source.length == 0) {
-                return new LinkedHashMap<>();
+                return new ArrayList<>();
             }
             if (!Line.setting.containsKey("home.flywaydb.url")) {
-                return new LinkedHashMap<>();
+                return new ArrayList<>();
             }
         } catch (Exception e) {
-            return new LinkedHashMap<>();
+            return new ArrayList<>();
         }
         LinkedHashMap<String, List<Class>> map = new LinkedHashMap<>();
-        map.put(getName(), Arrays.asList(new Class[]{FlywayBean.class}));
-        return map;
+        return Arrays.asList(new Class[]{FlywayBean.class});
     }
 
     @Override
@@ -71,28 +67,28 @@ public class FlywayExtendConfig implements ThirdExtendConfigAb {
             String key = "home.flywaydb.url";
             if (!setting.containsKey(key)) {
                 if (Line.setting.get("home.db.url") != null)
-                    setting.put(key, ( Line.setting.get("home.db.url")));
+                    setting.put(key, (Line.setting.get("home.db.url")));
             }
         }
         {
             String key = "home.flywaydb.username";
             if (!setting.containsKey(key)) {
                 if (Line.setting.get("home.db.username") != null)
-                    setting.put(key, ( Line.setting.get("home.db.username")));
+                    setting.put(key, (Line.setting.get("home.db.username")));
             }
         }
         {
             String key = "home.flywaydb.password";
             if (!setting.containsKey(key)) {
                 if (Line.setting.get("home.db.password") != null)
-                    setting.put(key, ( Line.setting.get("home.db.password")));
+                    setting.put(key, (Line.setting.get("home.db.password")));
             }
         }
         {
             String key = "home.flywaydb.table";
             if (!setting.containsKey(key)) {
                 if (Line.setting.get("home.db.table") != null)
-                    setting.put(key, ( "flyway_schema_history"));
+                    setting.put(key, ("flyway_schema_history"));
             }
         }
     }

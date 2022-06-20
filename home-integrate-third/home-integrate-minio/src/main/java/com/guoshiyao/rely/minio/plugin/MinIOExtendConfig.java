@@ -18,26 +18,19 @@ import com.guoshiyao.rely.line.Line;
 import com.guoshiyao.rely.minio.utils.MinIOGen;
 import com.guoshiyao.rely.third.ThirdExtendConfigAb;
 
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @RuleAnnotation
 public class MinIOExtendConfig implements ThirdExtendConfigAb {
     public final static String NAME = "MinIO管理器";
 
     @Override
-    public LinkedHashMap<String, List<Class>> writeClasss() {
+    public List<Class> writeClasss() {
         //第0 个数据库
         if (Line.setting.containsKey("home.minio.endpoint") && Line.setting.containsKey("home.minio.namespace_re")) {
             MinIOGen.intiConect();
-            LinkedHashMap<String, List<Class>> map = new LinkedHashMap<>();
-            return map;
-        } else {
-            return new LinkedHashMap<>();
-
         }
+        return new ArrayList<>();
     }
 
     @Override
@@ -59,25 +52,25 @@ public class MinIOExtendConfig implements ThirdExtendConfigAb {
         {
             String key = "home.minio.namespace_re";
             if (!setting.containsKey(key)) {
-                setting.put(key, ( Line.idKey));
+                setting.put(key, (Line.idKey));
             }
         }
         {
             String key = "home.minio.endpoint";
             if (!setting.containsKey(key)) {
-                setting.put(key, ( ""));
+                setting.put(key, (""));
             }
         }
         {
             String key = "home.minio.accesskey";
             if (!setting.containsKey(key)) {
-                setting.put(key, ( ""));
+                setting.put(key, (""));
             }
         }
         {
             String key = "home.minio.secretKey";
             if (!setting.containsKey(key)) {
-                setting.put(key, ( ""));
+                setting.put(key, (""));
             }
         }
     }

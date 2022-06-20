@@ -13,10 +13,7 @@ package com.guoshiyao.rely.systemconfig;
 import com.guoshiyao.rely.coreannotation.rule.RuleAnnotation;
 import com.guoshiyao.rely.sys.SystemConfigAb;
 
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * 读取系统配置文件
@@ -43,8 +40,8 @@ public class SystemConfigRe implements SystemConfigAb {
     }
 
     @Override
-    public LinkedHashMap<String, List<Class>> writeClasss() {
-        return new LinkedHashMap<>();
+    public List<Class> writeClasss() {
+        return new ArrayList<>();
     }
 
 

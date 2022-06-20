@@ -18,10 +18,7 @@ import com.guoshiyao.rely.exception.re.ex.ExceptionError;
 import com.guoshiyao.rely.line.Line;
 import com.guoshiyao.rely.third.ThirdExtendConfigAb;
 
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @RuleAnnotation
 public class RedisConfig implements ThirdExtendConfigAb {
@@ -30,8 +27,8 @@ public class RedisConfig implements ThirdExtendConfigAb {
 //    private static final Map<String, String> thisproperties = new HashMap<String, String>();
 
     @Override
-    public LinkedHashMap<String, List<Class>> writeClasss() {
-        return new LinkedHashMap<>();
+    public List<Class> writeClasss() {
+        return new ArrayList<>();
     }
 
 

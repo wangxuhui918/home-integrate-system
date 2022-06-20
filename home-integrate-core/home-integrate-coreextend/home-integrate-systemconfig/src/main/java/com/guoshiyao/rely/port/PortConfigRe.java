@@ -38,9 +38,6 @@ public class PortConfigRe implements SystemConfigAb {
     public void after() {
     }
 
-    private String getName() {
-        return "SYSTEMCONFIG";
-    }
 
     @Override
     public Map<String, String> writeProperties() {
@@ -72,10 +69,9 @@ public class PortConfigRe implements SystemConfigAb {
     }
 
     @Override
-    public LinkedHashMap<String, List<Class>> writeClasss() {
+    public List<Class> writeClasss() {
         LinkedHashMap<String, List<Class>> map = new LinkedHashMap<>();
-        map.put(getName(), Arrays.asList(new Class[]{SystemServletPort.class}));
-        return map;
+        return Arrays.asList(new Class[]{SystemServletPort.class});
     }
 
 }

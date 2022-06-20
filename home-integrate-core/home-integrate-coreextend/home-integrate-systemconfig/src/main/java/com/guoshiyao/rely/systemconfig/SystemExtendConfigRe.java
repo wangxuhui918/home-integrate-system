@@ -35,9 +35,6 @@ public class SystemExtendConfigRe implements SystemConfigAb {
     public void after() {
     }
 
-    private String getName() {
-        return "SYSTEMEXTENDCONFIG";
-    }
 
     @Override
     public Map<String, String> writeProperties() {
@@ -45,11 +42,10 @@ public class SystemExtendConfigRe implements SystemConfigAb {
     }
 
     @Override
-    public LinkedHashMap<String, List<Class>> writeClasss() {
+    public List<Class> writeClasss() {
         LinkedHashMap<String, List<Class>> map = new LinkedHashMap<>();
-        map.put(getName(), Arrays
-                .asList(new Class[]{StartPingService.class, Bean.class}));
-        return map;
+        return Arrays
+                .asList(new Class[]{StartPingService.class, Bean.class});
     }
 
 }

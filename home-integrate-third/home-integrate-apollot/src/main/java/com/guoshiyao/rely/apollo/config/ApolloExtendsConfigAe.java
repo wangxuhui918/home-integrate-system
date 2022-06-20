@@ -41,9 +41,8 @@ public class ApolloExtendsConfigAe implements ThirdExtendConfigAb {
     }
 
     @Override
-    public LinkedHashMap<String, List<Class>> writeClasss() {
-        LinkedHashMap<String, List<Class>> map = new LinkedHashMap<>();
-        return map;
+    public List<Class> writeClasss() {
+        return new ArrayList<>();
     }
 
     @Override

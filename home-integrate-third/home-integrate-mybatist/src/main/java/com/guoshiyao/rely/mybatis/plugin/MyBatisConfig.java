@@ -31,13 +31,11 @@ public class MyBatisConfig implements ThirdExtendConfigAb {
     public final static String NAME = "MYBATIS";
 
     @Override
-    public LinkedHashMap<String, List<Class>> writeClasss() {
+    public List<Class> writeClasss() {
         int deriversize = JdbcFind.getProjectJdbc().size();
         int userlclass = AnnotationTools.getRuleClassForClass(Mapper.class, Line.projectPackage);
         if (deriversize > 0 && userlclass > 0 && Line.setting.containsKey("home.db.url")) {//正确配置
-            LinkedHashMap<String, List<Class>> map = new LinkedHashMap<>();
-            map.put(NAME, Arrays.asList(new Class[]{MapperConfiguration.class, TkMybatisAutoConfiguration.class}));
-            return map;
+            return Arrays.asList(new Class[]{MapperConfiguration.class, TkMybatisAutoConfiguration.class});
         } else if (userlclass > 0 && (!Line.setting.containsKey("home.db.url") || deriversize > 0)) {//用户写了类,但是未引入 url 或者 jar 包
             throw new ExceptionError("未配置 home.db.url/引入驱动 jar 包!!");
         } else if (Line.setting.containsKey("home.db.url") && deriversize == 0) {//引入了 url,但是没引入驱动
@@ -47,8 +45,7 @@ public class MyBatisConfig implements ThirdExtendConfigAb {
                 throw new ExceptionError("home.db.url  jar 包,请选择合适的 jar 包引入!!");
             }
         }
-        return new LinkedHashMap<>();
-
+        return new ArrayList<>();
     }
 
     @Override

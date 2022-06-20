@@ -12,7 +12,6 @@ package com.guoshiyao.rely.coreab.ab;
 
 import com.guoshiyao.rely.coreab.ab.base.BaseConfigAb;
 
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -50,7 +49,7 @@ public interface BaseConfigRe extends BaseConfigAb {
      * @date 2021年12月2日
      * @readme
      */
-    LinkedHashMap<String, List<Class>> writeClasss();
+    List<Class> writeClasss();
 
     /**
      * 写入Line.properties参数

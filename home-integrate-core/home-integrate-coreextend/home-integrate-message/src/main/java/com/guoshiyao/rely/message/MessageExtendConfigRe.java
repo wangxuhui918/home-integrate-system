@@ -18,10 +18,7 @@ import com.guoshiyao.rely.message.ab.MessageConfigAb;
 import com.guoshiyao.rely.message.utils.NodeUtils;
 
 
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @RuleAnnotation
 public class MessageExtendConfigRe implements MessageConfigAb {
@@ -48,8 +45,8 @@ public class MessageExtendConfigRe implements MessageConfigAb {
     }
 
     @Override
-    public LinkedHashMap<String, List<Class>> writeClasss() {
-        return new LinkedHashMap<>();
+    public List<Class> writeClasss() {
+        return new ArrayList<>();
     }
 
     @Override

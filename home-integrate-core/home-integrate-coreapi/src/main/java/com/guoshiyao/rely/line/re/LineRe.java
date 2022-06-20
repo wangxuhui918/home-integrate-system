@@ -24,7 +24,6 @@ import com.guoshiyao.rely.sys.SystemConfigAb;
 import com.guoshiyao.rely.third.ThirdExtendConfigAb;
 
 import java.util.HashMap;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -130,24 +129,19 @@ public class LineRe implements LineAb<Line> {
         for (int i = 0; i < runmodelconfigrerules.size(); i++) {
             RunModelConfigRe info = runmodelconfigrerules.get(i);
             if (info instanceof SystemConfigAb) {
-                LinkedHashMap<String, List<Class>> classes = info.writeClasss();
-                Line.iocclasses.putAll(classes);
+                Line.iocclasses.addAll(info.writeClasss());
             }
         }
         for (int i = 0; i < runmodelconfigrerules.size(); i++) {
             RunModelConfigRe info = runmodelconfigrerules.get(i);
             if (info instanceof ThirdExtendConfigAb) {
-                LinkedHashMap<String, List<Class>> classes = info.writeClasss();
-                Line.iocclasses.putAll(classes);
+                Line.iocclasses.addAll(info.writeClasss());
             }
         }
         if (Line.isClassModel) {//提前处理非Jar模式需要处理的东西
             for (int i = 0; i < classmodelconfigrerules.size(); i++) {
                 ClassModelConfigRe info = classmodelconfigrerules.get(i);
-                LinkedHashMap<String, List<Class>> classes = info.writeClasss();
-                if (classes != null) {
-                    Line.iocclasses.putAll(classes);
-                }
+                Line.iocclasses.addAll(info.writeClasss());
             }
         }
 

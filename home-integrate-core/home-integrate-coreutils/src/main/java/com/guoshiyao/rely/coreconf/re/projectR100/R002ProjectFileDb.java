@@ -78,13 +78,7 @@ public class R002ProjectFileDb implements ProjectCoreConfAb {
                 for (int j = 0; j < groups.size(); j++) {
                     String s = groups.get(j);
                     if (s.contains("-" + Line.env.getLocalName() + "-")) {
-//                        for (String key : allEnvSetting.getMap(s).keySet()) {
-//                            String value = allEnvSetting.getMap(s).get(key);
-//                            if (value != null && StrUtil.isNotBlank(value)) {
-//                                thisEnvKeyValues.put(key, allEnvSetting.getMap(s).get(key));
-//                            }
                         thisEnvKeyValues.putAll(allEnvSetting.getMap(s));
-//                        }
                     }
                 }
             }
@@ -178,7 +172,6 @@ public class R002ProjectFileDb implements ProjectCoreConfAb {
             LoggerBaseAb.err("-Denv={}以及开发摸下才可进行初始化,系统已停止", ENV.LOCAL.getName());
             System.exit(-1);
         }
-
 
         List<EnvVo> listEnv = HomeCoreConfUtils.getEnvs();
         for (EnvVo envvo : listEnv) {

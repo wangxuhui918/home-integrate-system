@@ -27,13 +27,11 @@ public class DubboExtendConfig implements ThirdExtendConfigAb {
     public final static String NAME = "DUBBO";
 
     @Override
-    public LinkedHashMap<String, List<Class>> writeClasss() {
+    public List<Class> writeClasss() {
         if (AnnotationTools.getRuleClassForAnno(Service.class, Line.projectPackage) > 0) {
-            LinkedHashMap<String, List<Class>> map = new LinkedHashMap<>();
-            map.put(NAME, Arrays.asList(new Class[]{DubboBaseConfiguration.class, DubboConsumerConfig.class}));
-            return map;
+            return Arrays.asList(new Class[]{DubboBaseConfiguration.class, DubboConsumerConfig.class});
         } else {
-            return new LinkedHashMap<>();
+            return new ArrayList<>();
         }
 
     }

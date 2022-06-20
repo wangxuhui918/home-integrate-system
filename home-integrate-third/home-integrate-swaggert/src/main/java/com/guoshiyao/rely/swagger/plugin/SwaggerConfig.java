@@ -30,17 +30,16 @@ public class SwaggerConfig implements ThirdExtendConfigAb {
     public final static String NAME = "SWAGGER";
 
     @Override
-    public LinkedHashMap<String, List<Class>> writeClasss() {
+    public List<Class> writeClasss() {
         if (AnnotationTools.getRuleClassForAnno(Controller.class, Line.projectPackage) > 0) {
             LinkedHashMap<String, List<Class>> map = new LinkedHashMap<>();
 //            ControllerParamHand.class,
 //            map.put(NAME, Arrays.asList(new Class[]{SwaggerConfigRe.class, RomensWebMvcConfigurationSupport.class,
 //                    ControllerParamHand.class, ExceptionHand.class, ResponseHand.class}));
-            map.put(NAME, Arrays.asList(new Class[]{SwaggerConfigRe.class, RomensWebMvcConfigurationSupport.class,
-                    ControllerParamHandV1.class, ExceptionHandV1.class, ResponseHandV1.class}));
-            return map;
+            return Arrays.asList(new Class[]{SwaggerConfigRe.class, RomensWebMvcConfigurationSupport.class,
+                    ControllerParamHandV1.class, ExceptionHandV1.class, ResponseHandV1.class});
         } else {
-            return new LinkedHashMap<>();
+            return new ArrayList<>();
         }
 
     }
@@ -64,13 +63,13 @@ public class SwaggerConfig implements ThirdExtendConfigAb {
         {
             String key = "home.swagger.basepackage";
             if (!setting.containsKey(key)) {
-                setting.put(key, ( Line.projectPackage + ".api"));
+                setting.put(key, (Line.projectPackage + ".api"));
             }
         }
         {
             String key = "home.swagger.name";
             if (!setting.containsKey(key)) {
-                setting.put(key, ( "Swagger API"));
+                setting.put(key, ("Swagger API"));
             }
         }
     }

@@ -30,14 +30,12 @@ public class DataExtendConfig implements ThirdExtendConfigAb {
     public final static String NAME = "DATA_DURID";
 
     @Override
-    public LinkedHashMap<String, List<Class>> writeClasss() {
+    public List<Class> writeClasss() {
         //第0 个数据库
         if ((JdbcFind.getProjectJdbc().size() > 0 || Line.setting.containsKey("home.db.driverclass.downloadurl")) && Line.setting.containsKey("home.db.url")) {
-            LinkedHashMap<String, List<Class>> map = new LinkedHashMap<>();
-            map.put(NAME, Arrays.asList(new Class[]{DataSourcesConfig.class}));
-            return map;
+            return Arrays.asList(new Class[]{DataSourcesConfig.class});
         } else {
-            return new LinkedHashMap<>();
+            return new ArrayList<>();
         }
 
     }

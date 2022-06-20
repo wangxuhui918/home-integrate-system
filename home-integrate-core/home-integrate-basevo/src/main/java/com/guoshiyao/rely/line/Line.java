@@ -79,7 +79,7 @@ public class Line {
     /**
      * IOC翻转执行类
      */
-    public final static LinkedHashMap<String, List<Class>> iocclasses = (new LinkedHashMap<>());
+    public final static List<Class> iocclasses = new ArrayList<>();
     /**
      * 建议使用com.guoshiyao.rely.line.Line.setting
      */

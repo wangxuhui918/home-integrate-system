@@ -13,7 +13,7 @@ import com.guoshiyao.rely.coreannotation.rule.RuleAnnotation;
 import com.guoshiyao.rely.coreconf.utils.ProjectCoreConfUtils;
 import com.guoshiyao.rely.createconfig.CreateConfigAb;
 
-import java.util.LinkedHashMap;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -27,8 +27,8 @@ public class EnvFilePathCreateConfigRe implements CreateConfigAb {
 
 
     @Override
-    public LinkedHashMap<String, List<Class>> writeClasss() {
-        return null;
+    public List<Class> writeClasss() {
+        return new ArrayList<>();
     }
 
 

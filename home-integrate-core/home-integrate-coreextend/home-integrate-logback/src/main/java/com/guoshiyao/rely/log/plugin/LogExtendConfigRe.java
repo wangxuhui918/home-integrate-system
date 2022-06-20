@@ -15,10 +15,7 @@ import com.guoshiyao.rely.exception.re.ex.ExceptionError;
 import com.guoshiyao.rely.log.base.LoggerBaseAb;
 import com.guoshiyao.rely.sys.SystemConfigAb;
 
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @RuleAnnotation
 public class LogExtendConfigRe implements SystemConfigAb {
@@ -40,8 +37,8 @@ public class LogExtendConfigRe implements SystemConfigAb {
     }
 
     @Override
-    public LinkedHashMap<String, List<Class>> writeClasss() {
-        return new LinkedHashMap<>();
+    public List<Class> writeClasss() {
+        return new ArrayList<>();
     }
 
     @Override
