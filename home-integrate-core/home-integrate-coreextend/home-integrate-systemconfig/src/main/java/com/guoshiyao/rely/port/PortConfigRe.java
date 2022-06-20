@@ -38,8 +38,7 @@ public class PortConfigRe implements SystemConfigAb {
     public void after() {
     }
 
-    @Override
-    public String getName() {
+    private String getName() {
         return "SYSTEMCONFIG";
     }
 

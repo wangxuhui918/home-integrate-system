@@ -48,11 +48,6 @@ public class MessageExtendConfigRe implements MessageConfigAb {
     }
 
     @Override
-    public String getName() {
-        return "全文消息码管理器";
-    }
-
-    @Override
     public LinkedHashMap<String, List<Class>> writeClasss() {
         return new LinkedHashMap<>();
     }
@@ -63,7 +58,7 @@ public class MessageExtendConfigRe implements MessageConfigAb {
     }
 
     @Override
-    public void callProperties(Setting properties) {
+    public void callSetting(Setting setting) {
     }
 
 }

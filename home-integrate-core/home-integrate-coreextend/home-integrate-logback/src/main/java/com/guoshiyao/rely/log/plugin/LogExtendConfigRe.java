@@ -40,11 +40,6 @@ public class LogExtendConfigRe implements SystemConfigAb {
     }
 
     @Override
-    public String getName() {
-        return "日志管理器";
-    }
-
-    @Override
     public LinkedHashMap<String, List<Class>> writeClasss() {
         return new LinkedHashMap<>();
     }

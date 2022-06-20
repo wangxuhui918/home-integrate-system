@@ -37,8 +37,7 @@ public class FlywayExtendConfig implements ThirdExtendConfigAb {
 
     }
 
-    @Override
-    public String getName() {
+    private String getName() {
         return "数据库版本管理器";
     }
 
@@ -67,33 +66,33 @@ public class FlywayExtendConfig implements ThirdExtendConfigAb {
     }
 
     @Override
-    public void callProperties(Setting properties) {
+    public void callSetting(Setting setting) {
         {
             String key = "home.flywaydb.url";
-            if (!properties.containsKey(key)) {
+            if (!setting.containsKey(key)) {
                 if (Line.setting.get("home.db.url") != null)
-                    properties.put(key, ( Line.setting.get("home.db.url")));
+                    setting.put(key, ( Line.setting.get("home.db.url")));
             }
         }
         {
             String key = "home.flywaydb.username";
-            if (!properties.containsKey(key)) {
+            if (!setting.containsKey(key)) {
                 if (Line.setting.get("home.db.username") != null)
-                    properties.put(key, ( Line.setting.get("home.db.username")));
+                    setting.put(key, ( Line.setting.get("home.db.username")));
             }
         }
         {
             String key = "home.flywaydb.password";
-            if (!properties.containsKey(key)) {
+            if (!setting.containsKey(key)) {
                 if (Line.setting.get("home.db.password") != null)
-                    properties.put(key, ( Line.setting.get("home.db.password")));
+                    setting.put(key, ( Line.setting.get("home.db.password")));
             }
         }
         {
             String key = "home.flywaydb.table";
-            if (!properties.containsKey(key)) {
+            if (!setting.containsKey(key)) {
                 if (Line.setting.get("home.db.table") != null)
-                    properties.put(key, ( "flyway_schema_history"));
+                    setting.put(key, ( "flyway_schema_history"));
             }
         }
     }

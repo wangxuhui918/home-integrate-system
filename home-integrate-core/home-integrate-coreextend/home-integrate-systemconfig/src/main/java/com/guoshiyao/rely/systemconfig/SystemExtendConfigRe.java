@@ -35,8 +35,7 @@ public class SystemExtendConfigRe implements SystemConfigAb {
     public void after() {
     }
 
-    @Override
-    public String getName() {
+    private String getName() {
         return "SYSTEMEXTENDCONFIG";
     }
 

@@ -48,11 +48,6 @@ public class DataExtendConfig implements ThirdExtendConfigAb {
     }
 
     @Override
-    public String getName() {
-        return NAME;
-    }
-
-    @Override
     public void before() {
 
     }
@@ -86,131 +81,131 @@ public class DataExtendConfig implements ThirdExtendConfigAb {
     }
 
     @Override
-    public void callProperties(Setting properties) {
+    public void callSetting(Setting setting) {
         {
             String key = "home.db.url";
-            if (!properties.containsKey(key)) {
-                properties.put(key, (""));
+            if (!setting.containsKey(key)) {
+                setting.put(key, (""));
             }
         }
         {
             String key = "home.db.username";
-            if (!properties.containsKey(key)) {
-                properties.put(key, (""));
+            if (!setting.containsKey(key)) {
+                setting.put(key, (""));
             }
         }
         {
             String key = "home.db.password";
-            if (!properties.containsKey(key)) {
-                properties.put(key, (""));
+            if (!setting.containsKey(key)) {
+                setting.put(key, (""));
             }
         }
         {
             String key = "home.db.driverclassname";
-            if (!properties.containsKey(key)) {
-                properties.put(key, (""));
+            if (!setting.containsKey(key)) {
+                setting.put(key, (""));
             }
         }
         {
             String key = "home.db.driverclass.downloadurl";
-            if (!properties.containsKey(key)) {
-                properties.put(key, (""));
+            if (!setting.containsKey(key)) {
+                setting.put(key, (""));
             }
         }
         {
             String key = "home.db.maxactive";
-            if (!properties.containsKey(key)) {
-                properties.put(key, ("30"));
+            if (!setting.containsKey(key)) {
+                setting.put(key, ("30"));
             }
         }
         {
             String key = "home.db.initialsize";
-            if (!properties.containsKey(key)) {
-                properties.put(key, ("1"));
+            if (!setting.containsKey(key)) {
+                setting.put(key, ("1"));
             }
         }
         {
             String key = "home.db.maxwait";
-            if (!properties.containsKey(key)) {
-                properties.put(key, ("60000"));
+            if (!setting.containsKey(key)) {
+                setting.put(key, ("60000"));
             }
         }
         {
             String key = "home.db.minidle";
-            if (!properties.containsKey(key)) {
-                properties.put(key, ("3"));
+            if (!setting.containsKey(key)) {
+                setting.put(key, ("3"));
             }
         }
         {
             String key = "home.db.timebetweenevictionrunsmillis";
-            if (!properties.containsKey(key)) {
-                properties.put(key, ("60000"));
+            if (!setting.containsKey(key)) {
+                setting.put(key, ("60000"));
             }
         }
         {
             String key = "home.db.minevictableidletimemillis";
-            if (!properties.containsKey(key)) {
-                properties.put(key, ("300000"));
+            if (!setting.containsKey(key)) {
+                setting.put(key, ("300000"));
             }
         }
         {
             String key = "home.db.validationquery";
-            if (!properties.containsKey(key)) {
-                properties.put(key, (""));
+            if (!setting.containsKey(key)) {
+                setting.put(key, (""));
             }
         }
         {
             String key = "home.db.testwhileidle";
-            if (!properties.containsKey(key)) {
-                properties.put(key, ("true"));
+            if (!setting.containsKey(key)) {
+                setting.put(key, ("true"));
             }
         }
         {
             String key = "home.db.testonborrow";
-            if (!properties.containsKey(key)) {
-                properties.put(key, ("false"));
+            if (!setting.containsKey(key)) {
+                setting.put(key, ("false"));
             }
         }
         {
             String key = "home.db.testonreturn";
-            if (!properties.containsKey(key)) {
-                properties.put(key, ("false"));
+            if (!setting.containsKey(key)) {
+                setting.put(key, ("false"));
             }
         }
         {
             String key = "home.db.poolpreparedstatements";
-            if (!properties.containsKey(key)) {
-                properties.put(key, ("true"));
+            if (!setting.containsKey(key)) {
+                setting.put(key, ("true"));
             }
         }
         {
             String key = "home.db.removeabandoned";
-            if (!properties.containsKey(key)) {
-                properties.put(key, ("true"));
+            if (!setting.containsKey(key)) {
+                setting.put(key, ("true"));
             }
         }
         {
             String key = "home.db.removeabandonedtimeout";
-            if (!properties.containsKey(key)) {
-                properties.put(key, ("60"));
+            if (!setting.containsKey(key)) {
+                setting.put(key, ("60"));
             }
         }
         {
             String key = "home.db.numtestsperevictionrun";
-            if (!properties.containsKey(key)) {
-                properties.put(key, ("60"));
+            if (!setting.containsKey(key)) {
+                setting.put(key, ("60"));
             }
         }
         {
             String key = "home.db.maxopenpreparedstatements";
-            if (!properties.containsKey(key)) {
-                properties.put(key, ("20"));
+            if (!setting.containsKey(key)) {
+                setting.put(key, ("20"));
             }
         }
         {
             String key = "home.db.filters";
-            if (!properties.containsKey(key)) {
-                properties.put(key, ("stat,wall"));
+            if (!setting.containsKey(key)) {
+                setting.put(key, ("stat,wall"));
             }
         }
 

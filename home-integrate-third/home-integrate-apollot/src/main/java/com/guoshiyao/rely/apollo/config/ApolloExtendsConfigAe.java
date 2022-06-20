@@ -41,11 +41,6 @@ public class ApolloExtendsConfigAe implements ThirdExtendConfigAb {
     }
 
     @Override
-    public String getName() {
-        return "阿波罗配置加载器";
-    }
-
-    @Override
     public LinkedHashMap<String, List<Class>> writeClasss() {
         LinkedHashMap<String, List<Class>> map = new LinkedHashMap<>();
         return map;
@@ -57,50 +52,50 @@ public class ApolloExtendsConfigAe implements ThirdExtendConfigAb {
     }
 
     @Override
-    public void callProperties(Setting properties) {
+    public void callSetting(Setting setting) {
         {
             String key = "home.apollo.url";
-            if (!properties.containsKey(key)) {
-                properties.put(key, ("NA"));
+            if (!setting.containsKey(key)) {
+                setting.put(key, ("NA"));
             }
         }
         {
             String key = "home.apollo.username";
-            if (!properties.containsKey(key)) {
-                properties.put(key, ("apollo"));
+            if (!setting.containsKey(key)) {
+                setting.put(key, ("apollo"));
             }
         }
         {
             String key = "home.apollo.password";
-            if (!properties.containsKey(key)) {
-                properties.put(key, ("apollo"));
+            if (!setting.containsKey(key)) {
+                setting.put(key, ("apollo"));
             }
         }
         {
             String key = "home.apollo.app.id";
             String key1 = "app.id";
-            if (!properties.containsKey(key)) {
-                properties.put(key, (Line.idKey));
+            if (!setting.containsKey(key)) {
+                setting.put(key, (Line.idKey));
             } else {
-                System.setProperty(key1, properties.get(key).toString());
+                System.setProperty(key1, setting.get(key).toString());
             }
         }
         {
             String key = "home.apollo.apollo.meta";
             String key1 = "apollo.meta";
-            if (!properties.containsKey(key)) {
-                properties.put(key, (""));
+            if (!setting.containsKey(key)) {
+                setting.put(key, (""));
             } else {
-                System.setProperty(key1, properties.get(key).toString());
+                System.setProperty(key1, setting.get(key).toString());
             }
         }
         {
             String key = "home.apollo.apollo.env";
             String key1 = "apollo.env";
-            if (!properties.containsKey(key)) {
-                properties.put(key, (Line.env.getName()));
+            if (!setting.containsKey(key)) {
+                setting.put(key, (Line.env.getName()));
             } else {
-                System.setProperty(key1, properties.get(key).toString());
+                System.setProperty(key1, setting.get(key).toString());
             }
         }
 

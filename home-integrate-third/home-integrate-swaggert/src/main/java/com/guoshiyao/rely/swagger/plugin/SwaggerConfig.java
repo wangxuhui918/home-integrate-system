@@ -51,11 +51,6 @@ public class SwaggerConfig implements ThirdExtendConfigAb {
     }
 
     @Override
-    public String getName() {
-        return NAME;
-    }
-
-    @Override
     public void before() {
 
     }
@@ -65,17 +60,17 @@ public class SwaggerConfig implements ThirdExtendConfigAb {
     }
 
     @Override
-    public void callProperties(Setting properties) {
+    public void callSetting(Setting setting) {
         {
             String key = "home.swagger.basepackage";
-            if (!properties.containsKey(key)) {
-                properties.put(key, ( Line.projectPackage + ".api"));
+            if (!setting.containsKey(key)) {
+                setting.put(key, ( Line.projectPackage + ".api"));
             }
         }
         {
             String key = "home.swagger.name";
-            if (!properties.containsKey(key)) {
-                properties.put(key, ( "Swagger API"));
+            if (!setting.containsKey(key)) {
+                setting.put(key, ( "Swagger API"));
             }
         }
     }

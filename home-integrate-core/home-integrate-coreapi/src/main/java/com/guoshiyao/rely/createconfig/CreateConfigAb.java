@@ -12,8 +12,6 @@ package com.guoshiyao.rely.createconfig;
 
 import com.guoshiyao.rely.coreab.ClassModelConfigRe;
 
-import java.io.File;
-
 /**
  * 配置创建组件
  *
@@ -23,12 +21,5 @@ import java.io.File;
  */
 public interface CreateConfigAb extends ClassModelConfigRe {
 
-    @Override
-    void before();
-
-    boolean start();
-
-    @Override
-    void after();
 
 }

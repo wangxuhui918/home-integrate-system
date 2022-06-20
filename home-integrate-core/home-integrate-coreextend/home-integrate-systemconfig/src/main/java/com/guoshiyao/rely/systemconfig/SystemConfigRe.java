@@ -38,11 +38,6 @@ public class SystemConfigRe implements SystemConfigAb {
     }
 
     @Override
-    public String getName() {
-        return "SYSTEMCONFIG";
-    }
-
-    @Override
     public Map<String, String> writeProperties() {
         return new HashMap<>();
     }

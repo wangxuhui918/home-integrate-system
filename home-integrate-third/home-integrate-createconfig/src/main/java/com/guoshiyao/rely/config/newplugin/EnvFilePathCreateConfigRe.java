@@ -27,16 +27,6 @@ public class EnvFilePathCreateConfigRe implements CreateConfigAb {
 
 
     @Override
-    public String getName() {
-        return "通用配置写入器";
-    }
-
-    @Override
-    public boolean start() {
-        return true;
-    }
-
-    @Override
     public LinkedHashMap<String, List<Class>> writeClasss() {
         return null;
     }

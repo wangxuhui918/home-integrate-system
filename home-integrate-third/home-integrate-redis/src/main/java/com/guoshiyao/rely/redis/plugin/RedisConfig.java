@@ -41,11 +41,6 @@ public class RedisConfig implements ThirdExtendConfigAb {
     }
 
     @Override
-    public String getName() {
-        return NAME;
-    }
-
-    @Override
     public void before() {
 
     }
@@ -77,7 +72,7 @@ public class RedisConfig implements ThirdExtendConfigAb {
 
 
     @Override
-    public void callProperties(Setting properties) {
+    public void callSetting(Setting setting) {
 
 
     }

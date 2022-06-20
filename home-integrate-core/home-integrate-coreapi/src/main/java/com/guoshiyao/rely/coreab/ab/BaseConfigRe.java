@@ -43,16 +43,6 @@ public interface BaseConfigRe extends BaseConfigAb {
     void before();
 
     /**
-     * 插件名称
-     *
-     * @return
-     * @author 汪旭辉
-     * @date 2021年12月2日
-     * @readme
-     */
-    String getName();
-
-    /**
      * 需要交付Ioc的class类
      *
      * @return

@@ -57,11 +57,6 @@ public class MyBatisConfig implements ThirdExtendConfigAb {
     }
 
     @Override
-    public String getName() {
-        return NAME;
-    }
-
-    @Override
     public void before() {
 
     }
@@ -71,23 +66,23 @@ public class MyBatisConfig implements ThirdExtendConfigAb {
     }
 
     @Override
-    public void callProperties(Setting properties) {
+    public void callSetting(Setting setting) {
         {
             String key = "home.mybatis.basepackage";
-            if (!properties.containsKey(key)) {
-                properties.put(key, (Line.projectPackage + ".mapper"));
+            if (!setting.containsKey(key)) {
+                setting.put(key, (Line.projectPackage + ".mapper"));
             }
         }
         {
             String key = "home.mybatis.typealiasespackage";
-            if (!properties.containsKey(key)) {
-                properties.put(key, (Line.projectPackage + ".mapper"));
+            if (!setting.containsKey(key)) {
+                setting.put(key, (Line.projectPackage + ".mapper"));
             }
         }
         {
             String key = "home.mybatis.mapperlocations";
-            if (!properties.containsKey(key)) {
-                properties.put(key, ("classpath:**/mapper/**.xml"));
+            if (!setting.containsKey(key)) {
+                setting.put(key, ("classpath:**/mapper/**.xml"));
             }
         }
 

@@ -17,7 +17,6 @@ import com.guoshiyao.rely.coreab.ClassModelConfigRe;
 import com.guoshiyao.rely.coreab.RunModelConfigRe;
 import com.guoshiyao.rely.coreannotation.rule.RuleAnnotation;
 import com.guoshiyao.rely.coreconf.utils.HomeCoreConfUtils;
-import com.guoshiyao.rely.createconfig.CreateConfigAb;
 import com.guoshiyao.rely.line.Line;
 import com.guoshiyao.rely.line.LineAb;
 import com.guoshiyao.rely.line.ab.re.LinePropertiesAb;
@@ -38,6 +37,7 @@ import java.util.Map;
  */
 @RuleAnnotation
 public class LineRe implements LineAb<Line> {
+
     private static List<ClassModelConfigRe> classmodelconfigrerules = HomeCoreConfUtils.sortByDbOrRuleApi(ClassModelConfigRe.class);
 
     private static List<RunModelConfigRe> runmodelconfigrerules = HomeCoreConfUtils.sortByDbOrRuleApi(RunModelConfigRe.class);
@@ -54,14 +54,7 @@ public class LineRe implements LineAb<Line> {
                 ClassModelConfigRe info = classmodelconfigrerules.get(i);
                 info.before();
             }
-            for (int i = 0; i < classmodelconfigrerules.size(); i++) {
-                ClassModelConfigRe info = classmodelconfigrerules.get(i);
-                if (info instanceof CreateConfigAb) {
-                    ((CreateConfigAb) info).start();
-                }
-            }
         }
-
         {//运行时模式需要处理的部分
             for (int i = 0; i < runmodelconfigrerules.size(); i++) {
                 RunModelConfigRe info = runmodelconfigrerules.get(i);
@@ -107,7 +100,7 @@ public class LineRe implements LineAb<Line> {
             if (info1 instanceof ThirdExtendConfigAb) {
                 for (RunModelConfigRe info : runmodelconfigrerules) {
                     if (info instanceof ThirdExtendConfigAb) {
-                        ((ThirdExtendConfigAb) info).callProperties(Line.setting);
+                        ((ThirdExtendConfigAb) info).callSetting(Line.setting);
                     }
                 }
             }

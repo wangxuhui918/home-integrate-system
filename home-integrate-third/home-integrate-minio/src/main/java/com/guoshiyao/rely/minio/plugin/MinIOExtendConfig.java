@@ -46,11 +46,6 @@ public class MinIOExtendConfig implements ThirdExtendConfigAb {
     }
 
     @Override
-    public String getName() {
-        return NAME;
-    }
-
-    @Override
     public void before() {
 
     }
@@ -60,29 +55,29 @@ public class MinIOExtendConfig implements ThirdExtendConfigAb {
     }
 
     @Override
-    public void callProperties(Setting properties) {
+    public void callSetting(Setting setting) {
         {
             String key = "home.minio.namespace_re";
-            if (!properties.containsKey(key)) {
-                properties.put(key, ( Line.idKey));
+            if (!setting.containsKey(key)) {
+                setting.put(key, ( Line.idKey));
             }
         }
         {
             String key = "home.minio.endpoint";
-            if (!properties.containsKey(key)) {
-                properties.put(key, ( ""));
+            if (!setting.containsKey(key)) {
+                setting.put(key, ( ""));
             }
         }
         {
             String key = "home.minio.accesskey";
-            if (!properties.containsKey(key)) {
-                properties.put(key, ( ""));
+            if (!setting.containsKey(key)) {
+                setting.put(key, ( ""));
             }
         }
         {
             String key = "home.minio.secretKey";
-            if (!properties.containsKey(key)) {
-                properties.put(key, ( ""));
+            if (!setting.containsKey(key)) {
+                setting.put(key, ( ""));
             }
         }
     }
