@@ -73,23 +73,20 @@ public class LineRe implements LineAb<Line> {
             for (int i = 0; i < runmodelconfigrerules.size(); i++) {
                 RunModelConfigRe info = runmodelconfigrerules.get(i);
                 if (info instanceof SystemConfigAb) {
-                    Map<String, String> properties = info.writeProperties();
-                    Line.setting.putAll(properties);
+                    Line.setting.putAll(info.writeProperties());
                 }
             }
             //读取第三方参数
             for (int i = 0; i < runmodelconfigrerules.size(); i++) {
                 RunModelConfigRe info = runmodelconfigrerules.get(i);
                 if (info instanceof ThirdExtendConfigAb) {
-                    Map<String, String> properties = info.writeProperties();
-                    Line.setting.putAll(properties);
+                    Line.setting.putAll(info.writeProperties());
                 }
             }
             if (Line.isClassModel) {//提前处理非Jar模式需要处理的东西
                 for (int i = 0; i < classmodelconfigrerules.size(); i++) {
                     ClassModelConfigRe info = classmodelconfigrerules.get(i);
-                    Map<String, String> properties = info.writeProperties();
-                    Line.setting.putAll(properties);
+                    Line.setting.putAll(info.writeProperties());
                 }
             }
         }
