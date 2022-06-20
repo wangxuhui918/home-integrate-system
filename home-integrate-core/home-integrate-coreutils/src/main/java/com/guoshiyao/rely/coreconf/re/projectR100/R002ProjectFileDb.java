@@ -171,7 +171,7 @@ public class R002ProjectFileDb implements ProjectCoreConfAb {
         envs.add(Line.runEnv);
 
         for (String envName : envs) {
-            if (Line.autoUpdate || !ProjectCoreConfUtils.getDbInit() || (envName == Line.UK && Line.isClassModel)) {//数据库未初始化,手动更新配置
+            if (Line.autoUpdate || !ProjectCoreConfUtils.getDbInit() || ((Line.UK).equals(envName) && Line.isClassModel)) {//数据库未初始化,手动更新配置
                 HashMap<ModelConfigInfoVo, List<ModelConfigPropertiesVo>> config = HomeCoreConfUtils.getModelConf();
                 List<ModelConfigInfoVo> sortx = config.keySet().stream().sorted(Comparator.comparingInt(od -> od.getSort_id()))
                         .collect(Collectors.toList());
@@ -226,5 +226,32 @@ public class R002ProjectFileDb implements ProjectCoreConfAb {
 
     }
 
+
+    @Deprecated
+    public Map<String, String> getOldValue(String env) {
+        Map<String, String> map = new HashMap<>();
+        String thisEnvPath = "";
+        if (Line.UK.equals(env)) {
+            thisEnvPath = "";
+        } else {
+            thisEnvPath = env + File.separator;
+        }
+        List<URL> listUrl = ResourceFindUtils.find(StrUtil.format(thisEnvPath.toUpperCase() + "*.properties"));//Line.env.getName()
+
+        for (int i = 0; i < listUrl.size(); i++) {
+            URL url = listUrl.get(i);
+            try {
+                Properties p = new Properties();
+                p.load(FileUtil.getInputStream(new File(url.toURI())));
+                Set<Map.Entry<Object, Object>> entrySet = p.entrySet();
+                for (Map.Entry<Object, Object> entry : entrySet) {
+                    map.put((String) entry.getKey(), (String) entry.getValue());
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return map;
+    }
 
 }
