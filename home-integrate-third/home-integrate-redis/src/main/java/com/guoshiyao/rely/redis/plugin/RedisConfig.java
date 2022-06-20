@@ -51,14 +51,14 @@ public class RedisConfig implements ThirdExtendConfigAb {
         //        Map<String, String> thisproperties = new HashMap<String, String>();
         for (String key : Line.setting.keySet()) {//筛选 redis 的内容
             if (StrUtil.startWith(key, "home.redis.")) {
-                setting.putByGroup(key, Line.env.getName(), Line.setting.get(key));
+                setting.putByGroup(key, Line.runEnv, Line.setting.get(key));
 //                thisproperties.put(StrUtil.sub(key, "home.redis.".length(), key.length()), Line.setting.get(key).getValue());
             }
         }
 //        setting.putAll(Line.env.getName(), thisproperties);
         if (Line.setting.containsKey("home.redis.host")) {
             try {
-                Line.redisds = RedisDS.create(setting, Line.env.getName());
+                Line.redisds = RedisDS.create(setting, Line.runEnv);
             } catch (Exception e) {
                 e.printStackTrace();
                 throw new ExceptionError("Redis 服务 {} 连接失败!如需关闭redis功能,请直接将home.redis.host重置为\"\"/null", Line.setting.get("home.redis.host"))

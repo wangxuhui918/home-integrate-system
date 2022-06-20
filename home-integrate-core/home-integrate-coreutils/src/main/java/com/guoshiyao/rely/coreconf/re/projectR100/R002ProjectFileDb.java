@@ -20,11 +20,9 @@ import com.guoshiyao.rely.coreannotation.rule.RuleAnnotation;
 import com.guoshiyao.rely.coreconf.ab.ProjectCoreConfAb;
 import com.guoshiyao.rely.coreconf.utils.HomeCoreConfUtils;
 import com.guoshiyao.rely.coreconf.utils.ProjectCoreConfUtils;
-import com.guoshiyao.rely.coreconf.vo.EnvVo;
 import com.guoshiyao.rely.coreconf.vo.ModelConfigInfoVo;
 import com.guoshiyao.rely.coreconf.vo.ModelConfigPropertiesVo;
 import com.guoshiyao.rely.coreconf.vo.ReadMeVo;
-import com.guoshiyao.rely.environment.ENV;
 import com.guoshiyao.rely.line.Line;
 import com.guoshiyao.rely.log.base.LoggerBaseAb;
 import com.guoshiyao.rely.resource.ResourceFindUtils;
@@ -32,10 +30,7 @@ import com.guoshiyao.rely.velocity.VelocityUtils;
 
 import java.io.File;
 import java.net.URL;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /**
@@ -77,7 +72,7 @@ public class R002ProjectFileDb implements ProjectCoreConfAb {
                 List<String> groups = allEnvSetting.getGroups();
                 for (int j = 0; j < groups.size(); j++) {
                     String s = groups.get(j);
-                    if (s.contains("-" + Line.env.getLocalName() + "-")) {
+                    if (s.contains("-" + Line.runEnv + "-")) {
                         thisEnvKeyValues.putAll(allEnvSetting.getMap(s));
                     }
                 }
@@ -125,7 +120,7 @@ public class R002ProjectFileDb implements ProjectCoreConfAb {
 
     @Override
     public Map<String, String> getEnvPropertiesByCode(String code) {
-        String groupName = StrUtil.format("{}-{}-{}", code, Line.env.getLocalName(), listModelConfigPropertiesVo.get(code).getName_en());
+        String groupName = StrUtil.format("{}-{}-{}", code, Line.runEnv, listModelConfigPropertiesVo.get(code).getName_en());
         return allEnvSetting.getMap(groupName);
     }
 
@@ -168,15 +163,15 @@ public class R002ProjectFileDb implements ProjectCoreConfAb {
 
     @Override
     public void writeModelConfig() {
-        if (Line.env != ENV.LOCAL && !Line.isClassModel) {
-            LoggerBaseAb.err("-Denv={}以及开发摸下才可进行初始化,系统已停止", ENV.LOCAL.getName());
+        if (!Line.isClassModel) {
+            LoggerBaseAb.err("开发摸下才可进行初始化,系统已停止");
             System.exit(-1);
         }
+        List<String> envs = new ArrayList<>(Arrays.asList(Line.configEnv));
+        envs.add(Line.runEnv);
 
-        List<EnvVo> listEnv = HomeCoreConfUtils.getEnvs();
-        for (EnvVo envvo : listEnv) {
-            ENV env = ENV.getEnv(envvo.getEnv_name());
-            if (Line.autoUpdate || !ProjectCoreConfUtils.getDbInit() || (env == ENV.LOCAL && Line.isClassModel)) {//数据库未初始化,手动更新配置
+        for (String envName : envs) {
+            if (Line.autoUpdate || !ProjectCoreConfUtils.getDbInit() || (envName == Line.UK && Line.isClassModel)) {//数据库未初始化,手动更新配置
                 HashMap<ModelConfigInfoVo, List<ModelConfigPropertiesVo>> config = HomeCoreConfUtils.getModelConf();
                 List<ModelConfigInfoVo> sortx = config.keySet().stream().sorted(Comparator.comparingInt(od -> od.getSort_id()))
                         .collect(Collectors.toList());
@@ -186,7 +181,7 @@ public class R002ProjectFileDb implements ProjectCoreConfAb {
                     ModelConfigInfoVo modelConfigInfo = sortx.get(k);
                     List<ModelConfigPropertiesVo> listProperties = config.get(modelConfigInfo);
                     if (listProperties != null && listProperties.size() > 0) {
-                        envstr.append(StrUtil.format("\n\n\n\n\n\n[{}-{}-{}]\n", modelConfigInfo.getCode(), env.getLocalName(), listModelConfigPropertiesVo.get(modelConfigInfo.getCode()).getName_en()));//格式为 code-env
+                        envstr.append(StrUtil.format("\n\n\n\n\n\n[{}-{}-{}]\n", modelConfigInfo.getCode(), envName, listModelConfigPropertiesVo.get(modelConfigInfo.getCode()).getName_en()));//格式为 code-env
                         String context = "";
                         for (int i = 0; i < listProperties.size(); i++) {
                             ModelConfigPropertiesVo o = listProperties.get(i);
@@ -213,7 +208,7 @@ public class R002ProjectFileDb implements ProjectCoreConfAb {
                     }
                 }
                 {//写入文件
-                    String file = Line.projectresourcepath + File.separator + "home-" + env.getLocalName() + ".ini";
+                    String file = Line.projectresourcepath + File.separator + "home-" + envName + ".ini";
                     if (!FileUtil.exist(file)) {
                         FileUtil.writeUtf8String(envstr.toString(), file);
                     }

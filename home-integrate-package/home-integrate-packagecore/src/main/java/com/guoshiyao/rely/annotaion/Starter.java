@@ -12,7 +12,6 @@ package com.guoshiyao.rely.annotaion;
 
 import com.guoshiyao.rely.annotaion.registrar.AfterRegistrar;
 import com.guoshiyao.rely.annotaion.registrar.BeforeRegistrar;
-import com.guoshiyao.rely.environment.ENV;
 import com.guoshiyao.rely.message.i18n.I18n;
 import org.springframework.boot.SpringBootConfiguration;
 import org.springframework.boot.autoconfigure.AutoConfigurationExcludeFilter;
@@ -71,14 +70,19 @@ public @interface Starter {
 
 
     /**
-     * 当前所在环境
+     * 当前所在环境,不指定则自动识别环境变量
      *
      * @return
      * @author 汪旭辉
      * @date 2021年12月1日
      * @readme
      */
-    ENV env() default ENV.LOCAL;
+    String runEnv() default "";
+
+    /**
+     * 内置环境变量
+     */
+    String[] configEnv() default {"dev", "uat", "pro"};
 
     /**
      * 项目唯一标志

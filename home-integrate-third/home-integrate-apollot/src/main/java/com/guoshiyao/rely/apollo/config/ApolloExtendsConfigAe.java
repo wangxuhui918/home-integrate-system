@@ -92,7 +92,7 @@ public class ApolloExtendsConfigAe implements ThirdExtendConfigAb {
             String key = "home.apollo.apollo.env";
             String key1 = "apollo.env";
             if (!setting.containsKey(key)) {
-                setting.put(key, (Line.env.getName()));
+                setting.put(key, (Line.runEnv));
             } else {
                 System.setProperty(key1, setting.get(key).toString());
             }

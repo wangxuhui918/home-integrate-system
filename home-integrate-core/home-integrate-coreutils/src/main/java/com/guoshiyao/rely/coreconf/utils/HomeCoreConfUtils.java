@@ -13,10 +13,8 @@ import com.guoshiyao.rely.cla.ClassForHomeUtils;
 import com.guoshiyao.rely.coreannotation.AnnotationTools;
 import com.guoshiyao.rely.coreannotation.rule.RuleAnnotation;
 import com.guoshiyao.rely.coreconf.ab.HomeCoreConfAb;
-import com.guoshiyao.rely.coreconf.vo.EnvVo;
 import com.guoshiyao.rely.coreconf.vo.ModelConfigInfoVo;
 import com.guoshiyao.rely.coreconf.vo.ModelConfigPropertiesVo;
-
 import com.guoshiyao.rely.line.Line;
 import com.guoshiyao.rely.log.base.LoggerBaseAb;
 
@@ -43,9 +41,6 @@ public class HomeCoreConfUtils {
         }
     }
 
-    public static List<EnvVo> getEnvs() {
-        return lastHomeCoreConfAb.getEnvs();
-    }
 
     public static List<Map<String, Object>> getTableData(String tableName) {
         return lastHomeCoreConfAb.getTableData(tableName);

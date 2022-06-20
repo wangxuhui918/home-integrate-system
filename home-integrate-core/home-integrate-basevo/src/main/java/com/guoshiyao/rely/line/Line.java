@@ -21,9 +21,7 @@ import cn.hutool.core.util.StrUtil;
 import cn.hutool.db.nosql.redis.RedisDS;
 import cn.hutool.setting.Setting;
 import cn.hutool.system.SystemUtil;
-import com.guoshiyao.rely.environment.ENV;
 import com.guoshiyao.rely.exception.re.ex.ExceptionError;
-
 import com.guoshiyao.rely.line.ab.re.LinePropertiesAb;
 import com.guoshiyao.rely.line.propertiesmap.PropertiesMap;
 import com.guoshiyao.rely.log.base.LoggerBaseAb;
@@ -110,7 +108,11 @@ public class Line {
     /**
      * 当前运行环境
      */
-    public static ENV env = (ENV.LOCAL);
+    public static String runEnv = "";
+    /**
+     * 配置运行环境
+     */
+    public static String[] configEnv = null;
     /**
      * 启动类
      */
@@ -167,20 +169,20 @@ public class Line {
     private static int count = (0);
 
 
-    public static void init(String mainClassx, String i18nx, String projectPackagex, String idkeyx, ENV envx, Level loglevelx, boolean updatePropertiesx) {
+    public static void init(String mainClassx, String i18nx, String projectPackagex, String idkeyx, String runEnv, String[] configEnv, Level loglevelx, boolean updatePropertiesx) {
         if (count != 0) {
             throw new ExceptionError(Line.class.getName() + "重复初始化!");
         }
         Line.idKey = idkeyx;
         Line.mainClass = mainClassx;
         Line.i18n = i18nx;
-        Line.env = envx;
         Line.mainClassC = ClassUtil.loadClass(mainClassx);
         Line.projectPackage = StrUtil.isNotBlank(projectPackagex) ? projectPackagex
                 : ClassUtil.getPackage(ClassUtil.loadClass(Line.mainClass));
         Line.workHomeDir = SystemUtil.getUserInfo().getHomeDir() + File.separator + "home" + File.separator + Line.idKey
                 + File.separator;
         Line.autoUpdate = updatePropertiesx;
+        Line.configEnv = configEnv;
         LoggerBaseUtils.setLevel(loglevelx);//临时处理日志管理
         {
             String uk_value = "";
@@ -195,6 +197,7 @@ public class Line {
 
             Line.UK = StrUtil.blankToDefault(uk_value, "local");//都获取不到使用local默认值
         }
+        Line.runEnv = StrUtil.blankToDefault(runEnv, Line.UK);
         {
             if (ClassUtil.loadClass(Line.mainClass).getResource("").getPath().contains(".jar!")) {
                 LoggerBaseAb.info("检测到当前为线上运行模式");
@@ -245,7 +248,7 @@ public class Line {
             Line.context.put("mainClass", Line.mainClass);
             Line.context.put("isdev", Line.isClassModel);
             Line.context.put("i18n", Line.i18n);
-            Line.context.put("env", Line.env);
+            Line.context.put("env", Line.runEnv);
             Line.context.put("projectPackage", Line.projectPackage);
             Line.context.put("workHomeDir", Line.workHomeDir);
         }

@@ -8,7 +8,6 @@
 
 package com.guoshiyao.rely.coreconf.ab;
 
-import com.guoshiyao.rely.coreconf.vo.EnvVo;
 import com.guoshiyao.rely.coreconf.vo.ModelConfigInfoVo;
 import com.guoshiyao.rely.coreconf.vo.ModelConfigPropertiesVo;
 
@@ -25,9 +24,6 @@ public interface HomeCoreConfAb {
     HashMap<ModelConfigInfoVo, List<ModelConfigPropertiesVo>> getModelConf();
 
     List<Map<String, Object>> getTableData(String tableName);
-
-
-    List<EnvVo> getEnvs();
 
 
     HashMap<String, Integer> getOpenSpi(String tableName);

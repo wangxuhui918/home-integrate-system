@@ -15,7 +15,8 @@ import cn.hutool.core.lang.tree.Tree;
 import cn.hutool.http.HttpRequest;
 import com.guoshiyao.rely.apollo.api.ApolloApi;
 import com.guoshiyao.rely.apollo.api.TreeInterface;
-import com.guoshiyao.rely.environment.ENV;
+import com.guoshiyao.rely.line.Line;
+
 
 import java.util.HashMap;
 
@@ -114,7 +115,6 @@ public class ApolloUtils {
      * @param apolloUrl
      * @param username
      * @param password
-     * @param properties
      * @return
      * @author 汪旭辉
      * @date 2021年6月24日
@@ -130,9 +130,10 @@ public class ApolloUtils {
             alueO.setId(evalue);
             alueO.setName(memo);
             maps.put(ekey, alueO);
-            for (ENV env : ENV.values()) {
-                properties.put(env.getName(), maps);
+            for (String env : Line.configEnv) {
+                properties.put(env, maps);
             }
+            properties.put(Line.runEnv, maps);
         }
         ApolloApi.updateOneProperties(appid, apolloUrl, cookieString, properties, null);
         ApolloApi.logout(apolloUrl, cookieString);

@@ -13,7 +13,6 @@ import cn.hutool.core.io.resource.ResourceUtil;
 import cn.hutool.poi.excel.ExcelUtil;
 import com.guoshiyao.rely.coreannotation.rule.RuleAnnotation;
 import com.guoshiyao.rely.coreconf.ab.HomeCoreConfAb;
-import com.guoshiyao.rely.coreconf.vo.EnvVo;
 import com.guoshiyao.rely.coreconf.vo.ModelConfigInfoVo;
 import com.guoshiyao.rely.coreconf.vo.ModelConfigPropertiesVo;
 import com.guoshiyao.rely.coreconf.vo.SpiVo;
@@ -107,18 +106,6 @@ public class R001HomeExcel implements HomeCoreConfAb {
             throw e;
         }
         return properties;
-    }
-
-    @Override
-    public List<EnvVo> getEnvs() {
-        List<EnvVo> listResult1 = new ArrayList<>();
-        try {
-            List<Map<String, Object>> listResult = allExcelModelValues.get("env");
-            listResult1 = BeanUtil.copyToList(listResult, EnvVo.class);
-        } catch (Exception e) {
-            throw e;
-        }
-        return listResult1;
     }
 
 

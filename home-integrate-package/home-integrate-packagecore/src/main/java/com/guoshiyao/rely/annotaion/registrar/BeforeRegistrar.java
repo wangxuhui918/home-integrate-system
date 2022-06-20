@@ -13,8 +13,9 @@ package com.guoshiyao.rely.annotaion.registrar;
 import cn.hutool.core.util.ArrayUtil;
 import cn.hutool.core.util.ClassUtil;
 import cn.hutool.core.util.StrUtil;
+import cn.hutool.json.JSONUtil;
 import cn.hutool.system.SystemUtil;
-import com.guoshiyao.rely.environment.ENV;
+import com.guoshiyao.rely.exception.re.ex.ExceptionError;
 import com.guoshiyao.rely.line.Line;
 import com.guoshiyao.rely.message.i18n.I18n;
 import com.guoshiyao.rely.run.HomeUtils;
@@ -22,6 +23,8 @@ import org.springframework.context.annotation.ImportSelector;
 import org.springframework.core.annotation.AnnotationAttributes;
 import org.springframework.core.type.AnnotationMetadata;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.logging.Level;
 
 public class BeforeRegistrar implements ImportSelector {
@@ -30,9 +33,9 @@ public class BeforeRegistrar implements ImportSelector {
     public String[] selectImports(AnnotationMetadata annotationmetadata) {
         String idkey = "", i18n = "", projectPackage = "", mainClass = "";
         Level loglevel = Level.FINER;//默认日志级别
-        ENV env = null;
+        String runEnv = "";
         boolean updateProperties = false;
-
+        String[] configEnv = null;
         {
             AnnotationAttributes attributes = AnnotationAttributes.fromMap(annotationmetadata
                     .getAnnotationAttributes(annotationmetadata.getAnnotationTypes().iterator().next(), false));
@@ -41,26 +44,26 @@ public class BeforeRegistrar implements ImportSelector {
             } catch (Exception e) {
             }
             try {
-                ENV aEnv = null;
-                try {
-                    aEnv = ((ENV) attributes.get("env"));
-                } catch (Exception e) {
+                configEnv = (attributes.getStringArray("configEnv"));
+                if (configEnv == null || configEnv.length == 0) {
+                    throw new ExceptionError("参数{}不能为空", "configEnv");
                 }
-                if (aEnv == ENV.LOCAL) {//自动选择根据环境变量确定
-                    if (ENV.having(SystemUtil.get("env"))) {
-                        env = ENV.getEnv(SystemUtil.get("env"));
-                    } else if (ENV.having(SystemUtil.get("ENV"))) {
-                        env = ENV.getEnv(SystemUtil.get("ENV"));
-                    } else if (ENV.having(SystemUtil.get("Env"))) {
-                        env = ENV.getEnv(SystemUtil.get("Env"));
-                    } else if (ENV.having(SystemUtil.get("ENv"))) {
-                        env = ENV.getEnv(SystemUtil.get("ENv"));
-                    } else {//得不到结果使用DEV默认
-                        env = aEnv;
+            } catch (Exception e) {
+            }
+
+            try {
+                runEnv = attributes.getString("runEnv");
+                if (StrUtil.isBlank(runEnv)) {//自动选择根据环境变量确定
+                    List<String> lista = Arrays.asList(SystemUtil.get("env"), SystemUtil.get("ENV"), SystemUtil.get("Env"), SystemUtil.get("ENv"), SystemUtil.get("ENv"));
+                    for (int i = 0; i < lista.size(); i++) {
+                        String lineEnv = lista.get(i);
+                        if (StrUtil.isNotBlank(lineEnv)) {
+                            runEnv = lineEnv;
+                            break;
+                        }
                     }
-                } else {//手工指定
-                    env = aEnv;
                 }
+                runEnv = StrUtil.blankToDefault(runEnv, "");
             } catch (Exception e) {
             }
             try {
@@ -70,7 +73,7 @@ public class BeforeRegistrar implements ImportSelector {
             } catch (Exception e) {
             }
             try {
-                mainClass = ((String) attributes.get("mainClass"));
+                mainClass = attributes.getString("mainClass");
             } catch (Exception e) {
             }
             try {
@@ -92,8 +95,11 @@ public class BeforeRegistrar implements ImportSelector {
                 updateProperties = attributes.getBoolean("updateProperties");
             } catch (Exception e) {
             }
+            if (StrUtil.isNotBlank(runEnv) && configEnv != null && configEnv.length > 0 && !ArrayUtil.contains(configEnv, runEnv)) {
+                throw new ExceptionError("参数{}[{}]需在参数{}[{}]范围内", "runEnv", runEnv, "configEnv", JSONUtil.toJsonStr(configEnv));
+            }
         }
-        HomeUtils.run(idkey, i18n, projectPackage, mainClass, env, loglevel, updateProperties);
+        HomeUtils.run(idkey, i18n, projectPackage, mainClass, runEnv, configEnv, loglevel, updateProperties);
         // 提交给springboot ioc管理类
         return getIocClasses();
     }
