@@ -86,16 +86,15 @@ public class R002ProjectFileDb implements ProjectCoreConfAb {
     public Map<String, String> getotherMessageFileContext() {
         Map<String, String> map = new HashMap<>();
         try {
-            List<URL> listUrl = ResourceFindUtils.find(StrUtil.format("message-{}.ini"));//Line.env.getName()
+            List<URL> listUrl = ResourceFindUtils.find(StrUtil.format("message-*.xml"));//Line.env.getName()
             for (int i = 0; i < listUrl.size(); i++) {
                 URL url = listUrl.get(i);
                 if (url.getPath().contains("-" + Line.i18n)) {
-                    String name = StrUtil.subBetween(url.getPath(), "message-", ".ini");
+                    String name = StrUtil.subBetween(url.getPath(), "message-", ".xml");
                     String context = FileUtil.readString(url, CharsetUtil.CHARSET_UTF_8);
                     map.put(name, context);
                 }
             }
-//            return ResourceUtil.readUtf8Str(StrUtil.format("message-{}.xml", Line.i18n));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -226,32 +225,5 @@ public class R002ProjectFileDb implements ProjectCoreConfAb {
 
     }
 
-
-    @Deprecated
-    public Map<String, String> getOldValue(String env) {
-        Map<String, String> map = new HashMap<>();
-        String thisEnvPath = "";
-        if (Line.UK.equals(env)) {
-            thisEnvPath = "";
-        } else {
-            thisEnvPath = env + File.separator;
-        }
-        List<URL> listUrl = ResourceFindUtils.find(StrUtil.format(thisEnvPath.toUpperCase() + "*.properties"));//Line.env.getName()
-
-        for (int i = 0; i < listUrl.size(); i++) {
-            URL url = listUrl.get(i);
-            try {
-                Properties p = new Properties();
-                p.load(FileUtil.getInputStream(new File(url.toURI())));
-                Set<Map.Entry<Object, Object>> entrySet = p.entrySet();
-                for (Map.Entry<Object, Object> entry : entrySet) {
-                    map.put((String) entry.getKey(), (String) entry.getValue());
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-        return map;
-    }
 
 }
