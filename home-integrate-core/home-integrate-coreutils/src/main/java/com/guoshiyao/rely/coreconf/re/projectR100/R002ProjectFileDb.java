@@ -29,7 +29,7 @@ import com.guoshiyao.rely.resource.ResourceFindUtils;
 import com.guoshiyao.rely.velocity.VelocityUtils;
 
 import java.io.File;
-import java.net.URL;
+import java.net.URI;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -60,22 +60,24 @@ public class R002ProjectFileDb implements ProjectCoreConfAb {
         try {
             {
                 allEnvSetting = new Setting();
-                List<URL> listUrl = ResourceFindUtils.find(StrUtil.format("home-*.ini"));//Line.env.getName()
+                List<URI> listUrl = ResourceFindUtils.findUri("home-*.ini");//Line.env.getName()
                 for (int i = 0; i < listUrl.size(); i++) {
-                    URL url = listUrl.get(i);
-                    Setting o = new Setting(url, CharsetUtil.CHARSET_UTF_8, true);
+                    LoggerBaseAb.info("读取到[{}]配置文件", listUrl.get(i).toString());
+                    Setting o = new Setting(listUrl.get(i).toURL(), CharsetUtil.CHARSET_UTF_8, true);
                     allEnvSetting.addSetting(o);
                 }
             }
             {
                 thisEnvKeyValues.clear();
                 List<String> groups = allEnvSetting.getGroups();
+                LoggerBaseAb.info("加载环境[{}]配置", Line.runEnv);
                 for (int j = 0; j < groups.size(); j++) {
                     String s = groups.get(j);
                     if (s.contains("-" + Line.runEnv + "-")) {
                         thisEnvKeyValues.putAll(allEnvSetting.getMap(s));
                     }
                 }
+
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -86,12 +88,13 @@ public class R002ProjectFileDb implements ProjectCoreConfAb {
     public Map<String, String> getotherMessageFileContext() {
         Map<String, String> map = new HashMap<>();
         try {
-            List<URL> listUrl = ResourceFindUtils.find(StrUtil.format("message-*.xml"));//Line.env.getName()
-            for (int i = 0; i < listUrl.size(); i++) {
-                URL url = listUrl.get(i);
-                if (url.getPath().contains("-" + Line.i18n)) {
-                    String name = StrUtil.subBetween(url.getPath(), "message-", ".xml");
-                    String context = FileUtil.readString(url, CharsetUtil.CHARSET_UTF_8);
+            List<URI> listUri = ResourceFindUtils.findUri("message-*.xml");//Line.env.getName()
+            for (int i = 0; i < listUri.size(); i++) {
+                if (listUri.get(i).toString().contains("-" + Line.i18n)) {
+                    String name = StrUtil.subBetween(listUri.get(i).toString(), "message-", ".xml");
+                    String context =
+//                            ResourceUtil.readUtf8Str(listUri.get(i).);
+                            FileUtil.readString(listUri.get(i).toURL(), CharsetUtil.CHARSET_UTF_8);
                     map.put(name, context);
                 }
             }

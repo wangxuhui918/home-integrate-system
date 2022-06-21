@@ -19,8 +19,7 @@ import java.util.Map;
 public interface ProjectCoreConfAb {
     Map<String, String> getEnvPropertiesByCode(String code);
 
-    //    List<URL> listUrl = ResourceFindUtils.find(StrUtil.format("home-*.ini"));//Line.env.getName()
-    Map<String, String> getotherMessageFileContext();
+     Map<String, String> getotherMessageFileContext();
 
     String getZoneMessageFileContext();
 

@@ -8,9 +8,7 @@
  *
  */
 
-/**
- * 汪旭辉个人所有
- */
+
 package com.guoshiyao.rely.line;
 
 import com.guoshiyao.rely.coreab.ab.base.BaseConfigAb;
