@@ -14,6 +14,8 @@ package com.guoshiyao.rely.user;
  * @readme 基础用户对象
  */
 public abstract class UserAb {
+
+
     private String userId;
     private String userName;
     private String token;

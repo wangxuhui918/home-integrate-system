@@ -74,7 +74,7 @@ public class DataSourcesConfig {
         System.setProperty("spring.datasource.druid.web-stat-filter.enabled", "true");
         System.setProperty("spring.datasource.druid.web-stat-filter.exclusions",
                 "*.js,*.gif,*.jpg,*.png,*.css,*.ico,/druid/*");
-        com.guoshiyao.rely.line.Line.dataSource = druidDataSource;
+        Line.dataSource = druidDataSource;
         try {
             druidDataSource.setFilters(Line.setting.get("home.db.filters"));
         } catch (SQLException e) {
