@@ -9,32 +9,56 @@
 
 package com.guoshiyao.rely.utils;
 
+import cn.hutool.core.util.StrUtil;
 import com.guoshiyao.rely.coreannotation.rule.RuleAnnotation;
+import com.guoshiyao.rely.line.Line;
 import com.guoshiyao.rely.resource.ResourceAb;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.core.io.support.ResourcePatternResolver;
 
-import java.net.URL;
+import java.io.File;
+import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 
 @RuleAnnotation
 public class ResourceFindUrl implements ResourceAb {
-
     @Override
-    public List<URL> find(String patternPath) {
-        List<URL> listurl = new ArrayList<>();
+    public List<String> findClassesPath(String patternPath) {
+        List<String> listpath = new ArrayList<>();
         try {
             ResourcePatternResolver resourceLoader = new PathMatchingResourcePatternResolver();
-            Resource[] source = resourceLoader.getResources(patternPath);
+            Resource[] source = resourceLoader.getResources("classpath*:" + patternPath);
             for (Resource resource : source) {
-                listurl.add(resource.getURL());
+                String path = resource.getURL().toString();
+                if (Line.isClassModel) {
+                    path = StrUtil.subAfter(path, "classes" + File.separator, true);
+                } else {
+                    path = StrUtil.subAfter(path, "classes!" + File.separator, true);
+                }
+                listpath.add(path);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return listpath;
+    }
+
+
+    @Override
+    public List<URI> find(String patternPath) {
+        List<URI> listurl = new ArrayList<>();
+        try {
+            ResourcePatternResolver resourceLoader = new PathMatchingResourcePatternResolver();
+            Resource[] source = resourceLoader.getResources("classpath*:" + patternPath);
+            for (Resource resource : source) {
+                listurl.add(resource.getURI());
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
         return listurl;
-
     }
+
 }

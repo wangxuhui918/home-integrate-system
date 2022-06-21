@@ -15,7 +15,6 @@ import com.guoshiyao.rely.coreannotation.AnnotationTools;
 import com.guoshiyao.rely.coreannotation.rule.RuleAnnotation;
 import com.guoshiyao.rely.exception.re.ex.ExceptionError;
 import com.guoshiyao.rely.line.Line;
-
 import com.guoshiyao.rely.log.base.LoggerBaseAb;
 import com.guoshiyao.rely.mybatis.starter.mybatis.config.MapperConfiguration;
 import com.guoshiyao.rely.mybatis.starter.mybatis.config.TkMybatisAutoConfiguration;

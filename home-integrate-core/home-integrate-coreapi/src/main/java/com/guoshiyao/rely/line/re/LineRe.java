@@ -83,11 +83,9 @@ public class LineRe implements LineAb<Line> {
                     Line.setting.putAll(info.writeProperties());
                 }
             }
-            if (Line.isClassModel) {//提前处理非Jar模式需要处理的东西
-                for (int i = 0; i < classmodelconfigrerules.size(); i++) {
-                    ClassModelConfigRe info = classmodelconfigrerules.get(i);
-                    Line.setting.putAll(info.writeProperties());
-                }
+            for (int i = 0; i < classmodelconfigrerules.size(); i++) {
+                ClassModelConfigRe info = classmodelconfigrerules.get(i);
+                Line.setting.putAll(info.writeProperties());
             }
         }
         //额外参数处理器,比如配置参数变动值

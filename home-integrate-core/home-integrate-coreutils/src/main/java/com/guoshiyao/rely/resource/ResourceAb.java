@@ -9,10 +9,13 @@
 
 package com.guoshiyao.rely.resource;
 
-import java.net.URL;
+import java.net.URI;
 import java.util.List;
 
 public interface ResourceAb {
 
-    List<URL> find(String patternPath);
+
+    abstract List<URI> find(String patternPath);
+
+    abstract List<String> findClassesPath(String patternPath);
 }
