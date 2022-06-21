@@ -176,7 +176,7 @@ public class Line {
         Line.mainClassC = ClassUtil.loadClass(mainClassx);
         Line.projectPackage = StrUtil.isNotBlank(projectPackagex) ? projectPackagex
                 : ClassUtil.getPackage(ClassUtil.loadClass(Line.mainClass));
-        Line.workHomeDir = SystemUtil.getUserInfo().getHomeDir() + File.separator + "home" + File.separator + Line.idKey
+        Line.workHomeDir = SystemUtil.getUserInfo().getHomeDir() + File.separator + BaseEv.HOME_TAG + File.separator + Line.idKey
                 + File.separator;
         Line.autoUpdate = updatePropertiesx;
         Line.configEnv = configEnv;
@@ -191,12 +191,10 @@ public class Line {
                 uk_value = Line.mainMac + Line.systemUserName;
                 FileUtil.writeUtf8String(uk_value, Line.UK_FILE);
             }
-
             Line.UK = StrUtil.blankToDefault(uk_value, "local");//都获取不到使用local默认值
         }
         Line.runEnv = StrUtil.blankToDefault(runEnv, Line.UK);
         {
-            //https://gitee.com/wangxuhui918/home-integrate-system/issues/I5DCP3
             if (URLUtil.isJarURL(ResourceUtil.getResource("", Line.mainClassC))) {
                 LoggerBaseAb.info("检测到当前为线上运行模式");
                 Line.jarpath = URLUtil.getJarFile(ResourceUtil.getResource("", Line.class)).getName();
@@ -214,7 +212,6 @@ public class Line {
                     String temp = NetUtil.getMacAddress(interfaceaddress.getAddress());
                     if (StrUtil.isNotBlank(temp)) {
                         try {
-                            //StrUtil.replace(temp, "-", ":")
                             netMacAddress.add(temp.toUpperCase());
                         } catch (Exception e) {
                         }
@@ -223,22 +220,6 @@ public class Line {
             }
             Line.macSet = netMacAddress;
             Line.mainMac = netMacAddress.iterator().next();
-        }
-        {
-            Integer version = 0;
-            try {
-                ResourceUtil.getResource("apollo.properties");
-                version = 1;
-            } catch (Exception e) {
-            }
-            try {
-                String file = Line.projectresourcepath + File.separator + "versionlog" + File.separator + "v2-init";
-                if (FileUtil.exist(file)) {
-                    version = 2;
-                }
-            } catch (Exception e) {
-            }
-
         }
         {
             Line.context.put("idKey", Line.idKey);
@@ -250,6 +231,5 @@ public class Line {
             Line.context.put("workHomeDir", Line.workHomeDir);
         }
     }
-
 
 }
