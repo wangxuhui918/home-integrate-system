@@ -12,7 +12,6 @@ package com.guoshiyao.rely.port;
 
 import com.guoshiyao.rely.coreannotation.rule.RuleAnnotation;
 import com.guoshiyao.rely.line.Line;
-
 import com.guoshiyao.rely.port.config.SystemServletPort;
 import com.guoshiyao.rely.sys.SystemConfigAb;
 
@@ -41,6 +40,12 @@ public class PortConfigRe implements SystemConfigAb {
 
     @Override
     public Map<String, String> writeProperties() {
+        {
+            String key = "system.servlet.port";
+            if (!Line.setting.containsKey(key)) {
+                Line.setting.put(key, 8080 + "");
+            }
+        }
         {
             String key = "system.servlet.multipart.location";
             if (!Line.setting.containsKey(key)) {
