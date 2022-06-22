@@ -90,8 +90,6 @@ public class Line {
      * 存放本机所有Mac地址
      */
     public final static Set<String> macSet = new HashSet<>();
-
-
     /**
      * 项目唯一ID
      */
