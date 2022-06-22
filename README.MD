@@ -1,5 +1,5 @@
 # 📚简介
-home-integrate-system(以下简称系统)，是一个轻量级的Springboot框架，系统通过以类spi的方式封装常用工具插件（阿波罗，数据库，dubbo，flyway，git，mybatis，tk-mybatis，redis，雪花算法，swagger-ui，hutool等）
+home-integrate-system(以下简称系统)，是一个轻量级,完全开源的Springboot框架，系统通过以类spi的方式封装常用工具插件（阿波罗，数据库，dubbo，flyway，git，mybatis，tk-mybatis，redis，雪花算法，swagger-ui，hutool等）
 ，降低了系统集成难度。
 
 👉 实现自动配置（例如自动扫描Controller注解，无相关注解/Swagger配置则不加载Swagger）。
@@ -342,8 +342,9 @@ home.extend.readme=示例值
 
 1. 代码开源,技术无价,如需提供技术支持和讲解请通过如下方式:
 2. QQ:185600894
-4. email:185600894@qq.com
-5. 代码使用了各种开源组件,软件作为支撑,如有侵权请联系
+3. email:185600894@qq.com
+4. 代码使用了各种开源组件,软件作为支撑,如有侵权请联系
+5. 请勿将软件应用于法律要求范围外的场景
 
 
 # 捐赠计划
