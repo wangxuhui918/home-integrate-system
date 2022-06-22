@@ -9,9 +9,14 @@ home-integrate-system(以下简称系统)，是一个轻量级,完全开源的Sp
 
 通过mvn 进行安装
 
-```
+```shell
 
-mvn install ../home-integrate-system
+cd ../home-integrate-system
+
+```
+```shell
+
+mvn install 
 ```
 
 项目引入
