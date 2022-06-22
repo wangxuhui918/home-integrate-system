@@ -21,9 +21,6 @@ import cn.hutool.db.nosql.redis.RedisDS;
 import cn.hutool.setting.Setting;
 import cn.hutool.system.SystemUtil;
 import com.guoshiyao.rely.base.BaseEv;
-import com.guoshiyao.rely.exception.re.ex.ExceptionError;
-import com.guoshiyao.rely.line.ab.re.LinePropertiesAb;
-import com.guoshiyao.rely.line.propertiesmap.PropertiesMap;
 import com.guoshiyao.rely.log.base.LoggerBaseAb;
 import com.guoshiyao.rely.log.base.LoggerBaseUtils;
 import com.guoshiyao.rely.message.i18n.I18n;
@@ -48,11 +45,11 @@ public class Line {
     /**
      * 获取当前用户目录
      */
-    public final static String userHomeDir = (SystemUtil.getUserInfo().getHomeDir());
+    public final static String userHomeDir = SystemUtil.getUserInfo().getHomeDir();
     /**
      * 获取当前用户名
      */
-    public final static String systemUserName = (SystemUtil.getUserInfo().getName().trim().replace("/", ""));
+    public final static String systemUserName = SystemUtil.getUserInfo().getName().trim().replace("/", "");
     /**
      * 框架核心包
      */
@@ -61,26 +58,21 @@ public class Line {
     /**
      * 工程资源目录
      */
-    public static String projectresourcepath = StrUtil.subBefore(ClassUtil.loadClass(Line.class.getName()).getClassLoader().getResource("").getPath(), "target" + File.separator + "classes", true) + File.separator + "src"
+    public final static String projectresourcepath = StrUtil.subBefore(ClassUtil.loadClass(Line.class.getName()).getClassLoader().getResource("").getPath(), "target" + File.separator + "classes", true) + File.separator + "src"
             + File.separator + "main" + File.separator + "resources" + File.separator;
     /**
      * 工程源码目录
      */
-    public static String projectcodesourcepath = StrUtil.subBefore(ClassUtil.loadClass(Line.class.getName()).getClassLoader().getResource("").getPath(), "target" + File.separator + "classes", true) + File.separator + "src"
+    public final static String projectcodesourcepath = StrUtil.subBefore(ClassUtil.loadClass(Line.class.getName()).getClassLoader().getResource("").getPath(), "target" + File.separator + "classes", true) + File.separator + "src"
             + File.separator + "main" + File.separator + "java" + File.separator;
     /**
      * 用户唯一标志
      */
-    public static String UK_FILE = SystemUtil.getUserInfo().getHomeDir() + File.separator + BaseEv.UK_NAME;
+    public final static String UK_FILE = SystemUtil.getUserInfo().getHomeDir() + File.separator + BaseEv.UK_NAME;
     /**
      * IOC翻转执行类
      */
     public final static List<Class> iocclasses = new ArrayList<>();
-    /**
-     * 建议使用com.guoshiyao.rely.line.Line.setting
-     */
-    @Deprecated
-    public final static PropertiesMap<String, LinePropertiesAb> properties = new PropertiesMap<>();
     /**
      * 用户配置
      */
@@ -94,6 +86,12 @@ public class Line {
      * VelocityContext context
      */
     public final static VelocityContext context = new VelocityContext();
+    /**
+     * 存放本机所有Mac地址
+     */
+    public final static Set<String> macSet = new HashSet<>();
+
+
     /**
      * 项目唯一ID
      */
@@ -118,10 +116,6 @@ public class Line {
      * 启动类
      */
     public static String mainClass = "";
-    /**
-     * 存放本机所有Mac地址
-     */
-    public static Set<String> macSet = new HashSet<>();
     /**
      * 存放本机主要 mac
      */
@@ -163,13 +157,9 @@ public class Line {
 
     public static boolean autoUpdate = false;//是否自动更新
 
-    private static int count = (0);
-
 
     public static void init(String mainClassx, String i18nx, String projectPackagex, String idkeyx, String runEnv, String[] configEnv, Level loglevelx, boolean updatePropertiesx) {
-        if (count != 0) {
-            throw new ExceptionError(Line.class.getName() + "重复初始化!");
-        }
+
         Line.idKey = idkeyx;
         Line.mainClass = mainClassx;
         Line.i18n = i18nx;
@@ -206,20 +196,18 @@ public class Line {
         }
         {
             //获取本机所有的MAC地址,转为XX:XX:XX:XX:XX:XX大写的形式
-            Set<String> netMacAddress = new HashSet<>();
             for (NetworkInterface networkinterface : NetUtil.getNetworkInterfaces()) {
                 for (InterfaceAddress interfaceaddress : networkinterface.getInterfaceAddresses()) {
                     String temp = NetUtil.getMacAddress(interfaceaddress.getAddress());
                     if (StrUtil.isNotBlank(temp)) {
                         try {
-                            netMacAddress.add(temp.toUpperCase());
+                            Line.macSet.add(temp.toUpperCase());
                         } catch (Exception e) {
                         }
                     }
                 }
             }
-            Line.macSet = netMacAddress;
-            Line.mainMac = netMacAddress.iterator().next();
+            Line.mainMac = Line.macSet.iterator().next();
         }
         {
             Line.context.put("idKey", Line.idKey);

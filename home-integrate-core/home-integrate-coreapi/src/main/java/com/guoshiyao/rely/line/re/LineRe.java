@@ -19,7 +19,6 @@ import com.guoshiyao.rely.coreannotation.rule.RuleAnnotation;
 import com.guoshiyao.rely.coreconf.utils.HomeCoreConfUtils;
 import com.guoshiyao.rely.line.Line;
 import com.guoshiyao.rely.line.LineAb;
-import com.guoshiyao.rely.line.ab.re.LinePropertiesAb;
 import com.guoshiyao.rely.sys.SystemConfigAb;
 import com.guoshiyao.rely.third.ThirdExtendConfigAb;
 
@@ -105,9 +104,6 @@ public class LineRe implements LineAb<Line> {
                 Line.setting.clear();
                 Line.setting.putAll(notBlankMap);
             }
-            {//兼容老数据
-                Line.properties.putAll(LinePropertiesAb.convertLineProperties(Line.setting));
-            }
             //写入系统变量
             for (String key : Line.setting.keySet()) {
                 System.setProperty(key, Line.setting.get(key) == null ? null : Line.setting.getStr(key));
@@ -156,9 +152,6 @@ public class LineRe implements LineAb<Line> {
                 Map<String, String> notBlankMap = MapUtil.filter(new HashMap<>(Line.setting), t -> StrUtil.isNotBlank(t.getValue()));
                 Line.setting.clear();
                 Line.setting.putAll(notBlankMap);
-            }
-            {//兼容老数据
-                Line.properties.putAll(LinePropertiesAb.convertLineProperties(Line.setting));
             }
             //写入系统变量
             for (String key : Line.setting.keySet()) {//防止一些额外的变量未写入到系统参数中
