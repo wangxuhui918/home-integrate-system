@@ -132,6 +132,9 @@ public class LineInitU implements Line.LineInitRe {
                         }
                     }
                     runEnv = StrUtil.blankToDefault(runEnv, "");
+                    if (StrUtil.isBlank(runEnv) && !Line.isClassModel) {
+                        throw new ExceptionError("运行时模式下需指定环境变量 -Denv= {} ", JSONUtil.toJsonStr(configEnv));
+                    }
                 } catch (Exception e) {
                 }
                 try {
