@@ -11,27 +11,22 @@
 
 package com.guoshiyao.rely.line;
 
-import cn.hutool.core.io.FileUtil;
-import cn.hutool.core.io.resource.ResourceUtil;
-import cn.hutool.core.net.NetUtil;
+import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.util.ClassUtil;
 import cn.hutool.core.util.StrUtil;
-import cn.hutool.core.util.URLUtil;
 import cn.hutool.db.nosql.redis.RedisDS;
 import cn.hutool.setting.Setting;
 import cn.hutool.system.SystemUtil;
 import com.guoshiyao.rely.base.BaseEv;
-import com.guoshiyao.rely.log.base.LoggerBaseAb;
-import com.guoshiyao.rely.log.base.LoggerBaseUtils;
+import com.guoshiyao.rely.coreannotation.rule.RuleAnnotationApi;
+import com.guoshiyao.rely.exception.re.ex.ExceptionError;
 import com.guoshiyao.rely.message.i18n.I18n;
 import org.apache.velocity.VelocityContext;
 
 import javax.sql.DataSource;
 import java.io.File;
-import java.net.InterfaceAddress;
-import java.net.NetworkInterface;
+import java.lang.annotation.Annotation;
 import java.util.*;
-import java.util.logging.Level;
 
 /**
  * 中央配置
@@ -58,13 +53,11 @@ public class Line {
     /**
      * 工程资源目录
      */
-    public final static String projectresourcepath = StrUtil.subBefore(ClassUtil.loadClass(Line.class.getName()).getClassLoader().getResource("").getPath(), "target" + File.separator + "classes", true) + File.separator + "src"
-            + File.separator + "main" + File.separator + "resources" + File.separator;
+    public static String projectresourcepath = "";
     /**
      * 工程源码目录
      */
-    public final static String projectcodesourcepath = StrUtil.subBefore(ClassUtil.loadClass(Line.class.getName()).getClassLoader().getResource("").getPath(), "target" + File.separator + "classes", true) + File.separator + "src"
-            + File.separator + "main" + File.separator + "java" + File.separator;
+    public static String projectcodesourcepath = "";
     /**
      * 用户唯一标志
      */
@@ -113,7 +106,7 @@ public class Line {
     /**
      * 启动类
      */
-    public static String mainClass = "";
+    public static String mainClass = null;
     /**
      * 存放本机主要 mac
      */
@@ -155,67 +148,35 @@ public class Line {
 
     public static boolean autoUpdate = false;//是否自动更新
 
+    public interface LineInitRe {
+        void init();
+    }
 
-    public static void init(String mainClassx, String i18nx, String projectPackagex, String idkeyx, String runEnv, String[] configEnv, Level loglevelx, boolean updatePropertiesx) {
+    private static List<LineInitRe> projectCoreConfRes = getRule(RuleAnnotationApi.class, LineInitRe.class);
 
-        Line.idKey = idkeyx;
-        Line.mainClass = mainClassx;
-        Line.i18n = i18nx;
-        Line.mainClassC = ClassUtil.loadClass(mainClassx);
-        Line.projectPackage = StrUtil.isNotBlank(projectPackagex) ? projectPackagex
-                : ClassUtil.getPackage(ClassUtil.loadClass(Line.mainClass));
-        Line.workHomeDir = SystemUtil.getUserInfo().getHomeDir() + File.separator + BaseEv.HOME_TAG + File.separator + Line.idKey
-                + File.separator;
-        Line.autoUpdate = updatePropertiesx;
-        Line.configEnv = configEnv;
-        LoggerBaseUtils.setLevel(loglevelx);//临时处理日志管理
-        {
-            String uk_value = "";
-            try {
-                uk_value = FileUtil.readUtf8String(Line.UK_FILE);
-            } catch (Exception e) {
+    static {
+        if (projectCoreConfRes != null && projectCoreConfRes.size() > 0) {//简洁版
+            for (int i = 0; i < projectCoreConfRes.size(); i++) {
+                projectCoreConfRes.get(i).init();
             }
-            if (StrUtil.isBlank(uk_value)) {
-                uk_value = Line.mainMac + Line.systemUserName;
-                FileUtil.writeUtf8String(uk_value, Line.UK_FILE);
-            }
-            Line.UK = StrUtil.blankToDefault(uk_value, "local");//都获取不到使用local默认值
-        }
-        Line.runEnv = StrUtil.blankToDefault(runEnv, Line.UK);
-        {
-            if (URLUtil.isJarURL(ResourceUtil.getResource("", Line.mainClassC))) {
-                LoggerBaseAb.info("检测到当前为线上运行模式");
-                Line.jarpath = URLUtil.getJarFile(ResourceUtil.getResource("", Line.class)).getName();
-                Line.isClassModel = false;
-            } else {
-                LoggerBaseAb.info("检测到当前为开发者模式");
-                Line.isClassModel = true;
-            }
-        }
-        {
-            //获取本机所有的MAC地址,转为XX:XX:XX:XX:XX:XX大写的形式
-            for (NetworkInterface networkinterface : NetUtil.getNetworkInterfaces()) {
-                for (InterfaceAddress interfaceaddress : networkinterface.getInterfaceAddresses()) {
-                    String temp = NetUtil.getMacAddress(interfaceaddress.getAddress());
-                    if (StrUtil.isNotBlank(temp)) {
-                        try {
-                            Line.macSet.add(temp.toUpperCase());
-                        } catch (Exception e) {
-                        }
-                    }
-                }
-            }
-            Line.mainMac = Line.macSet.iterator().next();
-        }
-        {
-            Line.context.put("idKey", Line.idKey);
-            Line.context.put("mainClass", Line.mainClass);
-            Line.context.put("isdev", Line.isClassModel);
-            Line.context.put("i18n", Line.i18n);
-            Line.context.put("env", Line.runEnv);
-            Line.context.put("projectPackage", Line.projectPackage);
-            Line.context.put("workHomeDir", Line.workHomeDir);
+        } else {
+            throw new ExceptionError("缺失Line初始化规则,请实现projectCoreConfRes...", "sun.java.command");
         }
     }
 
+
+    public static <A extends Annotation, T> List<T> getRule(Class<A> annotaione, Class<T> classe) {
+        List<T> listarra = new ArrayList<>();
+        Set<Class<?>> annotaiones = ClassUtil.scanPackageByAnnotation(Line.corePacket, annotaione);
+        Set<Class<?>> classes = ClassUtil.scanPackageBySuper(Line.corePacket, classe);
+        Collection<Class<?>> intersectionSet = CollUtil.intersection(annotaiones, classes);
+        for (Class<?> class1 : intersectionSet) {
+            try {
+                T sd = (T) ClassUtil.loadClass(class1.getName(), true).newInstance();
+                listarra.add(sd);
+            } catch (Exception e) {
+            }
+        }
+        return listarra;
+    }
 }

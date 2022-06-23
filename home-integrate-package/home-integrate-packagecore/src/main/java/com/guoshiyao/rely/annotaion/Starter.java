@@ -107,14 +107,4 @@ public @interface Starter {
 
     boolean updateProperties() default false;
 
-    /**
-     * 国际话编码
-     * 可以在com.guoshiyao.rely.message.i18n.I18n枚举类中选择
-     *
-     * @return
-     * @author 汪旭辉
-     * @date 2021年9月27日
-     * @readme
-     */
-    String mainClass() default "";
 }
