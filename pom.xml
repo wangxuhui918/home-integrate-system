@@ -45,7 +45,18 @@
             <email>wangxuhui918@163.com</email>
         </developer>
     </developers>
-
+    <distributionManagement>
+        <repository>
+            <id>vs-releases</id>
+            <name>Release Repository</name>
+            <url>http://10.1.16.214:8081/repository/vs-releases/</url>
+        </repository>
+        <snapshotRepository>
+            <id>vs-snapshots</id>
+            <name>Snapshot Repository</name>
+            <url>http://10.1.16.214:8081/repository/vs-snapshots/</url>
+        </snapshotRepository>
+    </distributionManagement>
     <build>
         <plugins>
             <plugin>
