@@ -11,11 +11,9 @@
 package com.guoshiyao.rely.run;
 
 import com.guoshiyao.rely.coreconf.utils.HomeCoreConfUtils;
-import com.guoshiyao.rely.line.Line;
 import com.guoshiyao.rely.line.LineAb;
 
 import java.util.List;
-import java.util.logging.Level;
 
 /**
  * 系统核心工具类
@@ -30,32 +28,21 @@ public class HomeUtils {
     /**
      * 系统核心加载入口
      *
-     * @param idkey
-     * @param i18n
-     * @param projectPackage
-     * @param mainClass
-     * @param runEnv
-     * @param configEnv
-     * @param loglevel
      * @author 汪旭辉
      * @date 2021年12月10日
      * @readme
      */
-    public static void run(String idkey, String i18n, String projectPackage, String mainClass, String runEnv, String[] configEnv, Level loglevel, boolean updateProperties) {
-        {
-            List<LineAb> plugins = HomeCoreConfUtils.sortByDbOrRuleApi(LineAb.class);
-
-            Line.init(mainClass, i18n, projectPackage, idkey, runEnv, configEnv, loglevel, updateProperties);
-            ///处理mac地址完成
-            for (int i = 0; i < plugins.size(); i++) {
-                plugins.get(i).before();
-            }
-            for (int i = 0; i < plugins.size(); i++) {
-                plugins.get(i).start();
-            }
-            for (int i = 0; i < plugins.size(); i++) {
-                plugins.get(i).after();
-            }
+    public static void run() {
+        List<LineAb> plugins = HomeCoreConfUtils.sortByDbOrRuleApi(LineAb.class);
+        ///处理mac地址完成
+        for (int i = 0; i < plugins.size(); i++) {
+            plugins.get(i).before();
+        }
+        for (int i = 0; i < plugins.size(); i++) {
+            plugins.get(i).start();
+        }
+        for (int i = 0; i < plugins.size(); i++) {
+            plugins.get(i).after();
         }
     }
 }
