@@ -148,11 +148,11 @@ public class Line {
 
     public static boolean autoUpdate = false;//是否自动更新
 
-    public interface LineInitRe {
+    public interface InitLineEnvStaticAb {
         void init();
     }
 
-    private static List<LineInitRe> projectCoreConfRes = getRule(RuleAnnotationApi.class, LineInitRe.class);
+    private static List<InitLineEnvStaticAb> projectCoreConfRes = getRule(RuleAnnotationApi.class, InitLineEnvStaticAb.class);
 
     static {
         if (projectCoreConfRes != null && projectCoreConfRes.size() > 0) {//简洁版

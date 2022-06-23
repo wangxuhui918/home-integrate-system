@@ -35,7 +35,7 @@ import java.util.jar.JarFile;
 import java.util.logging.Level;
 
 @RuleAnnotationApi
-public class LineInitU implements Line.LineInitRe {
+public class InitLineEnvStaticRe implements Line.InitLineEnvStaticAb {
     @Override
     public void init() {
         String idkey = "", i18n = "", projectPackage = "";
