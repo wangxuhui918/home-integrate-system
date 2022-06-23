@@ -45,11 +45,11 @@ public class StartPingService implements CommandLineRunner {
         LoggerBaseAb.info("jar包所在目录 : {} [key]:[{}] ", Line.jarpath, "Line.jarpath");
         LoggerBaseAb.info("项目包路径 : {} [key]:[{}] ", Line.projectPackage, "Line.projectPackage");
         LoggerBaseAb.info("运行状态(true[开发模式],false[运行时模式]) : {} [key]:[{}] ", Line.isClassModel + "", "Line.isClassModel");
-        LoggerBaseAb.info("默认数据库资源池 : {} [key]:[{}] ", Line.dataSource.toString(), "Line.dataSource");
+        LoggerBaseAb.info("默认数据库资源池 : {} [key]:[{}] ", Line.dataSource == null ? "" : Line.dataSource.toString(), "Line.dataSource");
         LoggerBaseAb.info("项目工作目录 : {} [key]:[{}] ", Line.workHomeDir, "Line.workHomeDir");
         LoggerBaseAb.info("PC标记 : {} [key]:[{}] ", Line.UK, "Line.UK");
         LoggerBaseAb.info("是否自动更新 : {} [key]:[{}] ", Line.autoUpdate + "", "Line.autoUpdate");
-        LoggerBaseAb.info("默认redis连接池 : {} [key]:[{}] ", Line.redisds.toString(), "Line.redisds");
+        LoggerBaseAb.info("默认redis连接池 : {} [key]:[{}] ", Line.redisds == null ? "" : Line.redisds.toString(), "Line.redisds");
         LoggerBaseAb.info("默认jdbc_jar包路径 : {} [key]:[{}] ", Line.main_jdbc_jar_fullpath, "Line.main_jdbc_jar_fullpath");
 
     }
