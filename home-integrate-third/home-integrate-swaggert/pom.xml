@@ -27,12 +27,12 @@
         </dependency>
         <dependency>
             <groupId>com.guoshiyao.rely</groupId>
-            <version>9.0.3-RELEASE</version>
+            <version>9.0.0-RELEASE</version>
             <artifactId>home-integrate-corespringboot</artifactId>
         </dependency>
         <dependency>
             <groupId>com.guoshiyao.rely</groupId>
-            <version>9.0.3-RELEASE</version>
+            <version>9.0.0-RELEASE</version>
             <artifactId>home-integrate-outgoing</artifactId>
         </dependency>
         <dependency>
