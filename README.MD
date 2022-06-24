@@ -22,7 +22,7 @@ mvn install
 项目引入
 
 ```xml
-        <!-- 单jar包方式引入-->
+        <!-- 单jar包方式引入,需要本地(home-integrate-system/home-integrate-package/home-integrate-packageextends/home-integrate-systemall) mvn install-->
         <dependency>
             <groupId>com.guoshiyao.rely</groupId>
             <version>9.0.1-SNAPSHOT</version>
@@ -30,7 +30,7 @@ mvn install
         </dependency>
 ```
 ```xml
-        <!-- pom关联方式引入-->
+        <!-- pom关联方式引入,已上传至Maven中央库-->
         <dependency>
             <groupId>com.guoshiyao.rely</groupId>
             <version>9.0.1-SNAPSHOT</version>
