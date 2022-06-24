@@ -10,6 +10,7 @@
 
 package com.guoshiyao.rely.snowflake.utils;
 
+import com.guoshiyao.rely.line.Line;
 import com.guoshiyao.rely.snowflake.bean.ID;
 import com.guoshiyao.rely.snowflake.bean.IdMeta;
 import lombok.Data;
@@ -30,7 +31,7 @@ public class IdUtils {
     // 毫秒内Sequence(0~4095)
     private static long sequence = 0L;
     // 机器ID(0-1023)
-    private static long workerId = com.guoshiyao.rely.line.Line.distributedKey;
+    private static long workerId = Line.distributedKey;
     // 各种元数据
     protected IdMeta idMeta;
 

@@ -23,7 +23,7 @@
 
 
     <modules>
-        <module>home-integrate-systemall</module>
+<!--        <module>home-integrate-systemall</module>-->
         <module>home-integrate-systemallpom</module>
     </modules>
 

@@ -30,7 +30,7 @@ public class ControllerParamHandV1 {
     @Around("annotationPointCut()")
     public Object annotationAround(ProceedingJoinPoint jp) throws Throwable {
         Object body = jp.proceed();
-         boolean havingApiAnnataion = AnnotationUtil.hasAnnotation(jp.getTarget().getClass(), RuleAnnotationApi.class);
+        boolean havingApiAnnataion = AnnotationUtil.hasAnnotation(jp.getTarget().getClass(), RuleAnnotationApi.class);
         if (havingApiAnnataion && body == null) {
             throw new ExceptionApiNull();//如果值为空的
         }
