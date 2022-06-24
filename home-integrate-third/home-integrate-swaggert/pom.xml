@@ -14,7 +14,7 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.guoshiyao.rely</groupId>
-        <version>9.0.1-SNAPSHOT</version>
+        <version>9.0.5-RELEASE</version>
         <artifactId>home-integrate-third</artifactId>
     </parent>
     <artifactId>home-integrate-swaggert</artifactId>
@@ -27,12 +27,12 @@
         </dependency>
         <dependency>
             <groupId>com.guoshiyao.rely</groupId>
-            <version>9.0.0-RELEASE</version>
+            <version>9.0.5-RELEASE</version>
             <artifactId>home-integrate-corespringboot</artifactId>
         </dependency>
         <dependency>
             <groupId>com.guoshiyao.rely</groupId>
-            <version>9.0.0-RELEASE</version>
+            <version>9.0.5-RELEASE</version>
             <artifactId>home-integrate-outgoing</artifactId>
         </dependency>
         <dependency>
