@@ -1,44 +1,52 @@
 # 📚简介
-home-integrate-system(以下简称系统)，是一个轻量级,完全开源的Springboot框架，系统通过以类spi的方式封装常用工具插件（阿波罗，数据库，dubbo，flyway，git，mybatis，tk-mybatis，redis，雪花算法，swagger-ui，hutool等）
+
+home-integrate-system(以下简称系统)
+，是一个轻量级,完全开源的Springboot框架，系统通过以类spi的方式封装常用工具插件（阿波罗，数据库，dubbo，flyway，git，mybatis，tk-mybatis，redis，雪花算法，swagger-ui，hutool等）
 ，降低了系统集成难度。
 
 👉 实现自动配置（例如自动扫描Controller注解，无相关注解/Swagger配置则不加载Swagger）。
 
+# 📘安装(2选1即可)
 
-# 📘使用
-
-通过mvn 进行安装
+## 全量包(本地构建)
 
 ```shell
 
 cd ../home-integrate-system
 
 ```
+
 ```shell
 
+cd ../home-integrate-system/home-integrate-package/home-integrate-packageextends/home-integrate-systemall
+
 mvn install 
-```
 
-项目引入
+```
 
 ```xml
-        <!-- 单jar包方式引入,需要本地(home-integrate-system/home-integrate-package/home-integrate-packageextends/home-integrate-systemall) mvn install-->
-        <dependency>
-            <groupId>com.guoshiyao.rely</groupId>
-            <version>9.0.1-SNAPSHOT</version>
-            <artifactId>home-integrate-systemall</artifactId>
-        </dependency>
-```
-```xml
-        <!-- pom关联方式引入,已上传至Maven中央库-->
-        <dependency>
-            <groupId>com.guoshiyao.rely</groupId>
-            <version>9.0.1-SNAPSHOT</version>
-            <artifactId>home-integrate-systemallpom</artifactId>
-        </dependency>
+
+<dependency>
+    <groupId>com.guoshiyao.rely</groupId>
+    <version>9.0.1-SNAPSHOT</version>
+    <artifactId>home-integrate-systemall</artifactId>
+</dependency>
 ```
 
-启用系统(创建Springboot启动类,参考如下方式加入注解)
+## Maven仓库坐标
+
+```xml
+<!--已上传至Maven中央库-->
+<dependency>
+    <groupId>com.guoshiyao.rely</groupId>
+    <version>9.0.1-SNAPSHOT</version>
+    <artifactId>home-integrate-systemallpom</artifactId>
+</dependency>
+```
+
+# 使用
+
+1. 启动类加上注解 **Starter**,如下
 
 ```java
 package cn.vesan.code;
@@ -47,11 +55,6 @@ import com.guoshiyao.rely.annotaion.Starter;
 import com.guoshiyao.rely.message.i18n.I18n;
 import org.springframework.boot.SpringApplication;
 
-/**
- * @author 汪旭辉
- * @date 2022/3/10
- * @readme
- */
 @Starter(idkey = "vesan-lowformat", i18n = I18n.CN)
 public class LowFormatApplication {
     public static void main(String[] args) {
@@ -61,15 +64,23 @@ public class LowFormatApplication {
 
 ```
 
-注意:
-首次启动会创建对应环境的配置文件(home-local.ini home-DEV.ini home-PRO.ini home-UAT.ini,以及消息码文件message-*.xml),
-如果报错重新启动即可
+2. Starter 属性说明(以1中类为例)
+
+|属性| 说明     | 默认值                   | 必填 |
+|----|--------|-----------------------|----|
+|idkey| 项目唯一ID | 必填项                   | ✅  |
+|i18n| 区域编码   | I18n.CN               | ❎ |
+|runEnv| 当前运行环境 | ...                   | ❎  |
+|configEnv| 配置默认环境 | dev,uat,pro           | ❎  |
+|exclude| 不加载的类  | ...                   | ❎  |
+|scanBasePackages| 扫描包    | cn.vesan.code(启动类所在包) | ❎  |
 
 # 📝部分功能的使用
 
 ## Controller(请求体,消息码,入参,出参)
 
 ```java
+
 @RuleAnnotationApi
 @Controller
 @Api(tags = "(CodeFile)控制层")
@@ -98,23 +109,26 @@ public class CodeFileController {
     public OutputParamAb add(@RequestBody InputParamReLow<CodeFileVo> input) {
         this.codeFileService.insert(input.getInputData());
     }
-    1. 反参要求为OutputParamAb子类,当反参非 OutputParamAb 会自动创建一个新的OutputParamAb类,并将结果加入OutputParamAb.data中
-    2. 入参要求InputParamReLow<T>,可通过input.getInputData()获取入参实体类,并提供一系列方法
-    3. 自动捕获Service中的业务异常并通过OutputParamAb加工返回给前端
-    4. 反参目前实现了OutputParamRe
-    5. Conttroller需要实现加入@RuleAnnotationApi 注解
+    1.反参要求为OutputParamAb子类,
+    当反参非 OutputParamAb
+    会自动创建一个新的OutputParamAb类,并将结果加入OutputParamAb.data中
+    2.入参要求InputParamReLow<T>,可通过input.getInputData()获取入参实体类,并提供一系列方法
+    3.自动捕获Service中的业务异常并通过OutputParamAb加工返回给前端
+    4.反参目前实现了OutputParamRe
+    5.
+    Conttroller需要实现加入 @RuleAnnotationApi 注解
 }
 ```
 
 ## Service(业务异常处理)
 
 ```java
-        if (1!=0) {
-            throw new ExceptionError("关联关系未填写");//返回业务异常
-            throw new ExceptionRe("A02");//message-*.xml文件中的消息码code
-            throw new ExceptionAb();//自定义实现ExceptionAb类
+        if(1!=0){
+        throw new ExceptionError("关联关系未填写");//返回业务异常
+        throw new ExceptionRe("A02");//message-*.xml文件中的消息码code
+        throw new ExceptionAb();//自定义实现ExceptionAb类
         }
-        
+
 ```
 
 #配置说明
@@ -237,15 +251,15 @@ public class CodeFileController {
 
 [1000008-DEV-logback.ini]
 # 默认为idkey debug
-home.log.appid=minserver
+home.log.appid = minserver
 # 根日志级别 debug info  warn  error trance 默认debug# 从高到地低 OFF 、 FATAL 、 ERROR 、 WARN 、 INFO 、 DEBUG 、 TRACE 、 ALL -->
-home.log.rootlevel=debug
+home.log.rootlevel = debug
 # 系统日志级别 默认debug
-home.log.syslevel=debug
+home.log.syslevel = debug
 # 业务日志级别 默认debug
-home.log.businlevel=debug
+home.log.businlevel = debug
 # 业务日志包路径,空的话默认为系统扫描到的包路径
-home.log.businpackage=com.guoshiyao.rely
+home.log.businpackage = com.guoshiyao.rely
 # 日志存储位置
 #home.log.dir=target/log/minserver
 
@@ -319,16 +333,15 @@ home.log.businpackage=com.guoshiyao.rely
 
 [1000014-DEV-systemconfig.ini]
 # 系统容器rest端口号
-system.servlet.port=8081
+system.servlet.port = 8081
 
 
 [1000015-DEV-systemextend.ini]
 # 示例扩展属性
-home.extend.readme=示例值
+home.extend.readme = 示例值
 
 
 ```
-
 
 # 🧬贡献代码的步骤
 
@@ -350,7 +363,6 @@ home.extend.readme=示例值
 3. email:185600894@qq.com
 4. 代码使用了各种开源组件,软件作为支撑,如有侵权请联系
 5. 请勿将软件应用于法律要求范围外的场景
-
 
 # 捐赠计划
 
