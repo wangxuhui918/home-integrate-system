@@ -67,14 +67,14 @@ public class InitLineEnvStaticRe implements Line.InitLineEnvStaticAb {
             }
         }
         if (Line.isClassModel) {
-            Line.projectresourcepath = SystemUtil.getUserInfo().getCurrentDir() + File.separator + "src"
-                    + File.separator + "main" + File.separator + "resources" + File.separator;
-            Line.projectcodesourcepath = SystemUtil.getUserInfo().getCurrentDir() + File.separator + "src"
-                    + File.separator + "main" + File.separator + "java" + File.separator;
-//            Line.projectresourcepath = StrUtil.subBefore(ClassUtil.loadClass(Line.class.getName()).getClassLoader().getResource("").getPath(), "target" + File.separator + "classes", true) + File.separator + "src"
+//            Line.projectresourcepath = SystemUtil.getUserInfo().getCurrentDir() + File.separator + "src"
 //                    + File.separator + "main" + File.separator + "resources" + File.separator;
-            //        public final static String projectcodesourcepath = StrUtil.subBefore(ClassUtil.loadClass(Line.class.getName()).getClassLoader().getResource("").getPath(), "target" + File.separator + "classes", true) + File.separator + "src"
-//                + File.separator + "main" + File.separator + "java" + File.separator;
+//            Line.projectcodesourcepath = SystemUtil.getUserInfo().getCurrentDir() + File.separator + "src"
+//                    + File.separator + "main" + File.separator + "java" + File.separator;
+            Line.projectresourcepath = StrUtil.subBefore(ClassUtil.loadClass(Line.class.getName()).getClassLoader().getResource("").getPath(), "target" + File.separator + "classes", true) + File.separator + "src"
+                    + File.separator + "main" + File.separator + "resources" + File.separator;
+            Line.projectcodesourcepath = StrUtil.subBefore(ClassUtil.loadClass(Line.class.getName()).getClassLoader().getResource("").getPath(), "target" + File.separator + "classes", true) + File.separator + "src"
+                    + File.separator + "main" + File.separator + "java" + File.separator;
         }
 
         {
