@@ -54,11 +54,11 @@ public class HomeCoreConfUtils {
         List<T> listarra = new ArrayList<>();
         if (sort.size() > 0) {
             for (String o : sort.keySet()) {
-                intersectionSet.add(ClassUtil.loadClass(o));
+                intersectionSet.add(ClassUtil.loadClass(o, false));
             }
             for (Class<?> class1 : intersectionSet) {
                 try {
-                    T sd = (T) ClassUtil.loadClass(class1.getName(), true).newInstance();
+                    T sd = (T) ClassUtil.loadClass(class1.getName(), false).newInstance();
                     listarra.add(sd);
                 } catch (Exception e) {
                     LoggerBaseAb.warn("{}转换失败!", class1.getName());

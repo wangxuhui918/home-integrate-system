@@ -53,7 +53,7 @@ public class InitLineEnvStaticRe implements Line.InitLineEnvStaticAb {
                     java.util.jar.Manifest masin = ManifestUtil.getManifest(new JarFile(new File(getJavaCommand)));
                     Line.mainClassC = ClassUtil.loadClass(masin.getMainAttributes().getValue("Start-Class"), false);
                     Line.mainClass = masin.getMainAttributes().getValue("Start-Class");
-                } else if (ClassUtil.isNormalClass(ClassUtil.loadClass(getJavaCommand))) {//如果是非运行时
+                } else if (ClassUtil.isNormalClass(ClassUtil.loadClass(getJavaCommand,false))) {//如果是非运行时
                     LoggerBaseAb.info("检测到当前为开发者模式");
                     Line.isClassModel = true;
                     Line.mainClassC = ClassUtil.loadClass(getJavaCommand, false);
@@ -165,7 +165,7 @@ public class InitLineEnvStaticRe implements Line.InitLineEnvStaticAb {
             Line.idKey = idkey;
             Line.i18n = i18n;
             Line.projectPackage = StrUtil.isNotBlank(projectPackage) ? projectPackage
-                    : ClassUtil.getPackage(ClassUtil.loadClass(Line.mainClass));
+                    : ClassUtil.getPackage(ClassUtil.loadClass(Line.mainClass,false));
             Line.workHomeDir = SystemUtil.getUserInfo().getHomeDir() + File.separator + BaseEv.HOME_TAG + File.separator + Line.idKey
                     + File.separator;
             Line.autoUpdate = updateProperties;
