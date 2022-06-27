@@ -70,7 +70,7 @@ public abstract class ExceptionAb extends RuntimeException {
     public CodeAb getCode() {
         CodeAb code = null;
         try {
-            code = (CodeAb) ClassUtil.loadClass((this).getClassName()).newInstance();
+            code = (CodeAb) ClassUtil.loadClass((this).getClassName(),false).newInstance();
             BeanUtil.copyProperties(JSONUtil.parse(this.getMsg()), code);
         } catch (Exception e) {
             throw new ExceptionError(ExceptionAb.class.getName() + "对应子类的 Msg  转换为 " + CodeAb.class.getName() + "子类失败");

@@ -172,7 +172,7 @@ public class Line {
         Collection<Class<?>> intersectionSet = CollUtil.intersection(annotaiones, classes);
         for (Class<?> class1 : intersectionSet) {
             try {
-                T sd = (T) ClassUtil.loadClass(class1.getName(), true).newInstance();
+                T sd = (T) ClassUtil.loadClass(class1.getName(),false).newInstance();
                 listarra.add(sd);
             } catch (Exception e) {
             }

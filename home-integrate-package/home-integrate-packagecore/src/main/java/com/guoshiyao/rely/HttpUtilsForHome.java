@@ -73,7 +73,7 @@ public class HttpUtilsForHome {
             String className = code.getByPath("className").toString();
             try {
                 if (StrUtil.isNotBlank(className)) {
-                    CodeAb coded = (CodeAb) ClassUtil.loadClass(className).newInstance();
+                    CodeAb coded = (CodeAb) ClassUtil.loadClass(className,false).newInstance();
                     BeanUtil.copyProperties(code, coded);
                     return coded;
                 }

@@ -71,7 +71,7 @@ public class AnnotationTools {
         Collection<Class<?>> intersectionSet = CollUtil.intersection(annotaiones, classes);
         for (Class<?> class1 : intersectionSet) {
             try {
-                T sd = (T) ClassUtil.loadClass(class1.getName(), true).newInstance();
+                T sd = (T) ClassUtil.loadClass(class1.getName(), false).newInstance();
                 if (StrUtil.isBlank(key)) {
                     listarra.add(sd);
                 }
