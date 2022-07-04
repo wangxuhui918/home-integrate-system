@@ -11,6 +11,8 @@
 
 package com.guoshiyao.rely.outgoing;
 
+import com.guoshiyao.rely.auth.UserAb;
+
 /**
  * 入参基类
  *
@@ -23,13 +25,31 @@ public abstract class InputParamAb<D> {
     //入参国际化编码
     private String i18n;
     //入参数据
-    private D data;
+    private D data;//inputparamab
+
+    private UserAb userAb;
 
     @Deprecated
     private String pageSize;
 
     @Deprecated
     private String pageNum;
+
+    /**
+     * 重写该方法验证用户权限信息
+     */
+    public AuthReturnType checkAuth() {
+        return AuthReturnType.AuthSuccess;
+    }
+
+
+    public UserAb getUserAb() {
+        return userAb;
+    }
+
+    public void setUserAb(UserAb userAb) {
+        this.userAb = userAb;
+    }
 
     public String getPageSize() {
         return pageSize;

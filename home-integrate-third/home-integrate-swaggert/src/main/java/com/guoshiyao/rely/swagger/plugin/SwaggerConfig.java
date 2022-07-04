@@ -17,7 +17,6 @@ import com.guoshiyao.rely.hand.ControllerParamHandV1;
 import com.guoshiyao.rely.hand.ExceptionHandV1;
 import com.guoshiyao.rely.hand.ResponseHandV1;
 import com.guoshiyao.rely.line.Line;
-
 import com.guoshiyao.rely.swagger.bean.RomensWebMvcConfigurationSupport;
 import com.guoshiyao.rely.swagger.bean.SwaggerConfigRe;
 import com.guoshiyao.rely.third.ThirdExtendConfigAb;
@@ -36,7 +35,8 @@ public class SwaggerConfig implements ThirdExtendConfigAb {
 //            ControllerParamHand.class,
 //            map.put(NAME, Arrays.asList(new Class[]{SwaggerConfigRe.class, RomensWebMvcConfigurationSupport.class,
 //                    ControllerParamHand.class, ExceptionHand.class, ResponseHand.class}));
-            return Arrays.asList(new Class[]{SwaggerConfigRe.class, RomensWebMvcConfigurationSupport.class,
+            return Arrays.asList(new Class[]{SwaggerConfigRe.class,
+                    RomensWebMvcConfigurationSupport.class,
                     ControllerParamHandV1.class, ExceptionHandV1.class, ResponseHandV1.class});
         } else {
             return new ArrayList<>();
