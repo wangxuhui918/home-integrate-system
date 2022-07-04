@@ -59,7 +59,7 @@ public class ControllerParamHandV1 {
                         return CodeUtils.go(CodeAbE.getBuiltinCode(CodeAbE.ERROR, Line.i18n, authReturnType.getCode(), authReturnType.getName()));
                     }
                 } catch (Exception e) {
-
+                    return CodeUtils.go(CodeAbE.getError("未知鉴权异常!"));
                 }
             }
         }

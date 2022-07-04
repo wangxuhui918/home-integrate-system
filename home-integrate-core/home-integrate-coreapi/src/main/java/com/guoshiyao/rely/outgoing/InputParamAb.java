@@ -39,6 +39,7 @@ public abstract class InputParamAb<D> {
      * 重写该方法验证用户权限信息
      */
     public AuthReturnType checkAuth() {
+ 
         return AuthReturnType.AuthSuccess;
     }
 
