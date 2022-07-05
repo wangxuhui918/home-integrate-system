@@ -8,6 +8,8 @@
 
 package com.guoshiyao.rely.log.base;
 
+import com.guoshiyao.rely.log.LoggerAb;
+
 import java.util.logging.ConsoleHandler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -20,7 +22,7 @@ import java.util.logging.Logger;
 public final class LoggerBaseUtils {
     protected final static Logger myLogger = Logger.getLogger(LoggerBaseAb.class.getName());
     protected final static ConsoleHandler myConsoleHandler = new ConsoleHandler();
-
+    public static LoggerAb loggerAb = null;
     public static final void setLevel(Level level) {
         myLogger.setLevel(level);
     }

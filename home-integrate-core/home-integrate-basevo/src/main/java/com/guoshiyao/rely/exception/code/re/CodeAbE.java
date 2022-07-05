@@ -30,6 +30,8 @@ public class CodeAbE implements CodeAb {
     private String type;
     private String text;
     private String className;
+    public static  final String SUCCESS = "true";
+    public static  final String ERROR = "false";
 
     public CodeAbE() {
         super();
@@ -57,7 +59,7 @@ public class CodeAbE implements CodeAb {
      * @readme
      */
     public static CodeAbE getinfo(String text, String... format) {
-        return getBuiltinCode("true", I18n.defaultI18n.getI18nCode(), "111111", text, format);
+        return getBuiltinCode(SUCCESS, I18n.defaultI18n.getI18nCode(), "111111", text, format);
     }
 
     /**
@@ -82,10 +84,11 @@ public class CodeAbE implements CodeAb {
      * @readme
      */
     public static CodeAbE getError(String text, String... format) {
-        return getBuiltinCode("false", I18n.defaultI18n.getI18nCode(), "000000", text, format);
+        return getBuiltinCode(ERROR, I18n.defaultI18n.getI18nCode(), "000000", text, format);
     }
 
-    private static CodeAbE getBuiltinCode(String type, String i18n, String code, String text, String... format) {
+
+    public static CodeAbE getBuiltinCode(String type, String i18n, String code, String text, String... format) {
         return new CodeAbE() {
             @Override
             public String getType() {

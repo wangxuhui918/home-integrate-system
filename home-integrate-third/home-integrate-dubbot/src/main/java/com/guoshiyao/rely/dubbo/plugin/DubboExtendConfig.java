@@ -79,7 +79,7 @@ public class DubboExtendConfig implements ThirdExtendConfigAb {
         {
             String key = "home.dubbo.reference.host";
             if (!setting.containsKey(key)) {
-                setting.put(key, ("127.0.0.1"));
+                setting.put(key, ("SUCCESS"));
             }
         }
         {

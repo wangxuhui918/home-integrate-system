@@ -23,22 +23,37 @@ import java.util.logging.Level;
 public interface LoggerBaseAb {
 
 
+
     static void debug(String str, String... strs) {
-        LoggerBaseUtils.myLogger.log(Level.FINER, StrUtil.format(str, strs));
+        if (LoggerBaseUtils.loggerAb != null) {
+            LoggerBaseUtils.loggerAb.debug(str, strs);
+        } else {
+            LoggerBaseUtils.myLogger.log(Level.FINER, StrUtil.format(str, strs));
+        }
     }
 
     static void info(String str, String... strs) {
-        LoggerBaseUtils.myLogger.info(StrUtil.format(str, strs));
+        if (LoggerBaseUtils.loggerAb != null) {
+            LoggerBaseUtils.loggerAb.info(str, strs);
+        } else {
+            LoggerBaseUtils.myLogger.info(StrUtil.format(str, strs));
+        }
     }
 
-
     static void warn(String str, String... strs) {
-        LoggerBaseUtils.myLogger.warning(StrUtil.format(str, strs));
+        if (LoggerBaseUtils.loggerAb != null) {
+            LoggerBaseUtils.loggerAb.warning(str, strs);
+        } else {
+            LoggerBaseUtils.myLogger.warning(StrUtil.format(str, strs));
+        }
     }
 
     static void err(String str, String... strs) {
-        LoggerBaseUtils.myLogger.log(Level.SEVERE, StrUtil.format(str, strs));
+        if (LoggerBaseUtils.loggerAb != null) {
+            LoggerBaseUtils.loggerAb.error(str, strs);
+        } else {
+            LoggerBaseUtils.myLogger.log(Level.SEVERE, StrUtil.format(str, strs));
+        }
     }
-
 
 }

@@ -8,6 +8,8 @@
 
 package com.guoshiyao.rely.auth;
 
+import java.util.Map;
+
 /**
  * @author 汪旭辉
  * @date 2022/4/2
@@ -22,6 +24,6 @@ public interface UserAb {
 
     public String getUserName();
 
-    public AuthAb[] getUserAuth();
+    public Map<String, String> getUserSetting();
 
 }

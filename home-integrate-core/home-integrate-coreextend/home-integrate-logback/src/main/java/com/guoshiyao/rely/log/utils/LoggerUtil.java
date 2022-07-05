@@ -25,6 +25,27 @@ public class LoggerUtil implements LoggerAb {
         this.clazz = clazz;
     }
 
+    @Override
+    public void warning(String str) {
+        str = StrUtil.blankToDefault(str, "");
+        LoggerFactory.getLogger(clazz).warn(str);
+        saveLog();
+    }
+
+    @Override
+    public void warning(String str, Object obj) {
+        str = StrUtil.blankToDefault(str, "");
+        LoggerFactory.getLogger(clazz).warn(str, obj);
+        saveLog();
+    }
+
+    @Override
+    public void warning(String str, Object[] objs) {
+        str = StrUtil.blankToDefault(str, "");
+        LoggerFactory.getLogger(clazz).warn(str, objs);
+        saveLog();
+    }
+
     public LoggerUtil() {
         Class<?> clazz = null;
         try {
@@ -238,4 +259,6 @@ public class LoggerUtil implements LoggerAb {
     public void error(Throwable e) {
         error(clazz, "", e);
     }
+
+
 }

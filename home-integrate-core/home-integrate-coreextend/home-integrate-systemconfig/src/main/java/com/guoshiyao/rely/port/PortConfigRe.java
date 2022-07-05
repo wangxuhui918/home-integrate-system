@@ -70,6 +70,12 @@ public class PortConfigRe implements SystemConfigAb {
                 Line.setting.put(key, ("1"));
             }
         }
+        {
+            String key = "system.inputparamab.class";
+            if (!Line.setting.containsKey(key)) {
+                Line.setting.put(key, "com.guoshiyao.rely.outgoing.InputParamRe");
+            }
+        }
         return new HashMap<>();
     }
 

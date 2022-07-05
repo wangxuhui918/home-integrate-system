@@ -41,4 +41,9 @@ public interface LoggerAb extends LoggerBaseAb {
 
     void error(Throwable e);
 
+    void warning(String str);
+
+    void warning(String str, Object obj);
+
+    void warning(String str, Object[] objs);
 }
