@@ -11,7 +11,7 @@
     <modelVersion>4.0.0</modelVersion>
     <artifactId>home-integrate-system</artifactId>
     <groupId>com.guoshiyao.rely</groupId>
-    <version>9.0.7-RELEASE</version>
+    <version>9.0.8-RELEASE</version>
     <packaging>pom</packaging>
     <parent>
         <groupId>org.springframework.boot</groupId>
