@@ -16,6 +16,7 @@ import com.guoshiyao.rely.coreannotation.rule.RuleAnnotationApi;
 import com.guoshiyao.rely.exception.ExceptionApiNull;
 import com.guoshiyao.rely.exception.code.re.CodeAbE;
 import com.guoshiyao.rely.line.Line;
+import com.guoshiyao.rely.log.base.LoggerBaseAb;
 import com.guoshiyao.rely.outgoing.AuthReturnType;
 import com.guoshiyao.rely.outgoing.InputParamAb;
 import com.guoshiyao.rely.outgoing.utils.CodeUtils;
@@ -48,8 +49,14 @@ public class ControllerParamHandV1 {
                 }
             }
             if (k == null) {//无InputParamAb拦截的情况
-                String className = Line.setting.get("system.inputparamab.class");
-                k = (InputParamAb) ClassUtil.loadClass(className, false).newInstance();
+                try {
+                    String className = Line.setting.get("system.inputparamab.class");
+                    k = (InputParamAb) ClassUtil.loadClass(className, false).newInstance();
+                } catch (Exception e) {
+                }
+            }
+            if (k == null) {
+                LoggerBaseAb.warn("参数{}未配置{}子类", "system.inputparamab.class", InputParamAb.class.getName());
             }
             if (k != null) {
                 try {
