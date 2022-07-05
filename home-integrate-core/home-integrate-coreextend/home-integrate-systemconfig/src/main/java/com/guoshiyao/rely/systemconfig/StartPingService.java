@@ -22,9 +22,8 @@ public class StartPingService implements CommandLineRunner {
      * @throws Exception
      */
     @Override
-    public void run(String... args) throws Exception {
-        LoggerBaseAb.info("swagger 地址 : {} ", "http://127.0.0.1:" + Line.setting.get("system.servlet.port") + "/swagger-ui/index.html");
-        LoggerBaseAb.info("帆有云系统启动完成!!");
+    public void run(String... args) {
+
         LoggerBaseAb.info("用户目录 : {} [key]:[{}] ", Line.userHomeDir, "Line.userHomeDir");
         LoggerBaseAb.info("运行用户名 : {} [key]:[{}] ", Line.systemUserName, "Line.systemUserName");
         LoggerBaseAb.info("核心包 : {} [key]:[{}] ", Line.corePacket, "Line.corePacket");
@@ -51,6 +50,8 @@ public class StartPingService implements CommandLineRunner {
         LoggerBaseAb.info("是否自动更新 : {} [key]:[{}] ", Line.autoUpdate + "", "Line.autoUpdate");
         LoggerBaseAb.info("默认redis连接池 : {} [key]:[{}] ", Line.redisds == null ? "" : Line.redisds.toString(), "Line.redisds");
         LoggerBaseAb.info("默认jdbc_jar包路径 : {} [key]:[{}] ", Line.main_jdbc_jar_fullpath, "Line.main_jdbc_jar_fullpath");
+        LoggerBaseAb.info("swagger 地址 : {} ", "http://127.0.0.1:" + Line.setting.get("system.servlet.port") + "/swagger-ui/index.html");
+        LoggerBaseAb.info("帆有云系统启动完成!!");
 
     }
 }
