@@ -138,6 +138,11 @@ public class MybatisAutoMethod {
                 Object inputvo = input.getData();
                 BeanUtil.copyProperties(inputvo, domain);
                 return mapper.insert(domain);
+            }else if (myAnnotation.method() == com.guoshiyao.rely.coreannotation.base.Method.queryByPrimaryKey) {
+                Object domain = ClassUtil.loadClass(methTree.get(methFullPath).getName().toString(), false).newInstance();
+                Object inputvo = input.getData();
+                BeanUtil.copyProperties(inputvo, domain);
+                return mapper.selectByPrimaryKey(domain);
             } else if (myAnnotation.method() == com.guoshiyao.rely.coreannotation.base.Method.deleteByPrimaryKey) {
                 Object domain = ClassUtil.loadClass(methTree.get(methFullPath).getName().toString(), false).newInstance();
                 Object inputvo = input.getData();

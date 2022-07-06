@@ -21,6 +21,7 @@ public enum Method {
     add("3", "添加", "success"),//
     deleteByPrimaryKey("4", "按主键删除 ", "danger"),//
     updateByPrimaryKeySelective("5", "按主键更新 ", "warning"),//
+    queryByPrimaryKey("7", "按主键查询 ", "warning"),//
     nomethod("6", "未选择方法", "warning"),//
     ;//
 
