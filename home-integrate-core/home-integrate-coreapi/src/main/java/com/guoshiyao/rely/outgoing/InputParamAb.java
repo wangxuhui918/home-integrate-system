@@ -11,7 +11,7 @@
 
 package com.guoshiyao.rely.outgoing;
 
-import com.guoshiyao.rely.auth.UserAb;
+import com.guoshiyao.rely.auth.UserRe;
 
 /**
  * 入参基类
@@ -27,7 +27,7 @@ public abstract class InputParamAb<D> {
     //入参数据
     private D data;//inputparamab
 
-    private UserAb userAb;
+    private UserRe userRe;
 
     @Deprecated
     private String pageSize;
@@ -44,12 +44,12 @@ public abstract class InputParamAb<D> {
     }
 
 
-    public UserAb getUserAb() {
-        return userAb;
+    public UserRe getUserRe() {
+        return userRe;
     }
 
-    public void setUserAb(UserAb userAb) {
-        this.userAb = userAb;
+    public void setUserRe(UserRe userRe) {
+        this.userRe = userRe;
     }
 
     public String getPageSize() {

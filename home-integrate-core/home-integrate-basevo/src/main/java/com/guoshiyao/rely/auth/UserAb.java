@@ -8,6 +8,7 @@
 
 package com.guoshiyao.rely.auth;
 
+import java.io.Serializable;
 import java.util.Map;
 
 /**
@@ -15,7 +16,7 @@ import java.util.Map;
  * @date 2022/4/2
  * @readme 基础用户对象
  */
-public interface UserAb {
+public interface UserAb extends Serializable {
 
 
     public String getToken();
