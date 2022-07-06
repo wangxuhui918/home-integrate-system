@@ -18,6 +18,7 @@ import com.guoshiyao.rely.bean.Bean;
 import com.guoshiyao.rely.coreannotation.rule.HomeNull;
 import com.guoshiyao.rely.coreannotation.rule.RuleAnnotationAutoMethod;
 import com.guoshiyao.rely.exception.re.ex.ExceptionError;
+import com.guoshiyao.rely.line.Line;
 import com.guoshiyao.rely.outgoing.InputParamAb;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
@@ -36,8 +37,6 @@ import java.util.List;
 @Order(Integer.MAX_VALUE)
 public class MybatisAutoMethod {
 
-
-    private static final HashMap<String, Tree<Class>> methTree = new HashMap<>();
 
     @Pointcut("@annotation(com.guoshiyao.rely.coreannotation.rule.RuleAnnotationAutoMethod)")
     private void annotationPointCut() {
@@ -67,7 +66,7 @@ public class MybatisAutoMethod {
         } catch (Exception e) {
         }
 
-        if (myAnnotation != null && input != null && methTree.get(methFullPath) == null) {
+        if (myAnnotation != null && input != null && Line.methTree.get(methFullPath) == null) {
             if (myAnnotation.mapper().equals(HomeNull.class)) {
                 throw new ExceptionError("RuleAnnotationAutoMethod注解mapper不允许为空");
             }
@@ -98,15 +97,15 @@ public class MybatisAutoMethod {
             Tree<Class> className = new Tree<>();
             className.setId(myAnnotation.mapper());//id为mapper
             className.setName(domainClass);//name 为 domain
-            methTree.put(methFullPath, className);
+            Line.methTree.put(methFullPath, className);
         }
 
 
-        if (myAnnotation != null && input != null && methTree.get(methFullPath) != null) {
-            Mapper mapper = (Mapper) Bean.getBean(methTree.get(methFullPath).getId());
+        if (myAnnotation != null && input != null && Line.methTree.get(methFullPath) != null) {
+            Mapper mapper = (Mapper) Bean.getBean(Line.methTree.get(methFullPath).getId());
             if (myAnnotation.method() == com.guoshiyao.rely.coreannotation.base.Method.pageSelect) {
                 Object inputvo = input.getData();
-                Object domain = ClassUtil.loadClass(methTree.get(methFullPath).getName().toString(), false).newInstance();
+                Object domain = ClassUtil.loadClass(Line.methTree.get(methFullPath).getName().toString(), false).newInstance();
                 Object vo = input.getData().getClass().newInstance();
 
 //                Page pageRequest = new Page(Integer.parseInt(input.getPageNum()), Integer.parseInt(input.getPageSize()));
@@ -127,29 +126,29 @@ public class MybatisAutoMethod {
                 }
                 return pageData;
             } else if (myAnnotation.method() == com.guoshiyao.rely.coreannotation.base.Method.andSelect) {
-                Object domain = ClassUtil.loadClass(methTree.get(methFullPath).getName().toString(), false).newInstance();
+                Object domain = ClassUtil.loadClass(Line.methTree.get(methFullPath).getName().toString(), false).newInstance();
                 List returnlist = new ArrayList<>();
                 {
                     returnlist = BeanUtil.copyToList(mapper.select(domain), input.getData().getClass());
                 }
                 return returnlist;
             } else if (myAnnotation.method() == com.guoshiyao.rely.coreannotation.base.Method.add) {
-                Object domain = ClassUtil.loadClass(methTree.get(methFullPath).getName().toString(), false).newInstance();
+                Object domain = ClassUtil.loadClass(Line.methTree.get(methFullPath).getName().toString(), false).newInstance();
                 Object inputvo = input.getData();
                 BeanUtil.copyProperties(inputvo, domain);
                 return mapper.insert(domain);
             }else if (myAnnotation.method() == com.guoshiyao.rely.coreannotation.base.Method.queryByPrimaryKey) {
-                Object domain = ClassUtil.loadClass(methTree.get(methFullPath).getName().toString(), false).newInstance();
+                Object domain = ClassUtil.loadClass(Line.methTree.get(methFullPath).getName().toString(), false).newInstance();
                 Object inputvo = input.getData();
                 BeanUtil.copyProperties(inputvo, domain);
                 return mapper.selectByPrimaryKey(domain);
             } else if (myAnnotation.method() == com.guoshiyao.rely.coreannotation.base.Method.deleteByPrimaryKey) {
-                Object domain = ClassUtil.loadClass(methTree.get(methFullPath).getName().toString(), false).newInstance();
+                Object domain = ClassUtil.loadClass(Line.methTree.get(methFullPath).getName().toString(), false).newInstance();
                 Object inputvo = input.getData();
                 BeanUtil.copyProperties(inputvo, domain);
                 return mapper.deleteByPrimaryKey(domain);
             } else if (myAnnotation.method() == com.guoshiyao.rely.coreannotation.base.Method.updateByPrimaryKeySelective) {
-                Object domain = ClassUtil.loadClass(methTree.get(methFullPath).getName().toString(), false).newInstance();
+                Object domain = ClassUtil.loadClass(Line.methTree.get(methFullPath).getName().toString(), false).newInstance();
                 Object inputvo = input.getData();
                 BeanUtil.copyProperties(inputvo, domain);
                 return mapper.updateByPrimaryKeySelective(domain);

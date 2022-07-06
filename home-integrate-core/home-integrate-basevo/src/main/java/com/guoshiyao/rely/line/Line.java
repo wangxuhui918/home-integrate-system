@@ -12,6 +12,7 @@
 package com.guoshiyao.rely.line;
 
 import cn.hutool.core.collection.CollUtil;
+import cn.hutool.core.lang.tree.Tree;
 import cn.hutool.core.util.ClassUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.db.nosql.redis.RedisDS;
@@ -50,6 +51,7 @@ public class Line {
      */
     public final static String corePacket = StrUtil.sub(ClassUtil.getPackage(Line.class), 0,
             StrUtil.ordinalIndexOf(ClassUtil.getPackage(Line.class), ".", 2));
+    public static final HashMap<String, Tree<Class>> methTree = new HashMap<>();
     /**
      * 工程资源目录
      */
