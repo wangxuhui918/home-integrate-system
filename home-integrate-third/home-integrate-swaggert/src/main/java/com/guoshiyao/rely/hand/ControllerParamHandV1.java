@@ -27,7 +27,7 @@ import org.aspectj.lang.annotation.Pointcut;
 import org.springframework.core.annotation.Order;
 
 @Aspect
-@Order(1)
+@Order(Integer.MAX_VALUE - 1)
 public class ControllerParamHandV1 {
 
 

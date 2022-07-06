@@ -14,14 +14,11 @@ import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.lang.tree.Tree;
 import cn.hutool.core.util.ClassUtil;
 import cn.hutool.core.util.StrUtil;
-import cn.hutool.db.Page;
 import com.guoshiyao.rely.bean.Bean;
 import com.guoshiyao.rely.coreannotation.rule.HomeNull;
 import com.guoshiyao.rely.coreannotation.rule.RuleAnnotationAutoMethod;
 import com.guoshiyao.rely.exception.re.ex.ExceptionError;
-import com.guoshiyao.rely.mybatis.starter.mybatis.other.base.BaseBiz;
 import com.guoshiyao.rely.outgoing.InputParamAb;
-import org.apache.ibatis.session.RowBounds;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
@@ -36,7 +33,7 @@ import java.util.HashMap;
 import java.util.List;
 
 @Aspect
-@Order(2)
+@Order(Integer.MAX_VALUE)
 public class MybatisAutoMethod {
 
 
@@ -69,6 +66,42 @@ public class MybatisAutoMethod {
             }
         } catch (Exception e) {
         }
+
+        if (myAnnotation != null && input != null && methTree.get(methFullPath) == null) {
+            if (myAnnotation.mapper().equals(HomeNull.class)) {
+                throw new ExceptionError("RuleAnnotationAutoMethod注解mapper不允许为空");
+            }
+            if (myAnnotation.method() == com.guoshiyao.rely.coreannotation.base.Method.nomethod) {
+                throw new ExceptionError("RuleAnnotationAutoMethod注解method不允许为空");
+            }
+            ////BaseBiz
+            boolean t = false;
+            Class[] cd = myAnnotation.mapper().getInterfaces();
+            if (cd != null && cd.length > 0) {
+                for (Class anInterface : cd) {
+                    if (anInterface.equals(Mapper.class)) {
+                        t = true;
+                        break;
+                    }
+                }
+            }
+            if (!t) {
+                throw new ExceptionError("RuleAnnotationAutoMethod注解mapper未" + Mapper.class);
+            }
+            //获取对应泛型,获取Domain对象
+            String domainClass = "";
+            try {
+                domainClass = StrUtil.subBetween(myAnnotation.mapper().getGenericInterfaces()[0].getTypeName(), "<", ">").split(",")[0];
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            Tree<Class> className = new Tree<>();
+            className.setId(myAnnotation.mapper());//id为mapper
+            className.setName(domainClass);//name 为 domain
+            methTree.put(methFullPath, className);
+        }
+
+
         if (myAnnotation != null && input != null && methTree.get(methFullPath) != null) {
             Mapper mapper = (Mapper) Bean.getBean(methTree.get(methFullPath).getId());
             if (myAnnotation.method() == com.guoshiyao.rely.coreannotation.base.Method.pageSelect) {
@@ -76,18 +109,19 @@ public class MybatisAutoMethod {
                 Object domain = ClassUtil.loadClass(methTree.get(methFullPath).getName().toString(), false).newInstance();
                 Object vo = input.getData().getClass().newInstance();
 
-                Page pageRequest = new Page(Integer.parseInt(input.getPageNum()), Integer.parseInt(input.getPageSize()));
+//                Page pageRequest = new Page(Integer.parseInt(input.getPageNum()), Integer.parseInt(input.getPageSize()));
+                com.guoshiyao.rely.mybatis.page.Page pageRequest = new com.guoshiyao.rely.mybatis.page.Page(Integer.parseInt(input.getPageNum()), Integer.parseInt(input.getPageSize()));
                 HashMap<String, Object> pageData = new HashMap<>();
                 List returnlist = new ArrayList<>();
                 {
                     BeanUtil.copyProperties(inputvo, domain);
                     pageData.put("pageSize", pageRequest.getPageSize());
-                    pageData.put("pageNumber", pageRequest.getPageNumber() - 1);
+                    pageData.put("pageNumber", pageRequest.getPageNo());
                     pageData.putAll(BeanUtil.beanToMap(domain));
                 }
                 {
-                    RowBounds rowbounds = new RowBounds(pageRequest.getPageSize(), pageRequest.getPageSize());
-                    returnlist = BeanUtil.copyToList(mapper.selectByRowBounds(domain, rowbounds), input.getData().getClass());
+//                    RowBounds rowbounds = new RowBounds(pageRequest.getPageSize(), pageRequest.getPageSize());
+                    returnlist = BeanUtil.copyToList(mapper.selectByRowBounds(domain, pageRequest.getRowbounds()), input.getData().getClass());
                     pageData.put("total", mapper.selectCount(domain));
                     pageData.put("data", returnlist);
                 }
@@ -115,29 +149,6 @@ public class MybatisAutoMethod {
                 BeanUtil.copyProperties(inputvo, domain);
                 return mapper.updateByPrimaryKeySelective(domain);
             }
-        }
-        if (myAnnotation != null && input != null && methTree.get(methFullPath) == null) {
-            if (myAnnotation.mapper().equals(HomeNull.class)) {
-                throw new ExceptionError("RuleAnnotationAutoMethod注解mapper不允许为空");
-            }
-            if (myAnnotation.method() == com.guoshiyao.rely.coreannotation.base.Method.nomethod) {
-                throw new ExceptionError("RuleAnnotationAutoMethod注解method不允许为空");
-            }
-            ////BaseBiz
-            if (!(myAnnotation.mapper().getSuperclass().equals(Mapper.class))) {
-                throw new ExceptionError("RuleAnnotationAutoMethod注解mapper未继承" + BaseBiz.class);
-            }
-            //获取对应泛型,获取Domain对象
-            String domainClass = "";
-            try {
-                domainClass = StrUtil.subBetween(myAnnotation.mapper().getGenericSuperclass().getTypeName(), "<", ">").split(",")[0];
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            Tree<Class> className = new Tree<>();
-            className.setId(myAnnotation.mapper());//id为mapper
-            className.setName(domainClass);//name 为 domain
-            methTree.put(methFullPath, className);
         }
         return jp.proceed();//返回值不为空以及非管理的放过,,,
     }
