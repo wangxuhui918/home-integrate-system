@@ -9,7 +9,7 @@
 package com.guoshiyao.rely.auth;
 
 @FunctionalInterface
-public interface AuthCheckAb<U extends UserAb, A extends AuthAb> {
+public interface AuthCheckAb<U extends UserRe, A extends AuthAb> {
     /**
      * 校验用户是否有该方法的访问权限
      *
