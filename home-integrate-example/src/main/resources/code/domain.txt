@@ -1,0 +1,202 @@
+package cn.vesan.code.api.domain;
+
+
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
+import javax.persistence.Column;
+import javax.persistence.Id;
+import javax.persistence.Table;
+import java.io.Serializable;
+
+
+/**
+ * 业务明细(BusinFields)领域对象
+ *
+ * @author 医惠科技有限公司
+ * @since 2022-03-18 15:19:11
+ */
+@Table(name = "busin_fields")
+@ApiModel(value = "业务明细")
+public class BusinFieldsDomain implements Serializable {
+
+    /**
+     * 主键 ID
+     */
+    @Id
+    @Column(name = "field_id")
+    @ApiModelProperty(value = "主键 ID")
+    private Long fieldId;
+
+    /**
+     * 业务 ID
+     */
+    @Column(name = "busin_id")
+    @ApiModelProperty(value = "业务 ID")
+    private Long businId;
+    /**
+     * 项目关联ID
+     */
+    @Column(name = "project_column_relation_id")
+    @ApiModelProperty(value = "项目关联ID")
+    private Long projectColumnRelationId;
+    /**
+     * 字段英文命名
+     */
+    @Column(name = "field_name_en")
+    @ApiModelProperty(value = "字段英文命名")
+    private String fieldNameEn;
+    /**
+     * 字段说明
+     */
+    @Column(name = "field_name_mark")
+    @ApiModelProperty(value = "字段说明")
+    private String fieldNameMark;
+    /**
+     * 数据库字段英文名
+     */
+    @Column(name = "data_name_en")
+    @ApiModelProperty(value = "数据库字段英文名")
+    private String dataNameEn;
+    /**
+     * 数据库字段备注
+     */
+    @Column(name = "data_name_mark")
+    @ApiModelProperty(value = "数据库字段备注")
+    private String dataNameMark;
+    /**
+     * 对应 java 类型,全量
+     */
+    @Column(name = "java_type_class")
+    @ApiModelProperty(value = "对应 java 类型,全量")
+    private String javaTypeClass;
+    /**
+     * 对应数据库类型
+     */
+    @Column(name = "data_type_class")
+    @ApiModelProperty(value = "对应数据库类型")
+    private String dataTypeClass;
+    /**
+     * 长度
+     */
+    @Column(name = "data_length")
+    @ApiModelProperty(value = "长度")
+    private Long dataLength;
+    /**
+     * 是否主键
+     */
+    @Column(name = "is_pk")
+    @ApiModelProperty(value = "是否主键")
+    private String isPk;
+    /**
+     * 对应前端类型
+     */
+    @Column(name = "web_type_class")
+    @ApiModelProperty(value = "对应前端类型")
+    private String webTypeClass;
+
+
+    public Long getFieldId() {
+        return fieldId;
+    }
+
+    public void setFieldId(Long fieldId) {
+        this.fieldId = fieldId;
+    }
+
+    public Long getBusinId() {
+        return businId;
+    }
+
+    public void setBusinId(Long businId) {
+        this.businId = businId;
+    }
+
+    public Long getProjectColumnRelationId() {
+        return projectColumnRelationId;
+    }
+
+    public void setProjectColumnRelationId(Long projectColumnRelationId) {
+        this.projectColumnRelationId = projectColumnRelationId;
+    }
+
+    public String getFieldNameEn() {
+        return fieldNameEn;
+    }
+
+    public void setFieldNameEn(String fieldNameEn) {
+        this.fieldNameEn = fieldNameEn;
+    }
+
+    public String getFieldNameMark() {
+        return fieldNameMark;
+    }
+
+    public void setFieldNameMark(String fieldNameMark) {
+        this.fieldNameMark = fieldNameMark;
+    }
+
+    public String getDataNameEn() {
+        return dataNameEn;
+    }
+
+    public void setDataNameEn(String dataNameEn) {
+        this.dataNameEn = dataNameEn;
+    }
+
+    public String getDataNameMark() {
+        return dataNameMark;
+    }
+
+    public void setDataNameMark(String dataNameMark) {
+        this.dataNameMark = dataNameMark;
+    }
+
+    public String getJavaTypeClass() {
+        return javaTypeClass;
+    }
+
+    public void setJavaTypeClass(String javaTypeClass) {
+        this.javaTypeClass = javaTypeClass;
+    }
+
+    public String getDataTypeClass() {
+        return dataTypeClass;
+    }
+
+    public void setDataTypeClass(String dataTypeClass) {
+        this.dataTypeClass = dataTypeClass;
+    }
+
+    public Long getDataLength() {
+        return dataLength;
+    }
+
+    public void setDataLength(Long dataLength) {
+        this.dataLength = dataLength;
+    }
+
+    public String getIsPk() {
+        return isPk;
+    }
+
+    public void setIsPk(String isPk) {
+        this.isPk = isPk;
+    }
+
+    public String getWebTypeClass() {
+        return webTypeClass;
+    }
+
+    public void setWebTypeClass(String webTypeClass) {
+        this.webTypeClass = webTypeClass;
+    }
+
+}
+
+
+
+
+注:
+1. 默认规则为 src/../api/domain/**/*Domain.java
+2. 主要用于持久层与数据库表对照以及进行相关读写操作

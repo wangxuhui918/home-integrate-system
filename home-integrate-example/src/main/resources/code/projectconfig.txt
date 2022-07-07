@@ -1,0 +1,27 @@
+com.guoshiyao.rely.line.Line.userHomeDir 获取当前运行时用户目录,例如 /user/root/
+com.guoshiyao.rely.line.Line.systemUserName 获取当前运行时用户,例如 root
+com.guoshiyao.rely.line.Line.corePacket 获取框架核心包,例如:cc.ewell.core
+com.guoshiyao.rely.line.Line.projectresourcepath 获取本地resource目录,仅在IDE模式下有值
+com.guoshiyao.rely.line.Line.projectcodesourcepath 获取本地src目录,仅在IDE模式下有值
+com.guoshiyao.rely.line.Line.UK_FILE 获取用户标识(使用网卡地址+用户名),例如 AS-34-98-34-98
+(root)
+com.guoshiyao.rely.line.Line.iocclasses 框架管理的Ioc类
+com.guoshiyao.rely.line.Line.setting 获取home-{env}.ini 配置中的值,例如:Line.setting.getStr("属性文件key") 遵循ini规则
+com.guoshiyao.rely.line.Line.messages 所有message-{i18n}.xml 消息码集合, key(i18n)-->>value(key(消息码)-->>value(消息码内属性值集合))
+com.guoshiyao.rely.line.Line.context  框架内Velocity常用值集合,详细值见(com.guoshiyao.rely.init.InitLineEnvStaticRe)
+com.guoshiyao.rely.line.Line.macSet 本地所有网卡mac地址集合
+com.guoshiyao.rely.line.Line.mainMac 系统根据Hash值定义的主Mac地址
+com.guoshiyao.rely.line.Line.idKey 当前工程唯一ID
+com.guoshiyao.rely.line.Line.distributedKey 分布式ID,尚未启用
+com.guoshiyao.rely.line.Line.i18n 当前工程国际化编码
+com.guoshiyao.rely.line.Line.runEnv 范围包括 home-{本地}.ini + -Denv 指定
+com.guoshiyao.rely.line.Line.configEnv 同Starter中configEnv
+com.guoshiyao.rely.line.Line.mainClass 主类,启动类
+com.guoshiyao.rely.line.Line.mainClassC 主类,启动类
+com.guoshiyao.rely.line.Line.jarpath 当前jar包所在路径(绝对路径)
+com.guoshiyao.rely.line.Line.projectPackage 当前工程核心包,默认为启动类所在包
+com.guoshiyao.rely.line.Line.isClassModel 当前运行模式,true:(IDE,开发模式,源码模式),false:(jar模式,线上模式)
+com.guoshiyao.rely.line.Line.dataSource 默认主数据源
+com.guoshiyao.rely.line.Line.workHomeDir 当前工程默认工作目录
+com.guoshiyao.rely.line.Line.UK 用户唯一标志
+com.guoshiyao.rely.line.Line.redisds 默认redis数据源

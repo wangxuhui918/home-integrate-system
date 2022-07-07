@@ -1,0 +1,242 @@
+
+
+/*
+ *
+ *  * Copyright (c) 2022
+ *  * http://license.coscl.org.cn/MulanPSL2
+ *  * 汪旭辉 wangxuhui918@163.com
+ *
+ */
+
+
+package com.guoshiyao.rely.outgoing;
+
+import com.guoshiyao.rely.auth.UserRe;
+
+/**
+ * 入参基类
+ *
+ * @param <D>
+ * @author 汪旭辉
+ * @date 2021年9月27日
+ * @readme
+ */
+ 注:
+ 1. 系统提供了入参超类InputParamAb以及默认实现类InputParamRe(管理员可根据需实现/继承相关父类)
+ 2. i18n: 前端要求后端返回的消息码类型,开发者根据自己需求确定返还类型
+ 3. data: 为统一入参Json(由InputParamRe.inputData重写转换而来)
+ 4. userRe: 统一用户基础信息(基础实现类,开发者可根据自己需求重写/继承)
+ 5. pageSize: 每页记录数
+ 6. pageNum: 当前页
+ 7. checkAuth: 通过重写该方法实现用户权限校验,AuthReturnType 提供了部分返回类型
+
+public abstract class InputParamAb<D> {
+
+    private String i18n;
+
+    private D data;//inputparamab
+
+    private UserRe userRe;
+
+    @Deprecated
+    private String pageSize;
+
+    @Deprecated
+    private String pageNum;
+
+
+    public AuthReturnType checkAuth() {
+
+        return AuthReturnType.AuthSuccess;
+    }
+
+
+    public UserRe getUserRe() {
+        return userRe;
+    }
+
+    public void setUserRe(UserRe userRe) {
+        this.userRe = userRe;
+    }
+
+    public String getPageSize() {
+        return pageSize;
+    }
+
+    public void setPageSize(String pageSize) {
+        this.pageSize = pageSize;
+    }
+
+    public String getPageNum() {
+        return pageNum;
+    }
+
+    public void setPageNum(String pageNum) {
+        this.pageNum = pageNum;
+    }
+
+    public String getI18n() {
+        return i18n;
+    }
+
+    public void setI18n(String i18n) {
+        this.i18n = i18n;
+    }
+
+    public D getData() {
+        return data;
+    }
+
+    public void setData(D data) {
+        this.data = data;
+    }
+
+}
+
+
+
+
+ 注:
+ 1. inputData:统一入参,前端通过 inputData.key进行封装
+ 2. 继承InputParamRe/实现InputParamAb,可以自定义一些方法,比如校验字段是否为空等自定义函数
+
+/*
+ *
+ *  * Copyright (c) 2022
+ *  * http://license.coscl.org.cn/MulanPSL2
+ *  * 汪旭辉 wangxuhui918@163.com
+ *
+ */
+
+package com.guoshiyao.rely.outgoing;
+
+import cn.hutool.json.JSONObject;
+import cn.hutool.json.JSONUtil;
+import com.guoshiyao.rely.exception.ExceptionAb;
+
+import java.util.List;
+import java.util.Map;
+
+public class InputParamRe<G> extends InputParamAb<cn.hutool.json.JSONObject> {
+
+    private G inputData;
+
+    public G getInputData() {
+        return inputData;
+    }
+
+    public void setInputData(G inputData) {
+        super.setData(JSONUtil.parseObj(inputData));
+        this.inputData = inputData;
+    }
+
+    /**
+     * 获取到的目标数据为空则抛出异常
+     *
+     * @param exab
+     * @author 汪旭辉
+     * @date 2021年12月8日
+     * @readme
+     */
+    public void throwNull(String expression, ExceptionAb exab) {
+        java.lang.Object object = getData().getByPath(expression);
+        if (object == null) {
+            throw exab;
+        }
+    }
+
+    /**
+     * 获取到的目标数据为空则抛出异常
+     * 空对象(包括null和所有属性为空)，空字符串，空数组，空集合，基本类型为默认值(不判断)
+     *
+     * @param expression
+     * @param exab
+     */
+    public void throwEmpty(String expression, ExceptionAb exab) {
+        java.lang.Object object = getData().getByPath(expression);
+        if (checkObjectNull(object)) {
+            throw exab;
+        }
+    }
+
+    /**
+     * 校验是否空对象
+     *
+     * @param object
+     * @return
+     */
+    public static boolean checkObjectNull(Object object) {
+        boolean empty = false;
+        if (object == null) {
+            empty = true;
+        } else if (object instanceof List) {
+            //空集合
+            empty = ((List<?>) object).isEmpty();
+        } else if (object instanceof String) {
+            //空字符串
+            empty = ((String) object).trim().equals("");
+        } else if (object instanceof JSONObject) {
+            //空对象
+            empty = checkJSONObjectNull(object);
+        }
+//        else {
+//            //基本类型
+//            empty = checkBasicTypeNull(object);
+//        }
+        return empty;
+    }
+
+
+    /**
+     * 校验是否空JSONObject
+     *
+     * @param object
+     * @return
+     */
+    public static boolean checkJSONObjectNull(Object object) {
+        if (((JSONObject) object).isEmpty()) {
+            return true;
+        }
+        //存在一个属性不为空则返回false
+        JSONObject jsonObject = (JSONObject) object;
+        for (Map.Entry<String, Object> entry : jsonObject.entrySet()) {
+            Object o = entry.getValue();
+            if (!checkObjectNull(o)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    /**
+     * 校验基本类型是否默认值
+     *
+     * @param object
+     * @return
+     */
+    public static boolean checkBasicTypeNull(Object object) {
+        //基本类型默认值
+        //基本类型经过Object一转，就会成包装类。
+        Class<?> className = object.getClass();
+        boolean defaultValue = false;
+        if (className.equals(java.lang.Integer.class)) {
+            defaultValue = (int) object == 0;
+        } else if (className.equals(java.lang.Byte.class)) {
+            defaultValue = (byte) object == 0;
+        } else if (className.equals(java.lang.Long.class)) {
+            defaultValue = (long) object == 0L;
+        } else if (className.equals(java.lang.Double.class)) {
+            defaultValue = (double) object == 0.0d;
+        } else if (className.equals(java.lang.Float.class)) {
+            defaultValue = (float) object == 0.0f;
+        } else if (className.equals(java.lang.Character.class)) {
+            defaultValue = (char) object == '\u0000';
+        } else if (className.equals(java.lang.Short.class)) {
+            defaultValue = (short) object == 0;
+        } else if (className.equals(java.lang.Boolean.class)) {
+            defaultValue = (boolean) object == false;
+        }
+        return defaultValue;
+    }
+
+}
