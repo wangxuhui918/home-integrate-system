@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 
 public class RuoUserUtils {
     public static String userServerUrl = "http://localhost:8081/getuserinfo?sessionId=";
-    
+
     public static String getUserName() {
         HttpServletRequest req = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
         HttpServletResponse resp = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes())
@@ -35,8 +35,8 @@ public class RuoUserUtils {
         if (StrUtil.isBlank(loginName)) {
             //	throw new GogException(new CodeRe("BUS01"));
         }
-        
+
         return loginName;
     }
-    
+
 }
