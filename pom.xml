@@ -24,7 +24,7 @@
         <module>home-integrate-third</module>
         <module>home-integrate-core</module>
         <module>home-integrate-package</module>
-        <module>home-integrate-example</module>
+<!--        <module>home-integrate-example</module>-->
     </modules>
 
 
