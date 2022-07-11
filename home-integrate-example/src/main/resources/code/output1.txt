@@ -4,6 +4,7 @@
  (1). i18n: 国际化编码
  (2). codeBody: 消息码,因为CodeABE子类/实现类
  (3). data: 返回的数据体(如果为基础类型,则对应为data.value)
+ 3. 建议dubbo中OutputParamAb  <data extend Map>
 
 参考如下:
 
