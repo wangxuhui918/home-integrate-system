@@ -9,13 +9,15 @@
 package com.guoshiyao.example.api;
 
 import cn.hutool.core.io.resource.ResourceUtil;
+import com.guoshiyao.example.api.vo.DemoVo;
 import com.guoshiyao.rely.coreannotation.rule.RuleAnnotationApi;
+import com.guoshiyao.rely.exception.code.CodeAb;
+import com.guoshiyao.rely.exception.code.CodeRe;
+import com.guoshiyao.rely.exception.re.ex.ExceptionError;
+import com.guoshiyao.rely.outgoing.InputParamRe;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 
 @RuleAnnotationApi
 @Controller
@@ -39,6 +41,14 @@ public class RedirectController extends BaseController {
     @RequestMapping(value = "/example/{index}", method = {RequestMethod.POST, RequestMethod.GET})
     public String index(@PathVariable String index) {
         return "example/" + index + ".html";
+    }
+
+
+    @ApiOperation(value = "样例", notes = " ")
+    @RequestMapping(value = "/example/example", method = {RequestMethod.POST, RequestMethod.GET})
+    @ResponseBody
+    public Object example(@RequestBody InputParamRe<DemoVo> input) {
+        return input.getInputData().getDemo_id();
     }
 
 }

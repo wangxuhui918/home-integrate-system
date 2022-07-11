@@ -16,6 +16,8 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
+    <groupId>com.guoshiyao.rely</groupId>
+    <version>9.0.1-SNAPSHOT</version>
     <artifactId>home-integrate-example</artifactId>
 
     <properties>
