@@ -14,7 +14,7 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.guoshiyao.rely</groupId>
-        <version>9.0.9-RELEASE</version>
+        <version>9.0.10-RELEASE</version>
         <artifactId>home-integrate-third</artifactId>
     </parent>
     <artifactId>home-integrate-datat</artifactId>
@@ -23,13 +23,13 @@
     <dependencies>
         <dependency>
             <groupId>com.guoshiyao.rely</groupId>
-            <version>9.0.9-RELEASE</version>
+            <version>9.0.10-RELEASE</version>
             <artifactId>home-integrate-coreapi</artifactId>
         </dependency>
 
         <dependency>
             <groupId>com.guoshiyao.rely</groupId>
-            <version>9.0.9-RELEASE</version>
+            <version>9.0.10-RELEASE</version>
             <artifactId>home-integrate-corespringboot</artifactId>
 
         </dependency>
