@@ -4,7 +4,7 @@
  *
  *  * Copyright (c) 2022
  *  * http://license.coscl.org.cn/MulanPSL2
- *  * 郭诗瑶 18671020380@163.com
+ *  * 郭诗瑶 
  *
  */
 
@@ -23,7 +23,7 @@ public class NodeUtils {
     /**
      * 获取对应国际编码的消息码内容
      *
-     * @author 汪旭辉
+     * @author 郭诗瑶
      * @date 2021年9月28日
      * @readme
      * @param readString
@@ -55,7 +55,7 @@ public class NodeUtils {
     /**
      * 第一列存放内容,第二列存放类型
      *
-     * @author 汪旭辉
+     * @author 郭诗瑶
      * @date 2021年9月28日
      * @readme
      * @param node

@@ -4,14 +4,14 @@
  *
  *  * Copyright (c) 2022
  *  * http://license.coscl.org.cn/MulanPSL2
- *  * 郭诗瑶 18671020380@163.com
+ *  * 郭诗瑶
  *
  */
 
 package com.guoshiyao.rely.mybatis.page.inter;
 
 /**
- * @author 汪旭辉
+ * @author 郭诗瑶
  * @date 2018年11月8日
  * @readme TODO
  */

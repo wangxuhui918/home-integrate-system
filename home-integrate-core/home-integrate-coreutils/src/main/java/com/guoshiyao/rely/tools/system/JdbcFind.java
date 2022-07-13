@@ -4,7 +4,7 @@
  *
  *  * Copyright (c) 2022
  *  * http://license.coscl.org.cn/MulanPSL2
- *  * 郭诗瑶 18671020380@163.com
+ *  * 郭诗瑶 
  *
  */
 
@@ -25,7 +25,7 @@ import java.util.Set;
 /**
  * jdbc相关的一些支持属性
  *
- * @author 汪旭辉
+ * @author 郭诗瑶
  * @date 2021年12月27日
  * @readme
  */
@@ -84,7 +84,7 @@ public class JdbcFind {
      *
      * @param driverclass 数据库url
      * @return com.guoshiyao.rely.tools.system.DataType 系统目前支持的数据库枚举类型,如果查询不到则返回为空
-     * @author 汪旭辉
+     * @author 郭诗瑶
      * @date 2021年12月27日
      * @readme
      */
@@ -103,7 +103,7 @@ public class JdbcFind {
      *
      * @param jdbctype
      * @return
-     * @author 汪旭辉
+     * @author 郭诗瑶
      * @date 2021年12月27日
      * @readme
      */

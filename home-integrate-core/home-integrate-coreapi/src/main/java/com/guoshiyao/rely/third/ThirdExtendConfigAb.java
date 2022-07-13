@@ -4,7 +4,7 @@
  *
  *  * Copyright (c) 2022
  *  * http://license.coscl.org.cn/MulanPSL2
- *  * 郭诗瑶 18671020380@163.com
+ *  * 郭诗瑶
  *
  */
 
@@ -19,7 +19,7 @@ public interface ThirdExtendConfigAb extends RunModelConfigRe {
      * 配置循环配置器,尚未结局多重循环问题,目前插件并不多,循环次数为 N*N
      *
      * @param setting
-     * @author 汪旭辉
+     * @author 郭诗瑶
      * @date 2021年12月1日
      * @readme
      */

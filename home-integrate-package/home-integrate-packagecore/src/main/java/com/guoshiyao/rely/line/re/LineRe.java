@@ -4,7 +4,7 @@
  *
  *  * Copyright (c) 2022
  *  * http://license.coscl.org.cn/MulanPSL2
- *  * 郭诗瑶 18671020380@163.com
+ *  * 郭诗瑶 
  *
  */
 
@@ -29,7 +29,7 @@ import java.util.Map;
 /**
  * 首选链式处理器
  *
- * @author 汪旭辉
+ * @author 郭诗瑶
  * @date 2021年11月30日
  * @readme
  */

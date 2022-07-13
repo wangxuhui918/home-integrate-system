@@ -4,7 +4,7 @@
  *
  *  * Copyright (c) 2022
  *  * http://license.coscl.org.cn/MulanPSL2
- *  * 郭诗瑶 18671020380@163.com
+ *  * 郭诗瑶 
  *
  */
 
@@ -18,7 +18,7 @@ import java.util.Map;
 /**
  * 核心通用配置读取器
  *
- * @author 汪旭辉
+ * @author 郭诗瑶
  * @date 2021年11月30日
  * @readme
  */
@@ -26,7 +26,7 @@ public interface BaseConfigRe extends BaseConfigAb {
     /**
      * 参数完全读取后,交付IOC前调用
      *
-     * @author 汪旭辉
+     * @author 郭诗瑶
      * @date 2021年12月2日
      * @readme
      */
@@ -35,7 +35,7 @@ public interface BaseConfigRe extends BaseConfigAb {
     /**
      * 读取参数前调用
      *
-     * @author 汪旭辉
+     * @author 郭诗瑶
      * @date 2021年12月2日
      * @readme
      */
@@ -45,7 +45,7 @@ public interface BaseConfigRe extends BaseConfigAb {
      * 需要交付Ioc的class类
      *
      * @return
-     * @author 汪旭辉
+     * @author 郭诗瑶
      * @date 2021年12月2日
      * @readme
      */
@@ -55,7 +55,7 @@ public interface BaseConfigRe extends BaseConfigAb {
      * 写入Line.properties参数
      *
      * @return
-     * @author 汪旭辉
+     * @author 郭诗瑶
      * @date 2021年12月2日
      * @readme
      */

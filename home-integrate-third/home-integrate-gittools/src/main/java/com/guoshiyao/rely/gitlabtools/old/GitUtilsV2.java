@@ -4,7 +4,7 @@
  *
  *  * Copyright (c) 2022
  *  * http://license.coscl.org.cn/MulanPSL2
- *  * 郭诗瑶 18671020380@163.com
+ *  * 郭诗瑶
  *
  */
 
@@ -35,7 +35,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 /**
- * @author 汪旭辉
+ * @author 郭诗瑶
  * @date 2020年5月9日
  * @readme TODO 使用该工具前保证代码均已提交,否则reset会丢失代码
  */
@@ -83,7 +83,7 @@ public class GitUtilsV2 {
      * 打开仓库
      *
      * @return
-     * @author 汪旭辉
+     * @author 郭诗瑶
      * @date 2020-7-14
      * @readme TODO
      */
@@ -117,7 +117,7 @@ public class GitUtilsV2 {
      *
      * @param gitv2
      * @return
-     * @author 汪旭辉
+     * @author 郭诗瑶
      * @date 2020-7-14
      * @readme TODO
      */
@@ -135,7 +135,7 @@ public class GitUtilsV2 {
      *
      * @param branch
      * @return
-     * @author 汪旭辉
+     * @author 郭诗瑶
      * @date 2020-7-14
      * @readme TODO
      */
@@ -280,7 +280,7 @@ public class GitUtilsV2 {
      *
      * @param url
      * @return
-     * @author 汪旭辉
+     * @author 郭诗瑶
      * @date 2020-7-14
      * @readme TODO
      * @deprecated 改为使用 {@link #init(String, boolean)}
@@ -296,7 +296,7 @@ public class GitUtilsV2 {
      * @param checkout mark
      * @param url
      * @return
-     * @author 汪旭辉
+     * @author 郭诗瑶
      * @date 2020-7-14
      * @readme TODO
      */
@@ -327,7 +327,7 @@ public class GitUtilsV2 {
      *
      * @param branch
      * @return
-     * @author 汪旭辉
+     * @author 郭诗瑶
      * @date 2020-7-14
      * @readme TODO
      */
@@ -357,7 +357,7 @@ public class GitUtilsV2 {
      * @param committag   TODO
      * @param branch
      * @return
-     * @author 汪旭辉
+     * @author 郭诗瑶
      * @date 2020-7-14
      * @readme TODO
      */
@@ -387,7 +387,7 @@ public class GitUtilsV2 {
      *
      * @param branch
      * @return
-     * @author 汪旭辉
+     * @author 郭诗瑶
      * @date 2020-7-14
      * @readme TODO
      */
@@ -410,7 +410,7 @@ public class GitUtilsV2 {
      *
      * @param branch
      * @return
-     * @author 汪旭辉
+     * @author 郭诗瑶
      * @date 2020-7-14
      * @readme TODO
      */
@@ -437,7 +437,7 @@ public class GitUtilsV2 {
      * @param branch
      * @param force
      * @return
-     * @author 汪旭辉
+     * @author 郭诗瑶
      * @date 2020-7-14
      * @readme TODO
      * @deprecated 改为使用 {@link #push(String, int)}
@@ -454,7 +454,7 @@ public class GitUtilsV2 {
      * @param timeout mark
      * @param force
      * @return
-     * @author 汪旭辉
+     * @author 郭诗瑶
      * @date 2020-7-14
      * @readme TODO
      */
@@ -479,7 +479,7 @@ public class GitUtilsV2 {
      * @param sourceBranch
      * @param targetBranch
      * @return
-     * @author 汪旭辉
+     * @author 郭诗瑶
      * @date 2020-7-14
      * @readme TODO
      */

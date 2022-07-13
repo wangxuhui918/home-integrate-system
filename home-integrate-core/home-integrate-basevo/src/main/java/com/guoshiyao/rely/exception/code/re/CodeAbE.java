@@ -4,7 +4,7 @@
  *
  *  * Copyright (c) 2022
  *  * http://license.coscl.org.cn/MulanPSL2
- *  * 郭诗瑶 18671020380@163.com
+ *  * 郭诗瑶
  *
  */
 
@@ -19,7 +19,7 @@ import lombok.Data;
 /**
  * 消息码处理的基础实现类
  *
- * @author 汪旭辉
+ * @author 郭诗瑶
  * @date 2022年1月21日
  * @readme
  */
@@ -42,7 +42,7 @@ public class CodeAbE implements CodeAb {
      * 内置消息码成功
      *
      * @return
-     * @author 汪旭辉
+     * @author 郭诗瑶
      * @date 2022年1月21日
      * @readme
      */
@@ -55,7 +55,7 @@ public class CodeAbE implements CodeAb {
      *
      * @param text
      * @return
-     * @author 汪旭辉
+     * @author 郭诗瑶
      * @date 2022年1月21日
      * @readme
      */
@@ -67,7 +67,7 @@ public class CodeAbE implements CodeAb {
      * 内置消息码异常
      *
      * @return
-     * @author 汪旭辉
+     * @author 郭诗瑶
      * @date 2022年1月21日
      * @readme
      */
@@ -80,7 +80,7 @@ public class CodeAbE implements CodeAb {
      *
      * @param text
      * @return
-     * @author 汪旭辉
+     * @author 郭诗瑶
      * @date 2022年1月21日
      * @readme
      */
@@ -93,7 +93,7 @@ public class CodeAbE implements CodeAb {
      * 内置消息码异常
      *
      * @return
-     * @author 汪旭辉
+     * @author 郭诗瑶
      * @date 2022年1月21日
      * @readme
      */
@@ -106,7 +106,7 @@ public class CodeAbE implements CodeAb {
      *
      * @param text
      * @return
-     * @author 汪旭辉
+     * @author 郭诗瑶
      * @date 2022年1月21日
      * @readme
      */

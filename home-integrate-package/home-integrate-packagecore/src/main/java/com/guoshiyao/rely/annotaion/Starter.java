@@ -4,7 +4,7 @@
  *
  *  * Copyright (c) 2022
  *  * http://license.coscl.org.cn/MulanPSL2
- *  * 郭诗瑶 18671020380@163.com
+ *  * 郭诗瑶
  *
  */
 
@@ -49,7 +49,7 @@ public @interface Starter {
      * 需要排除自动加载的插件
      *
      * @return
-     * @author 汪旭辉
+     * @author 郭诗瑶
      * @date 2021年12月6日
      * @readme
      */
@@ -61,7 +61,7 @@ public @interface Starter {
      * 如果不传ServletComponentScan中默认扫描mainClass所在包
      *
      * @return
-     * @author 汪旭辉
+     * @author 郭诗瑶
      * @date 2021年12月14日
      * @readme
      */
@@ -73,7 +73,7 @@ public @interface Starter {
      * 当前所在环境,不指定则自动识别环境变量
      *
      * @return
-     * @author 汪旭辉
+     * @author 郭诗瑶
      * @date 2021年12月1日
      * @readme
      */
@@ -88,7 +88,7 @@ public @interface Starter {
      * 项目唯一标志
      *
      * @return
-     * @author 汪旭辉
+     * @author 郭诗瑶
      * @date 2021年9月27日
      * @readme
      */
@@ -99,7 +99,7 @@ public @interface Starter {
      * 可以在com.guoshiyao.rely.message.i18n.I18n枚举类中选择
      *
      * @return
-     * @author 汪旭辉
+     * @author 郭诗瑶
      * @date 2021年9月27日
      * @readme
      */

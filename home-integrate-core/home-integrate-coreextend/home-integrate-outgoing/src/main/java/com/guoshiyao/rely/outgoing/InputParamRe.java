@@ -4,7 +4,7 @@
  *
  *  * Copyright (c) 2022
  *  * http://license.coscl.org.cn/MulanPSL2
- *  * 郭诗瑶 18671020380@163.com
+ *  * 郭诗瑶 
  *
  */
 
@@ -34,7 +34,7 @@ public class InputParamRe<G> extends InputParamAb<cn.hutool.json.JSONObject> {
      * 获取到的目标数据为空则抛出异常
      *
      * @param exab
-     * @author 汪旭辉
+     * @author 郭诗瑶
      * @date 2021年12月8日
      * @readme
      */

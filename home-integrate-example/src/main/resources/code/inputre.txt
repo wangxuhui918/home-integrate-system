@@ -9,7 +9,7 @@
  *
  *  * Copyright (c) 2022
  *  * http://license.coscl.org.cn/MulanPSL2
- *  * 汪旭辉 wangxuhui918@163.com
+ *  * 郭诗瑶 wangxuhui918@163.com
  *
  */
 
@@ -22,7 +22,7 @@ import com.guoshiyao.rely.auth.UserRe;
  * 入参基类
  *
  * @param <D>
- * @author 汪旭辉
+ * @author 郭诗瑶
  * @date 2021年9月27日
  * @readme
  */
@@ -109,7 +109,7 @@ public abstract class InputParamAb<D> {
  *
  *  * Copyright (c) 2022
  *  * http://license.coscl.org.cn/MulanPSL2
- *  * 汪旭辉 wangxuhui918@163.com
+ *  * 郭诗瑶 wangxuhui918@163.com
  *
  */
 
@@ -139,7 +139,7 @@ public class InputParamRe<G> extends InputParamAb<cn.hutool.json.JSONObject> {
      * 获取到的目标数据为空则抛出异常
      *
      * @param exab
-     * @author 汪旭辉
+     * @author 郭诗瑶
      * @date 2021年12月8日
      * @readme
      */

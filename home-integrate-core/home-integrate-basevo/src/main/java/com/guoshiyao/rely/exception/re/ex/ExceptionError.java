@@ -4,7 +4,7 @@
  *
  *  * Copyright (c) 2022
  *  * http://license.coscl.org.cn/MulanPSL2
- *  * 郭诗瑶 18671020380@163.com
+ *  * 郭诗瑶 
  *
  */
 
@@ -17,7 +17,7 @@ import com.guoshiyao.rely.exception.code.re.CodeAbE;
 /**
  * 文本异常抛出
  *
- * @author 汪旭辉
+ * @author 郭诗瑶
  * @date 2022年1月21日
  * @readme
  */
@@ -27,7 +27,7 @@ public class ExceptionError extends ExceptionAb {
     /**
      * @param text   错误文本?你好!
      * @param format 格式化参数: 张三
-     * @author 汪旭辉
+     * @author 郭诗瑶
      * @date 2022年1月21日
      * @readme mark 入参为[?你好!] [张三] 格式化结果为 [张三你好!]
      */

@@ -4,7 +4,7 @@
  *
  *  * Copyright (c) 2022
  *  * http://license.coscl.org.cn/MulanPSL2
- *  * 郭诗瑶 18671020380@163.com
+ *  * 郭诗瑶 
  *
  */
 
@@ -20,7 +20,7 @@ import java.util.Date;
 /**
  * 主键生成器,通过区分ID机器号实现分布式主键重复[com.guoshiyao.snowflake.utils.IdUtils.workerId]
  *
- * @author 汪旭辉
+ * @author 郭诗瑶
  * @date 2021年12月6日
  * @readme
  */
