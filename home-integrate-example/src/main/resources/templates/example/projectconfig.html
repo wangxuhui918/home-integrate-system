@@ -1,0 +1,71 @@
+<!--
+  ~ /*
+  ~  * Copyright (c) 2022
+  ~  * http://license.coscl.org.cn/MulanPSL2
+  ~  * 汪旭辉 wangxuhui918@163.com
+  ~  */
+  -->
+
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <th:block th:include="include :: header('工程变量使用说明')"/>
+</head>
+<body class="gray-bg">
+<div class="wrapper wrapper-content fadeInRight">
+    <div class="row">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5>工程变量使用说明</h5>
+            </div>
+            <div class="ibox-content">
+                <p>步骤如下</p>
+                <div class="text-left">
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal5"
+                            onclick="readfile('myModal5','code/projectconfig.txt')">工程内置变量
+                    </button>
+                </div>
+
+                <div class="modal inmodal fade" id="myModal5" tabindex="-1" role="dialog" aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-body">
+                                <p>
+                                <pre id="myModal5pre"
+                                     class="content  white-space: pre-wrap;white-space: -moz-pre-wrap; white-space: -pre-wrap; white-space: -o-pre-wrap;*word-wrap: break-word;*white-space : normal ;">
+                                </pre>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+
+            </div>
+        </div>
+    </div>
+
+</div>
+</div>
+<th:block th:include="include :: footer"/>
+</body>
+</html>
+<script th:inline="javascript">
+
+
+    function readfile(id, filepath) {
+        $.ajax({
+            cache: true,
+            type: "POST",
+            url: ctx + "example/readCodeFile",
+            data: {'fileResourcePath': filepath},
+            async: false,
+            success: function (data) {
+                $("#" + id + "pre").text(data.data.value);
+            }
+        });
+    }
+</script>

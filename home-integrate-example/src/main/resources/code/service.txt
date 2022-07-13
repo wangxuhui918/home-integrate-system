@@ -1,0 +1,68 @@
+package cn.vesan.code.service;
+
+import cn.vesan.code.api.vo.BusinFieldsVo;
+
+import java.util.HashMap;
+
+/**
+ * 业务明细(BusinFields)表服务接口
+ *
+ * @author 医惠科技有限公司
+ * @since 2022-03-18 15:19:10
+ */
+public interface BusinFieldsService {
+
+    /**
+     * 通过ID查询单条数据
+     *
+     * @param fieldId 主键
+     * @return 实例对象
+     */
+    BusinFieldsVo queryById(Long fieldId);
+
+    /**
+     * 分页查询
+     *
+     * @param businFields 筛选条件
+     * @param pageRequest 分页对象
+     * @return 查询结果
+     */
+    HashMap<String, Object> queryByPage(BusinFieldsVo businFields, cn.hutool.db.Page pageRequest);
+
+    /**
+     * 新增数据
+     *
+     * @param businFields 实例对象
+     * @return 实例对象
+     */
+    int insert(BusinFieldsVo businFields);
+
+    /**
+     * 修改数据
+     *
+     * @param businFields 实例对象
+     * @return 实例对象
+     */
+    BusinFieldsVo update(BusinFieldsVo businFields);
+
+    /**
+     * 通过主键删除数据
+     *
+     * @param fieldId 主键
+     * @return 是否成功
+     */
+    boolean deleteById(Long fieldId);
+
+
+    //-----------------------以上为默认方法,新方法请写在下面------------------------//
+
+}
+
+
+
+
+注:
+1. 该类必须为接口
+2. 默认规则为 src/../service/**/*Service.java
+3. Vo和Domain分别对应表单对象以及数据库持久对象,可在此层进行转换
+4. 建议相应的公共业务逻辑块可单独拆分service

@@ -116,6 +116,8 @@ public class Page<T> {
         this.pageSize = pageSize;
         this.calcOffset();
         this.calcLimit();
+        rowbounds = new RowBounds(this.getOffset(), this.getLimit());
+
     }
 
     /**

@@ -1,0 +1,27 @@
+/*
+ *
+ *  * Copyright (c) 2022
+ *  * http://license.coscl.org.cn/MulanPSL2
+ *  * 汪旭辉 wangxuhui918@163.com
+ *
+ */
+package com.guoshiyao.example;
+
+import com.guoshiyao.rely.annotaion.Starter;
+import org.springframework.boot.SpringApplication;
+
+@Starter(idkey = "home-example-ewell")
+public class ExampleApplication {
+    public static void main(String[] args) {
+        SpringApplication.run(ExampleApplication.class, args);
+    }
+}
+
+
+注,Starter属性说明:
+1. idkey 必填项,工程唯一ID,可用识别 阿波罗,日志打印 等.....
+2. scanBasePackages 扫描包,默认为Starter启动类所在包路径
+3. runEnv 环境变量,可配合 home-{env}.ini 使用,一般为空,自动根据-Denv识别
+4. configEnv 可选环境变量,默认为{"dev", "uat", "pro"},配置文件home-{env}.ini根据该集合生成
+5. i18n message-{i18n}.xml 根据该属性生成
+6. 特殊说明: 可自定义env变量 home-{env}.ini 文件,jar模式下根据-Denv识别

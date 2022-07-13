@@ -1,0 +1,43 @@
+ajax请求案例:
+
+$.ajax({
+            cache: true,
+            type: "POST",
+            dataType: "json",
+            contentType: "application/json",
+            url: ctx + "example/example",
+            data: JSON.stringify({
+                "data": {
+                    "additionalProp1": {},
+                    "additionalProp2": {},
+                    "additionalProp3": {}
+                },
+                "i18n": "string",
+                "inputData": {
+                    "demo_id": $("#demo_id").val()
+                },
+                "pageNum": "string",
+                "pageSize": "string",
+                "userRe": {}
+            }),
+            async: false,
+            success: function (data) {
+                alert(JSON.stringify((data)));
+            }
+        });
+
+
+后端出入参结构:
+1. 泛型T为DemoVo,可根据getInputData获取泛型
+2. 需要使用@RequestBody标注
+
+    @ApiOperation(value = "样例", notes = " ")
+    @RequestMapping(value = "/example/example", method = {RequestMethod.POST, RequestMethod.GET})
+    @ResponseBody
+    public Object example(@RequestBody InputParamRe<DemoVo> input) {
+        return input.getInputData().getDemo_id();
+    }
+
+反参数据:
+
+    {"i18n":"cn","codeBody":{"code":"111111","i18n":"cn","type":"true","text":"业务处理成功","className":"com.guoshiyao.rely.exception.code.re.CodeAbE"},"data":{"value":"sfdsfs"}}

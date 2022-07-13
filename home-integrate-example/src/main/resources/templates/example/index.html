@@ -1,0 +1,105 @@
+<!--
+  ~ /*
+  ~  * Copyright (c) 2022
+  ~  * http://license.coscl.org.cn/MulanPSL2
+  ~  * 汪旭辉 wangxuhui918@163.com
+  ~  */
+  -->
+
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <th:block th:include="include :: header('帆有云后端安装')"/>
+</head>
+<body class="gray-bg">
+<div class="wrapper wrapper-content fadeInRight">
+    <div class="row">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5>帆有云后端安装</h5>
+            </div>
+
+
+            <div class="ibox-content">
+                <p>安装步骤如下</p>
+                <div class="text-left">
+                    <button type="button" class="btn btn-primary" onclick="redirect('install')">安装
+                    </button>
+                    <button type="button" class="btn btn-primary" onclick="redirect('config')">项目新建-基础配置说明
+                    </button>
+                    <button type="button" class="btn btn-primary" onclick="redirect('projectconfig')">项目新建-项目配置说明
+                    </button>
+                    <button type="button" class="btn btn-primary" onclick="redirect('vodomaindev')">项目新建-表单,领域对象创建
+                    </button>
+                    <button type="button" class="btn btn-primary" onclick="redirect('daodev')">项目新建-持久层
+                    </button>
+                    <button type="button" class="btn btn-primary" onclick="redirect('servicedev')">项目新建-业务实现层
+                    </button>
+                    <button type="button" class="btn btn-primary" onclick="redirect('apidev')">项目新建-Api接口层
+                    </button>
+                </div>
+            </div>
+
+
+            <div class="ibox-content">
+                <p>输入输出</p>
+                <div class="text-left">
+                    <button type="button" class="btn btn-primary" onclick="redirect('input')">请求输入-[可定制]
+                    </button>
+                    <button type="button" class="btn btn-primary" onclick="redirect('exception')">异常捕获-[可定制]
+                    </button>
+                    <button type="button" class="btn btn-primary" onclick="redirect('message')">消息码使用-[可定制]
+                    </button>
+                    <button type="button" class="btn btn-primary" onclick="redirect('output')">数据输出-[可定制]
+                    </button>
+                    <!--                    <button type="button" class="btn btn-primary" onclick="redirect('output')">SPI使用-[可定制]-->
+                    <!--                    </button>-->
+                    <!--                    <button type="button" class="btn btn-primary" onclick="redirect('output')">部分常用注解以及对应使用方法说明-->
+                    <!--                    </button>-->
+                </div>
+            </div>
+
+            <div class="ibox-content">
+                <p>常用类/常用方法</p>
+                <div class="text-left">
+                    <button type="button" class="btn btn-primary" onclick="redirect('')">NO
+                    </button>
+                </div>
+            </div>
+
+            <div class="ibox-content">
+                <p>内置功能集</p>
+                <div class="text-left">
+                    <button type="button" class="btn btn-primary" onclick="redirect('minio')">Minio[文件上传下载使用]
+                    </button>
+                </div>
+            </div>
+
+            <div class="ibox-content">
+                <p>常用工具类</p>
+                <div class="text-left">
+                    <a type="button" class="btn btn-primary" href="https://hutool.cn/">工具集-hutools
+                    </a>
+                    <a type="button" class="btn btn-primary" href="http://ifeve.com/google-guava/">工具集-guava
+                    </a>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+</div>
+</div>
+<th:block th:include="include :: footer"/>
+</body>
+</html>
+<script th:inline="javascript">
+
+
+    function redirect(url) {
+        window.location.href = ctx + "example/" + url;
+        // alert(ctx + "example/" + url);
+        // $.modal.open(ctx + "example/" + url);
+    }
+</script>

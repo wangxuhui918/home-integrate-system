@@ -30,8 +30,9 @@ public class CodeAbE implements CodeAb {
     private String type;
     private String text;
     private String className;
-    public static  final String SUCCESS = "true";
-    public static  final String ERROR = "false";
+    public static final String SUCCESS = "true";
+    public static final String ERROR = "false";
+    public static final String WARN = "warn";
 
     public CodeAbE() {
         super();
@@ -85,6 +86,32 @@ public class CodeAbE implements CodeAb {
      */
     public static CodeAbE getError(String text, String... format) {
         return getBuiltinCode(ERROR, I18n.defaultI18n.getI18nCode(), "000000", text, format);
+    }
+
+
+    /**
+     * 内置消息码异常
+     *
+     * @return
+     * @author 汪旭辉
+     * @date 2022年1月21日
+     * @readme
+     */
+    public static CodeAbE getWarn() {
+        return getWarn("业务处理失败");
+    }
+
+    /**
+     * 内置自定义消息码异常
+     *
+     * @param text
+     * @return
+     * @author 汪旭辉
+     * @date 2022年1月21日
+     * @readme
+     */
+    public static CodeAbE getWarn(String text, String... format) {
+        return getBuiltinCode(WARN, I18n.defaultI18n.getI18nCode(), "222222", text, format);
     }
 
 

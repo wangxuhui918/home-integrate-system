@@ -10,6 +10,7 @@
 
 package com.guoshiyao.rely.systemconfig;
 
+import cn.hutool.core.io.resource.ResourceUtil;
 import cn.hutool.json.JSONUtil;
 import com.guoshiyao.rely.line.Line;
 import com.guoshiyao.rely.log.base.LoggerBaseAb;
@@ -23,7 +24,6 @@ public class StartPingService implements CommandLineRunner {
      */
     @Override
     public void run(String... args) {
-
         LoggerBaseAb.info("用户目录 : {} [key]:[{}] ", Line.userHomeDir, "Line.userHomeDir");
         LoggerBaseAb.info("运行用户名 : {} [key]:[{}] ", Line.systemUserName, "Line.systemUserName");
         LoggerBaseAb.info("核心包 : {} [key]:[{}] ", Line.corePacket, "Line.corePacket");
@@ -52,6 +52,7 @@ public class StartPingService implements CommandLineRunner {
         LoggerBaseAb.info("默认jdbc_jar包路径 : {} [key]:[{}] ", Line.main_jdbc_jar_fullpath, "Line.main_jdbc_jar_fullpath");
         LoggerBaseAb.info("swagger 地址 : {} ", "http://127.0.0.1:" + Line.setting.get("system.servlet.port") + "/swagger-ui/index.html");
         LoggerBaseAb.info("帆有云系统启动完成!!");
-
+        System.out.println(ResourceUtil.readUtf8Str("ban.txt"));
     }
 }
+
