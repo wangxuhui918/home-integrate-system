@@ -55,3 +55,4 @@ public class StartPingService implements CommandLineRunner {
         System.out.println(ResourceUtil.readUtf8Str("ban.txt"));
     }
 }
+

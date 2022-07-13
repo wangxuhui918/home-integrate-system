@@ -11,6 +11,7 @@ package com.guoshiyao.rely.coreconf.re.homeR100;
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.io.resource.ResourceUtil;
 import cn.hutool.poi.excel.ExcelUtil;
+import com.guoshiyao.rely.base.BaseEv;
 import com.guoshiyao.rely.coreannotation.rule.RuleAnnotation;
 import com.guoshiyao.rely.coreconf.ab.HomeCoreConfAb;
 import com.guoshiyao.rely.coreconf.vo.ModelConfigInfoVo;
@@ -31,9 +32,9 @@ import java.util.stream.Collectors;
 @RuleAnnotation
 public class R001HomeExcel implements HomeCoreConfAb {
 
-    private final static String homedbpath = "homedb.xls";
+    private final static String homedbpath = BaseEv.HOME_TAG+"db.xls";
 
-    private final static String homedbextendspath = "homedb-1.xls";
+    private final static String homedbextendspath = BaseEv.HOME_TAG+"db-1.xls";
 
     public final static HashMap<String, List<Map<String, Object>>> allExcelModelValues = new HashMap<>();
 

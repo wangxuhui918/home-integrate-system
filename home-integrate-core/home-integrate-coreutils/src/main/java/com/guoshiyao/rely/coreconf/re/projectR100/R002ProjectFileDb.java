@@ -16,6 +16,7 @@ import cn.hutool.core.util.CharsetUtil;
 import cn.hutool.core.util.ClassUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.setting.Setting;
+import com.guoshiyao.rely.base.BaseEv;
 import com.guoshiyao.rely.coreannotation.rule.RuleAnnotation;
 import com.guoshiyao.rely.coreconf.ab.ProjectCoreConfAb;
 import com.guoshiyao.rely.coreconf.utils.HomeCoreConfUtils;
@@ -60,7 +61,7 @@ public class R002ProjectFileDb implements ProjectCoreConfAb {
         try {
             {
                 allEnvSetting = new Setting();
-                List<URI> listUrl = ResourceFindUtils.findUri("home-*.ini");//Line.env.getName()
+                List<URI> listUrl = ResourceFindUtils.findUri(BaseEv.HOME_TAG + "-*.ini");//Line.env.getName()
                 for (int i = 0; i < listUrl.size(); i++) {
                     LoggerBaseAb.info("读取到[{}]配置文件", listUrl.get(i).toString());
                     Setting o = new Setting(listUrl.get(i).toURL(), CharsetUtil.CHARSET_UTF_8, true);
@@ -210,7 +211,7 @@ public class R002ProjectFileDb implements ProjectCoreConfAb {
                     }
                 }
                 {//写入文件
-                    String file = Line.projectresourcepath + File.separator + "home-" + envName + ".ini";
+                    String file = Line.projectresourcepath + File.separator + BaseEv.HOME_TAG+"-" + envName + ".ini";
                     if (!FileUtil.exist(file)) {
                         FileUtil.writeUtf8String(envstr.toString(), file);
                     }
