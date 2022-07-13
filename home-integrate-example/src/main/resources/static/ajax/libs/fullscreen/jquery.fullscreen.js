@@ -1,7 +1,9 @@
-/**
- * 基于jQuery FullScreen修改
- * 新增支持IE全屏显示
- * Copyright (c) 2019 ruoyi
+/*
+ *
+ *  * Copyright (c) 2022
+ *  * http://license.coscl.org.cn/MulanPSL2
+ *  * 郭诗瑶 18671020380@163.com
+ *
  */
 (function(jQuery) {
     

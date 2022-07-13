@@ -1,4 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+  ~ /*
+  ~  * Copyright (c) 2022
+  ~  * http://license.coscl.org.cn/MulanPSL2
+  ~  * 郭诗瑶 18671020380@163.com
+  ~  */
+  -->
+
 <message>
 
 	<member code="DEMO01" conmtext="客户基础数据维护成功" type="true" />

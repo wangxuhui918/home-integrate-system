@@ -1,14 +1,9 @@
 /*
- * JQuery zTree core 3.5.12
- * http://zTree.me/
  *
- * Copyright (c) 2010 Hunter.z
+ *  * Copyright (c) 2022
+ *  * http://license.coscl.org.cn/MulanPSL2
+ *  * 郭诗瑶 18671020380@163.com
  *
- * Licensed same as jquery - MIT License
- * http://www.opensource.org/licenses/mit-license.php
- *
- * email: hunter.z@263.net
- * Date: 2013-03-11
  */
 (function($){
 	var settings = {}, roots = {}, caches = {},

@@ -1,14 +1,9 @@
-/*!
- * bootstrap-fileinput v5.2.4
- * http://plugins.krajee.com/file-input
+/*
  *
- * Krajee default styling for bootstrap-fileinput.
+ *  * Copyright (c) 2022
+ *  * http://license.coscl.org.cn/MulanPSL2
+ *  * 郭诗瑶 18671020380@163.com
  *
- * Author: Kartik Visweswaran
- * Copyright: 2014 - 2021, Kartik Visweswaran, Krajee.com
- *
- * Licensed under the BSD-3-Clause
- * https://github.com/kartik-v/bootstrap-fileinput/blob/master/LICENSE.md
  */
 
 .file-loading input[type=file],

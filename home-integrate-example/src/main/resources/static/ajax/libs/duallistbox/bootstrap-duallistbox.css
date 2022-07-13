@@ -1,4 +1,12 @@
 /*
+ *
+ *  * Copyright (c) 2022
+ *  * http://license.coscl.org.cn/MulanPSL2
+ *  * 郭诗瑶 18671020380@163.com
+ *
+ */
+
+/*
  *  Bootstrap Duallistbox - v3.0.9
  *  A responsive dual listbox widget optimized for Twitter Bootstrap. It works on all modern browsers and on touch devices.
  *  https://www.virtuosoft.eu/code/bootstrap-duallistbox/

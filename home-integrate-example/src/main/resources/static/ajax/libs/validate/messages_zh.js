@@ -1,4 +1,12 @@
 /*
+ *
+ *  * Copyright (c) 2022
+ *  * http://license.coscl.org.cn/MulanPSL2
+ *  * 郭诗瑶 18671020380@163.com
+ *
+ */
+
+/*
  * Translated default messages for the jQuery validation plugin.
  * Locale: ZH (Chinese, 中文 (Zhōngwén), 汉语, 漢語)
  */

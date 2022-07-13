@@ -1,4 +1,12 @@
 /*
+ *
+ *  * Copyright (c) 2022
+ *  * http://license.coscl.org.cn/MulanPSL2
+ *  * 郭诗瑶 18671020380@163.com
+ *
+ */
+
+/*
 Flot plugin for rendering pie charts. The plugin assumes the data is
 coming is as a single data value for each series, and each of those
 values is a positive value or zero (negative numbers don't make
