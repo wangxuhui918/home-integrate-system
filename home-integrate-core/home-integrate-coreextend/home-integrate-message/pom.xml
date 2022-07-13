@@ -14,7 +14,7 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.guoshiyao.rely</groupId>
-        <version>9.0.10-RELEASE</version>
+        <version>9.0.11-RELEASE</version>
         <artifactId>home-integrate-coreextend</artifactId>
     </parent>
     <artifactId>home-integrate-message</artifactId>
@@ -24,7 +24,7 @@
     <dependencies>
         <dependency>
             <groupId>com.guoshiyao.rely</groupId>
-            <version>9.0.10-RELEASE</version>
+            <version>9.0.11-RELEASE</version>
             <artifactId>home-integrate-coreapi</artifactId>
 
         </dependency>
