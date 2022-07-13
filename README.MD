@@ -366,4 +366,3 @@ home.extend.readme = 示例值
 
 # 捐赠计划
 
-![img.png](img.png)
