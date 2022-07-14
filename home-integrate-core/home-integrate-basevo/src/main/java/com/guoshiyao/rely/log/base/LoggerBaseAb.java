@@ -24,7 +24,7 @@ public interface LoggerBaseAb {
 
 
 
-    static void debug(String str, String... strs) {
+    static void debug(String str, Object... strs) {
         if (LoggerBaseUtils.loggerAb != null) {
             LoggerBaseUtils.loggerAb.debug(str, strs);
         } else {
@@ -32,7 +32,7 @@ public interface LoggerBaseAb {
         }
     }
 
-    static void info(String str, String... strs) {
+    static void info(String str, Object... strs) {
         if (LoggerBaseUtils.loggerAb != null) {
             LoggerBaseUtils.loggerAb.info(str, strs);
         } else {
@@ -40,7 +40,7 @@ public interface LoggerBaseAb {
         }
     }
 
-    static void warn(String str, String... strs) {
+    static void warn(String str, Object... strs) {
         if (LoggerBaseUtils.loggerAb != null) {
             LoggerBaseUtils.loggerAb.warning(str, strs);
         } else {
@@ -48,7 +48,7 @@ public interface LoggerBaseAb {
         }
     }
 
-    static void err(String str, String... strs) {
+    static void err(String str, Object... strs) {
         if (LoggerBaseUtils.loggerAb != null) {
             LoggerBaseUtils.loggerAb.error(str, strs);
         } else {
