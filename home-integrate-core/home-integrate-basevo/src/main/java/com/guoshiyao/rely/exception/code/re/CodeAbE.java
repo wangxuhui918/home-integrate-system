@@ -13,6 +13,7 @@ package com.guoshiyao.rely.exception.code.re;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.json.JSONUtil;
 import com.guoshiyao.rely.exception.code.CodeAb;
+import com.guoshiyao.rely.exception.code.re.vo.DefaultCode;
 import com.guoshiyao.rely.message.i18n.I18n;
 import lombok.Data;
 
@@ -30,9 +31,6 @@ public class CodeAbE implements CodeAb {
     private String type;
     private String text;
     private String className;
-    public static final String SUCCESS = "true";
-    public static final String ERROR = "false";
-    public static final String WARN = "warn";
 
     public CodeAbE() {
         super();
@@ -47,7 +45,7 @@ public class CodeAbE implements CodeAb {
      * @readme
      */
     public static CodeAbE getinfo() {
-        return getinfo("业务处理成功");
+        return getinfo(DefaultCode.SUCCESS.getMent());
     }
 
     /**
@@ -60,7 +58,7 @@ public class CodeAbE implements CodeAb {
      * @readme
      */
     public static CodeAbE getinfo(String text, String... format) {
-        return getBuiltinCode(SUCCESS, I18n.defaultI18n.getI18nCode(), "111111", text, format);
+        return getBuiltinCode(DefaultCode.SUCCESS.getCode(), I18n.defaultI18n.getI18nCode(), DefaultCode.SUCCESS.getName(), text, format);
     }
 
     /**
@@ -72,7 +70,7 @@ public class CodeAbE implements CodeAb {
      * @readme
      */
     public static CodeAbE getError() {
-        return getError("业务处理失败");
+        return getError(DefaultCode.ERROR.getMent());
     }
 
     /**
@@ -85,7 +83,7 @@ public class CodeAbE implements CodeAb {
      * @readme
      */
     public static CodeAbE getError(String text, String... format) {
-        return getBuiltinCode(ERROR, I18n.defaultI18n.getI18nCode(), "000000", text, format);
+        return getBuiltinCode(DefaultCode.ERROR.getCode(), I18n.defaultI18n.getI18nCode(), DefaultCode.ERROR.getName(), text, format);
     }
 
 
@@ -98,7 +96,7 @@ public class CodeAbE implements CodeAb {
      * @readme
      */
     public static CodeAbE getWarn() {
-        return getWarn("业务处理失败");
+        return getWarn(DefaultCode.WARN.getMent());
     }
 
     /**
@@ -111,7 +109,7 @@ public class CodeAbE implements CodeAb {
      * @readme
      */
     public static CodeAbE getWarn(String text, String... format) {
-        return getBuiltinCode(WARN, I18n.defaultI18n.getI18nCode(), "222222", text, format);
+        return getBuiltinCode(DefaultCode.WARN.getCode(), I18n.defaultI18n.getI18nCode(), DefaultCode.WARN.getName(), text, format);
     }
 
 
