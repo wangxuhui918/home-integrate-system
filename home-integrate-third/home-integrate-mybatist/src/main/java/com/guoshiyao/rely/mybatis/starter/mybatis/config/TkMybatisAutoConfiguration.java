@@ -4,7 +4,7 @@
  *
  *  * Copyright (c) 2022
  *  * http://license.coscl.org.cn/MulanPSL2
- *  * 郭诗瑶 
+ *  * 汪旭辉
  *
  */
 
@@ -29,7 +29,7 @@ import javax.sql.DataSource;
 /**
  * 声明扫描第三方包
  *
- * @author 郭诗瑶
+ * @author 汪旭辉
  * @date 2018年7月10日
  * @readme TODO
  */

@@ -4,7 +4,7 @@
  *
  *  * Copyright (c) 2022
  *  * http://license.coscl.org.cn/MulanPSL2
- *  * 郭诗瑶 
+ *  * 汪旭辉
  *
  */
 
@@ -43,7 +43,7 @@ public class MinIoUtils {
      * @param met
      * @param deletetemplocalfile null,true 删除 处理完成后删除本地文件
      * @param deleteserverfile    null,false 不删除 处理完成后删除服务端文件
-     * @author 郭诗瑶
+     * @author 汪旭辉
      * @date 2022年2月22日
      * @readme
      */
@@ -116,7 +116,7 @@ public class MinIoUtils {
      * @param inputstream
      * @param deletelocalpath
      * @return
-     * @author 郭诗瑶
+     * @author 汪旭辉
      * @date 2022年2月22日
      * @readme
      */

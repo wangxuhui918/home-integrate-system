@@ -5,7 +5,7 @@
  *
  *  * Copyright (c) 2022
  *  * http://license.coscl.org.cn/MulanPSL2
- *  * 郭诗瑶 
+ *  * 汪旭辉 
  *
  */
 
@@ -16,7 +16,7 @@ import org.springframework.context.annotation.ImportSelector;
 import org.springframework.core.type.AnnotationMetadata;
 
 /**
- * @author 郭诗瑶
+ * @author 汪旭辉
  * @date 2021年12月10日
  * @readme
  */

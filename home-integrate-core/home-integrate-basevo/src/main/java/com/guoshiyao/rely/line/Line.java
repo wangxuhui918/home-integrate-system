@@ -4,7 +4,7 @@
  *
  *  * Copyright (c) 2022
  *  * http://license.coscl.org.cn/MulanPSL2
- *  * 郭诗瑶 
+ *  * 汪旭辉
  *
  */
 
@@ -33,7 +33,7 @@ import java.util.*;
  * 中央配置
  * 所有的静态配置均写在这里
  *
- * @author 郭诗瑶
+ * @author 汪旭辉
  * @date 2021年9月27日
  * @readme
  */

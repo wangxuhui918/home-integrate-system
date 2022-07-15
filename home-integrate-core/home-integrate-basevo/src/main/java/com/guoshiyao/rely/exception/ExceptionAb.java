@@ -4,7 +4,7 @@
  *
  *  * Copyright (c) 2022
  *  * http://license.coscl.org.cn/MulanPSL2
- *  * 郭诗瑶
+ *  * 汪旭辉
  *
  */
 
@@ -20,7 +20,7 @@ import com.guoshiyao.rely.exception.re.ex.ExceptionError;
 /**
  * 框架项目基础异常类
  *
- * @author 郭诗瑶
+ * @author 汪旭辉
  * @date 2021年9月26日
  * @readme
  */
@@ -33,7 +33,7 @@ public abstract class ExceptionAb extends RuntimeException {
      *
      * @param <T>
      * @param code
-     * @author 郭诗瑶
+     * @author 汪旭辉
      * @date 2021年9月27日
      * @readme mark
      */
@@ -47,7 +47,7 @@ public abstract class ExceptionAb extends RuntimeException {
      * 获取异常消息内容的方法
      *
      * @return
-     * @author 郭诗瑶
+     * @author 汪旭辉
      * @date 2021年9月27日
      * @readme
      */
@@ -59,7 +59,7 @@ public abstract class ExceptionAb extends RuntimeException {
      * 获取异常消息内容的方法
      *
      * @return
-     * @author 郭诗瑶
+     * @author 汪旭辉
      * @date 2021年9月27日
      * @readme
      */

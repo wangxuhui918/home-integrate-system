@@ -4,7 +4,7 @@
  *
  *  * Copyright (c) 2022
  *  * http://license.coscl.org.cn/MulanPSL2
- *  * 郭诗瑶 
+ *  * 汪旭辉 
  *
  */
 
@@ -21,7 +21,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
- * @author 郭诗瑶
+ * @author 汪旭辉
  * @date 2021年12月17日
  * @readme
  */
@@ -34,7 +34,7 @@ public class LocalGit {
      *
      * @param gitdir
      * @throws Exception
-     * @author 郭诗瑶
+     * @author 汪旭辉
      * @date 2021年12月20日
      * @readme mark
      */
@@ -46,7 +46,7 @@ public class LocalGit {
      * 打开git本地对象
      *
      * @throws Exception
-     * @author 郭诗瑶
+     * @author 汪旭辉
      * @date 2021年12月20日
      * @readme
      */
@@ -67,7 +67,7 @@ public class LocalGit {
      * 每次执行完成后需要close,否则会导致下次无法打开,或文件被占用无法删除
      *
      * @throws GitAPIException
-     * @author 郭诗瑶
+     * @author 汪旭辉
      * @date 2021年12月20日
      * @readme
      */
@@ -81,7 +81,7 @@ public class LocalGit {
      * 获取本地Git仓库当前所在分支
      *
      * @return
-     * @author 郭诗瑶
+     * @author 汪旭辉
      * @date 2021年12月20日
      * @readme
      */
@@ -101,7 +101,7 @@ public class LocalGit {
      *
      * @param defaultBranchName
      * @param deleteBranchName
-     * @author 郭诗瑶
+     * @author 汪旭辉
      * @date 2021年12月20日
      * @readme
      */
@@ -121,7 +121,7 @@ public class LocalGit {
      * 使用本地origin/*分支检出指定分支
      *
      * @param branch
-     * @author 郭诗瑶
+     * @author 汪旭辉
      * @date 2021年12月20日
      * @readme
      */
@@ -150,7 +150,7 @@ public class LocalGit {
      * @param targetBranch
      * @param originReset  是否使用对应远端分支重置
      * @param committag    是否提交
-     * @author 郭诗瑶
+     * @author 汪旭辉
      * @date 2021年12月20日
      * @readme
      */
@@ -173,7 +173,7 @@ public class LocalGit {
      * 提交执行分支,强行添加文件以及提交(会添加未加入git index 的文件)
      *
      * @param branch
-     * @author 郭诗瑶
+     * @author 汪旭辉
      * @date 2021年12月20日
      * @readme
      */
@@ -196,7 +196,7 @@ public class LocalGit {
      *
      * @param sourceBranch
      * @param targetBranch
-     * @author 郭诗瑶
+     * @author 汪旭辉
      * @date 2021年12月20日
      * @readme
      */

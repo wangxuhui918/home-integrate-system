@@ -4,7 +4,7 @@
  *
  *  * Copyright (c) 2022
  *  * http://license.coscl.org.cn/MulanPSL2
- *  * 郭诗瑶
+ *  * 汪旭辉
  *
  */
 
@@ -19,7 +19,7 @@ import com.guoshiyao.rely.exception.code.re.CodeAbE;
 /**
  * 系统默认构造器
  *
- * @author 郭诗瑶
+ * @author 汪旭辉
  * @date 2021年9月28日
  * @readme
  */

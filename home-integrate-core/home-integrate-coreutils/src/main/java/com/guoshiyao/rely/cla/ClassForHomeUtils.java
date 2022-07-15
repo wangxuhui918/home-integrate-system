@@ -2,7 +2,7 @@
  *
  *  * Copyright (c) 2022
  *  * http://license.coscl.org.cn/MulanPSL2
- *  * 郭诗瑶 
+ *  * 汪旭辉
  *
  */
 
@@ -18,7 +18,7 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 /**
- * @author 郭诗瑶
+ * @author 汪旭辉
  * @date 2022/4/11
  * @readme
  */

@@ -4,7 +4,7 @@
  *
  *  * Copyright (c) 2022
  *  * http://license.coscl.org.cn/MulanPSL2
- *  * 郭诗瑶 
+ *  * 汪旭辉
  *
  */
 
@@ -48,7 +48,7 @@ public class CodeUtils {
     /**
      * 原始出参类转换为自定义出参类
      *
-     * @author 郭诗瑶
+     * @author 汪旭辉
      * @date 2021年9月28日
      * @readme
      * @param result

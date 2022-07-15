@@ -4,7 +4,7 @@
  *
  *  * Copyright (c) 2022
  *  * http://license.coscl.org.cn/MulanPSL2
- *  * 郭诗瑶
+ *  * 汪旭辉
  *
  */
 
@@ -29,7 +29,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
- * @author 郭诗瑶
+ * @author 汪旭辉
  * @date 2021年12月17日
  * @readme
  */
@@ -86,7 +86,7 @@ public class GitLabBean {
      *
      * @param git
      * @return
-     * @author 郭诗瑶
+     * @author 汪旭辉
      * @date 2020-7-14
      * @readme TODO
      */
@@ -106,7 +106,7 @@ public class GitLabBean {
      *
      * @param branch
      * @return
-     * @author 郭诗瑶
+     * @author 汪旭辉
      * @date 2020-7-14
      * @readme TODO
      */
@@ -142,7 +142,7 @@ public class GitLabBean {
      * @param checkout mark
      * @param url
      * @return
-     * @author 郭诗瑶
+     * @author 汪旭辉
      * @date 2020-7-14
      * @readme TODO
      */
@@ -175,7 +175,7 @@ public class GitLabBean {
      *
      * @param branch
      * @return
-     * @author 郭诗瑶
+     * @author 汪旭辉
      * @date 2020-7-14
      * @readme TODO
      */
@@ -207,7 +207,7 @@ public class GitLabBean {
      * @param committag   TODO
      * @param branch
      * @return
-     * @author 郭诗瑶
+     * @author 汪旭辉
      * @date 2020-7-14
      * @readme TODO
      */
@@ -239,7 +239,7 @@ public class GitLabBean {
      *
      * @param branch
      * @return
-     * @author 郭诗瑶
+     * @author 汪旭辉
      * @date 2020-7-14
      * @readme TODO
      */
@@ -264,7 +264,7 @@ public class GitLabBean {
      *
      * @param branch
      * @return
-     * @author 郭诗瑶
+     * @author 汪旭辉
      * @date 2020-7-14
      * @readme TODO
      */
@@ -293,7 +293,7 @@ public class GitLabBean {
      * @param branch
      * @param force
      * @return 改为使用 {@link #push(String, int)}
-     * @author 郭诗瑶
+     * @author 汪旭辉
      * @date 2020-7-14
      * @readme TODO
      */
@@ -309,7 +309,7 @@ public class GitLabBean {
      * @param timeout mark
      * @param force
      * @return
-     * @author 郭诗瑶
+     * @author 汪旭辉
      * @date 2020-7-14
      * @readme TODO
      */
@@ -336,7 +336,7 @@ public class GitLabBean {
      * @param sourceBranch
      * @param targetBranch
      * @return
-     * @author 郭诗瑶
+     * @author 汪旭辉
      * @date 2020-7-14
      * @readme TODO
      */

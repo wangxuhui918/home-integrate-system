@@ -4,7 +4,7 @@
  *
  *  * Copyright (c) 2022
  *  * http://license.coscl.org.cn/MulanPSL2
- *  * 郭诗瑶 
+ *  * 汪旭辉 
  *
  */
 
@@ -61,7 +61,7 @@ public class Page<T> {
     /**
      * @param pager
      * @param data
-     * @author 郭诗瑶
+     * @author 汪旭辉
      * @date 2018年11月8日
      * @readme TODO
      */
@@ -85,7 +85,7 @@ public class Page<T> {
     /**
      * @param pager
      * @param data
-     * @author 郭诗瑶
+     * @author 汪旭辉
      * @date 2018年11月8日
      * @readme TODO
      */

@@ -5,7 +5,7 @@
  *
  *  * Copyright (c) 2022
  *  * http://license.coscl.org.cn/MulanPSL2
- *  * 郭诗瑶
+ *  * 汪旭辉
  *
  */
 
@@ -38,7 +38,7 @@ public class ApolloApi {
      * @param username
      * @param password
      * @return
-     * @author 郭诗瑶
+     * @author 汪旭辉
      * @date 2021年7月2日
      * @readme
      */
@@ -59,7 +59,7 @@ public class ApolloApi {
      * @param appid
      * @param apolloUrl
      * @param cookieString
-     * @author 郭诗瑶
+     * @author 汪旭辉
      * @date 2021年7月2日
      * @readme
      */
@@ -93,7 +93,7 @@ public class ApolloApi {
      * @param apolloUrl
      * @param targetCookieString
      * @return
-     * @author 郭诗瑶
+     * @author 汪旭辉
      * @date 2021年7月2日
      * @readme
      */
@@ -115,7 +115,7 @@ public class ApolloApi {
      * @param apolloUrl
      * @param targetCookieString
      * @return
-     * @author 郭诗瑶
+     * @author 汪旭辉
      * @date 2021年7月2日
      * @readme
      */
@@ -131,7 +131,7 @@ public class ApolloApi {
      * @param apolloUrl
      * @param values
      * @param cookieString
-     * @author 郭诗瑶
+     * @author 汪旭辉
      * @date 2021年7月2日
      * @readme 获取阿波罗参数
      */
@@ -200,7 +200,7 @@ public class ApolloApi {
      * @param apolloUrl
      * @param targetCookieString
      * @param sourceproperties
-     * @author 郭诗瑶
+     * @author 汪旭辉
      * @date 2021年7月2日
      * @readme
      */
