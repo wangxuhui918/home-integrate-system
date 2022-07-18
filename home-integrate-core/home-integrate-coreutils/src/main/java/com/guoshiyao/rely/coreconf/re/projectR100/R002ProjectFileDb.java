@@ -65,6 +65,15 @@ public class R002ProjectFileDb implements ProjectCoreConfAb {
                 for (int i = 0; i < listUrl.size(); i++) {
                     LoggerBaseAb.info("读取到[{}]配置文件", listUrl.get(i).toString());
                     Setting o = new Setting(listUrl.get(i).toURL(), CharsetUtil.CHARSET_UTF_8, true);
+                    {//可使用表达式{}
+                        Set<String> keys = o.keySet();
+                        for (String key : keys) {
+                            try {
+                                o.set(key, VelocityUtils.convert(o.get(key), Line.context));
+                            } catch (Exception e) {
+                            }
+                        }
+                    }
                     allEnvSetting.addSetting(o);
                 }
             }
@@ -189,7 +198,7 @@ public class R002ProjectFileDb implements ProjectCoreConfAb {
                         for (int i = 0; i < listProperties.size(); i++) {
                             ModelConfigPropertiesVo o = listProperties.get(i);
                             {
-                                o.setValue(VelocityUtils.convert(o.getValue(), Line.context));
+//                                o.setValue(VelocityUtils.convert(o.getValue(), Line.context));//直接使用原生,读取的时候进行读取
                                 o.setMark(VelocityUtils.convert(o.getMark(), Line.context));
                             }
                             {
@@ -211,7 +220,7 @@ public class R002ProjectFileDb implements ProjectCoreConfAb {
                     }
                 }
                 {//写入文件
-                    String file = Line.projectresourcepath + File.separator + BaseEv.HOME_TAG+"-" + envName + ".ini";
+                    String file = Line.projectresourcepath + File.separator + BaseEv.HOME_TAG + "-" + envName + ".ini";
                     if (!FileUtil.exist(file)) {
                         FileUtil.writeUtf8String(envstr.toString(), file);
                     }
