@@ -19,7 +19,6 @@ import cn.hutool.core.util.StrUtil;
 import cn.hutool.core.util.URLUtil;
 import cn.hutool.json.JSONUtil;
 import cn.hutool.system.SystemUtil;
-import com.guoshiyao.rely.HomePosition;
 import com.guoshiyao.rely.annotaion.Starter;
 import com.guoshiyao.rely.base.BaseEv;
 import com.guoshiyao.rely.coreannotation.rule.RuleAnnotationApi;
@@ -70,7 +69,7 @@ public class InitLineEnvStaticRe implements Line.InitLineEnvStaticAb {
             }
         }
         if (Line.isClassModel) {
-            String f1 = FileUtil.getAbsolutePath("", HomePosition.class);
+            String f1 = FileUtil.getAbsolutePath(ClassUtil.loadClass(Line.class.getName()).getClassLoader().getResource("").getPath());
             for (int i = 0; ; i++) {
                 String classes = FileUtil.getParent(f1, i);
                 String target = FileUtil.getParent(f1, i + 1);
