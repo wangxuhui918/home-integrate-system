@@ -2,7 +2,7 @@
  *
  *  * Copyright (c) 2022
  *  * http://license.coscl.org.cn/MulanPSL2
- *  * 汪旭辉 
+ *  * 汪旭辉
  *
  */
 
@@ -11,6 +11,7 @@ package com.guoshiyao.rely.init;
 import cn.hutool.core.annotation.AnnotationUtil;
 import cn.hutool.core.io.FileUtil;
 import cn.hutool.core.io.ManifestUtil;
+import cn.hutool.core.lang.Console;
 import cn.hutool.core.net.NetUtil;
 import cn.hutool.core.util.ArrayUtil;
 import cn.hutool.core.util.ClassUtil;
@@ -33,6 +34,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.jar.JarFile;
 import java.util.logging.Level;
+import java.util.regex.Pattern;
 
 @RuleAnnotationApi
 public class InitLineEnvStaticRe implements Line.InitLineEnvStaticAb {
@@ -53,7 +55,7 @@ public class InitLineEnvStaticRe implements Line.InitLineEnvStaticAb {
                     java.util.jar.Manifest masin = ManifestUtil.getManifest(new JarFile(new File(getJavaCommand)));
                     Line.mainClassC = ClassUtil.loadClass(masin.getMainAttributes().getValue("Start-Class"), false);
                     Line.mainClass = masin.getMainAttributes().getValue("Start-Class");
-                } else if (ClassUtil.isNormalClass(ClassUtil.loadClass(getJavaCommand,false))) {//如果是非运行时
+                } else if (ClassUtil.isNormalClass(ClassUtil.loadClass(getJavaCommand, false))) {//如果是非运行时
                     LoggerBaseAb.info("检测到当前为开发者模式");
                     Line.isClassModel = true;
                     Line.mainClassC = ClassUtil.loadClass(getJavaCommand, false);
@@ -93,7 +95,19 @@ public class InitLineEnvStaticRe implements Line.InitLineEnvStaticAb {
                 uk_value = FileUtil.readUtf8String(Line.UK_FILE);
             } catch (Exception e) {
             }
-            if (StrUtil.isBlank(uk_value)) {
+            if (StrUtil.isBlank(uk_value) && Line.isClassModel) {
+                for (int i = 0; ; i++) {
+                    LoggerBaseAb.warn("[{}]系统在本机首次运行,文件[{}]需要写入用户标识(例如:中文姓名,英文姓名[只能为中文,英文,数字]),请输入并点击Enter", BaseEv.HOME_TAG, Line.UK_FILE);
+                    String uktag = Console.input();
+                    String pattern = "^[\\u4e00-\\u9fa5,A-Za-z0-9]{0,}";
+                    boolean isMatch = Pattern.matches(pattern, uktag);
+                    if (isMatch) {
+                        uk_value = uktag;
+                        break;
+                    }
+                }
+                FileUtil.writeUtf8String(uk_value, Line.UK_FILE);
+            } else if (StrUtil.isBlank(uk_value) && !Line.isClassModel) {
                 uk_value = Line.mainMac + Line.systemUserName;
                 FileUtil.writeUtf8String(uk_value, Line.UK_FILE);
             }
@@ -161,7 +175,7 @@ public class InitLineEnvStaticRe implements Line.InitLineEnvStaticAb {
             Line.idKey = idkey;
             Line.i18n = i18n;
             Line.projectPackage = StrUtil.isNotBlank(projectPackage) ? projectPackage
-                    : ClassUtil.getPackage(ClassUtil.loadClass(Line.mainClass,false));
+                    : ClassUtil.getPackage(ClassUtil.loadClass(Line.mainClass, false));
             Line.workHomeDir = SystemUtil.getUserInfo().getHomeDir() + File.separator + BaseEv.HOME_TAG + File.separator + Line.idKey
                     + File.separator;
             Line.autoUpdate = updateProperties;

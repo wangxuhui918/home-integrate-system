@@ -23,9 +23,11 @@ public final class LoggerBaseUtils {
     protected final static Logger myLogger = Logger.getLogger(LoggerBaseAb.class.getName());
     protected final static ConsoleHandler myConsoleHandler = new ConsoleHandler();
     public static LoggerAb loggerAb = null;
+
     public static final void setLevel(Level level) {
         myLogger.setLevel(level);
     }
+
 
     static {
         myConsoleHandler.setLevel(Level.FINER);

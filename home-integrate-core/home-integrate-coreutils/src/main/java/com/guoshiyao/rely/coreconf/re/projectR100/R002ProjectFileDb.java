@@ -66,11 +66,16 @@ public class R002ProjectFileDb implements ProjectCoreConfAb {
                     LoggerBaseAb.info("读取到[{}]配置文件", listUrl.get(i).toString());
                     Setting o = new Setting(listUrl.get(i).toURL(), CharsetUtil.CHARSET_UTF_8, true);
                     {//可使用表达式{}
-                        Set<String> keys = o.keySet();
-                        for (String key : keys) {
-                            try {
-                                o.set(key, VelocityUtils.convert(o.get(key), Line.context));
-                            } catch (Exception e) {
+                        List<String> groups = o.getGroups();
+                        for (int j = 0; j < groups.size(); j++) {
+                            String groupName = groups.get(j);
+                            Set<String> keys = o.getMap(groupName).keySet();
+                            for (String key : keys) {
+                                try {
+                                    o.putByGroup(key, groupName, VelocityUtils.convert(o.getByGroup(key, groupName), Line.context));
+                                } catch (Exception e) {
+                                    e.printStackTrace();
+                                }
                             }
                         }
                     }
