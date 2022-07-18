@@ -29,7 +29,6 @@ import com.guoshiyao.rely.log.base.LoggerBaseAb;
 import com.guoshiyao.rely.resource.ResourceFindUtils;
 import com.guoshiyao.rely.velocity.VelocityUtils;
 
-import java.io.File;
 import java.net.URI;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -143,13 +142,13 @@ public class R002ProjectFileDb implements ProjectCoreConfAb {
 
     @Override
     public boolean getDbInit() {
-        String file = Line.projectresourcepath + File.separator + "versionlog" + File.separator + "v1-init";
+        String file = Line.projectresourcepath + BaseEv.FILE_SEPARATOR + "versionlog" + BaseEv.FILE_SEPARATOR + "v1-init";
         return FileUtil.exist(file);
     }
 
     @Override
     public boolean setDbInit() {
-        String file = Line.projectresourcepath + File.separator + "versionlog" + File.separator + "v1-init";
+        String file = Line.projectresourcepath + BaseEv.FILE_SEPARATOR + "versionlog" + BaseEv.FILE_SEPARATOR + "v1-init";
         FileUtil.writeUtf8String("v1-" + DateUtil.now(), file);
         return true;
     }
@@ -163,9 +162,9 @@ public class R002ProjectFileDb implements ProjectCoreConfAb {
             String path = "";
             String context = inf.getReadme();
             if (inf.getType().equals("1")) {
-                path = Line.projectcodesourcepath + ClassUtil.getPackagePath(Line.mainClassC) + File.separator + inf.getPath();
+                path = Line.projectcodesourcepath + ClassUtil.getPackagePath(Line.mainClassC) + BaseEv.FILE_SEPARATOR + inf.getPath();
             } else if (inf.getType().equals("2")) {
-                path = Line.projectresourcepath + File.separator + inf.getPath();
+                path = Line.projectresourcepath + BaseEv.FILE_SEPARATOR + inf.getPath();
             }
             if (!FileUtil.exist(path)) {
                 FileUtil.writeUtf8String(context, path);
@@ -218,14 +217,14 @@ public class R002ProjectFileDb implements ProjectCoreConfAb {
                     } else if (StrUtil.isNotBlank(modelConfigInfo.getModel_context())) {
                         String name_en = VelocityUtils.convert(modelConfigInfo.getName_en(), Line.context);
                         String context = VelocityUtils.convert(modelConfigInfo.getModel_context(), Line.context);
-                        String file = Line.projectresourcepath + File.separator + name_en;
+                        String file = Line.projectresourcepath + BaseEv.FILE_SEPARATOR + name_en;
                         if (!FileUtil.exist(file)) {
                             FileUtil.writeUtf8String(context, file);
                         }
                     }
                 }
                 {//写入文件
-                    String file = Line.projectresourcepath + File.separator + BaseEv.HOME_TAG + "-" + envName + ".ini";
+                    String file = Line.projectresourcepath + BaseEv.FILE_SEPARATOR + BaseEv.HOME_TAG + "-" + envName + ".ini";
                     if (!FileUtil.exist(file)) {
                         FileUtil.writeUtf8String(envstr.toString(), file);
                     }

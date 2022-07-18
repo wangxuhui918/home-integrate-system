@@ -50,7 +50,7 @@ public class GitLabBean {
     public GitLabBean(String githttpurl) {
         this.githttpurl = githttpurl;
         this.name = StrUtil.subBefore(StrUtil.subAfter(this.githttpurl, "/", true), ".git", true);
-        this.gitdir = Line.setting.get("home.gitlab.gitdir") + File.separator + this.name;
+        this.gitdir = Line.setting.get("home.gitlab.gitdir") + BaseEv.FILE_SEPARATOR + this.name;
         init(branch);
     }
 

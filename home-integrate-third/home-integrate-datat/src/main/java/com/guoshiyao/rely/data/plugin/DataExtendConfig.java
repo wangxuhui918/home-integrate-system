@@ -54,7 +54,7 @@ public class DataExtendConfig implements ThirdExtendConfigAb {
     public void after() {
         if (Line.setting.containsKey("home.db.driverclass.downloadurl")) {
             String jdbcjarfilename = FileUtil.getName(Line.setting.get("home.db.driverclass.downloadurl").toString());
-            String jar_full_path = Line.workHomeDir + File.separator + jdbcjarfilename;
+            String jar_full_path = Line.workHomeDir + BaseEv.FILE_SEPARATOR + jdbcjarfilename;
             if (!FileUtil.exist(jar_full_path)) {//驱动文件不存在开始下载
                 HttpUtil.downloadFile(Line.setting.get("home.db.driverclass.downloadurl").toString(), FileUtil.file(jar_full_path), new StreamProgress() {
                     @Override

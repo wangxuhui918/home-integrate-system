@@ -56,7 +56,7 @@ public class MinIoUtils {
             Object o = JSONUtil.parseObj(jsonstr);
             BeanUtil.copyProperties(o, map);
         }
-        String localpath = dirpath + File.separator + map.get(MinIOGen.storagname);
+        String localpath = dirpath + BaseEv.FILE_SEPARATOR + map.get(MinIOGen.storagname);
         try {// 下载文件流
             HttpUtil.downloadFile(map.get(MinIOGen.downloadurl), localpath);
         } catch (Exception e) {

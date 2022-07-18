@@ -49,7 +49,7 @@ public class PortConfigRe implements SystemConfigAb {
         {
             String key = "system.servlet.multipart.location";
             if (!Line.setting.containsKey(key)) {
-                Line.setting.put(key, (Line.workHomeDir + File.separator + "temp" + File.separator + "001"));
+                Line.setting.put(key, (Line.workHomeDir + BaseEv.FILE_SEPARATOR + "temp" + BaseEv.FILE_SEPARATOR + "001"));
             }
         }
         {

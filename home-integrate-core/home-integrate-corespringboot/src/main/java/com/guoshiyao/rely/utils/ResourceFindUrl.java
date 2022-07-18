@@ -33,9 +33,9 @@ public class ResourceFindUrl implements ResourceAb {
             for (Resource resource : source) {
                 String path = resource.getURL().toString();
                 if (Line.isClassModel) {
-                    path = StrUtil.subAfter(path, "classes" + File.separator, true);
+                    path = StrUtil.subAfter(path, "classes" + BaseEv.FILE_SEPARATOR, true);
                 } else {
-                    path = StrUtil.subAfter(path, "classes!" + File.separator, true);
+                    path = StrUtil.subAfter(path, "classes!" + BaseEv.FILE_SEPARATOR, true);
                 }
                 listpath.add(path);
             }

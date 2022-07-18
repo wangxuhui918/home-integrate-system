@@ -45,7 +45,7 @@ public class Line {
     /**
      * 获取当前用户名
      */
-    public final static String systemUserName = SystemUtil.getUserInfo().getName().trim().replace("/", "");
+    public final static String systemUserName = SystemUtil.getUserInfo().getName().trim().replace("/", "").replace("\\", "");
     /**
      * 框架核心包
      */
@@ -63,7 +63,7 @@ public class Line {
     /**
      * 用户唯一标志
      */
-    public final static String UK_FILE = SystemUtil.getUserInfo().getHomeDir() + File.separator + BaseEv.UK_NAME;
+    public final static String UK_FILE = SystemUtil.getUserInfo().getHomeDir() + BaseEv.FILE_SEPARATOR + BaseEv.UK_NAME;
     /**
      * IOC翻转执行类
      */
@@ -174,7 +174,7 @@ public class Line {
         Collection<Class<?>> intersectionSet = CollUtil.intersection(annotaiones, classes);
         for (Class<?> class1 : intersectionSet) {
             try {
-                T sd = (T) ClassUtil.loadClass(class1.getName(),false).newInstance();
+                T sd = (T) ClassUtil.loadClass(class1.getName(), false).newInstance();
                 listarra.add(sd);
             } catch (Exception e) {
             }

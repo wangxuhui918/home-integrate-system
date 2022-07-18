@@ -25,7 +25,7 @@ import java.util.*;
 
 @RuleAnnotation
 public class FlywayExtendConfig implements ThirdExtendConfigAb {
-    public final static String filep = "db" + File.separator + "migration" + File.separator + "**" + File.separator
+    public final static String filep = "db" + BaseEv.FILE_SEPARATOR + "migration" + BaseEv.FILE_SEPARATOR + "**" + BaseEv.FILE_SEPARATOR
             + "**.sql";
 
     @Override

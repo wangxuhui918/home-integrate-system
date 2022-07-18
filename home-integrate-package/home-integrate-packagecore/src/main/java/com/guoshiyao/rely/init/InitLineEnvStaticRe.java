@@ -19,6 +19,7 @@ import cn.hutool.core.util.StrUtil;
 import cn.hutool.core.util.URLUtil;
 import cn.hutool.json.JSONUtil;
 import cn.hutool.system.SystemUtil;
+import com.guoshiyao.rely.HomePosition;
 import com.guoshiyao.rely.annotaion.Starter;
 import com.guoshiyao.rely.base.BaseEv;
 import com.guoshiyao.rely.coreannotation.rule.RuleAnnotationApi;
@@ -69,10 +70,20 @@ public class InitLineEnvStaticRe implements Line.InitLineEnvStaticAb {
             }
         }
         if (Line.isClassModel) {
-            Line.projectresourcepath = StrUtil.subBefore(ClassUtil.loadClass(Line.class.getName()).getClassLoader().getResource("").getPath(), "target" + File.separator + "classes", true) + File.separator + "src"
-                    + File.separator + "main" + File.separator + "resources" + File.separator;
-            Line.projectcodesourcepath = StrUtil.subBefore(ClassUtil.loadClass(Line.class.getName()).getClassLoader().getResource("").getPath(), "target" + File.separator + "classes", true) + File.separator + "src"
-                    + File.separator + "main" + File.separator + "java" + File.separator;
+            String f1 = FileUtil.getAbsolutePath("", HomePosition.class);
+            for (int i = 0; ; i++) {
+                String classes = FileUtil.getParent(f1, i);
+                String target = FileUtil.getParent(f1, i + 1);
+                String root = FileUtil.getParent(f1, i + 2);
+                if (StrUtil.endWith(classes, "classes") && StrUtil.endWith(target, "target")) {
+                    Line.projectresourcepath = root + BaseEv.FILE_SEPARATOR + "src" + BaseEv.FILE_SEPARATOR + "main" + BaseEv.FILE_SEPARATOR + "resources" + BaseEv.FILE_SEPARATOR;
+                    Line.projectcodesourcepath = root + BaseEv.FILE_SEPARATOR + "src" + BaseEv.FILE_SEPARATOR + "main" + BaseEv.FILE_SEPARATOR + "java" + BaseEv.FILE_SEPARATOR;
+                    break;
+                }
+                if (classes == null) {
+                    throw new ExceptionError("获取根目录{}失败", f1);
+                }
+            }
         }
 
         {
@@ -176,8 +187,8 @@ public class InitLineEnvStaticRe implements Line.InitLineEnvStaticAb {
             Line.i18n = i18n;
             Line.projectPackage = StrUtil.isNotBlank(projectPackage) ? projectPackage
                     : ClassUtil.getPackage(ClassUtil.loadClass(Line.mainClass, false));
-            Line.workHomeDir = SystemUtil.getUserInfo().getHomeDir() + File.separator + BaseEv.HOME_TAG + File.separator + Line.idKey
-                    + File.separator;
+            Line.workHomeDir = SystemUtil.getUserInfo().getHomeDir() + BaseEv.FILE_SEPARATOR + BaseEv.HOME_TAG + BaseEv.FILE_SEPARATOR + Line.idKey
+                    + BaseEv.FILE_SEPARATOR;
             Line.autoUpdate = updateProperties;
             Line.configEnv = configEnv;
             LoggerBaseUtils.setLevel(loglevel);//临时处理日志管理
