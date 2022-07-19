@@ -73,7 +73,7 @@ public class R002ProjectFileDb implements ProjectCoreConfAb {
                                 try {
                                     o.putByGroup(key, groupName, VelocityUtils.convert(o.getByGroup(key, groupName), Line.context));
                                 } catch (Exception e) {
-                                    e.printStackTrace();
+                                    LoggerBaseAb.warn("配置[{}]值[{}]转换失败!", key, o.getByGroup(key, groupName));
                                 }
                             }
                         }
@@ -107,7 +107,6 @@ public class R002ProjectFileDb implements ProjectCoreConfAb {
                 if (listUri.get(i).toString().contains("-" + Line.i18n)) {
                     String name = StrUtil.subBetween(listUri.get(i).toString(), "message-", ".xml");
                     String context =
-//                            ResourceUtil.readUtf8Str(listUri.get(i).);
                             FileUtil.readString(listUri.get(i).toURL(), CharsetUtil.CHARSET_UTF_8);
                     map.put(name, context);
                 }
