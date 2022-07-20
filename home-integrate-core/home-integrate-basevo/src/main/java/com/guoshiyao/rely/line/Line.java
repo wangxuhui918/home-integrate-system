@@ -25,7 +25,6 @@ import com.guoshiyao.rely.message.i18n.I18n;
 import org.apache.velocity.VelocityContext;
 
 import javax.sql.DataSource;
-import java.io.File;
 import java.lang.annotation.Annotation;
 import java.util.*;
 

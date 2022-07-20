@@ -23,36 +23,35 @@ import java.util.logging.Level;
 public interface LoggerBaseAb {
 
 
-
     static void debug(String str, Object... strs) {
-        if (LoggerBaseUtils.loggerAb != null) {
-            LoggerBaseUtils.loggerAb.debug(str, strs);
+        if (LoggerBaseUtils.custLogger != null) {
+            LoggerBaseUtils.custLogger.debug(str, strs);
         } else {
-            LoggerBaseUtils.myLogger.log(Level.FINER, StrUtil.format(str, strs));
+            LoggerBaseUtils.jdkLogger.log(Level.FINER, StrUtil.format(str, strs));
         }
     }
 
     static void info(String str, Object... strs) {
-        if (LoggerBaseUtils.loggerAb != null) {
-            LoggerBaseUtils.loggerAb.info(str, strs);
+        if (LoggerBaseUtils.custLogger != null) {
+            LoggerBaseUtils.custLogger.info(str, strs);
         } else {
-            LoggerBaseUtils.myLogger.info(StrUtil.format(str, strs));
+            LoggerBaseUtils.jdkLogger.info(StrUtil.format(str, strs));
         }
     }
 
     static void warn(String str, Object... strs) {
-        if (LoggerBaseUtils.loggerAb != null) {
-            LoggerBaseUtils.loggerAb.warning(str, strs);
+        if (LoggerBaseUtils.custLogger != null) {
+            LoggerBaseUtils.custLogger.warning(str, strs);
         } else {
-            LoggerBaseUtils.myLogger.warning(StrUtil.format(str, strs));
+            LoggerBaseUtils.jdkLogger.warning(StrUtil.format(str, strs));
         }
     }
 
     static void err(String str, Object... strs) {
-        if (LoggerBaseUtils.loggerAb != null) {
-            LoggerBaseUtils.loggerAb.error(str, strs);
+        if (LoggerBaseUtils.custLogger != null) {
+            LoggerBaseUtils.custLogger.error(str, strs);
         } else {
-            LoggerBaseUtils.myLogger.log(Level.SEVERE, StrUtil.format(str, strs));
+            LoggerBaseUtils.jdkLogger.log(Level.SEVERE, StrUtil.format(str, strs));
         }
     }
 

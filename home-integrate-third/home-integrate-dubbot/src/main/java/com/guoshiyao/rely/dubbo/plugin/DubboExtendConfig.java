@@ -17,7 +17,6 @@ import com.guoshiyao.rely.coreannotation.rule.RuleAnnotation;
 import com.guoshiyao.rely.dubbo.config.DubboBaseConfiguration;
 import com.guoshiyao.rely.dubbo.config.DubboConsumerConfig;
 import com.guoshiyao.rely.line.Line;
-
 import com.guoshiyao.rely.third.ThirdExtendConfigAb;
 
 import java.util.*;

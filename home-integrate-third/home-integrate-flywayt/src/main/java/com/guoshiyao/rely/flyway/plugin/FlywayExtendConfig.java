@@ -11,16 +11,15 @@
 package com.guoshiyao.rely.flyway.plugin;
 
 import cn.hutool.setting.Setting;
+import com.guoshiyao.rely.base.BaseEv;
 import com.guoshiyao.rely.coreannotation.rule.RuleAnnotation;
 import com.guoshiyao.rely.flyway.bean.FlywayBean;
 import com.guoshiyao.rely.line.Line;
-
 import com.guoshiyao.rely.third.ThirdExtendConfigAb;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.core.io.support.ResourcePatternResolver;
 
-import java.io.File;
 import java.util.*;
 
 @RuleAnnotation

@@ -14,7 +14,7 @@
     <parent>
         <groupId>com.guoshiyao.rely</groupId>
         <artifactId>home-integrate-package</artifactId>
-        <version>9.0.11-RELEASE</version>
+        <version>9.0.12-RELEASE</version>
     </parent>
     <artifactId>home-integrate-packageextends</artifactId>
     <packaging>pom</packaging>

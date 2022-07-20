@@ -8,6 +8,8 @@
 
 package com.guoshiyao.rely.log.base;
 
+import cn.hutool.core.util.StrUtil;
+import cn.hutool.system.SystemUtil;
 import com.guoshiyao.rely.log.LoggerAb;
 
 import java.util.logging.ConsoleHandler;
@@ -20,18 +22,30 @@ import java.util.logging.Logger;
  * @readme
  */
 public final class LoggerBaseUtils {
-    protected final static Logger myLogger = Logger.getLogger(LoggerBaseAb.class.getName());
-    protected final static ConsoleHandler myConsoleHandler = new ConsoleHandler();
-    public static LoggerAb loggerAb = null;
-
-    public static final void setLevel(Level level) {
-        myLogger.setLevel(level);
-    }
+    public final static Logger jdkLogger = Logger.getLogger(LoggerBaseAb.class.getName());
+    public final static ConsoleHandler myConsoleHandler = new ConsoleHandler();
+    public static LoggerAb custLogger = null;
 
 
     static {
-        myConsoleHandler.setLevel(Level.FINER);
-        myLogger.addHandler(myConsoleHandler);
-        myLogger.setUseParentHandlers(false);
+        {//jdklogger
+            Level loglevel = Level.FINER;//默认日志级别
+            try {
+//                LoggerBaseAb.info("读取日志变量-Denv=");
+                if (StrUtil.isNotBlank(SystemUtil.get("loglevel"))) {//如果日志界别不为空则直接查找,根据名字和值自动查找
+                    loglevel = Level.parse(SystemUtil.get("loglevel"));
+                    LoggerBaseAb.info("读取日志变量-Denv={}", loglevel);
+                } else {
+                    LoggerBaseAb.info("使用默认日志变量[{}]", loglevel.getName());
+                }
+            } catch (Exception e) {
+                LoggerBaseAb.info("使用默认日志变量[{}]", loglevel.getName());
+            }
+            jdkLogger.setLevel(Level.ALL);
+            myConsoleHandler.setLevel(loglevel);
+            myConsoleHandler.setFormatter(new MyFormatter());
+            jdkLogger.addHandler(myConsoleHandler);
+            jdkLogger.setUseParentHandlers(false);
+        }
     }
 }

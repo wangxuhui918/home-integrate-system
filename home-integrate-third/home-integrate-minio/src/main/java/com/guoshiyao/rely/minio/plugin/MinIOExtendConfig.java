@@ -14,11 +14,13 @@ package com.guoshiyao.rely.minio.plugin;
 import cn.hutool.setting.Setting;
 import com.guoshiyao.rely.coreannotation.rule.RuleAnnotation;
 import com.guoshiyao.rely.line.Line;
-
 import com.guoshiyao.rely.minio.utils.MinIOGen;
 import com.guoshiyao.rely.third.ThirdExtendConfigAb;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @RuleAnnotation
 public class MinIOExtendConfig implements ThirdExtendConfigAb {

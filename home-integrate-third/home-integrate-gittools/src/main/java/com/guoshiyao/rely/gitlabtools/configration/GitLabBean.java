@@ -12,6 +12,7 @@ package com.guoshiyao.rely.gitlabtools.configration;
 
 import cn.hutool.core.io.FileUtil;
 import cn.hutool.core.util.StrUtil;
+import com.guoshiyao.rely.base.BaseEv;
 import com.guoshiyao.rely.line.Line;
 import lombok.Data;
 import org.eclipse.jgit.api.Git;

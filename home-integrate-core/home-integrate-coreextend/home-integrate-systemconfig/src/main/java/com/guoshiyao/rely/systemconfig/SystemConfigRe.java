@@ -13,7 +13,10 @@ package com.guoshiyao.rely.systemconfig;
 import com.guoshiyao.rely.coreannotation.rule.RuleAnnotation;
 import com.guoshiyao.rely.sys.SystemConfigAb;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * 读取系统配置文件

@@ -21,7 +21,6 @@ public class BeforeRegistrar implements ImportSelector {
     @Override
     public String[] selectImports(AnnotationMetadata annotationmetadata) {
         HomeUtils.run();
-        // 提交给springboot ioc管理类
         String[] all = new String[0];
         if (Line.iocclasses != null && Line.iocclasses.size() > 0) {
             String[] selecterExtends = new String[Line.iocclasses.size()];

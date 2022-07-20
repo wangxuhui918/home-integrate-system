@@ -17,7 +17,6 @@ import com.guoshiyao.rely.line.Line;
 import com.guoshiyao.rely.message.ab.MessageConfigAb;
 import com.guoshiyao.rely.message.utils.NodeUtils;
 
-
 import java.util.*;
 
 @RuleAnnotation

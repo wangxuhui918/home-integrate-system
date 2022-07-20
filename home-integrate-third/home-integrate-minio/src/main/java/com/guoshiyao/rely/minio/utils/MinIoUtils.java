@@ -20,6 +20,7 @@ import cn.hutool.core.util.StrUtil;
 import cn.hutool.crypto.SecureUtil;
 import cn.hutool.http.HttpUtil;
 import cn.hutool.json.JSONUtil;
+import com.guoshiyao.rely.base.BaseEv;
 import com.guoshiyao.rely.exception.re.ex.ExceptionError;
 import com.guoshiyao.rely.line.Line;
 import io.minio.GetPresignedObjectUrlArgs;
@@ -29,7 +30,6 @@ import io.minio.RemoveObjectArgs;
 import io.minio.http.Method;
 
 import java.io.ByteArrayInputStream;
-import java.io.File;
 import java.io.InputStream;
 import java.util.Date;
 import java.util.HashMap;

@@ -25,58 +25,66 @@ import com.guoshiyao.rely.coreannotation.rule.RuleAnnotationApi;
 import com.guoshiyao.rely.exception.re.ex.ExceptionError;
 import com.guoshiyao.rely.line.Line;
 import com.guoshiyao.rely.log.base.LoggerBaseAb;
-import com.guoshiyao.rely.log.base.LoggerBaseUtils;
 
 import java.io.File;
 import java.net.InterfaceAddress;
 import java.net.NetworkInterface;
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.jar.JarFile;
-import java.util.logging.Level;
 import java.util.regex.Pattern;
 
 @RuleAnnotationApi
 public class InitLineEnvStaticRe implements Line.InitLineEnvStaticAb {
     @Override
     public void init() {
-        String idkey = "", i18n = "", projectPackage = "";
-        Level loglevel = Level.FINER;//默认日志级别
-        String runEnv = "";
-        boolean updateProperties = false;
+        LoggerBaseAb.info("开始处理配置类[{}}", Line.class.getName());
+
+        String idkey = "", i18n = "", projectPackage = "", runEnv = "", uk_value = "",
+                jarpath = "", mainClass = "", projectresourcepath = "", projectcodesourcepath = "",
+                mainMac = "", uk = "", workHomeDir = "";
         String[] configEnv = null;
+        Boolean isClassModel = null;
+        Class mainClassC = null;
+        boolean updateProperties = false;
+        Set<String> macSet = new HashSet<>();
+
         {
-            String getJavaCommand = System.getProperty("sun.java.command");
+            String startCommad = System.getProperty("sun.java.command");
+            LoggerBaseAb.info("获取到启动命令值:[{}}", startCommad);
             try {
-                if (URLUtil.isJarFileURL(new File(getJavaCommand).toURI().toURL())) {//如果是运行时
-                    LoggerBaseAb.info("检测到当前为线上运行模式");
-                    Line.jarpath = getJavaCommand;
-                    Line.isClassModel = false;
-                    java.util.jar.Manifest masin = ManifestUtil.getManifest(new JarFile(new File(getJavaCommand)));
-                    Line.mainClassC = ClassUtil.loadClass(masin.getMainAttributes().getValue("Start-Class"), false);
-                    Line.mainClass = masin.getMainAttributes().getValue("Start-Class");
-                } else if (ClassUtil.isNormalClass(ClassUtil.loadClass(getJavaCommand, false))) {//如果是非运行时
-                    LoggerBaseAb.info("检测到当前为开发者模式");
-                    Line.isClassModel = true;
-                    Line.mainClassC = ClassUtil.loadClass(getJavaCommand, false);
-                    Line.mainClass = getJavaCommand;
+                if (URLUtil.isJarFileURL(new File(startCommad).toURI().toURL())) {//如果是运行时
+                    LoggerBaseAb.info("[jar]运行模式");
+                    jarpath = startCommad;
+                    isClassModel = false;
+                    java.util.jar.Manifest masin = ManifestUtil.getManifest(new JarFile(new File(startCommad)));
+                    mainClassC = ClassUtil.loadClass(masin.getMainAttributes().getValue("Start-Class"), false);
+                    mainClass = masin.getMainAttributes().getValue("Start-Class");
+                } else if (ClassUtil.isNormalClass(ClassUtil.loadClass(startCommad, false))) {//如果是非运行时
+                    LoggerBaseAb.info("[java]运行模式");
+                    isClassModel = true;
+                    mainClassC = ClassUtil.loadClass(startCommad, false);
+                    mainClass = startCommad;
                 } else {
-                    throw new ExceptionError("系统关键环境变量[{}]丢失,无法启动...", "sun.java.command");
+                    throw new ExceptionError("环境变量[{}]值错误", "sun.java.command");
                 }
+            } catch (ExceptionError e1) {
+                throw e1;
             } catch (Exception e) {
-                e.printStackTrace();
-                throw new ExceptionError("系统关键环境变量[{}]丢失,无法启动...", "sun.java.command");
+                throw new ExceptionError("未知异常:{}", e.getMessage());
             }
         }
-        if (Line.isClassModel) {
+        if (isClassModel) {
             String f1 = FileUtil.getAbsolutePath(ClassUtil.loadClass(Line.class.getName()).getClassLoader().getResource("").getPath());
             for (int i = 0; ; i++) {
                 String classes = FileUtil.getParent(f1, i);
                 String target = FileUtil.getParent(f1, i + 1);
                 String root = FileUtil.getParent(f1, i + 2);
                 if (StrUtil.endWith(classes, "classes") && StrUtil.endWith(target, "target")) {
-                    Line.projectresourcepath = root + BaseEv.FILE_SEPARATOR + "src" + BaseEv.FILE_SEPARATOR + "main" + BaseEv.FILE_SEPARATOR + "resources" + BaseEv.FILE_SEPARATOR;
-                    Line.projectcodesourcepath = root + BaseEv.FILE_SEPARATOR + "src" + BaseEv.FILE_SEPARATOR + "main" + BaseEv.FILE_SEPARATOR + "java" + BaseEv.FILE_SEPARATOR;
+                    projectresourcepath = root + BaseEv.FILE_SEPARATOR + "src" + BaseEv.FILE_SEPARATOR + "main" + BaseEv.FILE_SEPARATOR + "resources" + BaseEv.FILE_SEPARATOR;
+                    projectcodesourcepath = root + BaseEv.FILE_SEPARATOR + "src" + BaseEv.FILE_SEPARATOR + "main" + BaseEv.FILE_SEPARATOR + "java" + BaseEv.FILE_SEPARATOR;
                     break;
                 }
                 if (classes == null) {
@@ -86,26 +94,28 @@ public class InitLineEnvStaticRe implements Line.InitLineEnvStaticAb {
         }
 
         {
+            int s = 0;
             for (NetworkInterface networkinterface : NetUtil.getNetworkInterfaces()) {
                 for (InterfaceAddress interfaceaddress : networkinterface.getInterfaceAddresses()) {
                     String temp = NetUtil.getMacAddress(interfaceaddress.getAddress());
                     if (StrUtil.isNotBlank(temp)) {
                         try {
-                            Line.macSet.add(temp.toUpperCase());
+                            LoggerBaseAb.info("扫描到网卡[{}]:[{}}", ++s, temp.toUpperCase());
+                            macSet.add(temp.toUpperCase());
                         } catch (Exception e) {
                         }
                     }
                 }
             }
-            Line.mainMac = Line.macSet.iterator().next();
+            mainMac = macSet.iterator().next();
+            LoggerBaseAb.info("获取到随机主网卡:[{}}", mainMac);
         }
         {
-            String uk_value = "";
             try {
                 uk_value = FileUtil.readUtf8String(Line.UK_FILE);
             } catch (Exception e) {
             }
-            if (StrUtil.isBlank(uk_value) && Line.isClassModel) {
+            if (StrUtil.isBlank(uk_value) && isClassModel) {
                 for (int i = 0; ; i++) {
                     LoggerBaseAb.warn("[{}]系统在本机首次运行,文件[{}]需要写入用户标识(例如:中文姓名,英文姓名[只能为中文,英文,数字]),请输入并点击Enter", BaseEv.HOME_TAG, Line.UK_FILE);
                     String uktag = Console.input();
@@ -117,16 +127,17 @@ public class InitLineEnvStaticRe implements Line.InitLineEnvStaticAb {
                     }
                 }
                 FileUtil.writeUtf8String(uk_value, Line.UK_FILE);
-            } else if (StrUtil.isBlank(uk_value) && !Line.isClassModel) {
-                uk_value = Line.mainMac + Line.systemUserName;
+            } else if (StrUtil.isBlank(uk_value) && !isClassModel) {
+                uk_value = mainMac + Line.systemUserName;
                 FileUtil.writeUtf8String(uk_value, Line.UK_FILE);
             }
-            Line.UK = StrUtil.blankToDefault(uk_value, "local");//都获取不到使用local默认值
+            uk = StrUtil.blankToDefault(uk_value, "local");//都获取不到使用local默认值
+            LoggerBaseAb.info("获取到用户标识:[{}}", uk);
         }
 
         {
             {
-                Starter starter = AnnotationUtil.getAnnotation(Line.mainClassC, Starter.class);
+                Starter starter = AnnotationUtil.getAnnotation(mainClassC, Starter.class);
                 try {
                     i18n = starter.i18n().getI18nCode();
                 } catch (Exception e) {
@@ -139,30 +150,29 @@ public class InitLineEnvStaticRe implements Line.InitLineEnvStaticAb {
                 } catch (Exception e) {
                 }
 
-                try {
-                    runEnv = starter.runEnv();
-                    if (StrUtil.isBlank(runEnv)) {//自动选择根据环境变量确定
-                        List<String> lista = Arrays.asList(SystemUtil.get("env"), SystemUtil.get("ENV"), SystemUtil.get("Env"), SystemUtil.get("ENv"), SystemUtil.get("ENv"));
-                        for (int i = 0; i < lista.size(); i++) {
-                            String lineEnv = lista.get(i);
-                            if (StrUtil.isNotBlank(lineEnv)) {
-                                runEnv = lineEnv;
-                                break;
+                {
+                    try {
+                        runEnv = starter.runEnv();
+                        if (StrUtil.isBlank(runEnv)) {//自动选择根据环境变量确定
+                            List<String> lista = Arrays.asList(SystemUtil.get("env"), SystemUtil.get("ENV"), SystemUtil.get("Env"), SystemUtil.get("ENv"), SystemUtil.get("ENv"));
+                            for (int i = 0; i < lista.size(); i++) {
+                                String lineEnv = lista.get(i);
+                                if (StrUtil.isNotBlank(lineEnv)) {
+                                    runEnv = lineEnv;
+                                    break;
+                                }
                             }
                         }
+                    } catch (Exception e) {
                     }
-                    runEnv = StrUtil.blankToDefault(runEnv, "");
-                    if (StrUtil.isBlank(runEnv) && !Line.isClassModel) {
-                        throw new ExceptionError("运行时模式下需指定环境变量 -Denv= {} ", JSONUtil.toJsonStr(configEnv));
+                    {
+                        runEnv = StrUtil.blankToDefault(runEnv, "");
+                        if (StrUtil.isBlank(runEnv) && !isClassModel) {
+                            throw new ExceptionError("[jar]运行模式需指定一个环境变量:[-Denv={}]", JSONUtil.toJsonStr(configEnv));
+                        }
                     }
-                } catch (Exception e) {
                 }
-                try {
-                    if (StrUtil.isNotBlank(SystemUtil.get("loglevel"))) {//如果日志界别不为空则直接查找,根据名字和值自动查找
-                        loglevel = Level.parse(SystemUtil.get("loglevel"));
-                    }
-                } catch (Exception e) {
-                }
+
                 try {
                     idkey = starter.idkey();
                 } catch (Exception e) {
@@ -180,27 +190,44 @@ public class InitLineEnvStaticRe implements Line.InitLineEnvStaticAb {
                     throw new ExceptionError("参数{}[{}]需在参数{}[{}]范围内", "runEnv", runEnv, "configEnv", JSONUtil.toJsonStr(configEnv));
                 }
             }
+            {
+                workHomeDir = SystemUtil.getUserInfo().getHomeDir() + BaseEv.FILE_SEPARATOR + BaseEv.HOME_TAG + BaseEv.FILE_SEPARATOR + idkey + BaseEv.FILE_SEPARATOR;
+            }
         }
         {
+            //
+            LoggerBaseAb.info("配置类赋值开始[{}}", Line.class.getName());
             Line.idKey = idkey;
             Line.i18n = i18n;
-            Line.projectPackage = StrUtil.isNotBlank(projectPackage) ? projectPackage
-                    : ClassUtil.getPackage(ClassUtil.loadClass(Line.mainClass, false));
-            Line.workHomeDir = SystemUtil.getUserInfo().getHomeDir() + BaseEv.FILE_SEPARATOR + BaseEv.HOME_TAG + BaseEv.FILE_SEPARATOR + Line.idKey
-                    + BaseEv.FILE_SEPARATOR;
+            Line.projectPackage = StrUtil.isNotBlank(projectPackage) ? projectPackage : ClassUtil.getPackage(ClassUtil.loadClass(mainClass, false));
+            Line.workHomeDir = workHomeDir;
             Line.autoUpdate = updateProperties;
             Line.configEnv = configEnv;
-            LoggerBaseUtils.setLevel(loglevel);//临时处理日志管理
-            Line.runEnv = StrUtil.blankToDefault(runEnv, Line.UK);
+            Line.runEnv = StrUtil.blankToDefault(runEnv, uk);
+            Line.jarpath = jarpath;
+            Line.isClassModel = isClassModel;
+            Line.mainClassC = mainClassC;
+            Line.mainClass = mainClass;
+            Line.projectresourcepath = projectresourcepath;
+            Line.projectcodesourcepath = projectcodesourcepath;
+            Line.macSet.addAll(macSet);
+            Line.mainMac = mainMac;
+            Line.UK = uk;
+            LoggerBaseAb.info("配置类赋值完成[{}}", Line.class.getName());
         }
         {
-            Line.context.put("idKey", Line.idKey);
-            Line.context.put("mainClass", Line.mainClass);
-            Line.context.put("isdev", Line.isClassModel);
-            Line.context.put("i18n", Line.i18n);
-            Line.context.put("env", Line.runEnv);
-            Line.context.put("projectPackage", Line.projectPackage);
-            Line.context.put("workHomeDir", Line.workHomeDir);
+            LoggerBaseAb.info("公共模型赋值开始[{}}", Line.class.getName());
+            Line.context.put("idKey", idkey);
+            Line.context.put("mainClass", mainClass);
+            Line.context.put("isdev", isClassModel);
+            Line.context.put("i18n", i18n);
+            Line.context.put("env", runEnv);
+            Line.context.put("projectPackage", projectPackage);
+            Line.context.put("workHomeDir", workHomeDir);
+            LoggerBaseAb.info("公共模型赋值完成[{}}", Line.class.getName());
         }
+
+
+        LoggerBaseAb.info("处理配置类完成[{}}", Line.class.getName());
     }
 }

@@ -18,7 +18,10 @@ import com.guoshiyao.rely.exception.re.ex.ExceptionError;
 import com.guoshiyao.rely.line.Line;
 import com.guoshiyao.rely.third.ThirdExtendConfigAb;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @RuleAnnotation
 public class RedisConfig implements ThirdExtendConfigAb {

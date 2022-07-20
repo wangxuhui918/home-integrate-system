@@ -20,6 +20,7 @@ public class BaseEv {
     public static final String CORE_PACKAGE = ClassUtil.getPackage(HomePosition.class);
     public static final String INIT_KEY = "model-project-company";
     public static final String HOME_TAG = "home";
+    public static final String HOME_NAME = "帆有云系统";
     public static final String UK_NAME = HOME_TAG.toUpperCase() + "_UK";
 
     //避免windows 10出现问题,兼容低版本jdk
@@ -27,7 +28,6 @@ public class BaseEv {
 
     public static void main(String[] args) {
         String f1 = FileUtil.getAbsolutePath("", HomePosition.class);
-
         for (int i = 0; ; i++) {
             String classes = FileUtil.getParent(f1, i);
             String target = FileUtil.getParent(f1, i + 1);
@@ -41,11 +41,5 @@ public class BaseEv {
                 throw new ExceptionError("获取根目录{}失败", f1);
             }
         }
-//        String f3 = FileUtil.getAbsolutePath("", BaseEv.class);
-//        String f4 = FileUtil.getAbsolutePath("", BaseEv.class);
-        //        String sd = StrUtil.subBefore(p1, "target" + BaseEv.FILE_SEPARATOR + "classes", true) + BaseEv.FILE_SEPARATOR + "src"
-//                + BaseEv.FILE_SEPARATOR + "main" + BaseEv.FILE_SEPARATOR + "resources" + BaseEv.FILE_SEPARATOR;
-
-//        System.out.println(f1);
     }
 }

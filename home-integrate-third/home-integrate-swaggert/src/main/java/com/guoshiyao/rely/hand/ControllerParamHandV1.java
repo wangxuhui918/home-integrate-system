@@ -65,7 +65,7 @@ public class ControllerParamHandV1 {
                     AuthReturnType authReturnType = k.checkAuth();
                     if (authReturnType == AuthReturnType.AuthSuccess) {//鉴权通过
                     } else {//鉴权失败
-                        return CodeUtils.go(CodeAbE.getBuiltinCode(CodeAbE.ERROR, Line.i18n, authReturnType.getCode(), authReturnType.getName()));
+                        return CodeUtils.go(CodeAbE.getBuiltinCode(CodeAbE.getError().getType(), Line.i18n, authReturnType.getCode(), authReturnType.getName()));
                     }
                 } catch (Exception e) {
                     return CodeUtils.go(CodeAbE.getError("未知鉴权异常!"));

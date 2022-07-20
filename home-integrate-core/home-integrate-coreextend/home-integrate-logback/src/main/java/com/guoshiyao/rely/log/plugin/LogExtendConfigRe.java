@@ -32,7 +32,7 @@ public class LogExtendConfigRe implements SystemConfigAb {
         try {
             LogBackConfigLoader.load("ching.xml");
             LoggerBaseAb.info("翻转日志管理器成功!!");
-            LoggerBaseUtils.loggerAb = new LoggerUtil();
+            LoggerBaseUtils.custLogger = new LoggerUtil();
         } catch (Exception e) {
             throw new ExceptionError("日志管理器{}加载失败!请检查文件是否符合规范!!", "ching.xml");
         }
