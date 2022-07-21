@@ -44,8 +44,8 @@ public final class LoggerBaseUtils {
             } catch (Exception e) {
                 LoggerBaseAb.info("默认日志变量-Denv={}", loglevel.getName());
             }
-            String syslogpath = "target/log/" + BaseEv.HOME_TAG + "SSLog%u.sys.log";
-//            ${syslog_dir}/${hostname}.%d.sys.log
+            String syslogpath = "target/log/" + BaseEv.HOME_TAG + ".%u.sys.log";
+//            ${syslog_dir}/${hostname}.%d.sys.log %h/java%u.log  SSLog%u.sys.log
             try {
                 if (StrUtil.isNotBlank(SystemUtil.get("syslogpath"))) {//如果日志界别不为空则直接查找,根据名字和值自动查找
                     syslogpath = SystemUtil.get("syslogpath");
