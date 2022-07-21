@@ -11,7 +11,7 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.guoshiyao.rely</groupId>
-        <version>9.0.13-RELEASE</version>
+        <version>9.0.1-SNAPSHOT</version>
         <artifactId>home-integrate-core</artifactId>
     </parent>
     <artifactId>home-integrate-coreutils</artifactId>
@@ -23,7 +23,7 @@
         <dependency>
             <artifactId>home-integrate-basevo</artifactId>
             <groupId>com.guoshiyao.rely</groupId>
-            <version>9.0.13-RELEASE</version>
+            <version>9.0.1-SNAPSHOT</version>
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/org.apache.poi/poi-ooxml -->
