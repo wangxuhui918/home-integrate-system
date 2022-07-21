@@ -20,12 +20,12 @@ public class ExampleApplication {
     public static void main(String[] args) {
         System.setProperty("loglevel", Level.FINER.getName());
         SpringApplication.run(ExampleApplication.class, args);
-        LoggerUtil.info(ExampleApplication.class, "[]{}{}{}{}{}", 1, 2, 3, 4, 5);
-        LoggerUtil.info(ExampleApplication.class, "[]{}{}{}{}{}", 1, 2, 3, 4, 5);
-        LoggerUtil.info(ExampleApplication.class, "[]{}{}{}{}{}", 1, 2, 3, 4, 5);
-        LoggerUtil.info(ExampleApplication.class, "[]{}{}{}{}{}", 1, 2, 3, 4, 5);
-        LoggerUtil.info(ExampleApplication.class, "[]{}{}{}{}{}", 1, 2, 3, 4, 5);
-        LoggerUtil.info(ExampleApplication.class, "[]{}{}{}{}{}", 1, 2, 3, 4, 5);
-        LoggerUtil.info(ExampleApplication.class, "[]{}{}{}{}{}", 1, 2, 3, 4, 5);
+//        LoggerUtil.info(ExampleApplication.class, "[]{}{}{}{}{}", 1, 2, 3, 4, 5);
+//        LoggerUtil.info(ExampleApplication.class, "[]{}{}{}{}{}", 1, 2, 3, 4, 5);
+//        LoggerUtil.info(ExampleApplication.class, "[]{}{}{}{}{}", 1, 2, 3, 4, 5);
+//        LoggerUtil.info(ExampleApplication.class, "[]{}{}{}{}{}", 1, 2, 3, 4, 5);
+//        LoggerUtil.info(ExampleApplication.class, "[]{}{}{}{}{}", 1, 2, 3, 4, 5);
+//        LoggerUtil.info(ExampleApplication.class, "[]{}{}{}{}{}", 1, 2, 3, 4, 5);
+//        LoggerUtil.info(ExampleApplication.class, "[]{}{}{}{}{}", 1, 2, 3, 4, 5);
     }
 }
