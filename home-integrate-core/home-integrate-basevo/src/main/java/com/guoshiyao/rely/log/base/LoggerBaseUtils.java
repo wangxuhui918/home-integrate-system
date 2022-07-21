@@ -31,21 +31,20 @@ public final class LoggerBaseUtils {
         {//jdklogger
             Level loglevel = Level.FINER;//默认日志级别
             try {
-//                LoggerBaseAb.info("读取日志变量-Denv=");
                 if (StrUtil.isNotBlank(SystemUtil.get("loglevel"))) {//如果日志界别不为空则直接查找,根据名字和值自动查找
                     loglevel = Level.parse(SystemUtil.get("loglevel"));
                     LoggerBaseAb.info("读取日志变量-Denv={}", loglevel);
                 } else {
-                    LoggerBaseAb.info("使用默认日志变量[{}]", loglevel.getName());
+                    LoggerBaseAb.info("默认日志变量-Denv={}", loglevel.getName());
                 }
             } catch (Exception e) {
-                LoggerBaseAb.info("使用默认日志变量[{}]", loglevel.getName());
+                LoggerBaseAb.info("默认日志变量-Denv={}", loglevel.getName());
             }
-            jdkLogger.setLevel(Level.ALL);
             myConsoleHandler.setLevel(loglevel);
             myConsoleHandler.setFormatter(new MyFormatter());
-            jdkLogger.addHandler(myConsoleHandler);
+            jdkLogger.setLevel(Level.ALL);
             jdkLogger.setUseParentHandlers(false);
+            jdkLogger.addHandler(myConsoleHandler);
         }
     }
 }

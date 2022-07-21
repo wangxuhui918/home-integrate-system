@@ -26,10 +26,11 @@ public class MyFormatter extends Formatter {
         StringBuilder builder = new StringBuilder();
         builder.append(DateUtil.format(new DateTime(), "yyyy-MM-dd HH:mm:ss.SSS"));
         builder.append(" ");
-        builder.append(arg0.getLevel()).append(" ");
-        builder.append(StrUtil.format("[{}]  ", BaseEv.HOME_NAME));
-        builder.append(StrUtil.format("[{}] ", arg0.getSourceMethodName()));
-        builder.append(StrUtil.format("[{}] ", arg0.getSourceClassName()));
+        builder.append(arg0.getLevel()).append("  ");
+        builder.append(StrUtil.format("[{}] ", BaseEv.HOME_NAME));
+        builder.append(StrUtil.format("[{}] ", "built in log manager"));
+//        builder.append(StrUtil.format("[{}] ", arg0.getSourceMethodName()));
+//        builder.append(StrUtil.format("[{}] ", arg0.getSourceClassName()));
         builder.append(arg0.getMessage());
         builder.append("\r\n");
         return builder.toString();

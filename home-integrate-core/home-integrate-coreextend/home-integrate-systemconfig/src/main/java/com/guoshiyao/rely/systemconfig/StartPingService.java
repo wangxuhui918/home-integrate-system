@@ -51,8 +51,8 @@ public class StartPingService implements CommandLineRunner {
         LoggerBaseAb.info("默认redis连接池 : {} [key]:[{}] ", Line.redisds == null ? "" : Line.redisds.toString(), "Line.redisds");
         LoggerBaseAb.info("默认jdbc_jar包路径 : {} [key]:[{}] ", Line.main_jdbc_jar_fullpath, "Line.main_jdbc_jar_fullpath");
         LoggerBaseAb.info("swagger 地址 : {} ", "http://127.0.0.1:" + Line.setting.get("system.servlet.port") + "/swagger-ui/index.html");
-        LoggerBaseAb.info("帆有云系统启动完成!!");
         System.out.println(ResourceUtil.readUtf8Str("ban.txt"));
+        LoggerBaseAb.info("启动完成[{}]", "SpingBoot");
     }
 }
 

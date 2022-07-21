@@ -13,12 +13,10 @@ package com.guoshiyao.rely.log.plugin;
 import com.guoshiyao.rely.coreannotation.rule.RuleAnnotation;
 import com.guoshiyao.rely.exception.re.ex.ExceptionError;
 import com.guoshiyao.rely.line.Line;
-import com.guoshiyao.rely.log.base.LoggerBaseAb;
-import com.guoshiyao.rely.log.base.LoggerBaseUtils;
-import com.guoshiyao.rely.log.utils.LoggerUtil;
+import com.guoshiyao.rely.log.bean.EndLogBean;
 import com.guoshiyao.rely.sys.SystemConfigAb;
 
-import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -28,11 +26,8 @@ public class LogExtendConfigRe implements SystemConfigAb {
 
     @Override
     public void after() {
-        LoggerBaseAb.info("开始翻转日志管理器!!");
         try {
             LogBackConfigLoader.load("ching.xml");
-            LoggerBaseAb.info("翻转日志管理器成功!!");
-            LoggerBaseUtils.custLogger = new LoggerUtil();
         } catch (Exception e) {
             throw new ExceptionError("日志管理器{}加载失败!请检查文件是否符合规范!!", "ching.xml");
         }
@@ -45,7 +40,7 @@ public class LogExtendConfigRe implements SystemConfigAb {
 
     @Override
     public List<Class> writeClasss() {
-        return new ArrayList<>();
+        return Arrays.asList(new Class[]{EndLogBean.class});
     }
 
     @Override

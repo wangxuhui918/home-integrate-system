@@ -15,8 +15,6 @@ package com.guoshiyao.rely.log.base;
 
 import cn.hutool.core.util.StrUtil;
 
-import java.util.logging.Level;
-
 /**
  * java 基础日志管理器
  */
@@ -27,7 +25,7 @@ public interface LoggerBaseAb {
         if (LoggerBaseUtils.custLogger != null) {
             LoggerBaseUtils.custLogger.debug(str, strs);
         } else {
-            LoggerBaseUtils.jdkLogger.log(Level.FINER, StrUtil.format(str, strs));
+            LoggerBaseUtils.jdkLogger.finer(StrUtil.format(str, strs));
         }
     }
 
@@ -51,7 +49,7 @@ public interface LoggerBaseAb {
         if (LoggerBaseUtils.custLogger != null) {
             LoggerBaseUtils.custLogger.error(str, strs);
         } else {
-            LoggerBaseUtils.jdkLogger.log(Level.SEVERE, StrUtil.format(str, strs));
+            LoggerBaseUtils.jdkLogger.severe(StrUtil.format(str, strs));
         }
     }
 

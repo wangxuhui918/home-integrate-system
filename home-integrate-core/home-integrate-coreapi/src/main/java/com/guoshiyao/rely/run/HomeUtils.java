@@ -49,6 +49,7 @@ public class HomeUtils {
             plugins.get(i).start();
             LoggerBaseAb.info("链式处理器[{}]处理完成[{}]", plugins.get(i).getClass(), "start");
         }
+
         for (int i = 0; i < plugins.size(); i++) {
             LoggerBaseAb.info("链式处理器[{}]开始处理[{}]", plugins.get(i).getClass(), "after");
             plugins.get(i).after();
@@ -56,6 +57,7 @@ public class HomeUtils {
         }
 
         LoggerBaseAb.info("[{}]加载完成", BaseEv.HOME_NAME);
+
 
     }
 }
