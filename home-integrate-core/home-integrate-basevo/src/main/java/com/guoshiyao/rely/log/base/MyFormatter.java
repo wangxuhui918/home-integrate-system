@@ -19,11 +19,12 @@ import java.util.logging.LogRecord;
 
 public class MyFormatter extends Formatter {
 
+    public static final String COLOR = "\u001b[36m";
 
     @Override
     public String format(LogRecord arg0) {
-//2022-07-20 16:18:42,831 INFO  [home-example-ewell] [main] [o.s.c.annotation.AutoProxyRegistrar:83]
         StringBuilder builder = new StringBuilder();
+        builder.append(COLOR);
         builder.append(DateUtil.format(new DateTime(), "yyyy-MM-dd HH:mm:ss.SSS"));
         builder.append(" ");
         builder.append(arg0.getLevel()).append("  ");
