@@ -20,6 +20,10 @@ public class BeforeRegistrar implements ImportSelector {
 
     @Override
     public String[] selectImports(AnnotationMetadata annotationmetadata) {
+//        List<URI> listUrl = ResourceFindUtils.findUri(BaseEv.HOME_TAG + "-*.ini");//Line.env.getName()
+//        for (int i = 0; i < listUrl.size(); i++) {
+//            LoggerBaseAb.info("读取到[{}]配置文件", listUrl.get(i).toString());
+//            Setting o = new Setting(listUrl.get(i).toURL(), CharsetUtil.CHARSET_UTF_8, true);
         HomeUtils.run();
         String[] all = new String[0];
         if (Line.iocclasses != null && Line.iocclasses.size() > 0) {

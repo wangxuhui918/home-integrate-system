@@ -5,7 +5,7 @@
  *
  *  * Copyright (c) 2022
  *  * http://license.coscl.org.cn/MulanPSL2
- *  * 汪旭辉 
+ *  * 汪旭辉
  *
  */
 
@@ -25,15 +25,6 @@ public class AfterRegistrar implements ImportSelector {
 
     @Override
     public String[] selectImports(AnnotationMetadata annotationmetadata) {
-//        String BASE_PACKAGE = "com.home.demo";
-//        GenericApplicationContext context = new GenericApplicationContext();
-//        HomeDefinitonScanner homesca = new HomeDefinitonScanner(context,
-//                ClassUtil.loadClass("com.home.demo.api.UserApi"));
-//        homesca.registerTypeFilter();
-//        int beanCount = homesca.scan(BASE_PACKAGE);
-//        context.refresh();
-
-//        return new String[] { "com.home.demo.service.impl.UserServiceImpl" };
         return new String[]{};
     }
 
