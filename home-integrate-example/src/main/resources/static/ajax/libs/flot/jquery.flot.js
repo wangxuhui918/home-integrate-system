@@ -3,7 +3,7 @@
  *  * Copyright (c) 2022
  *  * http://license.coscl.org.cn/MulanPSL2
  *  * 汪旭辉
- *
+ *  
  */
 
 /*! Javascript plotting library for jQuery, v. 0.7.
