@@ -19,7 +19,7 @@ import cn.hutool.json.JSONUtil;
  * @readme 这里建议压入一下线程信息, 比如用户, 国际化编码
  */
 public class ThreadReUtils {
-    private static final ThreadLocal<JSONObject> allThreadLocal = new ThreadLocal<JSONObject>() {
+    protected static final ThreadLocal<JSONObject> allThreadLocal = new ThreadLocal<JSONObject>() {
         @Override
         protected JSONObject initialValue() {
             return JSONUtil.createObj();
