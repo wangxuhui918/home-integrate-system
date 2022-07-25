@@ -11,6 +11,7 @@
 
 package com.guoshiyao.rely.outgoing;
 
+import cn.hutool.json.JSONUtil;
 import com.guoshiyao.rely.auth.UserRe;
 import com.guoshiyao.rely.base.BaseEv;
 import com.guoshiyao.rely.coreannotation.base.KeyBase;
@@ -42,7 +43,7 @@ public abstract class InputParamAb<D> {
      * 重写该方法验证用户权限信息
      */
     public AuthReturnType checkAuth() {
- 
+
         return AuthReturnType.AuthSuccess;
     }
 
@@ -52,6 +53,9 @@ public abstract class InputParamAb<D> {
     }
 
     public void setUserRe(UserRe userRe) {
+        if (BaseEv.USER_THREAD_POWER) {
+            ThreadReUtils.putParam(KeyBase.USERRE.getName(), JSONUtil.parseObj(userRe));
+        }
         this.userRe = userRe;
     }
 

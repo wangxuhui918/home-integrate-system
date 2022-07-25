@@ -20,6 +20,7 @@ import java.util.Map;
  */
 public enum KeyBase {
     I18N("1", "I18N", "danger"),//
+    USERRE("2", "userRe", "danger"),//
 
     ;//
 

@@ -12,6 +12,7 @@ package com.guoshiyao.rely.thread;
 
 import cn.hutool.json.JSONObject;
 import cn.hutool.json.JSONUtil;
+import com.guoshiyao.rely.coreannotation.base.KeyBase;
 
 /**
  * @auther 汪旭辉
@@ -63,4 +64,24 @@ public class ThreadReUtils {
     public static String getStrParamByPath(String path) {
         return ThreadReUtils.allThreadLocal.get().get(path, String.class);
     }
+
+    /**
+     * 获取用户线程变量
+     *
+     * @return
+     */
+    public static <T> T getTUserRe(Class<T> user) {
+        return JSONUtil.toBean(allThreadLocal.get().getJSONObject(KeyBase.USERRE.getName()), user);
+    }
+
+    /**
+     * 获取I18n线程变量
+     *
+     * @return
+     */
+    public static String getTI18n() {
+        return allThreadLocal.get().get(KeyBase.I18N.getName(), String.class);
+    }
+
+
 }
