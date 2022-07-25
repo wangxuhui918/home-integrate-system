@@ -65,6 +65,6 @@ public class ThreadReUtils {
     }
 
     public static String getStrParamByPath(String path) {
-        return ThreadReUtils.allThreadLocal.get().getByPath(path).toString();
+        return ThreadReUtils.allThreadLocal.get().get(path, String.class);
     }
 }
