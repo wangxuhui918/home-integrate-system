@@ -77,7 +77,7 @@ public abstract class InputParamAb<D> {
 
     public void setI18n(String i18n) {
         if (BaseEv.I18N_THREAD_POWER) {
-            ThreadReUtils.putStrParam(KeyBase.I18N.getName(), i18n);
+            ThreadReUtils.putParam(KeyBase.I18N.getName(), i18n);
         }
         this.i18n = i18n;
     }

@@ -44,13 +44,9 @@ public class ThreadReUtils {
      * @param value T
      */
     public static void putParam(String key, Object value) {
-        ThreadReUtils.allThreadLocal.get().append(key, value);
+        ThreadReUtils.allThreadLocal.get().set(key, value);
     }
 
-
-    public static void putStrParam(String key, String value) {
-        ThreadReUtils.allThreadLocal.get().append(key, value);
-    }
 
     /**
      * 通用获取线程变量
