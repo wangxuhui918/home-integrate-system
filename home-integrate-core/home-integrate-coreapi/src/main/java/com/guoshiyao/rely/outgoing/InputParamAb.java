@@ -12,6 +12,9 @@
 package com.guoshiyao.rely.outgoing;
 
 import com.guoshiyao.rely.auth.UserRe;
+import com.guoshiyao.rely.base.BaseEv;
+import com.guoshiyao.rely.coreannotation.base.KeyBase;
+import com.guoshiyao.rely.thread.ThreadReUtils;
 
 /**
  * 入参基类
@@ -73,6 +76,9 @@ public abstract class InputParamAb<D> {
     }
 
     public void setI18n(String i18n) {
+        if (BaseEv.I18N_THREAD_POWER) {
+            ThreadReUtils.putStrParam(KeyBase.I18N.getName(), i18n);
+        }
         this.i18n = i18n;
     }
 

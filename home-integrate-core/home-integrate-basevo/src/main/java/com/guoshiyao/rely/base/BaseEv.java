@@ -16,7 +16,7 @@ import com.guoshiyao.rely.exception.re.ex.ExceptionError;
 import com.guoshiyao.rely.line.Line;
 
 public class BaseEv {
-
+    public static final boolean I18N_THREAD_POWER = true;//出入参i18n自动判定,否则需要手工指定,不指定则为系统默认
     public static final String CORE_PACKAGE = ClassUtil.getPackage(HomePosition.class);
     public static final String INIT_KEY = "model-project-company";
     public static final String HOME_TAG = "home";

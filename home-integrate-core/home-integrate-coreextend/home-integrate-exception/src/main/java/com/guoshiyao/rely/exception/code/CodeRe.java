@@ -12,9 +12,12 @@ package com.guoshiyao.rely.exception.code;
 
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.json.JSONUtil;
+import com.guoshiyao.rely.base.BaseEv;
+import com.guoshiyao.rely.coreannotation.base.KeyBase;
 import com.guoshiyao.rely.exception.code.re.CodeAbE;
 import com.guoshiyao.rely.exception.re.ex.ExceptionError;
 import com.guoshiyao.rely.line.Line;
+import com.guoshiyao.rely.thread.ThreadReUtils;
 
 import java.util.List;
 
@@ -45,6 +48,12 @@ public class CodeRe extends CodeAbE {
     }
 
     private void init(String code, String i18n, String... messages) {
+        if (BaseEv.I18N_THREAD_POWER && StrUtil.isBlank(i18n)) {//获取线程变量
+            i18n = ThreadReUtils.getStrParamByPath(KeyBase.I18N.getName());
+        }
+        if (StrUtil.isBlank(i18n)) {
+            i18n = Line.i18n;
+        }
         List<String> messageList = null;
         try {
             messageList = Line.messages.get(i18n).get(code);

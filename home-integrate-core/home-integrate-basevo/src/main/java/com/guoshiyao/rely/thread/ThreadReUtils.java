@@ -14,9 +14,8 @@ import cn.hutool.json.JSONObject;
 import cn.hutool.json.JSONUtil;
 
 /**
- * @date 2022/01/08
  * @auther 汪旭辉
- * @readme 这里建议压入一下线程信息, 比如用户, 国际化编码
+ * @readme 这里建议压入一下线程信息, 比如用户, 国际化编码,不建议较大数据放入
  */
 public class ThreadReUtils {
     protected static final ThreadLocal<JSONObject> allThreadLocal = new ThreadLocal<JSONObject>() {
@@ -46,5 +45,26 @@ public class ThreadReUtils {
      */
     public static void putParam(String key, Object value) {
         ThreadReUtils.allThreadLocal.get().append(key, value);
+    }
+
+
+    public static void putStrParam(String key, String value) {
+        ThreadReUtils.allThreadLocal.get().append(key, value);
+    }
+
+    /**
+     * 通用获取线程变量
+     *
+     * @param path
+     * @param classes
+     * @param <T>
+     * @return
+     */
+    public static <T> T getParamByPath(String path, Class<T> classes) {
+        return JSONUtil.toBean(ThreadReUtils.allThreadLocal.get().getJSONObject(path), classes);
+    }
+
+    public static String getStrParamByPath(String path) {
+        return ThreadReUtils.allThreadLocal.get().getByPath(path).toString();
     }
 }
