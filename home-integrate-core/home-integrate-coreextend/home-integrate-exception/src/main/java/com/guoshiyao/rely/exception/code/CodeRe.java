@@ -49,7 +49,10 @@ public class CodeRe extends CodeAbE {
 
     private void init(String code, String i18n, String... messages) {
         if (BaseEv.I18N_THREAD_POWER && StrUtil.isBlank(i18n)) {//获取线程变量
-            i18n = ThreadReUtils.getStrParamByPath(KeyBase.I18N.getName());
+            try {
+                i18n = ThreadReUtils.getStrParamByPath(KeyBase.I18N.getName());
+            } catch (Exception e) {
+            }
         }
         if (StrUtil.isBlank(i18n)) {
             i18n = Line.i18n;
