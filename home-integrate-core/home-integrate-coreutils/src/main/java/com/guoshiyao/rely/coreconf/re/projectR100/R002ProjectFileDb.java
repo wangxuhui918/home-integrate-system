@@ -104,7 +104,7 @@ public class R002ProjectFileDb implements ProjectCoreConfAb {
         try {
             List<URI> listUri = ResourceFindUtils.findUri("message-*.xml");//Line.env.getName()
             for (int i = 0; i < listUri.size(); i++) {
-                if (listUri.get(i).toString().contains("-" + Line.i18n)) {
+                if (!listUri.get(i).toString().contains("-" + Line.i18n)) {
                     String name = StrUtil.subBetween(listUri.get(i).toString(), "message-", ".xml");
                     String context =
                             FileUtil.readString(listUri.get(i).toURL(), CharsetUtil.CHARSET_UTF_8);
