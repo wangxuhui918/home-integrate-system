@@ -66,22 +66,29 @@ public class ThreadReUtils {
     }
 
     /**
-     * 获取用户线程变量
-     *
-     * @return
-     */
-    public static <T> T getTUserRe(Class<T> user) {
-        return JSONUtil.toBean(allThreadLocal.get().getJSONObject(KeyBase.USERRE.getName()), user);
-    }
-
-    /**
      * 获取I18n线程变量
      *
      * @return
      */
     public static String getTI18n() {
-        return allThreadLocal.get().get(KeyBase.I18N.getName(), String.class);
+        try {
+            return allThreadLocal.get().get(KeyBase.I18N.getName(), String.class);
+        } catch (Exception e) {
+            return null;
+        }
     }
 
+    /**
+     * 获取用户线程变量
+     *
+     * @return
+     */
+    public static <T> T getTUserRe(Class<T> user) {
+        try {
+            return JSONUtil.toBean(allThreadLocal.get().getJSONObject(KeyBase.USERRE.getName()), user);
+        } catch (Exception e) {
+            return null;
+        }
+    }
 
 }
