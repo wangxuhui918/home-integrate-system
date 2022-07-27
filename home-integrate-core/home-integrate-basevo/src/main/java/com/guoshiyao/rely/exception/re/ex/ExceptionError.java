@@ -31,7 +31,7 @@ public class ExceptionError extends ExceptionAb {
      * @date 2022年1月21日
      * @readme mark 入参为[?你好!] [张三] 格式化结果为 [张三你好!]
      */
-    public ExceptionError(String text, String... format) {
+    public ExceptionError(String text, Object... format) {
         super(CodeAbE.getError(text, format));
     }
 

@@ -82,7 +82,7 @@ public class CodeAbE implements CodeAb {
      * @date 2022年1月21日
      * @readme
      */
-    public static CodeAbE getError(String text, String... format) {
+    public static CodeAbE getError(String text, Object... format) {
         return getBuiltinCode(DefaultCode.ERROR.getCode(), I18n.defaultI18n.getI18nCode(), DefaultCode.ERROR.getName(), text, format);
     }
 
@@ -113,7 +113,7 @@ public class CodeAbE implements CodeAb {
     }
 
 
-    public static CodeAbE getBuiltinCode(String type, String i18n, String code, String text, String... format) {
+    public static CodeAbE getBuiltinCode(String type, String i18n, String code, String text, Object... format) {
         return new CodeAbE() {
             @Override
             public String getType() {

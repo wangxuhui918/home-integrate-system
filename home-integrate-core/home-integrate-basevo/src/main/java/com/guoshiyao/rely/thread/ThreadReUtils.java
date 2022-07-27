@@ -1,3 +1,4 @@
+package com.guoshiyao.rely.thread;
 
 
 /*
@@ -8,7 +9,6 @@
  *
  */
 
-package com.guoshiyao.rely.thread;
 
 import cn.hutool.json.JSONObject;
 import cn.hutool.json.JSONUtil;
@@ -19,23 +19,23 @@ import com.guoshiyao.rely.coreannotation.base.KeyBase;
  * @readme 这里建议压入一下线程信息, 比如用户, 国际化编码,不建议较大数据放入
  */
 public class ThreadReUtils {
-    protected static final ThreadLocal<JSONObject> allThreadLocal = new ThreadLocal<JSONObject>() {
+    protected static final ThreadLocal<ThreadVar> allThreadLocal = new ThreadLocal<ThreadVar>() {
         @Override
-        protected JSONObject initialValue() {
-            return JSONUtil.createObj();
+        protected ThreadVar initialValue() {
+            return new ThreadVar();
         }
     };
 
-    public static JSONObject getObj() {
-        return ThreadReUtils.allThreadLocal.get();
+    public static ThreadVar getObj() {
+        return allThreadLocal.get();
     }
 
-    public static JSONObject setObj(JSONObject obj) {
-        return ThreadReUtils.allThreadLocal.get();
+    public static ThreadVar setObj(JSONObject obj) {
+        return allThreadLocal.get();
     }
 
     public static void remove() {
-        ThreadReUtils.allThreadLocal.remove();
+        allThreadLocal.remove();
     }
 
     /**
@@ -45,9 +45,13 @@ public class ThreadReUtils {
      * @param value T
      */
     public static void putParam(String key, Object value) {
-        ThreadReUtils.allThreadLocal.get().set(key, value);
+        allThreadLocal.get().append(key, value);
     }
 
+
+    public static void putStrParam(String key, String value) {
+        allThreadLocal.get().set(key, value);
+    }
 
     /**
      * 通用获取线程变量
@@ -58,12 +62,13 @@ public class ThreadReUtils {
      * @return
      */
     public static <T> T getParamByPath(String path, Class<T> classes) {
-        return JSONUtil.toBean(ThreadReUtils.allThreadLocal.get().getJSONObject(path), classes);
+        return JSONUtil.toBean(allThreadLocal.get().getJSONObject(path), classes);
     }
 
     public static String getStrParamByPath(String path) {
-        return ThreadReUtils.allThreadLocal.get().get(path, String.class);
+        return allThreadLocal.get().get(path, String.class);
     }
+    //8//////
 
     /**
      * 获取I18n线程变量
