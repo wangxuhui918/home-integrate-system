@@ -8,7 +8,7 @@
  *
  */
 
-package org.speedcolor.cust;
+package com.guoshiyao.rely.exception.code;
 
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.json.JSONUtil;

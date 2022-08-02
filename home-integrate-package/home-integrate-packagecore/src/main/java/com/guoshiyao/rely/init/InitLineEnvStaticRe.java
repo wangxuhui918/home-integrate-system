@@ -55,6 +55,9 @@ public class InitLineEnvStaticRe implements Line.InitLineEnvStaticAb {
             String startCommad = System.getProperty("sun.java.command");
             LoggerBaseAb.info("获取到启动命令值:[{}}", startCommad);
             try {
+                if (StrUtil.isNotBlank(startCommad)) {
+                    startCommad = StrUtil.subBefore(startCommad, " ", false);
+                }
                 if (URLUtil.isJarFileURL(new File(startCommad).toURI().toURL())) {//如果是运行时
                     LoggerBaseAb.info("[jar]运行模式");
                     jarpath = startCommad;
