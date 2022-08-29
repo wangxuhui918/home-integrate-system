@@ -26,6 +26,7 @@
         <module>home-integrate-dubbot</module>
         <module>home-integrate-actut</module>
         <module>home-integrate-mybatist</module>
+        <module>home-integrate-mybatistplus</module>
         <module>home-integrate-faitht</module>
         <module>home-integrate-apollot</module>
         <module>home-integrate-snowflake</module>

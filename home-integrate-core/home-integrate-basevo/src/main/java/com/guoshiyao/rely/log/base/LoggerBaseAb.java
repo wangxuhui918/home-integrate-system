@@ -23,7 +23,7 @@ import java.util.logging.Level;
 public interface LoggerBaseAb {
 
 
-    static void debug(String str, Object... strs) {
+    public static void debug(String str, Object... strs) {
         if (LoggerBaseUtils.custLogger != null) {
             LoggerBaseUtils.custLogger.debug(str, strs);
         } else {
@@ -31,7 +31,7 @@ public interface LoggerBaseAb {
         }
     }
 
-    static void info(String str, Object... strs) {
+    public static void info(String str, Object... strs) {
         if (LoggerBaseUtils.custLogger != null) {
             LoggerBaseUtils.custLogger.info(str, strs);
         } else {
@@ -39,7 +39,7 @@ public interface LoggerBaseAb {
         }
     }
 
-    static void warn(String str, Object... strs) {
+    public static void warn(String str, Object... strs) {
         if (LoggerBaseUtils.custLogger != null) {
             LoggerBaseUtils.custLogger.warning(str, strs);
         } else {
@@ -47,7 +47,7 @@ public interface LoggerBaseAb {
         }
     }
 
-    static void err(String str, Object... strs) {
+    public static void err(String str, Object... strs) {
         if (LoggerBaseUtils.custLogger != null) {
             LoggerBaseUtils.custLogger.error(str, strs);
         } else {
@@ -56,8 +56,7 @@ public interface LoggerBaseAb {
     }
 
 
-
-    static void debug(Class classes, String str, String... strs) {
+    public static void debug(Class classes, String str, String... strs) {
         if (LoggerBaseUtils.custLogger != null) {
             LoggerBaseUtils.custLogger.debug(str, strs);
         } else {
@@ -65,7 +64,7 @@ public interface LoggerBaseAb {
         }
     }
 
-    static void info(Class classes, String str, String... strs) {
+    public static void info(Class classes, String str, String... strs) {
         if (LoggerBaseUtils.custLogger != null) {
             LoggerBaseUtils.custLogger.info(str, strs);
         } else {
@@ -73,7 +72,7 @@ public interface LoggerBaseAb {
         }
     }
 
-    static void warn(Class classes, String str, String... strs) {
+    public static void warn(Class classes, String str, String... strs) {
         if (LoggerBaseUtils.custLogger != null) {
             LoggerBaseUtils.custLogger.warning(str, strs);
         } else {
@@ -81,7 +80,7 @@ public interface LoggerBaseAb {
         }
     }
 
-    static void err(Class classes, String str, String... strs) {
+    public static void err(Class classes, String str, String... strs) {
         if (LoggerBaseUtils.custLogger != null) {
             LoggerBaseUtils.custLogger.error(str, strs);
         } else {
