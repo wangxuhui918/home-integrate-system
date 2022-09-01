@@ -27,7 +27,7 @@ import java.util.*;
 @RuleAnnotation
 
 public class MyBatisPlusConfig implements ThirdExtendConfigAb {
-    public final static String NAME = "MYBATIS";
+    public final static String NAME = "MYBATIS-PLUS";
 
     @Override
     public List<Class> writeClasss() {

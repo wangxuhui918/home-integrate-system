@@ -36,10 +36,9 @@ import javax.sql.DataSource;
 public class MybatisPlusAutoConfiguration {
 
     @Bean(name = "sqlSessionFactory")
-//    @ConditionalOnMissingBean(SqlSessionFactory.class) // 容器中如果没有这个类,那么自动配置这个类
     public SqlSessionFactory sqlSessionFactoryBean(@Qualifier("druidDataSource") DataSource dataSource) {
         SqlSessionFactoryBean bean = new SqlSessionFactoryBean();
-        bean.setDataSource(dataSource);// AwAValue.env.getMybatisconf().getBasePackage().getValue()
+        bean.setDataSource(dataSource);
         bean.setTypeAliasesPackage(Line.setting.get("home.mybatisplus.typealiasespackage"));
         // 分页插件
         PageInterceptor pageHelper = new PageInterceptor();

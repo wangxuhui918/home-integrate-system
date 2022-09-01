@@ -8,7 +8,7 @@
  *
  */
 
-package com.guoshiyao.rely.mybatisplus.starter.mybatis.other.base;
+package com.guoshiyao.rely.mybatisplus.starter.mybatis.other;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.core.mapper.Mapper;

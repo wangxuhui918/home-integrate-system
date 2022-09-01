@@ -16,7 +16,6 @@ import org.springframework.context.annotation.Bean;
 
 
 public class MapperConfiguration {
-
     @Bean("mapperScannerConfigurer")
     public MapperScannerConfigurer mapperScannerConfigurer() {
         MapperScannerConfigurer mapperScannerConfigurer = new MapperScannerConfigurer();
