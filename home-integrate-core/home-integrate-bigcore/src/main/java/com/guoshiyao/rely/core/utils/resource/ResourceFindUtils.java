@@ -10,7 +10,7 @@
 package com.guoshiyao.rely.core.utils.resource;
 
 import com.guoshiyao.rely.core.IResource;
-import com.guoshiyao.rely.core.utils.conf.CoreConfUtils;
+import com.guoshiyao.rely.core.configration.utils.CoreConfUtils;
 
 import java.net.URI;
 import java.util.List;

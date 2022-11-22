@@ -1,9 +1,9 @@
 package com.guoshiyao.rely.core.configration.bean;
 
-import com.guoshiyao.rely.core.ClassModelConfigRe;
+import com.guoshiyao.rely.core.IClassModelConfig;
 import com.guoshiyao.rely.core.ILineManager;
 import com.guoshiyao.rely.core.IResource;
-import com.guoshiyao.rely.core.RunModelConfigRe;
+import com.guoshiyao.rely.core.IRunModelConfig;
 import com.guoshiyao.rely.core.configration.home.ICoreConf;
 import com.guoshiyao.rely.core.configration.project.IProjectConf;
 
@@ -12,8 +12,8 @@ public enum CoreSpiType {
     项目配置接口(IProjectConf.class.getSimpleName(), "项目配置接口", "项目配置接口"),//
     链式接口(ILineManager.class.getSimpleName(), "链式接口", "链式接口"),//
     资源接口(IResource.class.getSimpleName(), "资源接口", "资源接口"),//
-    类模式接口(ClassModelConfigRe.class.getSimpleName(), "类模式接口", "类模式接口"),//
-    运行模式接口(RunModelConfigRe.class.getSimpleName(), "运行模式接口", "运行模式接口"),//
+    类模式接口(IClassModelConfig.class.getSimpleName(), "类模式接口", "类模式接口"),//
+    运行模式接口(IRunModelConfig.class.getSimpleName(), "运行模式接口", "运行模式接口"),//
 
     //
     ;

@@ -22,7 +22,7 @@ import java.util.List;
 import java.util.Map;
 
 @RuleInjection
-public class LogExtendConfigRe implements ISystemConfig {
+public class LogExtendConfig implements ISystemConfig {
 
     @Override
     public void after() {

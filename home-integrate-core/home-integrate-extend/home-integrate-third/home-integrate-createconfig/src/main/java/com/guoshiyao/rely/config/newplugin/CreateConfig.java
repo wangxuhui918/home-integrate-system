@@ -10,7 +10,7 @@
 package com.guoshiyao.rely.config.newplugin;
 
 import com.guoshiyao.rely.core.configration.annotation.RuleInjection;
-import com.guoshiyao.rely.core.utils.conf.ProjectConfUtils;
+import com.guoshiyao.rely.core.configration.utils.ProjectConfUtils;
 import com.guoshiyao.rely.coreextension.ICreateConfig;
 
 import java.util.ArrayList;
@@ -23,7 +23,7 @@ import java.util.Map;
  * @readme
  */
 @RuleInjection
-public class EnvFilePathCreateConfigRe implements ICreateConfig {
+public class CreateConfig implements ICreateConfig {
 
 
     @Override

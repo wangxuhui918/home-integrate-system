@@ -20,7 +20,7 @@ import java.util.Map;
  * @date 2021年11月30日
  * @readme
  */
-public interface IIBaseConfig extends IBaseConfig {
+public interface IModelConfig extends IBaseConfig {
     /**
      * 参数完全读取后,交付IOC前调用
      *

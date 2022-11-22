@@ -26,7 +26,7 @@ import java.util.Map;
  * @readme
  */
 @RuleInjection
-public class SystemConfigRe implements ISystemConfig {
+public class SystemConfig implements ISystemConfig {
 
     @Override
     public void before() {

@@ -6,7 +6,7 @@
  *
  */
 
-package com.guoshiyao.rely.core.utils.conf;
+package com.guoshiyao.rely.core.configration.utils;
 
 import cn.hutool.core.util.ClassUtil;
 import com.guoshiyao.rely.BaseEv;

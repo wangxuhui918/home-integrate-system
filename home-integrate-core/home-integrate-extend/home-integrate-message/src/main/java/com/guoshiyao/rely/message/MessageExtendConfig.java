@@ -13,14 +13,14 @@ package com.guoshiyao.rely.message;
 import cn.hutool.setting.Setting;
 import com.guoshiyao.rely.BaseEv;
 import com.guoshiyao.rely.core.configration.annotation.RuleInjection;
-import com.guoshiyao.rely.core.utils.conf.ProjectConfUtils;
+import com.guoshiyao.rely.core.configration.utils.ProjectConfUtils;
 import com.guoshiyao.rely.core.utils.node.NodeUtils;
 import com.guoshiyao.rely.coreextension.IMessageConfig;
 
 import java.util.*;
 
 @RuleInjection
-public class MessageExtendConfigRe implements IMessageConfig {
+public class MessageExtendConfig implements IMessageConfig {
 
     @Override
     public void after() {

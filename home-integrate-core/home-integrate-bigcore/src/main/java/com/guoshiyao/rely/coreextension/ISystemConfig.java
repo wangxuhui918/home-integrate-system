@@ -11,8 +11,8 @@
 
 package com.guoshiyao.rely.coreextension;
 
-import com.guoshiyao.rely.core.RunModelConfigRe;
+import com.guoshiyao.rely.core.IRunModelConfig;
 
-public interface ISystemConfig extends RunModelConfigRe {
+public interface ISystemConfig extends IRunModelConfig {
 
 }

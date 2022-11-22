@@ -37,7 +37,7 @@ import java.util.List;
 @Order(Integer.MAX_VALUE)
 public class MybatisAutoMethod {
 
-    public final static String name = "@annotation(com.guoshiyao.rely.annotation.mapper.RuleInjection)";
+    public final static String name = "@annotation(com.guoshiyao.rely.core.configration.annotation.RuleInjection)";
 
 
     @Pointcut(name)

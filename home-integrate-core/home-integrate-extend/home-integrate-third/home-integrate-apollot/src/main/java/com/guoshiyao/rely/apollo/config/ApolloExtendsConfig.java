@@ -20,7 +20,7 @@ import com.guoshiyao.rely.coreextension.IThirdExtendConfig;
 import java.util.*;
 
 @RuleInjection
-public class ApolloExtendsConfigAe implements IThirdExtendConfig {
+public class ApolloExtendsConfig implements IThirdExtendConfig {
 
 
     @Override

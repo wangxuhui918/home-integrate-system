@@ -12,9 +12,9 @@
 package com.guoshiyao.rely.coreextension;
 
 import cn.hutool.setting.Setting;
-import com.guoshiyao.rely.core.RunModelConfigRe;
+import com.guoshiyao.rely.core.IRunModelConfig;
 
-public interface IThirdExtendConfig extends RunModelConfigRe {
+public interface IThirdExtendConfig extends IRunModelConfig {
     /**
      * 配置循环配置器,尚未结局多重循环问题,目前插件并不多,循环次数为 N*N
      *

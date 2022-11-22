@@ -11,7 +11,7 @@
 package com.guoshiyao.rely;
 
 import com.guoshiyao.rely.core.ILineManager;
-import com.guoshiyao.rely.core.utils.conf.CoreConfUtils;
+import com.guoshiyao.rely.core.configration.utils.CoreConfUtils;
 import com.guoshiyao.rely.plugin.log.ILoggerBaseUtils;
 
 import java.util.List;

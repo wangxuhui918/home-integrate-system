@@ -26,7 +26,7 @@ import java.util.*;
  * @readme
  */
 @RuleInjection
-public class PortConfigRe implements ISystemConfig {
+public class PortConfig implements ISystemConfig {
     private static Object conf;
 
     @Override

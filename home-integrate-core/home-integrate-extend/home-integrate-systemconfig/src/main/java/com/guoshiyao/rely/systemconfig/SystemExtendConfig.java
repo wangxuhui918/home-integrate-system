@@ -24,7 +24,7 @@ import java.util.*;
  * @readme
  */
 @RuleInjection
-public class SystemExtendConfigRe implements ISystemConfig {
+public class SystemExtendConfig implements ISystemConfig {
 
     @Override
     public void before() {

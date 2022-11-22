@@ -24,6 +24,7 @@
         <module>home-integrate-core</module>
         <module>home-integrate-allpom</module>
         <module>home-integrate-all</module>
+<!--        <module>home-integrate-example</module>-->
     </modules>
 
 

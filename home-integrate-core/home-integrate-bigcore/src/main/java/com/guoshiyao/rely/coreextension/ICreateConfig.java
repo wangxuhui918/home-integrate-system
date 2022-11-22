@@ -10,7 +10,7 @@
 
 package com.guoshiyao.rely.coreextension;
 
-import com.guoshiyao.rely.core.ClassModelConfigRe;
+import com.guoshiyao.rely.core.IClassModelConfig;
 
 /**
  * 配置创建组件
@@ -19,7 +19,7 @@ import com.guoshiyao.rely.core.ClassModelConfigRe;
  * @date 2021年12月13日
  * @readme
  */
-public interface ICreateConfig extends ClassModelConfigRe {
+public interface ICreateConfig extends IClassModelConfig {
 
 
 }

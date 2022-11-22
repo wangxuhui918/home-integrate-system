@@ -15,10 +15,10 @@ import cn.hutool.core.map.MapUtil;
 import cn.hutool.core.util.StrUtil;
 import com.guoshiyao.rely.BaseEv;
 import com.guoshiyao.rely.core.configration.annotation.RuleInjection;
-import com.guoshiyao.rely.core.ClassModelConfigRe;
+import com.guoshiyao.rely.core.IClassModelConfig;
 import com.guoshiyao.rely.core.ILineManager;
-import com.guoshiyao.rely.core.RunModelConfigRe;
-import com.guoshiyao.rely.core.utils.conf.CoreConfUtils;
+import com.guoshiyao.rely.core.IRunModelConfig;
+import com.guoshiyao.rely.core.configration.utils.CoreConfUtils;
 import com.guoshiyao.rely.coreextension.ISystemConfig;
 import com.guoshiyao.rely.coreextension.IThirdExtendConfig;
 import com.guoshiyao.rely.plugin.log.ILoggerBaseUtils;
@@ -35,11 +35,11 @@ import java.util.Map;
  * @readme
  */
 @RuleInjection
-public class LineRe implements ILineManager {
+public class LineDefaultManager implements ILineManager {
     //<Line>
-    private static List<ClassModelConfigRe> classmodelconfigrerules = CoreConfUtils.sortByDbOrRuleApi(ClassModelConfigRe.class);
+    private static List<IClassModelConfig> classmodelconfigrerules = CoreConfUtils.sortByDbOrRuleApi(IClassModelConfig.class);
 
-    private static List<RunModelConfigRe> runmodelconfigrerules = CoreConfUtils.sortByDbOrRuleApi(RunModelConfigRe.class);
+    private static List<IRunModelConfig> runmodelconfigrerules = CoreConfUtils.sortByDbOrRuleApi(IRunModelConfig.class);
 
 
     /**
@@ -50,7 +50,7 @@ public class LineRe implements ILineManager {
 
         if (BaseEv.SettingInformation.isClassModel) {//仅在class模式下需要处理的东西
             for (int i = 0; i < classmodelconfigrerules.size(); i++) {
-                ClassModelConfigRe info = classmodelconfigrerules.get(i);
+                IClassModelConfig info = classmodelconfigrerules.get(i);
                 ILoggerBaseUtils.info("[{}]功能处理器[{}]开始处理[{}]", "class", info.getClass(), "before");
                 info.before();
                 ILoggerBaseUtils.info("[{}]功能处理器[{}]处理完成[{}]", "class", info.getClass(), "before");
@@ -58,7 +58,7 @@ public class LineRe implements ILineManager {
         }
         {//运行时模式需要处理的部分
             for (int i = 0; i < runmodelconfigrerules.size(); i++) {
-                RunModelConfigRe info = runmodelconfigrerules.get(i);
+                IRunModelConfig info = runmodelconfigrerules.get(i);
                 ILoggerBaseUtils.info("[{}]功能处理器[{}]开始处理[{}]", "jar", info.getClass(), "before");
                 info.before();
                 ILoggerBaseUtils.info("[{}]功能处理器[{}]处理完成[{}]", "jar", info.getClass(), "before");
@@ -75,7 +75,7 @@ public class LineRe implements ILineManager {
         {
             //读取系统参数
             for (int i = 0; i < runmodelconfigrerules.size(); i++) {
-                RunModelConfigRe info = runmodelconfigrerules.get(i);
+                IRunModelConfig info = runmodelconfigrerules.get(i);
                 ILoggerBaseUtils.info("[{}]功能处理器[{}]开始处理[{}]", "jar", info.getClass(), "writeProperties");
                 if (info instanceof ISystemConfig) {
                     BaseEv.SettingInformation.setting.putAll(info.writeProperties());
@@ -84,7 +84,7 @@ public class LineRe implements ILineManager {
             }
             //读取第三方参数
             for (int i = 0; i < runmodelconfigrerules.size(); i++) {
-                RunModelConfigRe info = runmodelconfigrerules.get(i);
+                IRunModelConfig info = runmodelconfigrerules.get(i);
                 ILoggerBaseUtils.info("[{}]功能处理器[{}]开始处理[{}]", "jar", info.getClass(), "writeProperties");
                 if (info instanceof IThirdExtendConfig) {
                     BaseEv.SettingInformation.setting.putAll(info.writeProperties());
@@ -92,7 +92,7 @@ public class LineRe implements ILineManager {
                 ILoggerBaseUtils.info("[{}]功能处理器[{}]处理完成[{}]", "jar", info.getClass(), "writeProperties");
             }
             for (int i = 0; i < classmodelconfigrerules.size(); i++) {
-                ClassModelConfigRe info = classmodelconfigrerules.get(i);
+                IClassModelConfig info = classmodelconfigrerules.get(i);
                 ILoggerBaseUtils.info("[{}]功能处理器[{}]开始处理[{}]", "class", info.getClass(), "writeProperties");
                 BaseEv.SettingInformation.setting.putAll(info.writeProperties());
                 ILoggerBaseUtils.info("[{}]功能处理器[{}]处理完成[{}]", "class", info.getClass(), "writeProperties");
@@ -100,10 +100,10 @@ public class LineRe implements ILineManager {
         }
         //额外参数处理器,比如配置参数变动值
         for (int i = 0; i < runmodelconfigrerules.size(); i++) {
-            RunModelConfigRe info1 = runmodelconfigrerules.get(i);
+            IRunModelConfig info1 = runmodelconfigrerules.get(i);
             ILoggerBaseUtils.info("[{}]功能处理器[{}]开始处理[{}]", "jar", info1.getClass(), "callSetting");
             if (info1 instanceof IThirdExtendConfig) {
-                for (RunModelConfigRe info : runmodelconfigrerules) {
+                for (IRunModelConfig info : runmodelconfigrerules) {
                     if (info instanceof IThirdExtendConfig) {
                         ((IThirdExtendConfig) info).callSetting(BaseEv.SettingInformation.setting);
                     }
@@ -136,7 +136,7 @@ public class LineRe implements ILineManager {
     public void after() {
         //IOC对象加载,按照顺序
         for (int i = 0; i < runmodelconfigrerules.size(); i++) {
-            RunModelConfigRe info = runmodelconfigrerules.get(i);
+            IRunModelConfig info = runmodelconfigrerules.get(i);
             ILoggerBaseUtils.info("[{}]功能处理器[{}]开始处理[{}]", "jar", info.getClass(), "writeClasss");
             if (info instanceof ISystemConfig) {
                 BaseEv.SettingInformation.iocclasses.addAll(info.writeClasss());
@@ -144,7 +144,7 @@ public class LineRe implements ILineManager {
             ILoggerBaseUtils.info("[{}]功能处理器[{}]处理完成[{}]", "jar", info.getClass(), "writeClasss");
         }
         for (int i = 0; i < runmodelconfigrerules.size(); i++) {
-            RunModelConfigRe info = runmodelconfigrerules.get(i);
+            IRunModelConfig info = runmodelconfigrerules.get(i);
             ILoggerBaseUtils.info("[{}]功能处理器[{}]开始处理[{}]", "jar", info.getClass(), "writeClasss");
             if (info instanceof IThirdExtendConfig) {
                 BaseEv.SettingInformation.iocclasses.addAll(info.writeClasss());
@@ -153,7 +153,7 @@ public class LineRe implements ILineManager {
         }
         if (BaseEv.SettingInformation.isClassModel) {//提前处理非Jar模式需要处理的东西
             for (int i = 0; i < classmodelconfigrerules.size(); i++) {
-                ClassModelConfigRe info = classmodelconfigrerules.get(i);
+                IClassModelConfig info = classmodelconfigrerules.get(i);
                 ILoggerBaseUtils.info("[{}]功能处理器[{}]开始处理[{}]", "class", info.getClass(), "writeClasss");
                 BaseEv.SettingInformation.iocclasses.addAll(info.writeClasss());
                 ILoggerBaseUtils.info("[{}]功能处理器[{}]处理完成[{}]", "class", info.getClass(), "writeClasss");
@@ -161,7 +161,7 @@ public class LineRe implements ILineManager {
         }
 
         for (int i = 0; i < runmodelconfigrerules.size(); i++) {
-            RunModelConfigRe info = runmodelconfigrerules.get(i);
+            IRunModelConfig info = runmodelconfigrerules.get(i);
             ILoggerBaseUtils.info("[{}]功能处理器[{}]开始处理[{}]", "jar", info.getClass(), "after");
             info.after();
             ILoggerBaseUtils.info("[{}]功能处理器[{}]处理完成[{}]", "jar", info.getClass(), "after");
@@ -169,7 +169,7 @@ public class LineRe implements ILineManager {
 
         if (BaseEv.SettingInformation.isClassModel) {//提前处理非Jar模式需要处理的东西
             for (int i = 0; i < classmodelconfigrerules.size(); i++) {
-                ClassModelConfigRe info = classmodelconfigrerules.get(i);
+                IClassModelConfig info = classmodelconfigrerules.get(i);
                 ILoggerBaseUtils.info("[{}]功能处理器[{}]开始处理[{}]", "class", info.getClass(), "after");
                 info.after();
                 ILoggerBaseUtils.info("[{}]功能处理器[{}]处理完成[{}]", "class", info.getClass(), "after");
