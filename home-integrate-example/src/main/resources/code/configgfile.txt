@@ -1,5 +1,0 @@
-home-9A-E7-F4-BB-4D-65wangxuhui.ini   [个人配置]
-home-dev.ini                           [开发环境]
-home-pro.ini                           [生产环境]
-home-uat.ini                           [测试环境]
-message-cn.xml                           [开发环境]

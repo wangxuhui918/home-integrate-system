@@ -18,7 +18,7 @@ cd ../home-integrate-system
 
 ```shell
 
-cd ../home-integrate-system/home-integrate-package/home-integrate-packageextends/home-integrate-systemall
+cd ../home-integrate-system/home-integrate-package/home-integrate-packageextends/home-integrate-all
 
 mvn install 
 
@@ -28,8 +28,8 @@ mvn install
 
 <dependency>
     <groupId>com.guoshiyao.rely</groupId>
-    <version>10.0.0-SNAPSHOT</version>
-    <artifactId>home-integrate-systemall</artifactId>
+    <version>10.0.1-SNAPSHOT</version>
+    <artifactId>home-integrate-all</artifactId>
 </dependency>
 ```
 
@@ -39,8 +39,8 @@ mvn install
 <!--已上传至Maven中央库-->
 <dependency>
     <groupId>com.guoshiyao.rely</groupId>
-    <version>10.0.0-SNAPSHOT</version>
-    <artifactId>home-integrate-systemallpom</artifactId>
+    <version>10.0.1-SNAPSHOT</version>
+    <artifactId>home-integrate-allpom</artifactId>
 </dependency>
 ```
 

@@ -1,7 +1,0 @@
- <dependencies>
-    <dependency>
-        <groupId>com.guoshiyao.rely</groupId>
-        <version>10.0.0-SNAPSHOT</version>
-        <artifactId>home-integrate-systemallpom</artifactId>
-    </dependency>
-</dependencies>

@@ -1,1 +1,0 @@
-fly脚本配置,创建 db/migration/V1.0.0__baseline.sql文件

@@ -17,7 +17,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.guoshiyao.rely</groupId>
-    <version>10.0.0-SNAPSHOT</version>
+    <version>10.0.1-SNAPSHOT</version>
     <artifactId>home-integrate-example</artifactId>
 
     <properties>
@@ -29,8 +29,8 @@
     <dependencies>
         <dependency>
             <groupId>com.guoshiyao.rely</groupId>
-            <version>10.0.0-SNAPSHOT</version>
-            <artifactId>home-integrate-systemallpom</artifactId>
+            <version>10.0.1-SNAPSHOT</version>
+            <artifactId>home-integrate-allpom</artifactId>
         </dependency>
 
 

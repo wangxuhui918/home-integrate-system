@@ -11,7 +11,7 @@
     <modelVersion>4.0.0</modelVersion>
     <artifactId>home-integrate-system</artifactId>
     <groupId>com.guoshiyao.rely</groupId>
-    <version>10.0.0-SNAPSHOT</version>
+    <version>10.0.1-SNAPSHOT</version>
     <packaging>pom</packaging>
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -21,10 +21,9 @@
 
 
     <modules>
-        <module>home-integrate-third</module>
         <module>home-integrate-core</module>
-        <module>home-integrate-package</module>
-<!--        <module>home-integrate-example</module>-->
+        <module>home-integrate-allpom</module>
+        <module>home-integrate-all</module>
     </modules>
 
 
