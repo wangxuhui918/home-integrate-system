@@ -16,7 +16,7 @@ import cn.hutool.core.lang.Console;
 import cn.hutool.http.HttpUtil;
 import cn.hutool.setting.Setting;
 import com.guoshiyao.rely.BaseEv;
-import com.guoshiyao.rely.annotation.RuleInjection;
+import com.guoshiyao.rely.core.configration.annotation.RuleInjection;
 import com.guoshiyao.rely.core.utils.data.JdbcFind;
 import com.guoshiyao.rely.coreextension.IThirdExtendConfig;
 import com.guoshiyao.rely.data.DataSourcesConfig;

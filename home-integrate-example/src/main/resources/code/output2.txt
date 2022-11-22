@@ -11,7 +11,7 @@
     注: 使用 CodeUtils.go返回相应的消息码以及前端接收的数据data(JSON格式)
 
 二.自动处理
-1. Api类使用 RuleAnnotationApi+Controller
+1. Api类使用 RuleController+Controller
 2. 方法使用ResponseBody进行描述
 3. 消息以及异常的返回不受void影响
 此时发生变化的使用方式有如下:

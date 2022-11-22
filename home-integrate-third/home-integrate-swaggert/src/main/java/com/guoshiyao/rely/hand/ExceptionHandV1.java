@@ -11,7 +11,7 @@
 package com.guoshiyao.rely.hand;
 
 import cn.hutool.core.util.StrUtil;
-import com.guoshiyao.rely.annotation.controller.RuleController;
+import com.guoshiyao.rely.annotation.RuleController;
 import com.guoshiyao.rely.outgoing.OutputParamRe;
 import com.guoshiyao.rely.outgoing.utils.CodeUtils;
 import com.guoshiyao.rely.plugin.exception.ExceptionAbs;
@@ -37,6 +37,7 @@ public class ExceptionHandV1 {
         }
         return CodeUtils.go(ex);
     }
+
     private static String getStackMsg(Exception e) {
         StringBuffer sb = new StringBuffer();
         StackTraceElement[] stackArray = e.getStackTrace();

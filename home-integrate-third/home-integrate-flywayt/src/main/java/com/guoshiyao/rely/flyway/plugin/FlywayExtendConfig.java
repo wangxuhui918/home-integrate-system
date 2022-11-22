@@ -13,7 +13,7 @@ package com.guoshiyao.rely.flyway.plugin;
 import cn.hutool.core.io.FileUtil;
 import cn.hutool.setting.Setting;
 import com.guoshiyao.rely.BaseEv;
-import com.guoshiyao.rely.annotation.RuleInjection;
+import com.guoshiyao.rely.core.configration.annotation.RuleInjection;
 import com.guoshiyao.rely.coreextension.IThirdExtendConfig;
 import com.guoshiyao.rely.flyway.bean.FlywayBean;
 import org.springframework.core.io.Resource;

@@ -11,17 +11,17 @@ package com.guoshiyao.example.api;
 import cn.hutool.core.io.resource.ResourceUtil;
 import cn.hutool.core.util.StrUtil;
 import com.guoshiyao.example.api.vo.DemoVo;
-import com.guoshiyao.rely.coreannotation.rule.RuleAnnotationApi;
+import com.guoshiyao.rely.annotation.RuleController;
 import com.guoshiyao.rely.exception.code.CodeRe;
-import com.guoshiyao.rely.exception.re.ex.ExceptionError;
 import com.guoshiyao.rely.outgoing.InputParamRe;
 import com.guoshiyao.rely.outgoing.OutputParamRe;
 import com.guoshiyao.rely.outgoing.utils.CodeUtils;
+import com.guoshiyao.rely.plugin.exception.re.ex.ExceptionError;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-@RuleAnnotationApi
+@RuleController
 @Controller
 public class RedirectController extends BaseController {
 

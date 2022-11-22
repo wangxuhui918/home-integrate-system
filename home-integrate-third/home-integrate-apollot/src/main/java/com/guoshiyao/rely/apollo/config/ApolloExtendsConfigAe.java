@@ -14,7 +14,7 @@ import cn.hutool.setting.Setting;
 import com.ctrip.framework.apollo.Config;
 import com.ctrip.framework.apollo.ConfigService;
 import com.guoshiyao.rely.BaseEv;
-import com.guoshiyao.rely.annotation.RuleInjection;
+import com.guoshiyao.rely.core.configration.annotation.RuleInjection;
 import com.guoshiyao.rely.coreextension.IThirdExtendConfig;
 
 import java.util.*;

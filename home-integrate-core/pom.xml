@@ -21,8 +21,8 @@
     <name>home-integrate-core</name>
 
     <modules>
-         <module>home-integrate-coreutils</module>
-        <module>home-integrate-corespringboot</module>
-        <module>home-integrate-coreextend</module>
+         <module>home-integrate-bigcore</module>
+        <module>home-integrate-springboot</module>
+        <module>home-integrate-extend</module>
      </modules>
 </project>

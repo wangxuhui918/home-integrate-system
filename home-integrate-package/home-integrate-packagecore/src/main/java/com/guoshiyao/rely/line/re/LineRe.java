@@ -14,7 +14,7 @@ package com.guoshiyao.rely.line.re;
 import cn.hutool.core.map.MapUtil;
 import cn.hutool.core.util.StrUtil;
 import com.guoshiyao.rely.BaseEv;
-import com.guoshiyao.rely.annotation.RuleInjection;
+import com.guoshiyao.rely.core.configration.annotation.RuleInjection;
 import com.guoshiyao.rely.core.ClassModelConfigRe;
 import com.guoshiyao.rely.core.ILineManager;
 import com.guoshiyao.rely.core.RunModelConfigRe;

@@ -11,7 +11,6 @@
 package com.guoshiyao.rely.mybatisplus.starter.mybatis.other;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import com.baomidou.mybatisplus.core.mapper.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
 
 /**

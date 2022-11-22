@@ -13,7 +13,7 @@ package com.guoshiyao.rely.dubbo.plugin;
 import cn.hutool.setting.Setting;
 import com.alibaba.dubbo.config.annotation.Service;
 import com.guoshiyao.rely.BaseEv;
-import com.guoshiyao.rely.annotation.RuleInjection;
+import com.guoshiyao.rely.core.configration.annotation.RuleInjection;
 import com.guoshiyao.rely.core.utils.AnnotationTools;
 import com.guoshiyao.rely.coreextension.IThirdExtendConfig;
 import com.guoshiyao.rely.dubbo.config.DubboBaseConfiguration;

@@ -9,7 +9,7 @@
 
 package com.guoshiyao.rely.config.newplugin;
 
-import com.guoshiyao.rely.annotation.RuleInjection;
+import com.guoshiyao.rely.core.configration.annotation.RuleInjection;
 import com.guoshiyao.rely.core.utils.conf.ProjectConfUtils;
 import com.guoshiyao.rely.coreextension.ICreateConfig;
 

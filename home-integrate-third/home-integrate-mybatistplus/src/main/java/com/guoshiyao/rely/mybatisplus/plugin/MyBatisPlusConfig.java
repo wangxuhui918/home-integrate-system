@@ -13,7 +13,7 @@ package com.guoshiyao.rely.mybatisplus.plugin;
 import cn.hutool.setting.Setting;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.guoshiyao.rely.BaseEv;
-import com.guoshiyao.rely.annotation.RuleInjection;
+import com.guoshiyao.rely.core.configration.annotation.RuleInjection;
 import com.guoshiyao.rely.core.utils.AnnotationTools;
 import com.guoshiyao.rely.core.utils.data.JdbcFind;
 import com.guoshiyao.rely.coreextension.IThirdExtendConfig;

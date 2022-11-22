@@ -12,7 +12,7 @@ package com.guoshiyao.rely.swagger.plugin;
 
 import cn.hutool.setting.Setting;
 import com.guoshiyao.rely.BaseEv;
-import com.guoshiyao.rely.annotation.RuleInjection;
+import com.guoshiyao.rely.core.configration.annotation.RuleInjection;
 import com.guoshiyao.rely.core.utils.AnnotationTools;
 import com.guoshiyao.rely.coreextension.IThirdExtendConfig;
 import com.guoshiyao.rely.hand.ControllerParamHandV1;

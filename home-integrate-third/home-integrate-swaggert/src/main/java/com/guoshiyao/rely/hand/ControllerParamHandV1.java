@@ -13,7 +13,7 @@ package com.guoshiyao.rely.hand;
 import cn.hutool.core.annotation.AnnotationUtil;
 import cn.hutool.core.util.ClassUtil;
 import com.guoshiyao.rely.BaseEv;
-import com.guoshiyao.rely.annotation.controller.RuleController;
+import com.guoshiyao.rely.annotation.RuleController;
 import com.guoshiyao.rely.outgoing.utils.CodeUtils;
 import com.guoshiyao.rely.plugin.exception.ExceptionApiNull;
 import com.guoshiyao.rely.plugin.exception.code.impl.CodeImpl;
