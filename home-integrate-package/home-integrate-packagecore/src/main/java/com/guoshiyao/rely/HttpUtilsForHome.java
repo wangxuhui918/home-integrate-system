@@ -17,9 +17,9 @@ import cn.hutool.core.util.StrUtil;
 import cn.hutool.http.HttpUtil;
 import cn.hutool.json.JSONObject;
 import cn.hutool.json.JSONUtil;
-import com.guoshiyao.rely.exception.code.CodeAb;
-import com.guoshiyao.rely.exception.re.ex.ExceptionError;
 import com.guoshiyao.rely.outgoing.InputParamRe;
+import com.guoshiyao.rely.plugin.exception.code.ICode;
+import com.guoshiyao.rely.plugin.exception.re.ex.ExceptionError;
 
 import java.util.HashMap;
 
@@ -56,7 +56,7 @@ public class HttpUtilsForHome {
     }
 
     public static JSONObject getDataException(String json) {
-        CodeAb coded = getCode(json);
+        ICode coded = getCode(json);
         if (coded.getType().equals("false")) {
             throw new ExceptionError(coded);
         }
@@ -67,13 +67,13 @@ public class HttpUtilsForHome {
         return JSONUtil.parseObj(JSONUtil.parseObj(json).get("data"));
     }
 
-    public static CodeAb getCode(String json) {
+    public static ICode getCode(String json) {
         if (JSONUtil.parseObj(json).containsKey("codeBody")) {
             JSONObject code = JSONUtil.parseObj(JSONUtil.parseObj(json).get("codeBody"));
             String className = code.getByPath("className").toString();
             try {
                 if (StrUtil.isNotBlank(className)) {
-                    CodeAb coded = (CodeAb) ClassUtil.loadClass(className,false).newInstance();
+                    ICode coded = (ICode) ClassUtil.loadClass(className,false).newInstance();
                     BeanUtil.copyProperties(code, coded);
                     return coded;
                 }

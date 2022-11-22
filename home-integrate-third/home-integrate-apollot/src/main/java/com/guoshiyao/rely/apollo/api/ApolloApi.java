@@ -22,7 +22,7 @@ import cn.hutool.http.HttpUtil;
 import cn.hutool.json.JSON;
 import cn.hutool.json.JSONArray;
 import cn.hutool.json.JSONUtil;
-import com.guoshiyao.rely.line.Line;
+import com.guoshiyao.rely.BaseEv;
 
 import java.util.Collection;
 import java.util.HashMap;
@@ -100,7 +100,7 @@ public class ApolloApi {
     public static boolean findNameSpaceExist(String appid, String apolloUrl, String targetCookieString) {
         boolean isexist = false;
         try {
-            String url = apolloUrl + "/apps/" + appid + "/envs/" + Line.runEnv + "/clusters/default/namespaces";
+            String url = apolloUrl + "/apps/" + appid + "/envs/" + BaseEv.SettingInformation.runEnv + "/clusters/default/namespaces";
             String body = HttpRequest.get(url).cookie(targetCookieString).execute().body();
             isexist = !JSONUtil.parse(body).getByPath("message").toString().contains("not exist");
         } catch (Exception e) {
@@ -138,7 +138,7 @@ public class ApolloApi {
     public static void getPropertieLines(String appid, String apolloUrl,
                                          HashMap<String, HashMap<String, Tree<Object>>> values, String cookieString, TreeInterface treeinterface) {
         //获取源app参数
-        String[] NAP = new String[]{Line.runEnv};
+        String[] NAP = new String[]{BaseEv.SettingInformation.runEnv};
 
         if (treeinterface != null && treeinterface.setNameSpace() != null) {
             NAP = treeinterface.setNameSpace();

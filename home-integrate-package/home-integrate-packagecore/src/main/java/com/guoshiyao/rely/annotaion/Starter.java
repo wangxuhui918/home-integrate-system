@@ -12,7 +12,7 @@ package com.guoshiyao.rely.annotaion;
 
 import com.guoshiyao.rely.annotaion.registrar.AfterRegistrar;
 import com.guoshiyao.rely.annotaion.registrar.BeforeRegistrar;
-import com.guoshiyao.rely.message.i18n.I18n;
+import com.guoshiyao.rely.plugin.i18n.I18n;
 import org.springframework.boot.SpringBootConfiguration;
 import org.springframework.boot.autoconfigure.AutoConfigurationExcludeFilter;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -51,7 +51,7 @@ public @interface Starter {
      * @return
      * @author 汪旭辉
      * @date 2021年12月6日
-     * @readme
+     * @README
      */
     @AliasFor(annotation = EnableAutoConfiguration.class)
     Class<?>[] exclude() default {MongoDataAutoConfiguration.class, MongoAutoConfiguration.class,

@@ -13,9 +13,9 @@ package com.guoshiyao.rely.apollo.utils;
 
 import cn.hutool.core.lang.tree.Tree;
 import cn.hutool.http.HttpRequest;
+import com.guoshiyao.rely.BaseEv;
 import com.guoshiyao.rely.apollo.api.ApolloApi;
 import com.guoshiyao.rely.apollo.api.TreeInterface;
-import com.guoshiyao.rely.line.Line;
 
 import java.util.HashMap;
 
@@ -129,10 +129,10 @@ public class ApolloUtils {
             alueO.setId(evalue);
             alueO.setName(memo);
             maps.put(ekey, alueO);
-            for (String env : Line.configEnv) {
+            for (String env : BaseEv.SettingInformation.configEnv) {
                 properties.put(env, maps);
             }
-            properties.put(Line.runEnv, maps);
+            properties.put(BaseEv.SettingInformation.runEnv, maps);
         }
         ApolloApi.updateOneProperties(appid, apolloUrl, cookieString, properties, null);
         ApolloApi.logout(apolloUrl, cookieString);

@@ -10,21 +10,21 @@
 
 package com.guoshiyao.rely.flyway.plugin;
 
+import cn.hutool.core.io.FileUtil;
 import cn.hutool.setting.Setting;
-import com.guoshiyao.rely.base.BaseEv;
-import com.guoshiyao.rely.coreannotation.rule.RuleAnnotation;
+import com.guoshiyao.rely.BaseEv;
+import com.guoshiyao.rely.annotation.RuleInjection;
+import com.guoshiyao.rely.coreextension.IThirdExtendConfig;
 import com.guoshiyao.rely.flyway.bean.FlywayBean;
-import com.guoshiyao.rely.line.Line;
-import com.guoshiyao.rely.third.ThirdExtendConfigAb;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.core.io.support.ResourcePatternResolver;
 
 import java.util.*;
 
-@RuleAnnotation
-public class FlywayExtendConfig implements ThirdExtendConfigAb {
-    public final static String filep = "db" + BaseEv.FILE_SEPARATOR + "migration" + BaseEv.FILE_SEPARATOR + "**" + BaseEv.FILE_SEPARATOR
+@RuleInjection
+public class FlywayExtendConfig implements IThirdExtendConfig {
+    public final static String filep = "db" + FileUtil.FILE_SEPARATOR + "migration" + FileUtil.FILE_SEPARATOR + "**" + FileUtil.FILE_SEPARATOR
             + "**.sql";
 
     @Override
@@ -45,7 +45,7 @@ public class FlywayExtendConfig implements ThirdExtendConfigAb {
             if (source.length == 0) {
                 return new ArrayList<>();
             }
-            if (!Line.setting.containsKey("home.flywaydb.url")) {
+            if (!BaseEv.SettingInformation.setting.containsKey("home.flywaydb.url")) {
                 return new ArrayList<>();
             }
         } catch (Exception e) {
@@ -65,28 +65,28 @@ public class FlywayExtendConfig implements ThirdExtendConfigAb {
         {
             String key = "home.flywaydb.url";
             if (!setting.containsKey(key)) {
-                if (Line.setting.get("home.db.url") != null)
-                    setting.put(key, (Line.setting.get("home.db.url")));
+                if (BaseEv.SettingInformation.setting.get("home.db.url") != null)
+                    setting.put(key, (BaseEv.SettingInformation.setting.get("home.db.url")));
             }
         }
         {
             String key = "home.flywaydb.username";
             if (!setting.containsKey(key)) {
-                if (Line.setting.get("home.db.username") != null)
-                    setting.put(key, (Line.setting.get("home.db.username")));
+                if (BaseEv.SettingInformation.setting.get("home.db.username") != null)
+                    setting.put(key, (BaseEv.SettingInformation.setting.get("home.db.username")));
             }
         }
         {
             String key = "home.flywaydb.password";
             if (!setting.containsKey(key)) {
-                if (Line.setting.get("home.db.password") != null)
-                    setting.put(key, (Line.setting.get("home.db.password")));
+                if (BaseEv.SettingInformation.setting.get("home.db.password") != null)
+                    setting.put(key, (BaseEv.SettingInformation.setting.get("home.db.password")));
             }
         }
         {
             String key = "home.flywaydb.table";
             if (!setting.containsKey(key)) {
-                if (Line.setting.get("home.db.table") != null)
+                if (BaseEv.SettingInformation.setting.get("home.db.table") != null)
                     setting.put(key, ("flyway_schema_history"));
             }
         }

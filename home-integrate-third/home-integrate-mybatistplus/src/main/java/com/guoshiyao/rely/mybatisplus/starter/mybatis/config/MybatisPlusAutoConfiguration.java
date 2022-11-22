@@ -11,8 +11,8 @@
 package com.guoshiyao.rely.mybatisplus.starter.mybatis.config;
 
 import com.github.pagehelper.PageInterceptor;
-import com.guoshiyao.rely.exception.re.ex.ExceptionError;
-import com.guoshiyao.rely.line.Line;
+import com.guoshiyao.rely.BaseEv;
+import com.guoshiyao.rely.plugin.exception.re.ex.ExceptionError;
 import org.apache.ibatis.plugin.Interceptor;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
@@ -39,7 +39,7 @@ public class MybatisPlusAutoConfiguration {
     public SqlSessionFactory sqlSessionFactoryBean(@Qualifier("druidDataSource") DataSource dataSource) {
         SqlSessionFactoryBean bean = new SqlSessionFactoryBean();
         bean.setDataSource(dataSource);
-        bean.setTypeAliasesPackage(Line.setting.get("home.mybatisplus.typealiasespackage"));
+        bean.setTypeAliasesPackage(BaseEv.SettingInformation.setting.get("home.mybatisplus.typealiasespackage"));
         // 分页插件
         PageInterceptor pageHelper = new PageInterceptor();
         // 添加XML目录
@@ -47,15 +47,15 @@ public class MybatisPlusAutoConfiguration {
         Interceptor[] plugins = new Interceptor[]{pageHelper};
         bean.setPlugins(plugins);
         try {
-            Resource[] s = resolver.getResources(Line.setting.get("home.mybatisplus.mapperlocations"));
+            Resource[] s = resolver.getResources(BaseEv.SettingInformation.setting.get("home.mybatisplus.mapperlocations"));
         } catch (Exception e) {
             e.printStackTrace();
             throw new ExceptionError(
-                    "请在资源目录下创建文件夹并创建Mapper.xml文件:" + Line.setting.get("home.mybatisplus.mapperlocations"));
+                    "请在资源目录下创建文件夹并创建Mapper.xml文件:" + BaseEv.SettingInformation.setting.get("home.mybatisplus.mapperlocations"));
         }
         try {
             bean.setMapperLocations(
-                    resolver.getResources(Line.setting.get("home.mybatisplus.mapperlocations")));
+                    resolver.getResources(BaseEv.SettingInformation.setting.get("home.mybatisplus.mapperlocations")));
             bean.setConfigLocation(resolver.getResource("classpath:mybatis.xml"));
             return bean.getObject();
         } catch (Exception e) {

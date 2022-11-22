@@ -20,9 +20,8 @@ import cn.hutool.core.util.StrUtil;
 import cn.hutool.crypto.SecureUtil;
 import cn.hutool.http.HttpUtil;
 import cn.hutool.json.JSONUtil;
-import com.guoshiyao.rely.base.BaseEv;
-import com.guoshiyao.rely.exception.re.ex.ExceptionError;
-import com.guoshiyao.rely.line.Line;
+import com.guoshiyao.rely.BaseEv;
+import com.guoshiyao.rely.plugin.exception.re.ex.ExceptionError;
 import io.minio.GetPresignedObjectUrlArgs;
 import io.minio.PutObjectArgs;
 import io.minio.RemoveBucketArgs;
@@ -56,7 +55,7 @@ public class MinIoUtils {
             Object o = JSONUtil.parseObj(jsonstr);
             BeanUtil.copyProperties(o, map);
         }
-        String localpath = dirpath + BaseEv.FILE_SEPARATOR + map.get(MinIOGen.storagname);
+        String localpath = dirpath + FileUtil.FILE_SEPARATOR + map.get(MinIOGen.storagname);
         try {// 下载文件流
             HttpUtil.downloadFile(map.get(MinIOGen.downloadurl), localpath);
         } catch (Exception e) {
@@ -157,7 +156,7 @@ public class MinIoUtils {
                     .bucket(namespace).object(storagname).build());//60 * 60 * 24 * 9 .expiry(60 * 60 * 24)
             url = StrUtil.subBefore(url, "?", true);
             int px = StrUtil.ordinalIndexOf(url, "/", 3);
-            url = Line.setting.get("home.minio.endpoint") + url.substring(px);
+            url = BaseEv.SettingInformation.setting.get("home.minio.endpoint") + url.substring(px);
             {
                 gui.put(MinIOGen.storagname, storagname);
                 gui.put(MinIOGen.namespace, namespace);

@@ -12,22 +12,22 @@ package com.guoshiyao.rely.dubbo.plugin;
 
 import cn.hutool.setting.Setting;
 import com.alibaba.dubbo.config.annotation.Service;
-import com.guoshiyao.rely.coreannotation.AnnotationTools;
-import com.guoshiyao.rely.coreannotation.rule.RuleAnnotation;
+import com.guoshiyao.rely.BaseEv;
+import com.guoshiyao.rely.annotation.RuleInjection;
+import com.guoshiyao.rely.core.utils.AnnotationTools;
+import com.guoshiyao.rely.coreextension.IThirdExtendConfig;
 import com.guoshiyao.rely.dubbo.config.DubboBaseConfiguration;
 import com.guoshiyao.rely.dubbo.config.DubboConsumerConfig;
-import com.guoshiyao.rely.line.Line;
-import com.guoshiyao.rely.third.ThirdExtendConfigAb;
 
 import java.util.*;
 
-@RuleAnnotation
-public class DubboExtendConfig implements ThirdExtendConfigAb {
+@RuleInjection
+public class DubboExtendConfig implements IThirdExtendConfig {
     public final static String NAME = "DUBBO";
 
     @Override
     public List<Class> writeClasss() {
-        if (AnnotationTools.getRuleClassForAnno(Service.class, Line.projectPackage) > 0) {
+        if (AnnotationTools.getRuleClassForAnno(Service.class, BaseEv.WorkDir.projectPackage) > 0) {
             return Arrays.asList(new Class[]{DubboBaseConfiguration.class, DubboConsumerConfig.class});
         } else {
             return new ArrayList<>();
@@ -54,7 +54,7 @@ public class DubboExtendConfig implements ThirdExtendConfigAb {
         {
             String key = "home.dubbo.reference.package";
             if (!setting.containsKey(key)) {
-                setting.put(key, (Line.projectPackage + ".dubboservice"));
+                setting.put(key, (BaseEv.WorkDir.projectPackage + ".dubboservice"));
             }
         }
         {

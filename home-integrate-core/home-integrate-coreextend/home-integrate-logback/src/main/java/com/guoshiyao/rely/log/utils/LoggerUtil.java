@@ -11,13 +11,13 @@
 package com.guoshiyao.rely.log.utils;
 
 import cn.hutool.core.util.StrUtil;
-import com.guoshiyao.rely.log.LoggerAb;
+import com.guoshiyao.rely.plugin.log.ILogger;
 import org.slf4j.LoggerFactory;
 
 /**
  * 日志
  */
-public class LoggerUtil implements LoggerAb {
+public class LoggerUtil extends ILogger {
 
     private final Class<?> clazz;
 
@@ -40,7 +40,7 @@ public class LoggerUtil implements LoggerAb {
     }
 
     @Override
-    public void warning(String str, Object[] objs) {
+    public void warning(String str, Object... objs) {
         str = StrUtil.blankToDefault(str, "");
         LoggerFactory.getLogger(clazz).warn(str, objs);
         saveLog();
@@ -140,7 +140,7 @@ public class LoggerUtil implements LoggerAb {
         saveLog();
     }
 
-    public static void error(Class<?> clazz, String str, Object[] objs) {
+    public static void error(Class<?> clazz, String str, Object... objs) {
         str = StrUtil.blankToDefault(str, "");
         LoggerFactory.getLogger(clazz).error(str, objs);
         saveLog();
@@ -195,7 +195,7 @@ public class LoggerUtil implements LoggerAb {
     }
 
     @Override
-    public void debug(String str, Object[] objs) {
+    public void debug(String str, Object... objs) {
         str = StrUtil.blankToDefault(str, "");
         LoggerFactory.getLogger(clazz).debug(str, objs);
         saveLog();
@@ -221,7 +221,7 @@ public class LoggerUtil implements LoggerAb {
     }
 
     @Override
-    public void info(String str, Object[] objs) {
+    public void info(String str, Object... objs) {
         str = StrUtil.blankToDefault(str, "");
         LoggerFactory.getLogger(clazz).info(str, objs);
         saveLog();
@@ -242,7 +242,7 @@ public class LoggerUtil implements LoggerAb {
     }
 
     @Override
-    public void error(String str, Object[] objs) {
+    public void error(String str, Object... objs) {
         str = StrUtil.blankToDefault(str, "");
         LoggerFactory.getLogger(clazz).error(str, objs);
         saveLog();

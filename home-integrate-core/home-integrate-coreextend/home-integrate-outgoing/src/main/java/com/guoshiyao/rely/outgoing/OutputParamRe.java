@@ -10,8 +10,10 @@
 
 package com.guoshiyao.rely.outgoing;
 
-import com.guoshiyao.rely.exception.code.CodeAb;
+import cn.hutool.json.JSON;
+import com.guoshiyao.rely.plugin.exception.code.ICode;
+import com.guoshiyao.rely.plugin.outgoing.OutputParamAbs;
 
-public class OutputParamRe extends OutputParamAb<CodeAb, cn.hutool.json.JSON> {
+public class OutputParamRe extends OutputParamAbs<ICode, JSON> {
 
 }

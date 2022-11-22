@@ -9,11 +9,11 @@
 
 package com.guoshiyao.rely.utils;
 
+import cn.hutool.core.io.FileUtil;
 import cn.hutool.core.util.StrUtil;
-import com.guoshiyao.rely.base.BaseEv;
-import com.guoshiyao.rely.coreannotation.rule.RuleAnnotation;
-import com.guoshiyao.rely.line.Line;
-import com.guoshiyao.rely.resource.ResourceAb;
+import com.guoshiyao.rely.BaseEv;
+import com.guoshiyao.rely.annotation.RuleInjection;
+import com.guoshiyao.rely.core.IResource;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.core.io.support.ResourcePatternResolver;
@@ -22,8 +22,8 @@ import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 
-@RuleAnnotation
-public class ResourceFindUrl implements ResourceAb {
+@RuleInjection
+public class ResourceFindUrl implements IResource {
 
 
     @Override
@@ -34,10 +34,10 @@ public class ResourceFindUrl implements ResourceAb {
             Resource[] source = resourceLoader.getResources("classpath*:" + patternPath);
             for (Resource resource : source) {
                 String path = resource.getURL().toString();
-                if (Line.isClassModel) {
-                    path = StrUtil.subAfter(path, "classes" + BaseEv.FILE_SEPARATOR, true);
+                if (BaseEv.SettingInformation.isClassModel) {
+                    path = StrUtil.subAfter(path, "classes" + FileUtil.FILE_SEPARATOR, true);
                 } else {
-                    path = StrUtil.subAfter(path, "classes!" + BaseEv.FILE_SEPARATOR, true);
+                    path = StrUtil.subAfter(path, "classes!" + FileUtil.FILE_SEPARATOR, true);
                 }
                 listpath.add(path);
             }

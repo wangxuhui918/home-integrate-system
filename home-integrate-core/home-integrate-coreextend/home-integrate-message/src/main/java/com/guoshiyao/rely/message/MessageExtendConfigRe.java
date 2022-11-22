@@ -11,16 +11,16 @@
 package com.guoshiyao.rely.message;
 
 import cn.hutool.setting.Setting;
-import com.guoshiyao.rely.coreannotation.rule.RuleAnnotation;
-import com.guoshiyao.rely.coreconf.utils.ProjectCoreConfUtils;
-import com.guoshiyao.rely.line.Line;
-import com.guoshiyao.rely.message.ab.MessageConfigAb;
-import com.guoshiyao.rely.message.utils.NodeUtils;
+import com.guoshiyao.rely.BaseEv;
+import com.guoshiyao.rely.annotation.RuleInjection;
+import com.guoshiyao.rely.core.utils.conf.ProjectConfUtils;
+import com.guoshiyao.rely.core.utils.node.NodeUtils;
+import com.guoshiyao.rely.coreextension.IMessageConfig;
 
 import java.util.*;
 
-@RuleAnnotation
-public class MessageExtendConfigRe implements MessageConfigAb {
+@RuleInjection
+public class MessageExtendConfigRe implements IMessageConfig {
 
     @Override
     public void after() {
@@ -30,17 +30,17 @@ public class MessageExtendConfigRe implements MessageConfigAb {
     @Override
     public void before() {
         HashMap<String, HashMap<String, List<String>>> maps = new HashMap<>();
-        String readString = ProjectCoreConfUtils.getZoneMessageFileContext();
-        NodeUtils.getI18nMessageContext(readString, Line.i18n, maps);
+        String readString = ProjectConfUtils.getZoneMessageFileContext();
+        NodeUtils.getI18nMessageContext(readString, BaseEv.SettingInformation.i18n, maps);
         try {
-            Map<String, String> othermessage = ProjectCoreConfUtils.getOtherMessageFileContext();
+            Map<String, String> othermessage = ProjectConfUtils.getOtherMessageFileContext();
             for (String key : othermessage.keySet()) {
                 NodeUtils.getI18nMessageContext(othermessage.get(key), key, maps);
             }
         } catch (Exception e) {
 
         }
-        Line.messages.putAll(maps);
+        BaseEv.SettingInformation.messages.putAll(maps);
     }
 
     @Override

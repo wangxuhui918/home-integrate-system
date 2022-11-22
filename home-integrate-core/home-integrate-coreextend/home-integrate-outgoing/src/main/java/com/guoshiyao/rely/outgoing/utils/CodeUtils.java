@@ -10,37 +10,38 @@
 
 package com.guoshiyao.rely.outgoing.utils;
 
-import com.guoshiyao.rely.exception.code.CodeAb;
+import cn.hutool.json.JSON;
 import com.guoshiyao.rely.outgoing.OutRe;
-import com.guoshiyao.rely.outgoing.OutputParamAb;
 import com.guoshiyao.rely.outgoing.OutputParamRe;
+import com.guoshiyao.rely.plugin.exception.code.ICode;
+import com.guoshiyao.rely.plugin.outgoing.OutputParamAbs;
 
 public class CodeUtils {
 
-    public static OutputParamRe go(CodeAb code) {
+    public static OutputParamRe go(ICode code) {
         OutRe out = new OutRe();
-        OutputParamAb<CodeAb, cn.hutool.json.JSON> result = out.go(null, code, null, null);
+        OutputParamAbs<ICode, JSON> result = out.go(null, code, null, null);
         OutputParamRe re = extractedConvertToRe(result);
         return re;
     }
 
-    public static OutputParamRe go(CodeAb code, cn.hutool.json.JSON data) {
+    public static OutputParamRe go(ICode code, cn.hutool.json.JSON data) {
         OutRe out = new OutRe();
-        OutputParamAb<CodeAb, cn.hutool.json.JSON> result = out.go(null, code, data, null);
+        OutputParamAbs<ICode, JSON> result = out.go(null, code, data, null);
         OutputParamRe re = extractedConvertToRe(result);
         return re;
     }
 
     public static OutputParamRe go(Exception exception, cn.hutool.json.JSON data) {
         OutRe out = new OutRe();
-        OutputParamAb<CodeAb, cn.hutool.json.JSON> result = out.go(null, null, data, exception);
+        OutputParamAbs<ICode, JSON> result = out.go(null, null, data, exception);
         OutputParamRe re = extractedConvertToRe(result);
         return re;
     }
 
     public static OutputParamRe go(Exception exception) {
         OutRe out = new OutRe();
-        OutputParamAb<CodeAb, cn.hutool.json.JSON> result = out.go(null, null, null, exception);
+        OutputParamAbs<ICode, JSON> result = out.go(null, null, null, exception);
         OutputParamRe re = extractedConvertToRe(result);
         return re;
     }
@@ -54,7 +55,7 @@ public class CodeUtils {
      * @param result
      * @return
      */
-    private static OutputParamRe extractedConvertToRe(OutputParamAb<CodeAb, cn.hutool.json.JSON> result) {
+    private static OutputParamRe extractedConvertToRe(OutputParamAbs<ICode, JSON> result) {
         OutputParamRe re = new OutputParamRe();
         re.setCodeBody(result.getCodeBody());
         re.setData(result.getData());

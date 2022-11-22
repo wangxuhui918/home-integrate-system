@@ -11,8 +11,8 @@
 package com.guoshiyao.rely.annotaion.registrar;
 
 import cn.hutool.core.util.ArrayUtil;
-import com.guoshiyao.rely.line.Line;
-import com.guoshiyao.rely.run.HomeUtils;
+import com.guoshiyao.rely.BaseEv;
+import com.guoshiyao.rely.HomeUtils;
 import org.springframework.context.annotation.ImportSelector;
 import org.springframework.core.type.AnnotationMetadata;
 
@@ -26,10 +26,10 @@ public class BeforeRegistrar implements ImportSelector {
 //            Setting o = new Setting(listUrl.get(i).toURL(), CharsetUtil.CHARSET_UTF_8, true);
         HomeUtils.run();
         String[] all = new String[0];
-        if (Line.iocclasses != null && Line.iocclasses.size() > 0) {
-            String[] selecterExtends = new String[Line.iocclasses.size()];
-            for (int i = 0; i < Line.iocclasses.size(); i++) {
-                Class reloadClass = Line.iocclasses.get(i);
+        if (BaseEv.SettingInformation.iocclasses != null && BaseEv.SettingInformation.iocclasses.size() > 0) {
+            String[] selecterExtends = new String[BaseEv.SettingInformation.iocclasses.size()];
+            for (int i = 0; i < BaseEv.SettingInformation.iocclasses.size(); i++) {
+                Class reloadClass = BaseEv.SettingInformation.iocclasses.get(i);
                 selecterExtends[i] = reloadClass.getTypeName();
             }
             all = ArrayUtil.addAll(all, selecterExtends);

@@ -10,7 +10,7 @@
 
 package com.guoshiyao.rely.mybatisplus.starter.mybatis.config;
 
-import com.guoshiyao.rely.line.Line;
+import com.guoshiyao.rely.BaseEv;
 import org.mybatis.spring.mapper.MapperScannerConfigurer;
 import org.springframework.context.annotation.Bean;
 
@@ -20,7 +20,7 @@ public class MapperConfiguration {
     public MapperScannerConfigurer mapperScannerConfigurer() {
         MapperScannerConfigurer mapperScannerConfigurer = new MapperScannerConfigurer();
         mapperScannerConfigurer.setSqlSessionFactoryBeanName("sqlSessionFactory");
-        mapperScannerConfigurer.setBasePackage(Line.setting.get("home.mybatisplus.basepackage"));
+        mapperScannerConfigurer.setBasePackage(BaseEv.SettingInformation.setting.get("home.mybatisplus.basepackage"));
         return mapperScannerConfigurer;
     }
 }

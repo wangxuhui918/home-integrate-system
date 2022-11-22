@@ -10,8 +10,8 @@
 
 package com.guoshiyao.rely.systemconfig;
 
-import com.guoshiyao.rely.coreannotation.rule.RuleAnnotation;
-import com.guoshiyao.rely.sys.SystemConfigAb;
+import com.guoshiyao.rely.annotation.RuleInjection;
+import com.guoshiyao.rely.coreextension.ISystemConfig;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -25,8 +25,8 @@ import java.util.Map;
  * @date 2021年9月27日
  * @readme
  */
-@RuleAnnotation
-public class SystemConfigRe implements SystemConfigAb {
+@RuleInjection
+public class SystemConfigRe implements ISystemConfig {
 
     @Override
     public void before() {

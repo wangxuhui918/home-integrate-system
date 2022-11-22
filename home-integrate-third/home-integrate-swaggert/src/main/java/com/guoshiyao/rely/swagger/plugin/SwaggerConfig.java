@@ -11,26 +11,26 @@
 package com.guoshiyao.rely.swagger.plugin;
 
 import cn.hutool.setting.Setting;
-import com.guoshiyao.rely.coreannotation.AnnotationTools;
-import com.guoshiyao.rely.coreannotation.rule.RuleAnnotation;
+import com.guoshiyao.rely.BaseEv;
+import com.guoshiyao.rely.annotation.RuleInjection;
+import com.guoshiyao.rely.core.utils.AnnotationTools;
+import com.guoshiyao.rely.coreextension.IThirdExtendConfig;
 import com.guoshiyao.rely.hand.ControllerParamHandV1;
 import com.guoshiyao.rely.hand.ExceptionHandV1;
 import com.guoshiyao.rely.hand.ResponseHandV1;
-import com.guoshiyao.rely.line.Line;
 import com.guoshiyao.rely.swagger.bean.RomensWebMvcConfigurationSupport;
 import com.guoshiyao.rely.swagger.bean.SwaggerConfigRe;
-import com.guoshiyao.rely.third.ThirdExtendConfigAb;
 import org.springframework.stereotype.Controller;
 
 import java.util.*;
 
-@RuleAnnotation
-public class SwaggerConfig implements ThirdExtendConfigAb {
+@RuleInjection
+public class SwaggerConfig implements IThirdExtendConfig {
     public final static String NAME = "SWAGGER";
 
     @Override
     public List<Class> writeClasss() {
-        if (AnnotationTools.getRuleClassForAnno(Controller.class, Line.projectPackage) > 0) {
+        if (AnnotationTools.getRuleClassForAnno(Controller.class, BaseEv.WorkDir.projectPackage) > 0) {
             LinkedHashMap<String, List<Class>> map = new LinkedHashMap<>();
 //            ControllerParamHand.class,
 //            map.put(NAME, Arrays.asList(new Class[]{SwaggerConfigRe.class, RomensWebMvcConfigurationSupport.class,
@@ -63,7 +63,7 @@ public class SwaggerConfig implements ThirdExtendConfigAb {
         {
             String key = "home.swagger.basepackage";
             if (!setting.containsKey(key)) {
-                setting.put(key, (Line.projectPackage + ".api"));
+                setting.put(key, (BaseEv.WorkDir.projectPackage + ".api"));
             }
         }
         {

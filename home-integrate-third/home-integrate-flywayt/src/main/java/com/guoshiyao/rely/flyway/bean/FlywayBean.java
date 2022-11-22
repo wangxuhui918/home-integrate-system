@@ -10,7 +10,7 @@
 
 package com.guoshiyao.rely.flyway.bean;
 
-import com.guoshiyao.rely.line.Line;
+import com.guoshiyao.rely.BaseEv;
 import org.flywaydb.core.Flyway;
 import org.springframework.context.annotation.Bean;
 
@@ -22,10 +22,10 @@ public class FlywayBean {
 //        System.setProperty("spring.flyway.baseline-on-migrate", "true");
 //        System.setProperty("spring.flyway.out-of-order", "true");
 //        System.setProperty("spring.flyway.validate-on-migrate", "false");
-        String dbUrl = Line.setting.get("home.flywaydb.url");
-        String dbUserName = Line.setting.get("home.flywaydb.username");
-        String dbPassword = Line.setting.get("home.flywaydb.password");
-        String table = Line.setting.get("home.flywaydb.table");
+        String dbUrl = BaseEv.SettingInformation.setting.get("home.flywaydb.url");
+        String dbUserName = BaseEv.SettingInformation.setting.get("home.flywaydb.username");
+        String dbPassword = BaseEv.SettingInformation.setting.get("home.flywaydb.password");
+        String table = BaseEv.SettingInformation.setting.get("home.flywaydb.table");
         //flyway_schema_history
         // 创建Flyway实例
         Flyway flyway = Flyway.configure().dataSource(dbUrl, dbUserName, dbPassword).table(table).load();

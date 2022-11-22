@@ -12,20 +12,19 @@ package com.guoshiyao.rely.exception.code;
 
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.json.JSONUtil;
-import com.guoshiyao.rely.base.BaseEv;
-import com.guoshiyao.rely.coreannotation.base.KeyBase;
-import com.guoshiyao.rely.exception.code.re.CodeAbE;
-import com.guoshiyao.rely.exception.re.ex.ExceptionError;
-import com.guoshiyao.rely.line.Line;
-import com.guoshiyao.rely.message.i18n.I18n;
-import com.guoshiyao.rely.thread.ThreadReUtils;
+import com.guoshiyao.rely.BaseEv;
+import com.guoshiyao.rely.plugin.thread.bean.KeyBase;
+import com.guoshiyao.rely.plugin.exception.code.impl.CodeImpl;
+import com.guoshiyao.rely.plugin.exception.re.ex.ExceptionError;
+import com.guoshiyao.rely.plugin.i18n.I18n;
+import com.guoshiyao.rely.plugin.thread.ThreadReUtils;
 
 import java.util.List;
 
 /**
  * 自定义消息码
  */
-public class CodeRe extends CodeAbE {
+public class CodeRe extends CodeImpl {
     private String code;
     private String i18n;
     private String type;
@@ -53,18 +52,18 @@ public class CodeRe extends CodeAbE {
 
     private void init(String code, I18n i18n, String... messages) {
         String i18nCode = "";
-        if (BaseEv.I18N_THREAD_POWER && (i18n == null || StrUtil.isBlank(i18n.getI18nCode()))) {//获取线程变量
+        if (BaseEv.ProjectInformation.OPEN_THREAD_I18N && (i18n == null || StrUtil.isBlank(i18n.getI18nCode()))) {//获取线程变量
             try {
                 i18nCode = ThreadReUtils.getStrParamByPath(KeyBase.I18N.getName());
             } catch (Exception e) {
             }
         }
         if (StrUtil.isBlank(i18nCode)) {
-            i18nCode = Line.i18n;
+            i18nCode = BaseEv.SettingInformation.i18n;
         }
         List<String> messageList = null;
         try {
-            messageList = Line.messages.get(i18nCode).get(code);
+            messageList = BaseEv.SettingInformation.messages.get(i18nCode).get(code);
         } catch (Exception e) {
         }
         if (messageList == null || messageList.size() == 0) {

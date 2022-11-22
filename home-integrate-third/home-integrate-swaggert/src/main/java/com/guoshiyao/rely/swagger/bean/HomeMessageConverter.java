@@ -21,7 +21,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectReader;
 import com.fasterxml.jackson.databind.ObjectWriter;
 import com.fasterxml.jackson.databind.exc.InvalidDefinitionException;
-import com.guoshiyao.rely.outgoing.OutputParamAb;
+import com.guoshiyao.rely.plugin.outgoing.OutputParamAbs;
 import org.springframework.core.GenericTypeResolver;
 import org.springframework.http.HttpInputMessage;
 import org.springframework.http.HttpOutputMessage;
@@ -75,7 +75,7 @@ public class HomeMessageConverter extends AbstractGenericHttpMessageConverter<Ob
     }
 
     private boolean supportInternalAndHandle(Class<?> clazz) {
-        boolean securityBody = ClassUtil.isAssignable(OutputParamAb.class, clazz);
+        boolean securityBody = ClassUtil.isAssignable(OutputParamAbs.class, clazz);
         return securityBody;
     }
 //

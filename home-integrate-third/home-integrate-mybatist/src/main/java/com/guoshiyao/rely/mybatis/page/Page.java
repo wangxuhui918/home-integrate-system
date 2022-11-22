@@ -11,9 +11,9 @@
 package com.guoshiyao.rely.mybatis.page;
 
 import cn.hutool.core.util.StrUtil;
-import com.guoshiyao.rely.log.base.LoggerBaseAb;
 import com.guoshiyao.rely.mybatis.page.inter.Data;
 import com.guoshiyao.rely.mybatis.page.inter.Pager;
+import com.guoshiyao.rely.plugin.log.ILoggerBaseUtils;
 import org.apache.ibatis.session.RowBounds;
 
 /**
@@ -72,7 +72,7 @@ public class Page<T> {
                 this.pageSize = Integer.parseInt(pager.getPageSize());
             }
         } catch (Exception e) {
-            LoggerBaseAb.warn("页面当前页/每页记录数传参转换异常,默认首页");
+            ILoggerBaseUtils.warn("页面当前页/每页记录数传参转换异常,默认首页");
         }
         this.calcOffset();
         this.calcLimit();
@@ -96,7 +96,7 @@ public class Page<T> {
                 this.pageSize = Integer.parseInt(pageSize);
             }
         } catch (Exception e) {
-            LoggerBaseAb.warn("页面当前页/每页记录数传参转换异常,默认首页");
+            ILoggerBaseUtils.warn("页面当前页/每页记录数传参转换异常,默认首页");
         }
         this.calcOffset();
         this.calcLimit();

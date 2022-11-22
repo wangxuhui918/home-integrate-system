@@ -9,9 +9,9 @@
 
 package com.guoshiyao.rely.config.newplugin;
 
-import com.guoshiyao.rely.coreannotation.rule.RuleAnnotation;
-import com.guoshiyao.rely.coreconf.utils.ProjectCoreConfUtils;
-import com.guoshiyao.rely.createconfig.CreateConfigAb;
+import com.guoshiyao.rely.annotation.RuleInjection;
+import com.guoshiyao.rely.core.utils.conf.ProjectConfUtils;
+import com.guoshiyao.rely.coreextension.ICreateConfig;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,8 +22,8 @@ import java.util.Map;
  * @date 2022/3/9
  * @readme
  */
-@RuleAnnotation
-public class EnvFilePathCreateConfigRe implements CreateConfigAb {
+@RuleInjection
+public class EnvFilePathCreateConfigRe implements ICreateConfig {
 
 
     @Override
@@ -39,12 +39,12 @@ public class EnvFilePathCreateConfigRe implements CreateConfigAb {
      */
     @Override
     public Map<String, String> writeProperties() {
-        return ProjectCoreConfUtils.getAllProperties();
+        return ProjectConfUtils.getAllProperties();
     }
 
     @Override
     public void before() {
-        ProjectCoreConfUtils.writeModelConfig();
+        ProjectConfUtils.writeModelConfig();
     }
 
     @Override

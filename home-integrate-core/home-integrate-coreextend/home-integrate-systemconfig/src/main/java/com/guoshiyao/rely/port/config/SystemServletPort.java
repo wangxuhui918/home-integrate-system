@@ -11,9 +11,9 @@
 package com.guoshiyao.rely.port.config;
 
 import cn.hutool.core.net.NetUtil;
-import com.guoshiyao.rely.exception.re.ex.ExceptionError;
-import com.guoshiyao.rely.line.Line;
-import com.guoshiyao.rely.log.base.LoggerBaseAb;
+import com.guoshiyao.rely.BaseEv;
+import com.guoshiyao.rely.plugin.exception.re.ex.ExceptionError;
+import com.guoshiyao.rely.plugin.log.ILoggerBaseUtils;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.web.server.ConfigurableWebServerFactory;
 import org.springframework.boot.web.server.WebServerFactoryCustomizer;
@@ -37,7 +37,7 @@ public class SystemServletPort {
         WebServerFactoryCustomizer<ConfigurableWebServerFactory> portBean = new WebServerFactoryCustomizer<ConfigurableWebServerFactory>() {
             @Override
             public void customize(ConfigurableWebServerFactory factory) {
-                Long port = Line.setting.getLong("system.servlet.port");
+                Long port = BaseEv.SettingInformation.setting.getLong("system.servlet.port");
                 if (port == null) {
                     port = 8080L;
                 }
@@ -46,7 +46,7 @@ public class SystemServletPort {
                     throw new ExceptionError("端口{}被占用, 系统退出", port.toString());
                 } else {
                     factory.setPort(port.intValue());
-                    LoggerBaseAb.info("已设置端口" + port);
+                    ILoggerBaseUtils.info("已设置端口" + port);
                 }
             }
         };
@@ -56,10 +56,10 @@ public class SystemServletPort {
     @Bean
     public MultipartConfigElement multipartConfigElement() {
         MultipartConfigFactory factory = new MultipartConfigFactory();
-        factory.setLocation(Line.setting.get("system.servlet.multipart.location"));
-        factory.setMaxFileSize(DataSize.of(Line.setting.getInt("system.servlet.multipart.max-file-size"), DataUnit.MEGABYTES));
-        factory.setMaxRequestSize(DataSize.of(Line.setting.getInt("system.servlet.multipart.max-request-size"), DataUnit.MEGABYTES));
-        factory.setFileSizeThreshold(DataSize.of(Line.setting.getInt("system.servlet.multipart.file-size-threshold"), DataUnit.MEGABYTES));
+        factory.setLocation(BaseEv.SettingInformation.setting.get("system.servlet.multipart.location"));
+        factory.setMaxFileSize(DataSize.of(BaseEv.SettingInformation.setting.getInt("system.servlet.multipart.max-file-size"), DataUnit.MEGABYTES));
+        factory.setMaxRequestSize(DataSize.of(BaseEv.SettingInformation.setting.getInt("system.servlet.multipart.max-request-size"), DataUnit.MEGABYTES));
+        factory.setFileSizeThreshold(DataSize.of(BaseEv.SettingInformation.setting.getInt("system.servlet.multipart.file-size-threshold"), DataUnit.MEGABYTES));
         return factory.createMultipartConfig();
     }
 }

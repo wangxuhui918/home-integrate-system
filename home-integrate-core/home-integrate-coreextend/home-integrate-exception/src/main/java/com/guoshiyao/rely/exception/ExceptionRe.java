@@ -11,8 +11,9 @@
 package com.guoshiyao.rely.exception;
 
 import com.guoshiyao.rely.exception.code.CodeRe;
+import com.guoshiyao.rely.plugin.exception.ExceptionAbs;
 
-public class ExceptionRe extends ExceptionAb {
+public class ExceptionRe extends ExceptionAbs {
     private static final long serialVersionUID = 42L;
 
     public ExceptionRe(CodeRe msgInfo) {

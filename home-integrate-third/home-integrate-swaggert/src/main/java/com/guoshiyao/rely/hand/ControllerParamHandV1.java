@@ -12,14 +12,14 @@ package com.guoshiyao.rely.hand;
 
 import cn.hutool.core.annotation.AnnotationUtil;
 import cn.hutool.core.util.ClassUtil;
-import com.guoshiyao.rely.coreannotation.rule.RuleAnnotationApi;
-import com.guoshiyao.rely.exception.ExceptionApiNull;
-import com.guoshiyao.rely.exception.code.re.CodeAbE;
-import com.guoshiyao.rely.line.Line;
-import com.guoshiyao.rely.log.base.LoggerBaseAb;
-import com.guoshiyao.rely.outgoing.AuthReturnType;
-import com.guoshiyao.rely.outgoing.InputParamAb;
+import com.guoshiyao.rely.BaseEv;
+import com.guoshiyao.rely.annotation.controller.RuleController;
 import com.guoshiyao.rely.outgoing.utils.CodeUtils;
+import com.guoshiyao.rely.plugin.exception.ExceptionApiNull;
+import com.guoshiyao.rely.plugin.exception.code.impl.CodeImpl;
+import com.guoshiyao.rely.plugin.log.ILoggerBaseUtils;
+import com.guoshiyao.rely.plugin.outgoing.AuthReturnType;
+import com.guoshiyao.rely.plugin.outgoing.InputParamAb;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
@@ -38,7 +38,7 @@ public class ControllerParamHandV1 {
 
     @Around("annotationPointCut()")
     public Object annotationAround(ProceedingJoinPoint jp) throws Throwable {
-        boolean havingApiAnnataion = AnnotationUtil.hasAnnotation(jp.getTarget().getClass(), RuleAnnotationApi.class);
+        boolean havingApiAnnataion = AnnotationUtil.hasAnnotation(jp.getTarget().getClass(), RuleController.class);
 
         if (havingApiAnnataion) {
             Object[] args = jp.getArgs();
@@ -52,23 +52,23 @@ public class ControllerParamHandV1 {
             }
             if (k == null) {//无InputParamAb拦截的情况
                 try {
-                    String className = Line.setting.get("system.inputparamab.class");
+                    String className = BaseEv.SettingInformation.setting.get("system.inputparamab.class");
                     k = (InputParamAb) ClassUtil.loadClass(className, false).newInstance();
                 } catch (Exception e) {
                 }
             }
             if (k == null) {
-                LoggerBaseAb.warn("参数{}未配置{}子类", "system.inputparamab.class", InputParamAb.class.getName());
+                ILoggerBaseUtils.warn("参数{}未配置{}子类", "system.inputparamab.class", InputParamAb.class.getName());
             }
             if (k != null) {
                 try {
                     AuthReturnType authReturnType = k.checkAuth();
                     if (authReturnType == AuthReturnType.AuthSuccess) {//鉴权通过
                     } else {//鉴权失败
-                        return CodeUtils.go(CodeAbE.getBuiltinCode(CodeAbE.getError().getType(), Line.i18n, authReturnType.getCode(), authReturnType.getName()));
+                        return CodeUtils.go(CodeImpl.getBuiltinCode(CodeImpl.getError().getType(), BaseEv.SettingInformation.i18n, authReturnType.getCode(), authReturnType.getName()));
                     }
                 } catch (Exception e) {
-                    return CodeUtils.go(CodeAbE.getError("未知鉴权异常!"));
+                    return CodeUtils.go(CodeImpl.getError("未知鉴权异常!"));
                 }
             }
         }

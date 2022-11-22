@@ -12,12 +12,13 @@ package com.guoshiyao.rely.outgoing;
 
 import cn.hutool.json.JSONObject;
 import cn.hutool.json.JSONUtil;
-import com.guoshiyao.rely.exception.ExceptionAb;
+import com.guoshiyao.rely.plugin.exception.ExceptionAbs;
+import com.guoshiyao.rely.plugin.outgoing.InputParamAb;
 
 import java.util.List;
 import java.util.Map;
 
-public class InputParamRe<G> extends InputParamAb<cn.hutool.json.JSONObject> {
+public class InputParamRe<G> extends InputParamAb<JSONObject> {
 
     private G inputData;
 
@@ -38,7 +39,7 @@ public class InputParamRe<G> extends InputParamAb<cn.hutool.json.JSONObject> {
      * @date 2021年12月8日
      * @readme
      */
-    public void throwNull(String expression, ExceptionAb exab) {
+    public void throwNull(String expression, ExceptionAbs exab) {
         java.lang.Object object = getData().getByPath(expression);
         if (object == null) {
             throw exab;
@@ -52,7 +53,7 @@ public class InputParamRe<G> extends InputParamAb<cn.hutool.json.JSONObject> {
      * @param expression
      * @param exab
      */
-    public void throwEmpty(String expression, ExceptionAb exab) {
+    public void throwEmpty(String expression, ExceptionAbs exab) {
         java.lang.Object object = getData().getByPath(expression);
         if (checkObjectNull(object)) {
             throw exab;

@@ -13,23 +13,23 @@ package com.guoshiyao.rely.apollo.config;
 import cn.hutool.setting.Setting;
 import com.ctrip.framework.apollo.Config;
 import com.ctrip.framework.apollo.ConfigService;
-import com.guoshiyao.rely.coreannotation.rule.RuleAnnotation;
-import com.guoshiyao.rely.line.Line;
-import com.guoshiyao.rely.third.ThirdExtendConfigAb;
+import com.guoshiyao.rely.BaseEv;
+import com.guoshiyao.rely.annotation.RuleInjection;
+import com.guoshiyao.rely.coreextension.IThirdExtendConfig;
 
 import java.util.*;
 
-@RuleAnnotation
-public class ApolloExtendsConfigAe implements ThirdExtendConfigAb {
+@RuleInjection
+public class ApolloExtendsConfigAe implements IThirdExtendConfig {
 
 
     @Override
     public void after() {
-        if (Line.setting.containsKey("home.apollo.app.id") && Line.setting.containsKey("home.apollo.apollo.meta")) {
+        if (BaseEv.SettingInformation.setting.containsKey("home.apollo.app.id") && BaseEv.SettingInformation.setting.containsKey("home.apollo.apollo.meta")) {
             Config config = ConfigService.getAppConfig(); //config instance is singleton for each namespace and is never null
             Set<String> names = config.getPropertyNames();
             for (String key : names) {
-                Line.setting.put(key, config.getProperty(key, ""));
+                BaseEv.SettingInformation.setting.put(key, config.getProperty(key, ""));
             }
         }
     }
@@ -73,7 +73,7 @@ public class ApolloExtendsConfigAe implements ThirdExtendConfigAb {
             String key = "home.apollo.app.id";
             String key1 = "app.id";
             if (!setting.containsKey(key)) {
-                setting.put(key, (Line.idKey));
+                setting.put(key, (BaseEv.SettingInformation.idKey));
             } else {
                 System.setProperty(key1, setting.get(key).toString());
             }
@@ -91,7 +91,7 @@ public class ApolloExtendsConfigAe implements ThirdExtendConfigAb {
             String key = "home.apollo.apollo.env";
             String key1 = "apollo.env";
             if (!setting.containsKey(key)) {
-                setting.put(key, (Line.runEnv));
+                setting.put(key, (BaseEv.SettingInformation.runEnv));
             } else {
                 System.setProperty(key1, setting.get(key).toString());
             }

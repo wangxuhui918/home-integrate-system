@@ -12,8 +12,7 @@ package com.guoshiyao.rely.gitlabtools.configration;
 
 import cn.hutool.core.io.FileUtil;
 import cn.hutool.core.util.StrUtil;
-import com.guoshiyao.rely.base.BaseEv;
-import com.guoshiyao.rely.line.Line;
+import com.guoshiyao.rely.BaseEv;
 import lombok.Data;
 import org.eclipse.jgit.api.Git;
 import org.eclipse.jgit.api.ResetCommand.ResetType;
@@ -40,18 +39,18 @@ public class GitLabBean {
     private String name;
     private String desc;
     private String githttpurl;
-    private String branch = Line.setting.get("home.gitlab.branch");
+    private String branch = BaseEv.SettingInformation.setting.get("home.gitlab.branch");
     private String gitdir;
-    private String gitlaburl = Line.setting.get("home.gitlab.gitlaburl");
-    private String token = Line.setting.get("home.gitlab.token");
+    private String gitlaburl = BaseEv.SettingInformation.setting.get("home.gitlab.gitlaburl");
+    private String token = BaseEv.SettingInformation.setting.get("home.gitlab.token");
     private UsernamePasswordCredentialsProvider user = new UsernamePasswordCredentialsProvider(
-            Line.setting.get("home.gitlab.username"),
-            Line.setting.get("home.gitlab.password"));
+            BaseEv.SettingInformation.setting.get("home.gitlab.username"),
+            BaseEv.SettingInformation.setting.get("home.gitlab.password"));
 
     public GitLabBean(String githttpurl) {
         this.githttpurl = githttpurl;
         this.name = StrUtil.subBefore(StrUtil.subAfter(this.githttpurl, "/", true), ".git", true);
-        this.gitdir = Line.setting.get("home.gitlab.gitdir") + BaseEv.FILE_SEPARATOR + this.name;
+        this.gitdir = BaseEv.SettingInformation.setting.get("home.gitlab.gitdir") + FileUtil.FILE_SEPARATOR + this.name;
         init(branch);
     }
 

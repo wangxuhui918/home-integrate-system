@@ -9,8 +9,8 @@
 
 package com.guoshiyao.rely.minio.utils;
 
-import com.guoshiyao.rely.exception.re.ex.ExceptionError;
-import com.guoshiyao.rely.line.Line;
+import com.guoshiyao.rely.BaseEv;
+import com.guoshiyao.rely.plugin.exception.re.ex.ExceptionError;
 import io.minio.BucketExistsArgs;
 import io.minio.MakeBucketArgs;
 import io.minio.MinioClient;
@@ -28,14 +28,14 @@ public class MinIOGen {
 
     public static void intiConect() {
         if (client == null) {
-            namespace_re = Line.setting.get("home.minio.namespace_re");
-            client = MinioClient.builder().endpoint(Line.setting.get("home.minio.endpoint")).credentials(Line.setting.get("home.minio.accesskey"), Line.setting.get("home.minio.secretKey")).build();
+            namespace_re = BaseEv.SettingInformation.setting.get("home.minio.namespace_re");
+            client = MinioClient.builder().endpoint(BaseEv.SettingInformation.setting.get("home.minio.endpoint")).credentials(BaseEv.SettingInformation.setting.get("home.minio.accesskey"), BaseEv.SettingInformation.setting.get("home.minio.secretKey")).build();
         }
     }
 
     public static void checkMinIOState() {
         if (client == null) {
-            throw new ExceptionError("MinIO连接失败,请检查相关参数是否正常,{},{},{},{}", Line.setting.get("home.minio.namespace_re"), Line.setting.get("home.minio.endpoint"), Line.setting.get("home.minio.accesskey"), Line.setting.get("home.minio.secretKey"));
+            throw new ExceptionError("MinIO连接失败,请检查相关参数是否正常,{},{},{},{}", BaseEv.SettingInformation.setting.get("home.minio.namespace_re"), BaseEv.SettingInformation.setting.get("home.minio.endpoint"), BaseEv.SettingInformation.setting.get("home.minio.accesskey"), BaseEv.SettingInformation.setting.get("home.minio.secretKey"));
         }
     }
 

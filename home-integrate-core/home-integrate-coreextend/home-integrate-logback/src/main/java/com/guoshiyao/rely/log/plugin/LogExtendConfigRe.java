@@ -10,19 +10,19 @@
 
 package com.guoshiyao.rely.log.plugin;
 
-import com.guoshiyao.rely.coreannotation.rule.RuleAnnotation;
-import com.guoshiyao.rely.exception.re.ex.ExceptionError;
-import com.guoshiyao.rely.line.Line;
+import com.guoshiyao.rely.BaseEv;
+import com.guoshiyao.rely.annotation.RuleInjection;
+import com.guoshiyao.rely.coreextension.ISystemConfig;
 import com.guoshiyao.rely.log.bean.EndLogBean;
-import com.guoshiyao.rely.sys.SystemConfigAb;
+import com.guoshiyao.rely.plugin.exception.re.ex.ExceptionError;
 
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@RuleAnnotation
-public class LogExtendConfigRe implements SystemConfigAb {
+@RuleInjection
+public class LogExtendConfigRe implements ISystemConfig {
 
     @Override
     public void after() {
@@ -47,32 +47,32 @@ public class LogExtendConfigRe implements SystemConfigAb {
     public Map<String, String> writeProperties() {
         {
             String key = "home.log.appid";
-            if (!Line.setting.containsKey(key)) {
-                Line.setting.put(key, Line.idKey);
+            if (!BaseEv.SettingInformation.setting.containsKey(key)) {
+                BaseEv.SettingInformation.setting.put(key, BaseEv.SettingInformation.idKey);
             }
         }
         {
             String key = "home.log.rootlevel";
-            if (!Line.setting.containsKey(key)) {
-                Line.setting.put(key, "info");
+            if (!BaseEv.SettingInformation.setting.containsKey(key)) {
+                BaseEv.SettingInformation.setting.put(key, "info");
             }
         }
         {
             String key = "home.log.businlevel";
-            if (!Line.setting.containsKey(key)) {
-                Line.setting.put(key, "info");
+            if (!BaseEv.SettingInformation.setting.containsKey(key)) {
+                BaseEv.SettingInformation.setting.put(key, "info");
             }
         }
         {
             String key = "home.log.businpackage";
-            if (!Line.setting.containsKey(key)) {
-                Line.setting.put(key, Line.projectPackage);
+            if (!BaseEv.SettingInformation.setting.containsKey(key)) {
+                BaseEv.SettingInformation.setting.put(key, BaseEv.WorkDir.projectPackage);
             }
         }
         {
             String key = "home.log.dir";
-            if (!Line.setting.containsKey(key)) {
-                Line.setting.put(key, "target/log/" + Line.idKey);
+            if (!BaseEv.SettingInformation.setting.containsKey(key)) {
+                BaseEv.SettingInformation.setting.put(key, "target/log/" + BaseEv.SettingInformation.idKey);
             }
         }
         return new HashMap<>();

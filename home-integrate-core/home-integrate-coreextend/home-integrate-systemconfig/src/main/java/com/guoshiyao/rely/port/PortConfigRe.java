@@ -10,11 +10,11 @@
 
 package com.guoshiyao.rely.port;
 
-import com.guoshiyao.rely.base.BaseEv;
-import com.guoshiyao.rely.coreannotation.rule.RuleAnnotation;
-import com.guoshiyao.rely.line.Line;
+import cn.hutool.core.io.FileUtil;
+import com.guoshiyao.rely.BaseEv;
+import com.guoshiyao.rely.annotation.RuleInjection;
+import com.guoshiyao.rely.coreextension.ISystemConfig;
 import com.guoshiyao.rely.port.config.SystemServletPort;
-import com.guoshiyao.rely.sys.SystemConfigAb;
 
 import java.util.*;
 
@@ -25,8 +25,8 @@ import java.util.*;
  * @date 2021年9月27日
  * @readme
  */
-@RuleAnnotation
-public class PortConfigRe implements SystemConfigAb {
+@RuleInjection
+public class PortConfigRe implements ISystemConfig {
     private static Object conf;
 
     @Override
@@ -42,38 +42,38 @@ public class PortConfigRe implements SystemConfigAb {
     public Map<String, String> writeProperties() {
         {
             String key = "system.servlet.port";
-            if (!Line.setting.containsKey(key)) {
-                Line.setting.put(key, 8080 + "");
+            if (!BaseEv.SettingInformation.setting.containsKey(key)) {
+                BaseEv.SettingInformation.setting.put(key, 8080 + "");
             }
         }
         {
             String key = "system.servlet.multipart.location";
-            if (!Line.setting.containsKey(key)) {
-                Line.setting.put(key, (Line.workHomeDir + BaseEv.FILE_SEPARATOR + "temp" + BaseEv.FILE_SEPARATOR + "001"));
+            if (!BaseEv.SettingInformation.setting.containsKey(key)) {
+                BaseEv.SettingInformation.setting.put(key, (BaseEv.WorkDir.workHomeDir + FileUtil.FILE_SEPARATOR + "temp" + FileUtil.FILE_SEPARATOR + "001"));
             }
         }
         {
             String key = "system.servlet.multipart.max-file-size";
-            if (!Line.setting.containsKey(key)) {
-                Line.setting.put(key, ("-1"));
+            if (!BaseEv.SettingInformation.setting.containsKey(key)) {
+                BaseEv.SettingInformation.setting.put(key, ("-1"));
             }
         }
         {
             String key = "system.servlet.multipart.max-request-size";
-            if (!Line.setting.containsKey(key)) {
-                Line.setting.put(key, ("-1"));
+            if (!BaseEv.SettingInformation.setting.containsKey(key)) {
+                BaseEv.SettingInformation.setting.put(key, ("-1"));
             }
         }
         {
             String key = "system.servlet.multipart.file-size-threshold";
-            if (!Line.setting.containsKey(key)) {
-                Line.setting.put(key, ("1"));
+            if (!BaseEv.SettingInformation.setting.containsKey(key)) {
+                BaseEv.SettingInformation.setting.put(key, ("1"));
             }
         }
         {
             String key = "system.inputparamab.class";
-            if (!Line.setting.containsKey(key)) {
-                Line.setting.put(key, "com.guoshiyao.rely.outgoing.InputParamRe");
+            if (!BaseEv.SettingInformation.setting.containsKey(key)) {
+                BaseEv.SettingInformation.setting.put(key, "com.guoshiyao.rely.outgoing.InputParamRe");
             }
         }
         return new HashMap<>();
