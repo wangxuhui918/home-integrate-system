@@ -11,7 +11,6 @@ package com.guoshiyao.rely.plugin.thread;
 
 
 import cn.hutool.json.JSONObject;
-import cn.hutool.json.JSONUtil;
 import com.guoshiyao.rely.plugin.thread.bean.KeyBase;
 
 /**
@@ -45,13 +44,9 @@ public class ThreadReUtils {
      * @param value T
      */
     public static void putParam(String key, Object value) {
-        allThreadLocal.get().append(key, value);
-    }
-
-
-    public static void putStrParam(String key, String value) {
         allThreadLocal.get().set(key, value);
     }
+
 
     /**
      * 通用获取线程变量
@@ -62,13 +57,13 @@ public class ThreadReUtils {
      * @return
      */
     public static <T> T getParamByPath(String path, Class<T> classes) {
-        return JSONUtil.toBean(allThreadLocal.get().getJSONObject(path), classes);
+        return allThreadLocal.get().get(path, classes);
     }
 
     public static String getStrParamByPath(String path) {
         return allThreadLocal.get().get(path, String.class);
     }
-    //8//////
+    //8//////        return allThreadLocal.get().get(path, String.class);
 
     /**
      * 获取I18n线程变量
@@ -90,7 +85,8 @@ public class ThreadReUtils {
      */
     public static <T> T getUserRe(Class<T> user) {
         try {
-            return JSONUtil.toBean(allThreadLocal.get().getJSONObject(KeyBase.USERRE.getName()), user);
+            return allThreadLocal.get().get(KeyBase.USERRE.getName(), user);
+//            return JSONUtil.toBean(allThreadLocal.get().getJSONObject(KeyBase.USERRE.getName()), user);
         } catch (Exception e) {
             return null;
         }

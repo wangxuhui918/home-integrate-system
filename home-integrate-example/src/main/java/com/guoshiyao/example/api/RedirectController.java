@@ -16,6 +16,7 @@ import com.guoshiyao.rely.exception.code.CodeRe;
 import com.guoshiyao.rely.outgoing.InputParamRe;
 import com.guoshiyao.rely.outgoing.OutputParamRe;
 import com.guoshiyao.rely.outgoing.utils.CodeUtils;
+import com.guoshiyao.rely.plugin.exception.code.impl.CodeImpl;
 import com.guoshiyao.rely.plugin.exception.re.ex.ExceptionError;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.stereotype.Controller;
@@ -58,7 +59,7 @@ public class RedirectController extends BaseController {
     @RequestMapping(value = "/example/output2", method = {RequestMethod.POST, RequestMethod.GET})
     @ResponseBody
     public OutputParamRe output2(@RequestBody InputParamRe<DemoVo> input) {
-        return CodeUtils.go(new CodeRe("000000"));
+        return CodeUtils.go(new CodeRe("A001", "你的"));
     }
 
     @ApiOperation(value = "样例", notes = " ")

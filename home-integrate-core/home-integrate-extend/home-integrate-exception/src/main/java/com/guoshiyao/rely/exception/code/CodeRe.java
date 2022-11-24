@@ -15,6 +15,7 @@ import cn.hutool.json.JSONUtil;
 import com.guoshiyao.rely.BaseEv;
 import com.guoshiyao.rely.plugin.exception.code.bean.MessageCodeVo;
 import com.guoshiyao.rely.plugin.exception.code.bean.MessageType;
+import com.guoshiyao.rely.plugin.exception.code.bean.MessageTypeVo;
 import com.guoshiyao.rely.plugin.exception.code.impl.CodeImpl;
 import com.guoshiyao.rely.plugin.exception.re.ex.ExceptionError;
 import com.guoshiyao.rely.plugin.i18n.I18n;
@@ -27,7 +28,7 @@ import com.guoshiyao.rely.plugin.thread.bean.KeyBase;
 public class CodeRe extends CodeImpl {
     private String code;
     private String i18n;
-    private MessageType type;
+    private MessageTypeVo type;
     private String text;
     private String className;
 
@@ -35,7 +36,7 @@ public class CodeRe extends CodeImpl {
     }
 
     public CodeRe(String code) {
-        init(code, null);
+        init(code, I18n.NOT_FOUNT);
     }
 
     public CodeRe(String code, I18n i18n) {
@@ -43,7 +44,7 @@ public class CodeRe extends CodeImpl {
     }
 
     public CodeRe(String code, String... messages) {
-        init(code, null, messages);
+        init(code, I18n.NOT_FOUNT, messages);
     }
 
     public CodeRe(String code, I18n i18n, String... messages) {
@@ -112,12 +113,12 @@ public class CodeRe extends CodeImpl {
     }
 
     @Override
-    public MessageType getType() {
+    public MessageTypeVo getType() {
         return this.type;
     }
 
     @Override
-    public void setType(MessageType type) {
+    public void setType(MessageTypeVo type) {
         this.type = type;
     }
 

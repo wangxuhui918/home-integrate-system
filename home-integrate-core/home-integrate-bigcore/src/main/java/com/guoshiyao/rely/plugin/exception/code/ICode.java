@@ -10,7 +10,7 @@
 
 package com.guoshiyao.rely.plugin.exception.code;
 
-import com.guoshiyao.rely.plugin.exception.code.bean.MessageType;
+import com.guoshiyao.rely.plugin.exception.code.bean.MessageTypeVo;
 
 /**
  * 消息码处理通用接口类
@@ -27,7 +27,7 @@ public interface ICode {
 
     String getI18n();
 
-    MessageType getType();
+    MessageTypeVo getType();
 
     String getText();
 

@@ -12,8 +12,9 @@ package com.guoshiyao.rely.plugin.exception.code.impl;
 
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.json.JSONUtil;
-import com.guoshiyao.rely.plugin.exception.code.bean.MessageType;
 import com.guoshiyao.rely.plugin.exception.code.ICode;
+import com.guoshiyao.rely.plugin.exception.code.bean.MessageType;
+import com.guoshiyao.rely.plugin.exception.code.bean.MessageTypeVo;
 import com.guoshiyao.rely.plugin.i18n.I18n;
 import lombok.Data;
 
@@ -28,7 +29,7 @@ import lombok.Data;
 public class CodeImpl implements ICode {
     private String code;
     private String i18n;
-    private MessageType type;
+    private MessageTypeVo type;
     private String text;
     private String className;
 
@@ -58,7 +59,7 @@ public class CodeImpl implements ICode {
      * @readme
      */
     public static CodeImpl getinfo(String text, String... format) {
-        return getBuiltinCode(MessageType.SUCCESS, I18n.defaultI18n.getI18nCode(), MessageType.SUCCESS.getTypeStateCode(), text, format);
+        return getBuiltinCode(MessageType.SUCCESS.getMessageTypeVo(), I18n.defaultI18n.getI18nCode(), MessageType.SUCCESS.getTypeStateCode(), text, format);
     }
 
     /**
@@ -83,7 +84,7 @@ public class CodeImpl implements ICode {
      * @readme
      */
     public static CodeImpl getError(String text, Object... format) {
-        return getBuiltinCode(MessageType.ERR, I18n.defaultI18n.getI18nCode(), MessageType.ERR.getTypeStateCode(), text, format);
+        return getBuiltinCode(MessageType.ERR.getMessageTypeVo(), I18n.defaultI18n.getI18nCode(), MessageType.ERR.getTypeStateCode(), text, format);
     }
 
 
@@ -109,14 +110,14 @@ public class CodeImpl implements ICode {
      * @readme
      */
     public static CodeImpl getWarn(String text, String... format) {
-        return getBuiltinCode(MessageType.WARING, I18n.defaultI18n.getI18nCode(), MessageType.WARING.getTypeStateCode(), text, format);
+        return getBuiltinCode(MessageType.WARING.getMessageTypeVo(), I18n.defaultI18n.getI18nCode(), MessageType.WARING.getTypeStateCode(), text, format);
     }
 
 
-    public static CodeImpl getBuiltinCode(MessageType type, String i18n, String code, String text, Object... format) {
+    public static CodeImpl getBuiltinCode(MessageTypeVo type, String i18n, String code, String text, Object... format) {
         return new CodeImpl() {
             @Override
-            public MessageType getType() {
+            public MessageTypeVo getType() {
                 return type;
             }
 

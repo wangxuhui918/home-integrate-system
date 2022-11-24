@@ -7,7 +7,7 @@ package com.guoshiyao.rely.plugin.exception.code.bean;
  */
 public class MessageCodeVo {
     private String stateCode;
-    private MessageType stateType;
+    private MessageTypeVo stateType;
     private String context;
 
     public String getStateCode() {
@@ -18,11 +18,11 @@ public class MessageCodeVo {
         this.stateCode = stateCode;
     }
 
-    public MessageType getStateType() {
+    public MessageTypeVo getStateType() {
         return stateType;
     }
 
-    public void setStateType(MessageType stateType) {
+    public void setStateType(MessageTypeVo stateType) {
         this.stateType = stateType;
     }
 

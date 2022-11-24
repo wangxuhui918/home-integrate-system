@@ -84,7 +84,7 @@ public class NodeUtils {
             }
             MessageCodeVo messageCodeVo = new MessageCodeVo();
             messageCodeVo.setContext(conmtext);
-            messageCodeVo.setStateType(MessageType.getByBooleanStrMark(type));
+            messageCodeVo.setStateType(MessageType.getByBooleanStrMark(type).getMessageTypeVo());
             messageCodeVo.setStateCode(code);
             codeMess.put(code, messageCodeVo);
         }

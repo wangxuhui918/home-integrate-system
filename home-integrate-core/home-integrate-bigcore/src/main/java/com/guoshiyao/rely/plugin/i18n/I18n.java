@@ -47,7 +47,7 @@ public enum I18n {
     TW("tw", "中国台湾"), TZ("tz", "坦桑尼亚"), UA("ua", "乌克兰"), UG("ug", "乌干达"), UK("uk", "英国"), US("us", "美国"),
     UY("uy", "乌拉圭"), UZ("uz", "乌兹别克斯坦"), VA("va", "梵蒂冈"), VE("ve", "委内瑞拉"), VG("vg", "维京岛（英）"), VI("vi", "维京岛（美）"),
     VN("vn", "越南"), WF("wf", "瓦利斯群岛"), WS("ws", "萨摩亚群岛"), YE("ye", "也门"), YU("yu", "南斯拉夫"), ZA("za", "南非"),
-    ZM("zm", "赞比亚"), ZR("zr", "扎伊尔"), ZW("zw", "津巴布韦");
+    ZM("zm", "赞比亚"), ZR("zr", "扎伊尔"), ZW("zw", "津巴布韦"), NOT_FOUNT(null, null);
 
     public final static I18n defaultI18n = I18n.CN;
 
