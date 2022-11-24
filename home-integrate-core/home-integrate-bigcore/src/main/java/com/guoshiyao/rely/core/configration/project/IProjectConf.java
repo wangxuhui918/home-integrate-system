@@ -18,21 +18,19 @@ import java.util.Map;
  */
 public interface IProjectConf {
 
-    Map<String, String> getEnvPropertiesByCode(String code);
 
-    Map<String, String> getotherMessageFileContext();
+    Map<String, String> getAllMessageXmlContexts();
 
-    String getZoneMessageFileContext();
+    String getDefaultMessageXmlContexts();
 
-    HashMap<String, String> getEnvAllProperties();
+    HashMap<String, String> getThisEnvPropertiesValue();
 
-    void writeModelConfig();
+    void writeProperties();
 
-    void writeReadMes();
+    void writeFileStructures();
 
-    boolean getDbInit();
+    boolean installed();
 
-    boolean setDbInit();
+    boolean install();
 
-    void copyQuasiproduction();
 }

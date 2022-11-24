@@ -9,7 +9,7 @@
  */
 
 
-package com.guoshiyao.rely.coreextension;
+package com.guoshiyao.rely.coreextension.run;
 
 import com.guoshiyao.rely.core.IRunModelConfig;
 

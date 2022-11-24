@@ -16,7 +16,7 @@ import com.guoshiyao.rely.BaseEv;
 import com.guoshiyao.rely.core.configration.annotation.RuleInjection;
 import com.guoshiyao.rely.core.utils.AnnotationTools;
 import com.guoshiyao.rely.core.utils.data.JdbcFind;
-import com.guoshiyao.rely.coreextension.IThirdExtendConfig;
+import com.guoshiyao.rely.coreextension.run.IThirdConfig;
 import com.guoshiyao.rely.mybatisplus.starter.mybatis.config.MapperConfiguration;
 import com.guoshiyao.rely.mybatisplus.starter.mybatis.config.MybatisPlusAutoConfiguration;
 import com.guoshiyao.rely.plugin.exception.re.ex.ExceptionError;
@@ -26,7 +26,7 @@ import java.util.*;
 
 @RuleInjection
 
-public class MyBatisPlusConfig implements IThirdExtendConfig {
+public class MyBatisPlusConfig implements IThirdConfig {
     public final static String NAME = "MYBATIS-PLUS";
 
     @Override
@@ -48,7 +48,7 @@ public class MyBatisPlusConfig implements IThirdExtendConfig {
     }
 
     @Override
-    public Map<String, String> writeProperties() {
+    public Map<String, String> getProperties() {
         return new HashMap<>();
     }
 

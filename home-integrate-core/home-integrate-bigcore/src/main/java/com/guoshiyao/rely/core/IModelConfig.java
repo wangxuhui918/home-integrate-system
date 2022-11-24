@@ -57,6 +57,6 @@ public interface IModelConfig extends IBaseConfig {
      * @date 2021年12月2日
      * @readme
      */
-    Map<String, String> writeProperties();
+    Map<String, String> getProperties();
 
 }

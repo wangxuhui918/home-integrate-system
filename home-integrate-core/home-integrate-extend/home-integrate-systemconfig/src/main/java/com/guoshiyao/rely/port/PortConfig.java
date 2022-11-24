@@ -13,7 +13,7 @@ package com.guoshiyao.rely.port;
 import cn.hutool.core.io.FileUtil;
 import com.guoshiyao.rely.BaseEv;
 import com.guoshiyao.rely.core.configration.annotation.RuleInjection;
-import com.guoshiyao.rely.coreextension.ISystemConfig;
+import com.guoshiyao.rely.coreextension.run.ISystemConfig;
 import com.guoshiyao.rely.port.config.SystemServletPort;
 
 import java.util.*;
@@ -39,7 +39,7 @@ public class PortConfig implements ISystemConfig {
 
 
     @Override
-    public Map<String, String> writeProperties() {
+    public Map<String, String> getProperties() {
         {
             String key = "system.servlet.port";
             if (!BaseEv.SettingInformation.setting.containsKey(key)) {

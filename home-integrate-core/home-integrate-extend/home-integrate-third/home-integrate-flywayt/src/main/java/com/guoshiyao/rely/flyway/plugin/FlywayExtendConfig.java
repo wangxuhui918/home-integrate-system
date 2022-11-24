@@ -14,7 +14,7 @@ import cn.hutool.core.io.FileUtil;
 import cn.hutool.setting.Setting;
 import com.guoshiyao.rely.BaseEv;
 import com.guoshiyao.rely.core.configration.annotation.RuleInjection;
-import com.guoshiyao.rely.coreextension.IThirdExtendConfig;
+import com.guoshiyao.rely.coreextension.run.IThirdConfig;
 import com.guoshiyao.rely.flyway.bean.FlywayBean;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
@@ -23,7 +23,7 @@ import org.springframework.core.io.support.ResourcePatternResolver;
 import java.util.*;
 
 @RuleInjection
-public class FlywayExtendConfig implements IThirdExtendConfig {
+public class FlywayExtendConfig implements IThirdConfig {
     public final static String filep = "db" + FileUtil.FILE_SEPARATOR + "migration" + FileUtil.FILE_SEPARATOR + "**" + FileUtil.FILE_SEPARATOR
             + "**.sql";
 
@@ -56,7 +56,7 @@ public class FlywayExtendConfig implements IThirdExtendConfig {
     }
 
     @Override
-    public Map<String, String> writeProperties() {
+    public Map<String, String> getProperties() {
         return new HashMap<>();
     }
 

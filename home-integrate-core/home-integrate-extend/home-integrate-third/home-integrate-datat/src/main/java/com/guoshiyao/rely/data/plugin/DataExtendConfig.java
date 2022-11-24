@@ -18,13 +18,13 @@ import cn.hutool.setting.Setting;
 import com.guoshiyao.rely.BaseEv;
 import com.guoshiyao.rely.core.configration.annotation.RuleInjection;
 import com.guoshiyao.rely.core.utils.data.JdbcFind;
-import com.guoshiyao.rely.coreextension.IThirdExtendConfig;
+import com.guoshiyao.rely.coreextension.run.IThirdConfig;
 import com.guoshiyao.rely.data.DataSourcesConfig;
 
 import java.util.*;
 
 @RuleInjection
-public class DataExtendConfig implements IThirdExtendConfig {
+public class DataExtendConfig implements IThirdConfig {
     public final static String NAME = "DATA_DURID";
 
     @Override
@@ -39,7 +39,7 @@ public class DataExtendConfig implements IThirdExtendConfig {
     }
 
     @Override
-    public Map<String, String> writeProperties() {
+    public Map<String, String> getProperties() {
         return new HashMap<>();
     }
 

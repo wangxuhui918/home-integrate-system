@@ -14,7 +14,7 @@ import cn.hutool.setting.Setting;
 import com.guoshiyao.rely.BaseEv;
 import com.guoshiyao.rely.core.configration.annotation.RuleInjection;
 import com.guoshiyao.rely.core.utils.AnnotationTools;
-import com.guoshiyao.rely.coreextension.IThirdExtendConfig;
+import com.guoshiyao.rely.coreextension.run.IThirdConfig;
 import com.guoshiyao.rely.hand.ControllerParamHandV1;
 import com.guoshiyao.rely.hand.ExceptionHandV1;
 import com.guoshiyao.rely.hand.ResponseHandV1;
@@ -25,7 +25,7 @@ import org.springframework.stereotype.Controller;
 import java.util.*;
 
 @RuleInjection
-public class SwaggerConfig implements IThirdExtendConfig {
+public class SwaggerConfig implements IThirdConfig {
     public final static String NAME = "SWAGGER";
 
     @Override
@@ -45,7 +45,7 @@ public class SwaggerConfig implements IThirdExtendConfig {
     }
 
     @Override
-    public Map<String, String> writeProperties() {
+    public Map<String, String> getProperties() {
         return new HashMap<>();
     }
 

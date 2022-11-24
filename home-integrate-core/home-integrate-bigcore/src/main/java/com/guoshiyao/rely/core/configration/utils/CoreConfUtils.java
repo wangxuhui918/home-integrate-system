@@ -9,22 +9,15 @@
 package com.guoshiyao.rely.core.configration.utils;
 
 import cn.hutool.core.util.ClassUtil;
-import com.guoshiyao.rely.BaseEv;
-import com.guoshiyao.rely.core.configration.annotation.RuleInjection;
-import com.guoshiyao.rely.core.configration.bean.ConfigMainType;
 import com.guoshiyao.rely.core.configration.home.ICoreConf;
-import com.guoshiyao.rely.core.configration.vo.ModelConfigInfoVo;
-import com.guoshiyao.rely.core.configration.vo.ModelConfigPropertiesVo;
-import com.guoshiyao.rely.core.configration.vo.ReadMeVo;
-import com.guoshiyao.rely.core.utils.AnnotationTools;
-import com.guoshiyao.rely.core.utils.ClassForPackageUtils;
+import com.guoshiyao.rely.core.configration.home.bean.FileStructureVo;
+import com.guoshiyao.rely.core.configration.home.bean.ConfigMainVo;
+import com.guoshiyao.rely.core.configration.home.bean.ConfigDetailsVo;
+import com.guoshiyao.rely.core.configration.home.impl.enumtype.CoreBuiltInImpl;
 import com.guoshiyao.rely.plugin.log.ILoggerBaseUtils;
 
 import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.HashMap;
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * @author 汪旭辉
@@ -32,52 +25,33 @@ import java.util.stream.Collectors;
  * @readme
  */
 public class CoreConfUtils {
-    private static ICoreConf lastHomeCoreConfAb;
-    private static List<ICoreConf> homecoreconfabplugins = AnnotationTools.getRuleOn(RuleInjection.class, ICoreConf.class, BaseEv.SettingInformation.corePacket);
 
-    static {
-        try {
-            if (homecoreconfabplugins.size() > 0) {//最大执行器
-                homecoreconfabplugins = ClassForPackageUtils.sortForPackageAndName(homecoreconfabplugins);//按照类名以及所在包名进行 double 排序 xxx.xx,例如(12.32)
-                lastHomeCoreConfAb = homecoreconfabplugins.get(homecoreconfabplugins.size() - 1);
+    private static ICoreConf lastHomeCoreConfAb = new CoreBuiltInImpl();//按需调整
+
+    public static <T> List<T> getPlugins(Class<T> a) {
+        List<String> plugins = lastHomeCoreConfAb.getPlugins(a.getSimpleName());
+        List<T> returnlist = new ArrayList<>();
+        for (int i = 0; i < plugins.size(); i++) {
+            Class class0 = ClassUtil.loadClass(plugins.get(i), false);
+            try {
+                T sd = (T) ClassUtil.loadClass(class0.getName(), false).newInstance();
+                returnlist.add(sd);
+            } catch (Exception e) {
+                ILoggerBaseUtils.err("{}转换失败!", class0.getName());
             }
-        } catch (Exception e) {
-            throw e;
         }
+        return returnlist;
     }
 
-    public static <T> List<T> sortByDbOrRuleApi(Class<T> a) {
-        HashMap<String, Integer> sort = lastHomeCoreConfAb.getOpenSpi(a.getSimpleName());
-        List<Class> intersectionSet = new ArrayList<>();
-        List<T> listarra = new ArrayList<>();
-        if (sort.size() > 0) {
-            for (String o : sort.keySet()) {
-                intersectionSet.add(ClassUtil.loadClass(o, false));
-            }
-            for (Class<?> class1 : intersectionSet) {
-                try {
-                    T sd = (T) ClassUtil.loadClass(class1.getName(), false).newInstance();
-                    listarra.add(sd);
-                } catch (Exception e) {
-                    ILoggerBaseUtils.warn("{}转换失败!", class1.getName());
-                }
-            }
-            listarra = listarra.stream().sorted(Comparator.comparingInt(od -> sort.containsKey(od.getClass().getName()) ? sort.get(od.getClass().getName()) : 0))
-                    .collect(Collectors.toList());
-        }
-        return listarra;
+    public static List<FileStructureVo> getFileStructures() {
+        return lastHomeCoreConfAb.getFileStructures();
     }
 
-    public static List<ConfigMainType> getConfigMainType() {
-        return lastHomeCoreConfAb.getConfigMainType();
+    public static List<ConfigMainVo> getPropertiesMain() {//获取配置明细
+        return lastHomeCoreConfAb.getPropertiesMain();
     }
 
-
-    public static List<ReadMeVo> getReadMe() {
-        return lastHomeCoreConfAb.getReadMe();
-    }
-
-    public static HashMap<ModelConfigInfoVo, List<ModelConfigPropertiesVo>> getModelConf() {
-        return lastHomeCoreConfAb.getModelConf();
+    public static List<ConfigDetailsVo> getPropertiesDetails(String configFileName) {//获取配置明细
+        return lastHomeCoreConfAb.getPropertiesDetails(configFileName);
     }
 }

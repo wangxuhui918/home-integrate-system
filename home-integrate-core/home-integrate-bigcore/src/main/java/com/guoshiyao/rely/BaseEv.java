@@ -17,6 +17,7 @@ import cn.hutool.core.util.StrUtil;
 import cn.hutool.db.nosql.redis.RedisDS;
 import cn.hutool.setting.Setting;
 import cn.hutool.system.SystemUtil;
+import com.guoshiyao.rely.plugin.exception.code.bean.MessageCodeVo;
 import com.guoshiyao.rely.plugin.exception.re.ex.ExceptionError;
 import com.guoshiyao.rely.plugin.i18n.I18n;
 import org.apache.velocity.VelocityContext;
@@ -98,7 +99,7 @@ public class BaseEv {
         public static final HashMap<String, Tree<Class>> methTree = new HashMap<>();
         public final static List<Class> iocclasses = new ArrayList<>();//IOC翻转执行类
         public final static Setting setting = new Setting();// 用户配置
-        public final static HashMap<String, HashMap<String, List<String>>> messages = new HashMap<>();//消息码信息
+        public final static HashMap<String, HashMap<String, MessageCodeVo>> messages = new HashMap<>();//消息码信息
         public final static VelocityContext context = new VelocityContext();//系统模板引擎变量
         public final static Set<String> macSet = new HashSet<>();//存放本机所有Mac地址
         public static String idKey = SystemInformation.SYSTEM_KEY;//项目唯一ID

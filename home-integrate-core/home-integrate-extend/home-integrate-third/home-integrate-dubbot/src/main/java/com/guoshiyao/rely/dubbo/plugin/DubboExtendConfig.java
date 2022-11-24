@@ -15,14 +15,14 @@ import com.alibaba.dubbo.config.annotation.Service;
 import com.guoshiyao.rely.BaseEv;
 import com.guoshiyao.rely.core.configration.annotation.RuleInjection;
 import com.guoshiyao.rely.core.utils.AnnotationTools;
-import com.guoshiyao.rely.coreextension.IThirdExtendConfig;
+import com.guoshiyao.rely.coreextension.run.IThirdConfig;
 import com.guoshiyao.rely.dubbo.config.DubboBaseConfiguration;
 import com.guoshiyao.rely.dubbo.config.DubboConsumerConfig;
 
 import java.util.*;
 
 @RuleInjection
-public class DubboExtendConfig implements IThirdExtendConfig {
+public class DubboExtendConfig implements IThirdConfig {
     public final static String NAME = "DUBBO";
 
     @Override
@@ -36,7 +36,7 @@ public class DubboExtendConfig implements IThirdExtendConfig {
     }
 
     @Override
-    public Map<String, String> writeProperties() {
+    public Map<String, String> getProperties() {
         return new HashMap<>();
     }
 

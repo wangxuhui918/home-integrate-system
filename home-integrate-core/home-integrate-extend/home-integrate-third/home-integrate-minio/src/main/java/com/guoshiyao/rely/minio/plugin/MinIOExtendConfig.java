@@ -14,7 +14,7 @@ package com.guoshiyao.rely.minio.plugin;
 import cn.hutool.setting.Setting;
 import com.guoshiyao.rely.BaseEv;
 import com.guoshiyao.rely.core.configration.annotation.RuleInjection;
-import com.guoshiyao.rely.coreextension.IThirdExtendConfig;
+import com.guoshiyao.rely.coreextension.run.IThirdConfig;
 import com.guoshiyao.rely.minio.utils.MinIOGen;
 
 import java.util.ArrayList;
@@ -23,7 +23,7 @@ import java.util.List;
 import java.util.Map;
 
 @RuleInjection
-public class MinIOExtendConfig implements IThirdExtendConfig {
+public class MinIOExtendConfig implements IThirdConfig {
     public final static String NAME = "MinIO管理器";
 
     @Override
@@ -36,7 +36,7 @@ public class MinIOExtendConfig implements IThirdExtendConfig {
     }
 
     @Override
-    public Map<String, String> writeProperties() {
+    public Map<String, String> getProperties() {
         return new HashMap<>();
     }
 

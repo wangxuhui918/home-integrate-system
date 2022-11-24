@@ -13,13 +13,13 @@ package com.guoshiyao.rely.exception.code;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.json.JSONUtil;
 import com.guoshiyao.rely.BaseEv;
+import com.guoshiyao.rely.plugin.exception.code.bean.MessageCodeVo;
+import com.guoshiyao.rely.plugin.exception.code.bean.MessageType;
 import com.guoshiyao.rely.plugin.exception.code.impl.CodeImpl;
 import com.guoshiyao.rely.plugin.exception.re.ex.ExceptionError;
 import com.guoshiyao.rely.plugin.i18n.I18n;
 import com.guoshiyao.rely.plugin.thread.ThreadReUtils;
 import com.guoshiyao.rely.plugin.thread.bean.KeyBase;
-
-import java.util.List;
 
 /**
  * 自定义消息码
@@ -27,7 +27,7 @@ import java.util.List;
 public class CodeRe extends CodeImpl {
     private String code;
     private String i18n;
-    private String type;
+    private MessageType type;
     private String text;
     private String className;
 
@@ -61,19 +61,19 @@ public class CodeRe extends CodeImpl {
         if (StrUtil.isBlank(i18nCode)) {
             i18nCode = BaseEv.SettingInformation.i18n;
         }
-        List<String> messageList = null;
+        MessageCodeVo messageCodeVo = null;
         try {
-            messageList = BaseEv.SettingInformation.messages.get(i18nCode).get(code);
+            messageCodeVo = BaseEv.SettingInformation.messages.get(i18nCode).get(code);
         } catch (Exception e) {
         }
-        if (messageList == null || messageList.size() == 0) {
+        if (messageCodeVo == null) {
             throw new ExceptionError("找不到该消息码!");
         }
         this.code = code;
         this.i18n = i18nCode;
-        this.type = messageList.get(1);
+        this.type = messageCodeVo.getStateType();
         this.className = this.getClass().getName();
-        this.text = StrUtil.format(messageList.get(0), messages);
+        this.text = StrUtil.format(messageCodeVo.getContext(), messages);
     }
 
     @Override
@@ -112,12 +112,12 @@ public class CodeRe extends CodeImpl {
     }
 
     @Override
-    public String getType() {
+    public MessageType getType() {
         return this.type;
     }
 
     @Override
-    public void setType(String type) {
+    public void setType(MessageType type) {
         this.type = type;
     }
 

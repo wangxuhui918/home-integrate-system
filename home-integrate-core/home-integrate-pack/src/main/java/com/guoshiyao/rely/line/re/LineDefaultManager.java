@@ -19,8 +19,8 @@ import com.guoshiyao.rely.core.IClassModelConfig;
 import com.guoshiyao.rely.core.ILineManager;
 import com.guoshiyao.rely.core.IRunModelConfig;
 import com.guoshiyao.rely.core.configration.utils.CoreConfUtils;
-import com.guoshiyao.rely.coreextension.ISystemConfig;
-import com.guoshiyao.rely.coreextension.IThirdExtendConfig;
+import com.guoshiyao.rely.coreextension.run.ISystemConfig;
+import com.guoshiyao.rely.coreextension.run.IThirdConfig;
 import com.guoshiyao.rely.plugin.log.ILoggerBaseUtils;
 
 import java.util.HashMap;
@@ -37,9 +37,9 @@ import java.util.Map;
 @RuleInjection
 public class LineDefaultManager implements ILineManager {
     //<Line>
-    private static List<IClassModelConfig> classmodelconfigrerules = CoreConfUtils.sortByDbOrRuleApi(IClassModelConfig.class);
+    private static List<IClassModelConfig> classmodelconfigrerules = CoreConfUtils.getPlugins(IClassModelConfig.class);
 
-    private static List<IRunModelConfig> runmodelconfigrerules = CoreConfUtils.sortByDbOrRuleApi(IRunModelConfig.class);
+    private static List<IRunModelConfig> runmodelconfigrerules = CoreConfUtils.getPlugins(IRunModelConfig.class);
 
 
     /**
@@ -78,7 +78,7 @@ public class LineDefaultManager implements ILineManager {
                 IRunModelConfig info = runmodelconfigrerules.get(i);
                 ILoggerBaseUtils.info("[{}]功能处理器[{}]开始处理[{}]", "jar", info.getClass(), "writeProperties");
                 if (info instanceof ISystemConfig) {
-                    BaseEv.SettingInformation.setting.putAll(info.writeProperties());
+                    BaseEv.SettingInformation.setting.putAll(info.getProperties());
                 }
                 ILoggerBaseUtils.info("[{}]功能处理器[{}]处理完成[{}]", "jar", info.getClass(), "writeProperties");
             }
@@ -86,15 +86,15 @@ public class LineDefaultManager implements ILineManager {
             for (int i = 0; i < runmodelconfigrerules.size(); i++) {
                 IRunModelConfig info = runmodelconfigrerules.get(i);
                 ILoggerBaseUtils.info("[{}]功能处理器[{}]开始处理[{}]", "jar", info.getClass(), "writeProperties");
-                if (info instanceof IThirdExtendConfig) {
-                    BaseEv.SettingInformation.setting.putAll(info.writeProperties());
+                if (info instanceof IThirdConfig) {
+                    BaseEv.SettingInformation.setting.putAll(info.getProperties());
                 }
                 ILoggerBaseUtils.info("[{}]功能处理器[{}]处理完成[{}]", "jar", info.getClass(), "writeProperties");
             }
             for (int i = 0; i < classmodelconfigrerules.size(); i++) {
                 IClassModelConfig info = classmodelconfigrerules.get(i);
                 ILoggerBaseUtils.info("[{}]功能处理器[{}]开始处理[{}]", "class", info.getClass(), "writeProperties");
-                BaseEv.SettingInformation.setting.putAll(info.writeProperties());
+                BaseEv.SettingInformation.setting.putAll(info.getProperties());
                 ILoggerBaseUtils.info("[{}]功能处理器[{}]处理完成[{}]", "class", info.getClass(), "writeProperties");
             }
         }
@@ -102,10 +102,10 @@ public class LineDefaultManager implements ILineManager {
         for (int i = 0; i < runmodelconfigrerules.size(); i++) {
             IRunModelConfig info1 = runmodelconfigrerules.get(i);
             ILoggerBaseUtils.info("[{}]功能处理器[{}]开始处理[{}]", "jar", info1.getClass(), "callSetting");
-            if (info1 instanceof IThirdExtendConfig) {
+            if (info1 instanceof IThirdConfig) {
                 for (IRunModelConfig info : runmodelconfigrerules) {
-                    if (info instanceof IThirdExtendConfig) {
-                        ((IThirdExtendConfig) info).callSetting(BaseEv.SettingInformation.setting);
+                    if (info instanceof IThirdConfig) {
+                        ((IThirdConfig) info).callSetting(BaseEv.SettingInformation.setting);
                     }
                 }
             }
@@ -146,7 +146,7 @@ public class LineDefaultManager implements ILineManager {
         for (int i = 0; i < runmodelconfigrerules.size(); i++) {
             IRunModelConfig info = runmodelconfigrerules.get(i);
             ILoggerBaseUtils.info("[{}]功能处理器[{}]开始处理[{}]", "jar", info.getClass(), "writeClasss");
-            if (info instanceof IThirdExtendConfig) {
+            if (info instanceof IThirdConfig) {
                 BaseEv.SettingInformation.iocclasses.addAll(info.writeClasss());
             }
             ILoggerBaseUtils.info("[{}]功能处理器[{}]处理完成[{}]", "jar", info.getClass(), "writeClasss");

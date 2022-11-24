@@ -8,12 +8,10 @@
 
 package com.guoshiyao.rely.core.configration.home;
 
-import com.guoshiyao.rely.core.configration.bean.ConfigMainType;
-import com.guoshiyao.rely.core.configration.vo.ModelConfigInfoVo;
-import com.guoshiyao.rely.core.configration.vo.ModelConfigPropertiesVo;
-import com.guoshiyao.rely.core.configration.vo.ReadMeVo;
+import com.guoshiyao.rely.core.configration.home.bean.FileStructureVo;
+import com.guoshiyao.rely.core.configration.home.bean.ConfigMainVo;
+import com.guoshiyao.rely.core.configration.home.bean.ConfigDetailsVo;
 
-import java.util.HashMap;
 import java.util.List;
 
 /**
@@ -23,12 +21,12 @@ import java.util.List;
  */
 public interface ICoreConf {
 
-    HashMap<ModelConfigInfoVo, List<ModelConfigPropertiesVo>> getModelConf();
+    List<ConfigMainVo> getPropertiesMain();
 
-    List<ConfigMainType> getConfigMainType();
+    List<ConfigDetailsVo> getPropertiesDetails(String configFileName);
 
-    List<ReadMeVo> getReadMe();
+    List<FileStructureVo> getFileStructures();
 
-    HashMap<String, Integer> getOpenSpi(String tableName);
+    List<String> getPlugins(String tableName);
 
 }

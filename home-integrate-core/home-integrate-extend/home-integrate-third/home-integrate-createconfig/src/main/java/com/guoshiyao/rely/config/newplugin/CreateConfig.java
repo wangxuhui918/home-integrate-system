@@ -11,7 +11,7 @@ package com.guoshiyao.rely.config.newplugin;
 
 import com.guoshiyao.rely.core.configration.annotation.RuleInjection;
 import com.guoshiyao.rely.core.configration.utils.ProjectConfUtils;
-import com.guoshiyao.rely.coreextension.ICreateConfig;
+import com.guoshiyao.rely.coreextension.classm.ICreateConfig;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,13 +38,13 @@ public class CreateConfig implements ICreateConfig {
      * @return
      */
     @Override
-    public Map<String, String> writeProperties() {
-        return ProjectConfUtils.getAllProperties();
+    public Map<String, String> getProperties() {
+        return ProjectConfUtils.getThisEnvPropertiesValue();
     }
 
     @Override
     public void before() {
-        ProjectConfUtils.writeModelConfig();
+        ProjectConfUtils.writeProperties();
     }
 
     @Override

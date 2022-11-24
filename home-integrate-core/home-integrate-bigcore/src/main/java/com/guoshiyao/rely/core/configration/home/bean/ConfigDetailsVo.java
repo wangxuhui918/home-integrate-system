@@ -6,14 +6,17 @@
  *
  */
 
-package com.guoshiyao.rely.core.configration.vo;
+package com.guoshiyao.rely.core.configration.home.bean;
 
-/**
- * @author 汪旭辉
- * @date 2022/5/30
- * @readme
- */
-public class ExtendVo {
+
+import java.io.Serializable;
+
+
+public class ConfigDetailsVo implements Serializable {
+
+
+    private Integer id;
+
 
     private String key;
     private String beforesuff;
@@ -36,6 +39,13 @@ public class ExtendVo {
         this.beforesuff = beforesuff;
     }
 
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public String getKey() {
         return key;
@@ -78,3 +88,4 @@ public class ExtendVo {
         this.name_en = name_en;
     }
 }
+

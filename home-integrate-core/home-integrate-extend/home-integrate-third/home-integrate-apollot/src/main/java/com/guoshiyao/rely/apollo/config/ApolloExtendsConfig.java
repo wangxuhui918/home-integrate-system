@@ -15,12 +15,12 @@ import com.ctrip.framework.apollo.Config;
 import com.ctrip.framework.apollo.ConfigService;
 import com.guoshiyao.rely.BaseEv;
 import com.guoshiyao.rely.core.configration.annotation.RuleInjection;
-import com.guoshiyao.rely.coreextension.IThirdExtendConfig;
+import com.guoshiyao.rely.coreextension.run.IThirdConfig;
 
 import java.util.*;
 
 @RuleInjection
-public class ApolloExtendsConfig implements IThirdExtendConfig {
+public class ApolloExtendsConfig implements IThirdConfig {
 
 
     @Override
@@ -45,7 +45,7 @@ public class ApolloExtendsConfig implements IThirdExtendConfig {
     }
 
     @Override
-    public Map<String, String> writeProperties() {
+    public Map<String, String> getProperties() {
         return new HashMap<>();
     }
 

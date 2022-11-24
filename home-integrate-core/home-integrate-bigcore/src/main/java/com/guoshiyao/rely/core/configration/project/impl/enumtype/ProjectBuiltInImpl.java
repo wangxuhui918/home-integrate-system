@@ -6,7 +6,7 @@
  *
  */
 
-package com.guoshiyao.rely.core.configration.project.impl;
+package com.guoshiyao.rely.core.configration.project.impl.enumtype;
 
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.io.FileUtil;
@@ -17,11 +17,11 @@ import cn.hutool.core.util.StrUtil;
 import cn.hutool.setting.Setting;
 import com.guoshiyao.rely.BaseEv;
 import com.guoshiyao.rely.core.configration.annotation.RuleInjection;
-import com.guoshiyao.rely.core.configration.bean.ConfigMainType;
+import com.guoshiyao.rely.core.configration.home.bean.ConfigDetailsVo;
+import com.guoshiyao.rely.core.configration.home.bean.ConfigMainVo;
+import com.guoshiyao.rely.core.configration.home.bean.FileStructureVo;
+import com.guoshiyao.rely.core.configration.home.bean.ResourceType;
 import com.guoshiyao.rely.core.configration.project.IProjectConf;
-import com.guoshiyao.rely.core.configration.vo.ModelConfigInfoVo;
-import com.guoshiyao.rely.core.configration.vo.ModelConfigPropertiesVo;
-import com.guoshiyao.rely.core.configration.vo.ReadMeVo;
 import com.guoshiyao.rely.core.configration.utils.CoreConfUtils;
 import com.guoshiyao.rely.core.configration.utils.ProjectConfUtils;
 import com.guoshiyao.rely.core.utils.resource.ResourceFindUtils;
@@ -30,7 +30,6 @@ import com.guoshiyao.rely.plugin.log.ILoggerBaseUtils;
 
 import java.net.URI;
 import java.util.*;
-import java.util.stream.Collectors;
 
 /**
  * @author 汪旭辉
@@ -39,30 +38,16 @@ import java.util.stream.Collectors;
  */
 @RuleInjection
 public class ProjectBuiltInImpl implements IProjectConf {
-    private static HashMap<String, ModelConfigInfoVo> listModelConfigPropertiesVo = new HashMap<>();
-    private static HashMap<String, String> thisEnvKeyValues = new HashMap<>();
+    private static HashMap<String, String> thisEnvPropertiesValue = new HashMap<>();
     private static Setting allEnvSetting = new Setting();
 
     static {
-        for (int i = 0; i < ConfigMainType.values().length; i++) {
-            ModelConfigInfoVo m1 = new ModelConfigInfoVo();
-            m1.setCode(ConfigMainType.values()[i].getOld_code());
-            m1.setFile_path("");
-            m1.setSort_id(ConfigMainType.values()[i].getSort_id());
-            m1.setName_en(ConfigMainType.values()[i].getCode());
-            m1.setName_cn("");
-            m1.setModel_context(ConfigMainType.values()[i].getModel_context());
-            m1.setOnly_local(ConfigMainType.values()[i].isOnly_local() ? "1" : "0");
-            m1.setUse_uk(ConfigMainType.values()[i].isUse_uk() ? "1" : "0");
-            m1.setNeed_format_zone(ConfigMainType.values()[i].isNeed_format_zone() ? "1" : "0");
-            listModelConfigPropertiesVo.put(m1.getCode(), m1);
-        }
         if (allEnvSetting.size() == 0) {
-            loadAll();
+            reloadPropertiesValue();
         }
     }
 
-    private static void loadAll() {
+    private static void reloadPropertiesValue() {
         try {
             {
                 allEnvSetting = new Setting();
@@ -88,13 +73,13 @@ public class ProjectBuiltInImpl implements IProjectConf {
                 }
             }
             {
-                thisEnvKeyValues.clear();
+                thisEnvPropertiesValue.clear();
                 List<String> groups = allEnvSetting.getGroups();
                 ILoggerBaseUtils.info("加载环境[{}]配置", BaseEv.SettingInformation.runEnv);
                 for (int j = 0; j < groups.size(); j++) {
                     String s = groups.get(j);
                     if (s.contains("-" + BaseEv.SettingInformation.runEnv + "-")) {
-                        thisEnvKeyValues.putAll(allEnvSetting.getMap(s));
+                        thisEnvPropertiesValue.putAll(allEnvSetting.getMap(s));
                     }
                 }
 
@@ -105,7 +90,7 @@ public class ProjectBuiltInImpl implements IProjectConf {
     }
 
     @Override
-    public Map<String, String> getotherMessageFileContext() {
+    public Map<String, String> getAllMessageXmlContexts() {
         Map<String, String> map = new HashMap<>();
         try {
             List<URI> listUri = ResourceFindUtils.findUri("message-*.xml");//Line.env.getName()
@@ -124,50 +109,44 @@ public class ProjectBuiltInImpl implements IProjectConf {
     }
 
     @Override
-    public String getZoneMessageFileContext() {
+    public String getDefaultMessageXmlContexts() {
         try {
             return ResourceUtil.readUtf8Str(StrUtil.format("message-{}.xml", BaseEv.SettingInformation.i18n));
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return "";
+        return null;
     }
 
 
     @Override
-    public HashMap<String, String> getEnvAllProperties() {
-        return thisEnvKeyValues;
+    public HashMap<String, String> getThisEnvPropertiesValue() {
+        return thisEnvPropertiesValue;
     }
 
     @Override
-    public Map<String, String> getEnvPropertiesByCode(String code) {
-        String groupName = StrUtil.format("{}-{}-{}", code, BaseEv.SettingInformation.runEnv, listModelConfigPropertiesVo.get(code).getName_en());
-        return allEnvSetting.getMap(groupName);
-    }
-
-    @Override
-    public boolean getDbInit() {
-        String file = BaseEv.WorkDir.projectresourcepath + FileUtil.FILE_SEPARATOR + "versionlog" + FileUtil.FILE_SEPARATOR + "v1-init";
+    public boolean installed() {
+        String file = BaseEv.WorkDir.projectresourcepath + FileUtil.FILE_SEPARATOR + "install" + FileUtil.FILE_SEPARATOR + "installed.txt";
         return FileUtil.exist(file);
     }
 
     @Override
-    public boolean setDbInit() {
-        String file = BaseEv.WorkDir.projectresourcepath + FileUtil.FILE_SEPARATOR + "versionlog" + FileUtil.FILE_SEPARATOR + "v1-init";
+    public boolean install() {
+        String file = BaseEv.WorkDir.projectresourcepath + FileUtil.FILE_SEPARATOR + "install" + FileUtil.FILE_SEPARATOR + "installed.txt";
         FileUtil.writeUtf8String("v1-" + DateUtil.now(), file);
         return true;
     }
 
     @Override
-    public void writeReadMes() {
-        List<ReadMeVo> list = CoreConfUtils.getReadMe();
+    public void writeFileStructures() {
+        List<FileStructureVo> list = CoreConfUtils.getFileStructures();
         for (int i = 0; i < list.size(); i++) {
-            ReadMeVo inf = list.get(i);
+            FileStructureVo inf = list.get(i);
             String path = "";
-            String context = inf.getReadme();
-            if (inf.getType().equals("1")) {
+            String context = inf.getContext();
+            if (inf.getResourceType().equals(ResourceType.SOURCE_TYPE)) {
                 path = BaseEv.WorkDir.projectcodesourcepath + ClassUtil.getPackagePath(BaseEv.WorkDir.mainClassC) + FileUtil.FILE_SEPARATOR + inf.getPath();
-            } else if (inf.getType().equals("2")) {
+            } else if (inf.getResourceType().equals(ResourceType.RESOURCE_TYPE)) {
                 path = BaseEv.WorkDir.projectresourcepath + FileUtil.FILE_SEPARATOR + inf.getPath();
             }
             if (!FileUtil.exist(path)) {
@@ -176,13 +155,9 @@ public class ProjectBuiltInImpl implements IProjectConf {
         }
     }
 
-    @Override
-    public void copyQuasiproduction() {
-
-    }
 
     @Override
-    public void writeModelConfig() {
+    public void writeProperties() {
         if (!BaseEv.SettingInformation.isClassModel) {
             ILoggerBaseUtils.err("开发摸下才可进行初始化,系统已停止");
             System.exit(-1);
@@ -191,22 +166,18 @@ public class ProjectBuiltInImpl implements IProjectConf {
         envs.add(BaseEv.SettingInformation.runEnv);
 
         for (String envName : envs) {
-            if (BaseEv.SettingInformation.autoUpdate || !ProjectConfUtils.getDbInit() || ((BaseEv.SettingInformation.UK).equals(envName) && BaseEv.SettingInformation.isClassModel)) {//数据库未初始化,手动更新配置
-                HashMap<ModelConfigInfoVo, List<ModelConfigPropertiesVo>> config = CoreConfUtils.getModelConf();
-                List<ModelConfigInfoVo> sortx = config.keySet().stream().sorted(Comparator.comparingInt(od -> od.getSort_id()))
-                        .collect(Collectors.toList());
-
+            if (BaseEv.SettingInformation.autoUpdate || !ProjectConfUtils.installed() || ((BaseEv.SettingInformation.UK).equals(envName) && BaseEv.SettingInformation.isClassModel)) {//数据库未初始化,手动更新配置
+                List<ConfigMainVo> sortx = CoreConfUtils.getPropertiesMain();
                 StringBuffer envstr = new StringBuffer("");
                 for (int k = 0; k < sortx.size(); k++) {
-                    ModelConfigInfoVo modelConfigInfo = sortx.get(k);
-                    List<ModelConfigPropertiesVo> listProperties = config.get(modelConfigInfo);
+                    ConfigMainVo modelConfigInfo = sortx.get(k);
+                    List<ConfigDetailsVo> listProperties = CoreConfUtils.getPropertiesDetails(modelConfigInfo.getConfigFileName());
                     if (listProperties != null && listProperties.size() > 0) {
-                        envstr.append(StrUtil.format("\n\n\n\n\n\n[{}-{}-{}]\n", modelConfigInfo.getCode(), envName, listModelConfigPropertiesVo.get(modelConfigInfo.getCode()).getName_en()));//格式为 code-env
+                        envstr.append(StrUtil.format("\n\n\n\n\n\n[{}-{}-{}]\n", modelConfigInfo.getConfigFileName(), envName));//格式为 code-env
                         String context = "";
                         for (int i = 0; i < listProperties.size(); i++) {
-                            ModelConfigPropertiesVo o = listProperties.get(i);
+                            ConfigDetailsVo o = listProperties.get(i);
                             {
-//                                o.setValue(VelocityUtils.convert(o.getValue(), Line.context));//直接使用原生,读取的时候进行读取
                                 o.setMark(VelocityUtils.convert(o.getMark(), BaseEv.SettingInformation.context));
                             }
                             {
@@ -218,9 +189,9 @@ public class ProjectBuiltInImpl implements IProjectConf {
                             }
                         }
                         envstr.append(context);//合并参数
-                    } else if (StrUtil.isNotBlank(modelConfigInfo.getModel_context())) {
-                        String name_en = VelocityUtils.convert(modelConfigInfo.getName_en(), BaseEv.SettingInformation.context);
-                        String context = VelocityUtils.convert(modelConfigInfo.getModel_context(), BaseEv.SettingInformation.context);
+                    } else if (StrUtil.isNotBlank(modelConfigInfo.getContext())) {
+                        String name_en = VelocityUtils.convert(modelConfigInfo.getConfigFileName(), BaseEv.SettingInformation.context);
+                        String context = VelocityUtils.convert(modelConfigInfo.getContext(), BaseEv.SettingInformation.context);
                         String file = BaseEv.WorkDir.projectresourcepath + FileUtil.FILE_SEPARATOR + name_en;
                         if (!FileUtil.exist(file)) {
                             FileUtil.writeUtf8String(context, file);
@@ -236,13 +207,12 @@ public class ProjectBuiltInImpl implements IProjectConf {
             }
         }
 
-        if (!ProjectConfUtils.getDbInit()) {//数据库未初始化的情况
+        if (!ProjectConfUtils.installed()) {//数据库未初始化的情况
             ProjectConfUtils.writeReadMes();
-            ProjectConfUtils.copyQuasiproduction();
-            ProjectConfUtils.setDbInit();
+            ProjectConfUtils.install();
         }
 
-        loadAll();//重新加载总配置
+        reloadPropertiesValue();//重新加载总配置
 
     }
 

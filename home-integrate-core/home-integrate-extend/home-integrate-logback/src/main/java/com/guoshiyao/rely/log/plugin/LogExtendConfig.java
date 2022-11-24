@@ -12,7 +12,7 @@ package com.guoshiyao.rely.log.plugin;
 
 import com.guoshiyao.rely.BaseEv;
 import com.guoshiyao.rely.core.configration.annotation.RuleInjection;
-import com.guoshiyao.rely.coreextension.ISystemConfig;
+import com.guoshiyao.rely.coreextension.run.ISystemConfig;
 import com.guoshiyao.rely.log.bean.EndLogBean;
 import com.guoshiyao.rely.plugin.exception.re.ex.ExceptionError;
 
@@ -44,7 +44,7 @@ public class LogExtendConfig implements ISystemConfig {
     }
 
     @Override
-    public Map<String, String> writeProperties() {
+    public Map<String, String> getProperties() {
         {
             String key = "home.log.appid";
             if (!BaseEv.SettingInformation.setting.containsKey(key)) {

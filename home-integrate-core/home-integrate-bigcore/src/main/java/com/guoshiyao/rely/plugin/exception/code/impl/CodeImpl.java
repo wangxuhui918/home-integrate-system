@@ -12,6 +12,7 @@ package com.guoshiyao.rely.plugin.exception.code.impl;
 
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.json.JSONUtil;
+import com.guoshiyao.rely.plugin.exception.code.bean.MessageType;
 import com.guoshiyao.rely.plugin.exception.code.ICode;
 import com.guoshiyao.rely.plugin.i18n.I18n;
 import lombok.Data;
@@ -27,7 +28,7 @@ import lombok.Data;
 public class CodeImpl implements ICode {
     private String code;
     private String i18n;
-    private String type;
+    private MessageType type;
     private String text;
     private String className;
 
@@ -44,7 +45,7 @@ public class CodeImpl implements ICode {
      * @readme
      */
     public static CodeImpl getinfo() {
-        return getinfo(DefaultCode.SUCCESS.getMent());
+        return getinfo(MessageType.SUCCESS.getMark());
     }
 
     /**
@@ -57,7 +58,7 @@ public class CodeImpl implements ICode {
      * @readme
      */
     public static CodeImpl getinfo(String text, String... format) {
-        return getBuiltinCode(DefaultCode.SUCCESS.getCode(), I18n.defaultI18n.getI18nCode(), DefaultCode.SUCCESS.getName(), text, format);
+        return getBuiltinCode(MessageType.SUCCESS, I18n.defaultI18n.getI18nCode(), MessageType.SUCCESS.getTypeStateCode(), text, format);
     }
 
     /**
@@ -69,7 +70,7 @@ public class CodeImpl implements ICode {
      * @readme
      */
     public static CodeImpl getError() {
-        return getError(DefaultCode.ERROR.getMent());
+        return getError(MessageType.ERR.getMark());
     }
 
     /**
@@ -82,7 +83,7 @@ public class CodeImpl implements ICode {
      * @readme
      */
     public static CodeImpl getError(String text, Object... format) {
-        return getBuiltinCode(DefaultCode.ERROR.getCode(), I18n.defaultI18n.getI18nCode(), DefaultCode.ERROR.getName(), text, format);
+        return getBuiltinCode(MessageType.ERR, I18n.defaultI18n.getI18nCode(), MessageType.ERR.getTypeStateCode(), text, format);
     }
 
 
@@ -95,7 +96,7 @@ public class CodeImpl implements ICode {
      * @readme
      */
     public static CodeImpl getWarn() {
-        return getWarn(DefaultCode.WARN.getMent());
+        return getWarn(MessageType.WARING.getMark());
     }
 
     /**
@@ -108,14 +109,14 @@ public class CodeImpl implements ICode {
      * @readme
      */
     public static CodeImpl getWarn(String text, String... format) {
-        return getBuiltinCode(DefaultCode.WARN.getCode(), I18n.defaultI18n.getI18nCode(), DefaultCode.WARN.getName(), text, format);
+        return getBuiltinCode(MessageType.WARING, I18n.defaultI18n.getI18nCode(), MessageType.WARING.getTypeStateCode(), text, format);
     }
 
 
-    public static CodeImpl getBuiltinCode(String type, String i18n, String code, String text, Object... format) {
+    public static CodeImpl getBuiltinCode(MessageType type, String i18n, String code, String text, Object... format) {
         return new CodeImpl() {
             @Override
-            public String getType() {
+            public MessageType getType() {
                 return type;
             }
 

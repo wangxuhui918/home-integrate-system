@@ -8,7 +8,7 @@
  *
  */
 
-package com.guoshiyao.rely.coreextension;
+package com.guoshiyao.rely.coreextension.classm;
 
 import com.guoshiyao.rely.core.IClassModelConfig;
 

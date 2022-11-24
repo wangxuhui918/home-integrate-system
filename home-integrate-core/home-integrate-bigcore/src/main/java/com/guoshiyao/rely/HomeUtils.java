@@ -36,7 +36,7 @@ public class HomeUtils {
     public static void run() {
         ILoggerBaseUtils.info("[{}]开始加载", BaseEv.SystemInformation.SYSTEM_CHINA_NAME);
 
-        List<ILineManager> plugins = CoreConfUtils.sortByDbOrRuleApi(ILineManager.class);
+        List<ILineManager> plugins = CoreConfUtils.getPlugins(ILineManager.class);
         ///处理mac地址完成
         for (int i = 0; i < plugins.size(); i++) {
             ILoggerBaseUtils.info("链式处理器[{}]开始处理[{}]", plugins.get(i).getClass(), "before");

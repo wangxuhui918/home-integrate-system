@@ -12,7 +12,7 @@ package com.guoshiyao.rely.systemconfig;
 
 import com.guoshiyao.rely.core.configration.annotation.RuleInjection;
 import com.guoshiyao.rely.bean.Bean;
-import com.guoshiyao.rely.coreextension.ISystemConfig;
+import com.guoshiyao.rely.coreextension.run.ISystemConfig;
 
 import java.util.*;
 
@@ -37,7 +37,7 @@ public class SystemExtendConfig implements ISystemConfig {
 
 
     @Override
-    public Map<String, String> writeProperties() {
+    public Map<String, String> getProperties() {
         return new HashMap<>();
     }
 

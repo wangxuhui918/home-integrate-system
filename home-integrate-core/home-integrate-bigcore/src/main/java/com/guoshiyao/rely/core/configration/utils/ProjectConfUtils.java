@@ -8,11 +8,9 @@
 
 package com.guoshiyao.rely.core.configration.utils;
 
-import cn.hutool.core.util.StrUtil;
 import com.guoshiyao.rely.core.configration.project.IProjectConf;
+import com.guoshiyao.rely.core.configration.project.impl.enumtype.ProjectBuiltInImpl;
 
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -21,78 +19,37 @@ import java.util.Map;
  * @readme
  */
 public class ProjectConfUtils {
-    private static List<IProjectConf> projectCoreConfRes = CoreConfUtils.sortByDbOrRuleApi(IProjectConf.class);
+    private static IProjectConf projectConf = new ProjectBuiltInImpl();
 
-
-    //------------------------------------projectcore操作
-    public static void writeModelConfig() {
-        for (int i = 0; i < projectCoreConfRes.size(); i++) {
-            projectCoreConfRes.get(i).writeModelConfig();
-        }
+    public static void writeProperties() {
+        projectConf.writeProperties();
     }
 
-    public static HashMap<String, String> getEnvPropertiesByCode(String code) {
-        HashMap<String, String> all = new HashMap<>();
-        for (int i = 0; i < projectCoreConfRes.size(); i++) {
-            all.putAll(projectCoreConfRes.get(i).getEnvPropertiesByCode(code));
-        }
-        return all;
-    }
 
     public static void writeReadMes() {
-        for (int i = 0; i < projectCoreConfRes.size(); i++) {
-            projectCoreConfRes.get(i).writeReadMes();
-        }
+        projectConf.writeFileStructures();
     }
 
-    public static void copyQuasiproduction() {
-        for (int i = 0; i < projectCoreConfRes.size(); i++) {
-            projectCoreConfRes.get(i).copyQuasiproduction();
-        }
+
+    public static boolean installed() {
+        return projectConf.installed();
     }
 
-    public static boolean getDbInit() {
-        for (int i = 0; i < projectCoreConfRes.size(); i++) {
-            if (projectCoreConfRes.get(i).getDbInit()) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public static void setDbInit() {
-        for (int i = 0; i < projectCoreConfRes.size(); i++) {
-            projectCoreConfRes.get(i).setDbInit();
-        }
+    public static void install() {
+        projectConf.install();
     }
 
     public static String getZoneMessageFileContext() {
-        for (int i = 0; i < projectCoreConfRes.size(); i++) {
-            String c = new String();
-            c = projectCoreConfRes.get(i).getZoneMessageFileContext();
-            if (StrUtil.isNotBlank(c)) {
-                return c;
-            }
-        }
-        return "";
+        return projectConf.getDefaultMessageXmlContexts();
     }
 
-    public static Map<String, String> getOtherMessageFileContext() {
-        Map<String, String> mapmessage = new HashMap<>();
-        for (int i = 0; i < projectCoreConfRes.size(); i++) {
-            mapmessage.putAll(projectCoreConfRes.get(i).getotherMessageFileContext());
-        }
-        return mapmessage;
+    public static Map<String, String> getAllMessageXmlContexts() {
+        return projectConf.getAllMessageXmlContexts();
     }
 
-    public static Map<String, String> getAllProperties() {
-        Map<String, String> mapmessage = new HashMap<>();
-        for (int i = 0; i < projectCoreConfRes.size(); i++) {
-            mapmessage.putAll(projectCoreConfRes.get(i).getEnvAllProperties());
-        }
-        return mapmessage;
+    public static Map<String, String> getThisEnvPropertiesValue() {
+        return projectConf.getThisEnvPropertiesValue();
     }
-    //------------------------------------public操作
 
 
 }

@@ -1,4 +1,4 @@
-package com.guoshiyao.rely.core.configration.bean;
+package com.guoshiyao.rely.core.configration.home.impl.enumtype.bean;
 
 public class ConfigInitValue {
     public final static String message_model = "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>\n" +

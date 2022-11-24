@@ -16,7 +16,7 @@ import java.net.URI;
 import java.util.List;
 
 public class ResourceFindUtils {
-    private static List<IResource> creatconfigall = CoreConfUtils.sortByDbOrRuleApi(IResource.class);
+    private static List<IResource> creatconfigall = CoreConfUtils.getPlugins(IResource.class);
 
     public static List<String> findClassesPath(String patternPath) {
         return creatconfigall.get(0).findClassesPath(patternPath);
