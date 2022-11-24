@@ -79,132 +79,13 @@ public class DataExtendConfig implements IThirdConfig {
 
     @Override
     public void callSetting(Setting setting) {
-        {
-            String key = ConfigDetails.HOME_DB_URL.getKey();
-            if (!setting.containsKey(key)) {
-                setting.put(key, (""));
-            }
-        }
-        {
-            String key = ConfigDetails.HOME_DB_USERNAME.getKey();
-            if (!setting.containsKey(key)) {
-                setting.put(key, (""));
-            }
-        }
-        {
-            String key = ConfigDetails.HOME_DB_PASSWORD.getKey();
-            if (!setting.containsKey(key)) {
-                setting.put(key, (""));
-            }
-        }
-        {
-            String key = ConfigDetails.HOME_DB_DRIVERCLASSNAME.getKey();
-            if (!setting.containsKey(key)) {
-                setting.put(key, (""));
-            }
-        }
-        {
-            String key = ConfigDetails.HOME_DB_DRIVERCLASS_DOWNLOADURL.getKey();
-            if (!setting.containsKey(key)) {
-                setting.put(key, (""));
-            }
-        }
-        {
-            String key = ConfigDetails.HOME_DB_MAXACTIVE.getKey();
-            if (!setting.containsKey(key)) {
-                setting.put(key, ("30"));
-            }
-        }
-        {
-            String key = ConfigDetails.HOME_DB_INITIALSIZE.getKey();
-            if (!setting.containsKey(key)) {
-                setting.put(key, ("1"));
-            }
-        }
-        {
-            String key = ConfigDetails.HOME_DB_MAXWAIT.getKey();
-            if (!setting.containsKey(key)) {
-                setting.put(key, ("60000"));
-            }
-        }
-        {
-            String key = ConfigDetails.HOME_DB_MINIDLE.getKey();
-            if (!setting.containsKey(key)) {
-                setting.put(key, ("3"));
-            }
-        }
-        {
-            String key = ConfigDetails.HOME_DB_TIMEBETWEENEVICTIONRUNSMILLIS.getKey();
-            if (!setting.containsKey(key)) {
-                setting.put(key, ("60000"));
-            }
-        }
-        {
-            String key = ConfigDetails.HOME_DB_MINEVICTABLEIDLETIMEMILLIS.getKey();
-            if (!setting.containsKey(key)) {
-                setting.put(key, ("300000"));
-            }
-        }
-        {
-            String key = ConfigDetails.HOME_DB_VALIDATIONQUERY.getKey();
-            if (!setting.containsKey(key)) {
-                setting.put(key, (""));
-            }
-        }
-        {
-            String key = ConfigDetails.HOME_DB_TESTWHILEIDLE.getKey();
-            if (!setting.containsKey(key)) {
-                setting.put(key, ("true"));
-            }
-        }
-        {
-            String key = ConfigDetails.HOME_DB_TESTONBORROW.getKey();
-            if (!setting.containsKey(key)) {
-                setting.put(key, ("false"));
-            }
-        }
-        {
-            String key = ConfigDetails.HOME_DB_TESTONRETURN.getKey();
-            if (!setting.containsKey(key)) {
-                setting.put(key, ("false"));
-            }
-        }
-        {
-            String key = ConfigDetails.HOME_DB_POOLPREPAREDSTATEMENTS.getKey();
-            if (!setting.containsKey(key)) {
-                setting.put(key, ("true"));
-            }
-        }
-        {
-            String key = ConfigDetails.HOME_DB_REMOVEABANDONED.getKey();
-            if (!setting.containsKey(key)) {
-                setting.put(key, ("true"));
-            }
-        }
-        {
-            String key = ConfigDetails.HOME_DB_REMOVEABANDONEDTIMEOUT.getKey();
-            if (!setting.containsKey(key)) {
-                setting.put(key, ("60"));
-            }
-        }
-        {
-            String key = ConfigDetails.HOME_DB_NUMTESTSPEREVICTIONRUN.getKey();
-            if (!setting.containsKey(key)) {
-                setting.put(key, ("60"));
-            }
-        }
-        {
-            String key = ConfigDetails.HOME_DB_MAXOPENPREPAREDSTATEMENTS.getKey();
-            if (!setting.containsKey(key)) {
-                setting.put(key, ("20"));
-            }
-        }
-        {
-            String key = ConfigDetails.HOME_DB_FILTERS.getKey();
-            if (!setting.containsKey(key)) {
-                setting.put(key, ("stat,wall"));
-            }
-        }
+
+//        {
+//            String key = ConfigDetails.HOME_DB_FILTERS.getKey();
+//            if (!setting.containsKey(key)) {
+//                setting.put(key, ConfigDetails.HOME_DB_FILTERS.getValue());
+//            }
+//        }
 
     }
 

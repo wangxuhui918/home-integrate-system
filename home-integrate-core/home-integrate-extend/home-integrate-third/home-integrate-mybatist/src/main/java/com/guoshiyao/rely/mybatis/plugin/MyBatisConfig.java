@@ -65,24 +65,13 @@ public class MyBatisConfig implements IThirdConfig {
 
     @Override
     public void callSetting(Setting setting) {
-        {
-            String key = ConfigDetails.HOME_MYBATIS_BASEPACKAGE.getKey();
-            if (!setting.containsKey(key)) {
-                setting.put(key, (BaseEv.WorkDir.projectPackage + ".mapper"));
-            }
-        }
-        {
-            String key = ConfigDetails.HOME_MYBATIS_TYPEALIASESPACKAGE.getKey();
-            if (!setting.containsKey(key)) {
-                setting.put(key, (BaseEv.WorkDir.projectPackage + ".mapper"));
-            }
-        }
-        {
-            String key = ConfigDetails.HOME_MYBATIS_MAPPERLOCATIONS.getKey();
-            if (!setting.containsKey(key)) {
-                setting.put(key, ("classpath:**/mapper/**.xml"));
-            }
-        }
+//
+//        {
+//            String key = ConfigDetails.HOME_MYBATIS_MAPPERLOCATIONS.getKey();
+//            if (!setting.containsKey(key)) {
+//                setting.put(key, ConfigDetails.HOME_MYBATIS_MAPPERLOCATIONS.getValue());
+//            }
+//        }
 
     }
 

@@ -84,13 +84,13 @@ public class FlywayExtendConfig implements IThirdConfig {
                     setting.put(key, (BaseEv.SettingInformation.setting.get(ConfigDetails.HOME_DB_PASSWORD.getKey())));
             }
         }
-        {
-            String key = ConfigDetails.HOME_FLYWAYDB_TABLE.getKey();
-            if (!setting.containsKey(key)) {
-                if (BaseEv.SettingInformation.setting.get("home.db.table") != null)
-                    setting.put(key, ("flyway_schema_history"));
-            }
-        }
+//        {
+//            String key = ConfigDetails.HOME_FLYWAYDB_TABLE.getKey();
+//            if (!setting.containsKey(key)) {
+//                if (BaseEv.SettingInformation.setting.get("home.db.table") != null)
+//                    setting.put(key, ("flyway_schema_history"));
+//            }
+//        }
     }
 
 }

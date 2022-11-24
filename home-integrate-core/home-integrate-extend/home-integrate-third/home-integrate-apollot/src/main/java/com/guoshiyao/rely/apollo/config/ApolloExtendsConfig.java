@@ -52,51 +52,26 @@ public class ApolloExtendsConfig implements IThirdConfig {
 
     @Override
     public void callSetting(Setting setting) {
-        {
-            String key = ConfigDetails.HOME_APOLLO_URL.getKey();
-            if (!setting.containsKey(key)) {
-                setting.put(key, ("NA"));
-            }
-        }
-        {
-            String key = ConfigDetails.HOME_APOLLO_USERNAME.getKey();
-            if (!setting.containsKey(key)) {
-                setting.put(key, ("apollo"));
-            }
-        }
-        {
-            String key = ConfigDetails.HOME_APOLLO_PASSWORD.getKey();
-            if (!setting.containsKey(key)) {
-                setting.put(key, ("apollo"));
-            }
-        }
-        {
-            String key = ConfigDetails.HOME_APOLLO_APP_ID.getKey();
-            String key1 = "app.id";
-            if (!setting.containsKey(key)) {
-                setting.put(key, (BaseEv.SettingInformation.idKey));
-            } else {
-                System.setProperty(key1, setting.get(key).toString());
-            }
-        }
-        {
-            String key = ConfigDetails.HOME_APOLLO_APOLLO_META.getKey();
-            String key1 = "apollo.meta";
-            if (!setting.containsKey(key)) {
-                setting.put(key, (""));
-            } else {
-                System.setProperty(key1, setting.get(key).toString());
-            }
-        }
-        {
-            String key = ConfigDetails.HOME_APOLLO_APOLLO_ENV.getKey();
-            String key1 = "apollo.env";
-            if (!setting.containsKey(key)) {
-                setting.put(key, (BaseEv.SettingInformation.runEnv));
-            } else {
-                System.setProperty(key1, setting.get(key).toString());
-            }
-        }
+
+//        {
+//            String key = ConfigDetails.HOME_APOLLO_APP_ID.getKey();
+//            String key1 = "app.id";
+//            if (!setting.containsKey(key)) {
+//                setting.put(key, (BaseEv.SettingInformation.idKey));
+//            } else {
+//                System.setProperty(key1, setting.get(key).toString());
+//            }
+//        }
+
+//        {
+//            String key = ConfigDetails.HOME_APOLLO_APOLLO_ENV.getKey();
+//            String key1 = "apollo.env";
+//            if (!setting.containsKey(key)) {
+//                setting.put(key, (BaseEv.SettingInformation.runEnv));
+//            } else {
+//                System.setProperty(key1, setting.get(key).toString());
+//            }
+//        }
 
     }
 

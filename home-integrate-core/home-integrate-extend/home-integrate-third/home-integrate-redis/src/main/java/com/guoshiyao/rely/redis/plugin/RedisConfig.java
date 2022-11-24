@@ -35,7 +35,6 @@ public class RedisConfig implements IThirdConfig {
         return new ArrayList<>();
     }
 
-
     @Override
     public Map<String, String> getProperties() {
         return new HashMap<>();
@@ -54,7 +53,7 @@ public class RedisConfig implements IThirdConfig {
         Setting setting = new Setting();
         //        Map<String, String> thisproperties = new HashMap<String, String>();
         for (String key : BaseEv.SettingInformation.setting.keySet()) {//筛选 redis 的内容
-            if (StrUtil.startWith(key, "home.redis.")) {
+            if (StrUtil.startWith(key, StrUtil.sub(ConfigDetails.HOME_REDIS_HOST.getKey(), 0, StrUtil.ordinalIndexOf(ConfigDetails.HOME_REDIS_HOST.getKey(), ".", 2)))) {
                 setting.putByGroup(key, BaseEv.SettingInformation.runEnv, BaseEv.SettingInformation.setting.get(key));
 //                thisproperties.put(StrUtil.sub(key, "home.redis.".length(), key.length()), Line.setting.get(key).getValue());
             }

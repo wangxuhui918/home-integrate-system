@@ -41,42 +41,15 @@ public class PortConfig implements ISystemConfig {
 
     @Override
     public Map<String, String> getProperties() {
-        {
-            String key = ConfigDetails.SYSTEM_SERVLET_PORT.getKey();
-            if (!BaseEv.SettingInformation.setting.containsKey(key)) {
-                BaseEv.SettingInformation.setting.put(key,  ConfigDetails.SYSTEM_SERVLET_PORT.getValue() + "");
-            }
-        }
-        {
-            String key = ConfigDetails.SYSTEM_SERVLET_MULTIPART_LOCATION.getKey();
-            if (!BaseEv.SettingInformation.setting.containsKey(key)) {
-                BaseEv.SettingInformation.setting.put(key, ConfigDetails.SYSTEM_SERVLET_MULTIPART_LOCATION.getValue());
-            }
-        }
-        {
-            String key = ConfigDetails.SYSTEM_SERVLET_MULTIPART_MAX_FILE_SIZE.getKey();
-            if (!BaseEv.SettingInformation.setting.containsKey(key)) {
-                BaseEv.SettingInformation.setting.put(key, ConfigDetails.SYSTEM_SERVLET_MULTIPART_MAX_FILE_SIZE.getValue());
-            }
-        }
-        {
-            String key = ConfigDetails.SYSTEM_SERVLET_MULTIPART_MAX_REQUEST_SIZE.getKey();
-            if (!BaseEv.SettingInformation.setting.containsKey(key)) {
-                BaseEv.SettingInformation.setting.put(key, ConfigDetails.SYSTEM_SERVLET_MULTIPART_MAX_REQUEST_SIZE.getValue());
-            }
-        }
-        {
-            String key = ConfigDetails.SYSTEM_SERVLET_MULTIPART_FILE_SIZE_THRESHOLD.getKey();
-            if (!BaseEv.SettingInformation.setting.containsKey(key)) {
-                BaseEv.SettingInformation.setting.put(key, ConfigDetails.SYSTEM_SERVLET_MULTIPART_FILE_SIZE_THRESHOLD.getValue());
-            }
-        }
-        {
-            String key = ConfigDetails.SYSTEM_INPUTPARAMAB_CLASS.getKey();
-            if (!BaseEv.SettingInformation.setting.containsKey(key)) {
-                BaseEv.SettingInformation.setting.put(key, ConfigDetails.SYSTEM_INPUTPARAMAB_CLASS.getValue());
-            }
-        }
+
+//
+//
+//        {
+//            String key = ConfigDetails.SYSTEM_INPUTPARAMAB_CLASS.getKey();
+//            if (!BaseEv.SettingInformation.setting.containsKey(key)) {
+//                BaseEv.SettingInformation.setting.put(key, ConfigDetails.SYSTEM_INPUTPARAMAB_CLASS.getValue());
+//            }
+//        }
         return new HashMap<>();
     }
 

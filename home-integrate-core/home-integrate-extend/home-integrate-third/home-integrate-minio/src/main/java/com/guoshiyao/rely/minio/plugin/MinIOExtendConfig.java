@@ -52,30 +52,8 @@ public class MinIOExtendConfig implements IThirdConfig {
 
     @Override
     public void callSetting(Setting setting) {
-        {
-            String key = ConfigDetails.HOME_MINIO_NAMESPACE_RE.getKey();
-            if (!setting.containsKey(key)) {
-                setting.put(key, (BaseEv.SettingInformation.idKey));
-            }
-        }
-        {
-            String key = ConfigDetails.HOME_MINIO_ENDPOINT.getKey();
-            if (!setting.containsKey(key)) {
-                setting.put(key, (""));
-            }
-        }
-        {
-            String key = ConfigDetails.HOME_MINIO_ACCESSKEY.getKey();
-            if (!setting.containsKey(key)) {
-                setting.put(key, (""));
-            }
-        }
-        {
-            String key = ConfigDetails.HOME_MINIO_SECRETKEY.getKey();
-            if (!setting.containsKey(key)) {
-                setting.put(key, (""));
-            }
-        }
+
+ 
     }
 
 }

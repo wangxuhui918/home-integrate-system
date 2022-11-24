@@ -52,54 +52,14 @@ public class DubboExtendConfig implements IThirdConfig {
 
     @Override
     public void callSetting(Setting setting) {
-        {
-            String key = ConfigDetails.HOME_DUBBO_REFERENCE_PACKAGE.getKey();
-            if (!setting.containsKey(key)) {
-                setting.put(key, (BaseEv.WorkDir.projectPackage + ".dubboservice"));
-            }
-        }
-        {
-            String key = ConfigDetails.HOME_DUBBO_REFERENCE_TIMEOUT.getKey();
-            if (!setting.containsKey(key)) {
-                setting.put(key, ("120000"));
-            }
-        }
-        {
-            String key = ConfigDetails.HOME_DUBBO_REFERENCE_URL.getKey();
-            if (!setting.containsKey(key)) {
-                setting.put(key, ("N/A"));
-            }
-        }
-        {
-            String key = ConfigDetails.HOME_DUBBO_REFERENCE_AGREEMENT.getKey();
-            if (!setting.containsKey(key)) {
-                setting.put(key, ("dubbo"));
-            }
-        }
-        {
-            String key = ConfigDetails.HOME_DUBBO_REFERENCE_HOST.getKey();
-            if (!setting.containsKey(key)) {
-                setting.put(key, ("SUCCESS"));
-            }
-        }
-        {
-            String key = ConfigDetails.HOME_DUBBO_REFERENCE_PORT.getKey();
-            if (!setting.containsKey(key)) {
-                setting.put(key, ("2181"));
-            }
-        }
-        {
-            String key = ConfigDetails.HOME_DUBBO_PROTOCOLCONFIG_THREADS.getKey();
-            if (!setting.containsKey(key)) {
-                setting.put(key, ("300"));
-            }
-        }
-        {
-            String key = ConfigDetails.HOME_DUBBO_PROTOCOLCONFIG_THREADPOOL.getKey();
-            if (!setting.containsKey(key)) {
-                setting.put(key, ("fixed"));
-            }
-        }
+
+
+//        {
+//            String key = ConfigDetails.HOME_DUBBO_PROTOCOLCONFIG_THREADPOOL.getKey();
+//            if (!setting.containsKey(key)) {
+//                setting.put(key, ConfigDetails.HOME_DUBBO_PROTOCOLCONFIG_THREADPOOL.getValue());
+//            }
+//        }
     }
 
 }

@@ -21,6 +21,7 @@ import com.guoshiyao.rely.core.configration.home.bean.ConfigDetailsVo;
 import com.guoshiyao.rely.core.configration.home.bean.ConfigMainVo;
 import com.guoshiyao.rely.core.configration.home.bean.FileStructureVo;
 import com.guoshiyao.rely.core.configration.home.bean.ResourceType;
+import com.guoshiyao.rely.core.configration.home.impl.enumtype.bean.properties.ConfigDetails;
 import com.guoshiyao.rely.core.configration.project.IProjectConf;
 import com.guoshiyao.rely.core.configration.utils.CoreConfUtils;
 import com.guoshiyao.rely.core.configration.utils.ProjectConfUtils;
@@ -72,13 +73,27 @@ public class ProjectBuiltInImpl implements IProjectConf {
                     allEnvSetting.addSetting(o);
                 }
             }
+
+            {//塞入默认值
+                List<String> envs = new ArrayList<>(Arrays.asList(BaseEv.SettingInformation.configEnv));
+                envs.add(BaseEv.SettingInformation.runEnv);
+                for (String envName : envs) {
+                    for (ConfigDetails o : ConfigDetails.values()) {
+                        String groupname = o.getCodeType().getConfigFileName() + "-" + envName;
+                        if (!allEnvSetting.containsKey(groupname, o.getKey())) {
+                            allEnvSetting.putByGroup(o.getKey(), groupname, o.getValue());
+                        }
+                    }
+                }
+            }
+
             {
                 thisEnvPropertiesValue.clear();
                 List<String> groups = allEnvSetting.getGroups();
                 ILoggerBaseUtils.info("加载环境[{}]配置", BaseEv.SettingInformation.runEnv);
                 for (int j = 0; j < groups.size(); j++) {
                     String s = groups.get(j);
-                    if (s.contains("-" + BaseEv.SettingInformation.runEnv + "-")) {
+                    if (s.contains("-" + BaseEv.SettingInformation.runEnv)) {
                         thisEnvPropertiesValue.putAll(allEnvSetting.getMap(s));
                     }
                 }
@@ -173,7 +188,7 @@ public class ProjectBuiltInImpl implements IProjectConf {
                     ConfigMainVo modelConfigInfo = sortx.get(k);
                     List<ConfigDetailsVo> listProperties = CoreConfUtils.getPropertiesDetails(modelConfigInfo.getConfigFileName());
                     if (listProperties != null && listProperties.size() > 0) {
-                        envstr.append(StrUtil.format("\n\n\n\n\n\n[{}-{}-{}]\n", modelConfigInfo.getConfigFileName(), envName));//格式为 code-env
+                        envstr.append(StrUtil.format("\n\n\n\n\n\n[{}-{}]\n", modelConfigInfo.getConfigFileName(), envName));//格式为 code-env
                         String context = "";
                         for (int i = 0; i < listProperties.size(); i++) {
                             ConfigDetailsVo o = listProperties.get(i);

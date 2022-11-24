@@ -12,6 +12,7 @@ public enum ConfigMain {
     GITLAB("gitlab.ini", false, false, false, ""),//
     LOGBACK("logback.ini", false, false, false, ""),//
     MYBATIS("mybatis.ini", false, false, false, ""),//
+    MYBATIS_PLUS("mybatisplus.ini", false, false, false, ""),//
     MINIO("minio.ini", false, false, false, ""),//
     REDIS("redis.ini", false, false, false, ""),//
     SWAGGER("swagger.ini", false, false, false, ""),//
