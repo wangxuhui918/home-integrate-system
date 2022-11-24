@@ -23,7 +23,6 @@
     <modules>
         <module>home-integrate-core</module>
         <module>home-integrate-allpom</module>
-        <module>home-integrate-all</module>
     </modules>
 
 
