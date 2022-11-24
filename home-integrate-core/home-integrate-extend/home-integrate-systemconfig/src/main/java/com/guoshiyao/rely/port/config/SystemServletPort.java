@@ -46,7 +46,7 @@ public class SystemServletPort {
                     throw new ExceptionError("端口{}被占用, 系统退出", port.toString());
                 } else {
                     factory.setPort(port.intValue());
-                    ILoggerBaseUtils.info("已设置端口" + port);
+                    ILoggerBaseUtils.debug("已设置端口" + port);
                 }
             }
         };
