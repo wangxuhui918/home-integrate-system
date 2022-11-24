@@ -10,9 +10,9 @@ package com.guoshiyao.rely.core.configration.home.impl.enumtype;
 
 import com.guoshiyao.rely.core.configration.annotation.RuleInjection;
 import com.guoshiyao.rely.core.configration.home.ICoreConf;
-import com.guoshiyao.rely.core.configration.home.bean.FileStructureVo;
-import com.guoshiyao.rely.core.configration.home.bean.ConfigMainVo;
 import com.guoshiyao.rely.core.configration.home.bean.ConfigDetailsVo;
+import com.guoshiyao.rely.core.configration.home.bean.ConfigMainVo;
+import com.guoshiyao.rely.core.configration.home.bean.FileStructureVo;
 import com.guoshiyao.rely.core.configration.home.impl.enumtype.bean.filestructure.FileStructure;
 import com.guoshiyao.rely.core.configration.home.impl.enumtype.bean.plugin.ConfigPluginDetails;
 import com.guoshiyao.rely.core.configration.home.impl.enumtype.bean.properties.ConfigDetails;
@@ -79,7 +79,6 @@ public class CoreBuiltInImpl implements ICoreConf {
             if (ConfigDetails.values()[j].getCodeType().getConfigFileName().equals(configmain.getConfigFileName())) {
                 ConfigDetailsVo m2 = new ConfigDetailsVo();
                 m2.setBeforesuff(ConfigDetails.values()[j].getSuff());
-                m2.setId(ConfigDetails.values()[j].getSort_id());
                 m2.setKey(ConfigDetails.values()[j].getKey());
                 m2.setM(ConfigDetails.values()[j].getM());
                 m2.setValue(ConfigDetails.values()[j].getValue());
