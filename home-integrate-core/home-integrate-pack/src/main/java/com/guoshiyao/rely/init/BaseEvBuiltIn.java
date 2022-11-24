@@ -232,13 +232,13 @@ public class BaseEvBuiltIn implements BaseEv.SettingInformation.IBaseEv {
         }
         {
             ILoggerBaseUtils.info("公共模型赋值开始[{}}", BaseEvBuiltIn.class.getName());
-            BaseEv.SettingInformation.context.put("idKey", idkey);
-            BaseEv.SettingInformation.context.put("mainClass", mainClass);
-            BaseEv.SettingInformation.context.put("isdev", isClassModel);
-            BaseEv.SettingInformation.context.put("i18n", i18n);
-            BaseEv.SettingInformation.context.put("env", runEnv);
-            BaseEv.SettingInformation.context.put("projectPackage", projectPackage);
-            BaseEv.SettingInformation.context.put("workHomeDir", workHomeDir);
+            BaseEv.SettingInformation.context.put("idKey", BaseEv.SettingInformation.idKey);
+            BaseEv.SettingInformation.context.put("mainClass", BaseEv.SettingInformation.mainClass);
+            BaseEv.SettingInformation.context.put("isdev", BaseEv.SettingInformation.isClassModel);
+            BaseEv.SettingInformation.context.put("i18n", BaseEv.SettingInformation.i18n);
+            BaseEv.SettingInformation.context.put("env", BaseEv.SettingInformation.runEnv);
+            BaseEv.SettingInformation.context.put("projectPackage", BaseEv.WorkDir.projectPackage);
+            BaseEv.SettingInformation.context.put("workHomeDir", BaseEv.WorkDir.workHomeDir);
             ILoggerBaseUtils.info("公共模型赋值完成[{}}", BaseEvBuiltIn.class.getName());
         }
 

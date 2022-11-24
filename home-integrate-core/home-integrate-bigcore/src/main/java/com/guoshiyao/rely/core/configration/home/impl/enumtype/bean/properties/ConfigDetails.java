@@ -7,10 +7,10 @@ import org.apache.poi.ss.formula.functions.T;
 public enum ConfigDetails {
 
 
-    HOME_REDIS_HOST(ConfigMain.REDIS, 1, "home.redis.host", "=", "192.168.3.251", "# 使用方法为 com.guoshiyao.rely.line.Line.redisds.getjedis()# 地址，默认localhost", "#"),//
-    HOME_REDIS_PORT(ConfigMain.REDIS, 2, "home.redis.port", "=", "6379", "# 端口号", "#"),//
-    HOME_REDIS_PASSWORD(ConfigMain.REDIS, 3, "home.redis.password", "=", "123456", "# 密码", "#"),//
-    HOME_REDIS_MASTERNAME(ConfigMain.REDIS, 4, "home.redis.masterName", "=", "mymaster", "# masterName", "#"),//
+    HOME_REDIS_HOST(ConfigMain.REDIS, 1, "home.redis.host", "=", "", "# IP地址:192.168.3.251 使用方法为 com.guoshiyao.rely.line.Line.redisds.getjedis()# 地址，默认localhost", "#"),//
+    HOME_REDIS_PORT(ConfigMain.REDIS, 2, "home.redis.port", "=", "6379", "# 端口号;192.168.3.251", "#"),//
+    HOME_REDIS_PASSWORD(ConfigMain.REDIS, 3, "home.redis.password", "=", "", "# 密码:123456", "#"),//
+    HOME_REDIS_MASTERNAME(ConfigMain.REDIS, 4, "home.redis.masterName", "=", "", "# masterName:mymaster", "#"),//
     HOME_REDIS_BLOCKWHENEXHAUSTED(ConfigMain.REDIS, 5, "home.redis.BlockWhenExhausted", "=", "true", "# 连接耗尽时是否阻塞, false报异常,ture阻塞直到超时, 默认true", "#"),//
     HOME_REDIS_EVICTIONPOLICYCLASSNAME(ConfigMain.REDIS, 6, "home.redis.evictionPolicyClassName", "=", "org.apache.commons.pool2.impl.DefaultEvictionPolicy", "# 设置的逐出策略类名, 默认DefaultEvictionPolicy(当连接超过最大空闲时间,或连接数超过最大空闲连接数)", "#"),//
     HOME_REDIS_JMXENABLED(ConfigMain.REDIS, 7, "home.redis.jmxEnabled", "=", "true", "# 是否启用pool的jmx管理功能, 默认true", "#"),//
