@@ -13,6 +13,7 @@ package com.guoshiyao.rely.swagger.plugin;
 import cn.hutool.setting.Setting;
 import com.guoshiyao.rely.BaseEv;
 import com.guoshiyao.rely.core.configration.annotation.RuleInjection;
+import com.guoshiyao.rely.core.configration.home.impl.enumtype.bean.properties.ConfigDetails;
 import com.guoshiyao.rely.core.utils.AnnotationTools;
 import com.guoshiyao.rely.coreextension.run.IThirdConfig;
 import com.guoshiyao.rely.hand.ControllerParamHandV1;
@@ -61,13 +62,13 @@ public class SwaggerConfig implements IThirdConfig {
     @Override
     public void callSetting(Setting setting) {
         {
-            String key = "home.swagger.basepackage";
+            String key = ConfigDetails.HOME_SWAGGER_BASEPACKAGE.getKey();
             if (!setting.containsKey(key)) {
                 setting.put(key, (BaseEv.WorkDir.projectPackage + ".api"));
             }
         }
         {
-            String key = "home.swagger.name";
+            String key = ConfigDetails.HOME_SWAGGER_NAME.getKey();
             if (!setting.containsKey(key)) {
                 setting.put(key, ("Swagger API"));
             }

@@ -14,6 +14,7 @@ import cn.hutool.core.io.FileUtil;
 import cn.hutool.setting.Setting;
 import com.guoshiyao.rely.BaseEv;
 import com.guoshiyao.rely.core.configration.annotation.RuleInjection;
+import com.guoshiyao.rely.core.configration.home.impl.enumtype.bean.properties.ConfigDetails;
 import com.guoshiyao.rely.coreextension.run.IThirdConfig;
 import com.guoshiyao.rely.flyway.bean.FlywayBean;
 import org.springframework.core.io.Resource;
@@ -45,7 +46,7 @@ public class FlywayExtendConfig implements IThirdConfig {
             if (source.length == 0) {
                 return new ArrayList<>();
             }
-            if (!BaseEv.SettingInformation.setting.containsKey("home.flywaydb.url")) {
+            if (!BaseEv.SettingInformation.setting.containsKey(ConfigDetails.HOME_FLYWAYDB_URL.getKey())) {
                 return new ArrayList<>();
             }
         } catch (Exception e) {
@@ -63,28 +64,28 @@ public class FlywayExtendConfig implements IThirdConfig {
     @Override
     public void callSetting(Setting setting) {
         {
-            String key = "home.flywaydb.url";
+            String key = ConfigDetails.HOME_FLYWAYDB_URL.getKey();
             if (!setting.containsKey(key)) {
-                if (BaseEv.SettingInformation.setting.get("home.db.url") != null)
-                    setting.put(key, (BaseEv.SettingInformation.setting.get("home.db.url")));
+                if (BaseEv.SettingInformation.setting.get(ConfigDetails.HOME_DB_URL.getKey()) != null)
+                    setting.put(key, (BaseEv.SettingInformation.setting.get(ConfigDetails.HOME_DB_URL.getKey())));
             }
         }
         {
-            String key = "home.flywaydb.username";
+            String key = ConfigDetails.HOME_FLYWAYDB_USERNAME.getKey();
             if (!setting.containsKey(key)) {
-                if (BaseEv.SettingInformation.setting.get("home.db.username") != null)
-                    setting.put(key, (BaseEv.SettingInformation.setting.get("home.db.username")));
+                if (BaseEv.SettingInformation.setting.get(ConfigDetails.HOME_DB_USERNAME.getKey()) != null)
+                    setting.put(key, (BaseEv.SettingInformation.setting.get(ConfigDetails.HOME_DB_USERNAME.getKey())));
             }
         }
         {
-            String key = "home.flywaydb.password";
+            String key = ConfigDetails.HOME_FLYWAYDB_PASSWORD.getKey();
             if (!setting.containsKey(key)) {
-                if (BaseEv.SettingInformation.setting.get("home.db.password") != null)
-                    setting.put(key, (BaseEv.SettingInformation.setting.get("home.db.password")));
+                if (BaseEv.SettingInformation.setting.get(ConfigDetails.HOME_DB_PASSWORD.getKey()) != null)
+                    setting.put(key, (BaseEv.SettingInformation.setting.get(ConfigDetails.HOME_DB_PASSWORD.getKey())));
             }
         }
         {
-            String key = "home.flywaydb.table";
+            String key = ConfigDetails.HOME_FLYWAYDB_TABLE.getKey();
             if (!setting.containsKey(key)) {
                 if (BaseEv.SettingInformation.setting.get("home.db.table") != null)
                     setting.put(key, ("flyway_schema_history"));

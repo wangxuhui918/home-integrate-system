@@ -13,6 +13,7 @@ package com.guoshiyao.rely.port;
 import cn.hutool.core.io.FileUtil;
 import com.guoshiyao.rely.BaseEv;
 import com.guoshiyao.rely.core.configration.annotation.RuleInjection;
+import com.guoshiyao.rely.core.configration.home.impl.enumtype.bean.properties.ConfigDetails;
 import com.guoshiyao.rely.coreextension.run.ISystemConfig;
 import com.guoshiyao.rely.port.config.SystemServletPort;
 
@@ -41,37 +42,37 @@ public class PortConfig implements ISystemConfig {
     @Override
     public Map<String, String> getProperties() {
         {
-            String key = "system.servlet.port";
+            String key = ConfigDetails.SYSTEM_SERVLET_PORT.getKey();
             if (!BaseEv.SettingInformation.setting.containsKey(key)) {
                 BaseEv.SettingInformation.setting.put(key, 8080 + "");
             }
         }
         {
-            String key = "system.servlet.multipart.location";
+            String key = ConfigDetails.SYSTEM_SERVLET_MULTIPART_LOCATION.getKey();
             if (!BaseEv.SettingInformation.setting.containsKey(key)) {
                 BaseEv.SettingInformation.setting.put(key, (BaseEv.WorkDir.workHomeDir + FileUtil.FILE_SEPARATOR + "temp" + FileUtil.FILE_SEPARATOR + "001"));
             }
         }
         {
-            String key = "system.servlet.multipart.max-file-size";
+            String key = ConfigDetails.SYSTEM_SERVLET_MULTIPART_MAX_FILE_SIZE.getKey();
             if (!BaseEv.SettingInformation.setting.containsKey(key)) {
                 BaseEv.SettingInformation.setting.put(key, ("-1"));
             }
         }
         {
-            String key = "system.servlet.multipart.max-request-size";
+            String key = ConfigDetails.SYSTEM_SERVLET_MULTIPART_MAX_REQUEST_SIZE.getKey();
             if (!BaseEv.SettingInformation.setting.containsKey(key)) {
                 BaseEv.SettingInformation.setting.put(key, ("-1"));
             }
         }
         {
-            String key = "system.servlet.multipart.file-size-threshold";
+            String key = ConfigDetails.SYSTEM_SERVLET_MULTIPART_FILE_SIZE_THRESHOLD.getKey();
             if (!BaseEv.SettingInformation.setting.containsKey(key)) {
                 BaseEv.SettingInformation.setting.put(key, ("1"));
             }
         }
         {
-            String key = "system.inputparamab.class";
+            String key = ConfigDetails.SYSTEM_INPUTPARAMAB_CLASS.getKey();
             if (!BaseEv.SettingInformation.setting.containsKey(key)) {
                 BaseEv.SettingInformation.setting.put(key, "com.guoshiyao.rely.outgoing.InputParamRe");
             }

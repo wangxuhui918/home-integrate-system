@@ -12,6 +12,7 @@ package com.guoshiyao.rely.log.plugin;
 
 import com.guoshiyao.rely.BaseEv;
 import com.guoshiyao.rely.core.configration.annotation.RuleInjection;
+import com.guoshiyao.rely.core.configration.home.impl.enumtype.bean.properties.ConfigDetails;
 import com.guoshiyao.rely.coreextension.run.ISystemConfig;
 import com.guoshiyao.rely.log.bean.EndLogBean;
 import com.guoshiyao.rely.plugin.exception.re.ex.ExceptionError;
@@ -46,31 +47,31 @@ public class LogExtendConfig implements ISystemConfig {
     @Override
     public Map<String, String> getProperties() {
         {
-            String key = "home.log.appid";
+            String key = ConfigDetails.HOME_LOG_APPID.getKey();
             if (!BaseEv.SettingInformation.setting.containsKey(key)) {
                 BaseEv.SettingInformation.setting.put(key, BaseEv.SettingInformation.idKey);
             }
         }
         {
-            String key = "home.log.rootlevel";
+            String key = ConfigDetails.HOME_LOG_ROOTLEVEL.getKey();
             if (!BaseEv.SettingInformation.setting.containsKey(key)) {
                 BaseEv.SettingInformation.setting.put(key, "info");
             }
         }
         {
-            String key = "home.log.businlevel";
+            String key = ConfigDetails.HOME_LOG_BUSINLEVEL.getKey();
             if (!BaseEv.SettingInformation.setting.containsKey(key)) {
                 BaseEv.SettingInformation.setting.put(key, "info");
             }
         }
         {
-            String key = "home.log.businpackage";
+            String key = ConfigDetails.HOME_LOG_BUSINPACKAGE.getKey();
             if (!BaseEv.SettingInformation.setting.containsKey(key)) {
                 BaseEv.SettingInformation.setting.put(key, BaseEv.WorkDir.projectPackage);
             }
         }
         {
-            String key = "home.log.dir";
+            String key = ConfigDetails.HOME_LOG_DIR.getKey();
             if (!BaseEv.SettingInformation.setting.containsKey(key)) {
                 BaseEv.SettingInformation.setting.put(key, "target/log/" + BaseEv.SettingInformation.idKey);
             }

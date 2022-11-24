@@ -14,6 +14,7 @@ package com.guoshiyao.rely.minio.plugin;
 import cn.hutool.setting.Setting;
 import com.guoshiyao.rely.BaseEv;
 import com.guoshiyao.rely.core.configration.annotation.RuleInjection;
+import com.guoshiyao.rely.core.configration.home.impl.enumtype.bean.properties.ConfigDetails;
 import com.guoshiyao.rely.coreextension.run.IThirdConfig;
 import com.guoshiyao.rely.minio.utils.MinIOGen;
 
@@ -29,7 +30,7 @@ public class MinIOExtendConfig implements IThirdConfig {
     @Override
     public List<Class> writeClasss() {
         //第0 个数据库
-        if (BaseEv.SettingInformation.setting.containsKey("home.minio.endpoint") && BaseEv.SettingInformation.setting.containsKey("home.minio.namespace_re")) {
+        if (BaseEv.SettingInformation.setting.containsKey(ConfigDetails.HOME_MINIO_ENDPOINT.getKey()) && BaseEv.SettingInformation.setting.containsKey(ConfigDetails.HOME_MINIO_NAMESPACE_RE.getKey())) {
             MinIOGen.intiConect();
         }
         return new ArrayList<>();
@@ -52,25 +53,25 @@ public class MinIOExtendConfig implements IThirdConfig {
     @Override
     public void callSetting(Setting setting) {
         {
-            String key = "home.minio.namespace_re";
+            String key = ConfigDetails.HOME_MINIO_NAMESPACE_RE.getKey();
             if (!setting.containsKey(key)) {
                 setting.put(key, (BaseEv.SettingInformation.idKey));
             }
         }
         {
-            String key = "home.minio.endpoint";
+            String key = ConfigDetails.HOME_MINIO_ENDPOINT.getKey();
             if (!setting.containsKey(key)) {
                 setting.put(key, (""));
             }
         }
         {
-            String key = "home.minio.accesskey";
+            String key = ConfigDetails.HOME_MINIO_ACCESSKEY.getKey();
             if (!setting.containsKey(key)) {
                 setting.put(key, (""));
             }
         }
         {
-            String key = "home.minio.secretKey";
+            String key = ConfigDetails.HOME_MINIO_SECRETKEY.getKey();
             if (!setting.containsKey(key)) {
                 setting.put(key, (""));
             }

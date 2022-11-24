@@ -17,6 +17,7 @@ import cn.hutool.http.HttpUtil;
 import cn.hutool.setting.Setting;
 import com.guoshiyao.rely.BaseEv;
 import com.guoshiyao.rely.core.configration.annotation.RuleInjection;
+import com.guoshiyao.rely.core.configration.home.impl.enumtype.bean.properties.ConfigDetails;
 import com.guoshiyao.rely.core.utils.data.JdbcFind;
 import com.guoshiyao.rely.coreextension.run.IThirdConfig;
 import com.guoshiyao.rely.data.DataSourcesConfig;
@@ -30,7 +31,7 @@ public class DataExtendConfig implements IThirdConfig {
     @Override
     public List<Class> writeClasss() {
         //第0 个数据库
-        if ((JdbcFind.getProjectJdbc().size() > 0 || BaseEv.SettingInformation.setting.containsKey("home.db.driverclass.downloadurl")) && BaseEv.SettingInformation.setting.containsKey("home.db.url")) {
+        if ((JdbcFind.getProjectJdbc().size() > 0 || BaseEv.SettingInformation.setting.containsKey(ConfigDetails.HOME_DB_DRIVERCLASS_DOWNLOADURL.getKey())) && BaseEv.SettingInformation.setting.containsKey(ConfigDetails.HOME_DB_URL.getKey())) {
             return Arrays.asList(new Class[]{DataSourcesConfig.class});
         } else {
             return new ArrayList<>();
@@ -50,14 +51,14 @@ public class DataExtendConfig implements IThirdConfig {
 
     @Override
     public void after() {
-        if (BaseEv.SettingInformation.setting.containsKey("home.db.driverclass.downloadurl")) {
-            String jdbcjarfilename = FileUtil.getName(BaseEv.SettingInformation.setting.get("home.db.driverclass.downloadurl").toString());
+        if (BaseEv.SettingInformation.setting.containsKey(ConfigDetails.HOME_DB_DRIVERCLASS_DOWNLOADURL.getKey())) {
+            String jdbcjarfilename = FileUtil.getName(BaseEv.SettingInformation.setting.get(ConfigDetails.HOME_DB_DRIVERCLASS_DOWNLOADURL.getKey()).toString());
             String jar_full_path = BaseEv.WorkDir.workHomeDir + FileUtil.FILE_SEPARATOR + jdbcjarfilename;
             if (!FileUtil.exist(jar_full_path)) {//驱动文件不存在开始下载
-                HttpUtil.downloadFile(BaseEv.SettingInformation.setting.get("home.db.driverclass.downloadurl").toString(), FileUtil.file(jar_full_path), new StreamProgress() {
+                HttpUtil.downloadFile(BaseEv.SettingInformation.setting.get(ConfigDetails.HOME_DB_DRIVERCLASS_DOWNLOADURL.getKey()).toString(), FileUtil.file(jar_full_path), new StreamProgress() {
                     @Override
                     public void start() {
-                        Console.log("开始下载:{}", BaseEv.SettingInformation.setting.get("home.db.driverclass.downloadurl").toString());
+                        Console.log("开始下载:{}", BaseEv.SettingInformation.setting.get(ConfigDetails.HOME_DB_DRIVERCLASS_DOWNLOADURL.getKey()).toString());
                     }
 
                     @Override
@@ -67,7 +68,7 @@ public class DataExtendConfig implements IThirdConfig {
 
                     @Override
                     public void finish() {
-                        Console.log("下载完成:{}", BaseEv.SettingInformation.setting.get("home.db.driverclass.downloadurl").toString());
+                        Console.log("下载完成:{}", BaseEv.SettingInformation.setting.get(ConfigDetails.HOME_DB_DRIVERCLASS_DOWNLOADURL.getKey()).toString());
                     }
                 });
             }
@@ -79,127 +80,127 @@ public class DataExtendConfig implements IThirdConfig {
     @Override
     public void callSetting(Setting setting) {
         {
-            String key = "home.db.url";
+            String key = ConfigDetails.HOME_DB_URL.getKey();
             if (!setting.containsKey(key)) {
                 setting.put(key, (""));
             }
         }
         {
-            String key = "home.db.username";
+            String key = ConfigDetails.HOME_DB_USERNAME.getKey();
             if (!setting.containsKey(key)) {
                 setting.put(key, (""));
             }
         }
         {
-            String key = "home.db.password";
+            String key = ConfigDetails.HOME_DB_PASSWORD.getKey();
             if (!setting.containsKey(key)) {
                 setting.put(key, (""));
             }
         }
         {
-            String key = "home.db.driverclassname";
+            String key = ConfigDetails.HOME_DB_DRIVERCLASSNAME.getKey();
             if (!setting.containsKey(key)) {
                 setting.put(key, (""));
             }
         }
         {
-            String key = "home.db.driverclass.downloadurl";
+            String key = ConfigDetails.HOME_DB_DRIVERCLASS_DOWNLOADURL.getKey();
             if (!setting.containsKey(key)) {
                 setting.put(key, (""));
             }
         }
         {
-            String key = "home.db.maxactive";
+            String key = ConfigDetails.HOME_DB_MAXACTIVE.getKey();
             if (!setting.containsKey(key)) {
                 setting.put(key, ("30"));
             }
         }
         {
-            String key = "home.db.initialsize";
+            String key = ConfigDetails.HOME_DB_INITIALSIZE.getKey();
             if (!setting.containsKey(key)) {
                 setting.put(key, ("1"));
             }
         }
         {
-            String key = "home.db.maxwait";
+            String key = ConfigDetails.HOME_DB_MAXWAIT.getKey();
             if (!setting.containsKey(key)) {
                 setting.put(key, ("60000"));
             }
         }
         {
-            String key = "home.db.minidle";
+            String key = ConfigDetails.HOME_DB_MINIDLE.getKey();
             if (!setting.containsKey(key)) {
                 setting.put(key, ("3"));
             }
         }
         {
-            String key = "home.db.timebetweenevictionrunsmillis";
+            String key = ConfigDetails.HOME_DB_TIMEBETWEENEVICTIONRUNSMILLIS.getKey();
             if (!setting.containsKey(key)) {
                 setting.put(key, ("60000"));
             }
         }
         {
-            String key = "home.db.minevictableidletimemillis";
+            String key = ConfigDetails.HOME_DB_MINEVICTABLEIDLETIMEMILLIS.getKey();
             if (!setting.containsKey(key)) {
                 setting.put(key, ("300000"));
             }
         }
         {
-            String key = "home.db.validationquery";
+            String key = ConfigDetails.HOME_DB_VALIDATIONQUERY.getKey();
             if (!setting.containsKey(key)) {
                 setting.put(key, (""));
             }
         }
         {
-            String key = "home.db.testwhileidle";
+            String key = ConfigDetails.HOME_DB_TESTWHILEIDLE.getKey();
             if (!setting.containsKey(key)) {
                 setting.put(key, ("true"));
             }
         }
         {
-            String key = "home.db.testonborrow";
+            String key = ConfigDetails.HOME_DB_TESTONBORROW.getKey();
             if (!setting.containsKey(key)) {
                 setting.put(key, ("false"));
             }
         }
         {
-            String key = "home.db.testonreturn";
+            String key = ConfigDetails.HOME_DB_TESTONRETURN.getKey();
             if (!setting.containsKey(key)) {
                 setting.put(key, ("false"));
             }
         }
         {
-            String key = "home.db.poolpreparedstatements";
+            String key = ConfigDetails.HOME_DB_POOLPREPAREDSTATEMENTS.getKey();
             if (!setting.containsKey(key)) {
                 setting.put(key, ("true"));
             }
         }
         {
-            String key = "home.db.removeabandoned";
+            String key = ConfigDetails.HOME_DB_REMOVEABANDONED.getKey();
             if (!setting.containsKey(key)) {
                 setting.put(key, ("true"));
             }
         }
         {
-            String key = "home.db.removeabandonedtimeout";
+            String key = ConfigDetails.HOME_DB_REMOVEABANDONEDTIMEOUT.getKey();
             if (!setting.containsKey(key)) {
                 setting.put(key, ("60"));
             }
         }
         {
-            String key = "home.db.numtestsperevictionrun";
+            String key = ConfigDetails.HOME_DB_NUMTESTSPEREVICTIONRUN.getKey();
             if (!setting.containsKey(key)) {
                 setting.put(key, ("60"));
             }
         }
         {
-            String key = "home.db.maxopenpreparedstatements";
+            String key = ConfigDetails.HOME_DB_MAXOPENPREPAREDSTATEMENTS.getKey();
             if (!setting.containsKey(key)) {
                 setting.put(key, ("20"));
             }
         }
         {
-            String key = "home.db.filters";
+            String key = ConfigDetails.HOME_DB_FILTERS.getKey();
             if (!setting.containsKey(key)) {
                 setting.put(key, ("stat,wall"));
             }

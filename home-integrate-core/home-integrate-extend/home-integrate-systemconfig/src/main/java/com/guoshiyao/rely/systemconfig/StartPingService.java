@@ -13,6 +13,7 @@ package com.guoshiyao.rely.systemconfig;
 import cn.hutool.core.io.resource.ResourceUtil;
 import cn.hutool.json.JSONUtil;
 import com.guoshiyao.rely.BaseEv;
+import com.guoshiyao.rely.core.configration.home.impl.enumtype.bean.properties.ConfigDetails;
 import com.guoshiyao.rely.plugin.log.ILoggerBaseUtils;
 import org.springframework.boot.CommandLineRunner;
 
@@ -50,7 +51,7 @@ public class StartPingService implements CommandLineRunner {
         ILoggerBaseUtils.info("是否自动更新 : {} [key]:[{}] ", BaseEv.SettingInformation.autoUpdate + "", "Line.autoUpdate");
         ILoggerBaseUtils.info("默认redis连接池 : {} [key]:[{}] ", BaseEv.SettingInformation.redisds == null ? "" : BaseEv.SettingInformation.redisds.toString(), "Line.redisds");
         ILoggerBaseUtils.info("默认jdbc_jar包路径 : {} [key]:[{}] ", BaseEv.WorkDir.main_jdbc_jar_fullpath, "Line.main_jdbc_jar_fullpath");
-        ILoggerBaseUtils.info("swagger 地址 : {} ", "http://127.0.0.1:" + BaseEv.SettingInformation.setting.get("system.servlet.port") + "/swagger-ui/index.html");
+        ILoggerBaseUtils.info("swagger 地址 : {} ", "http://127.0.0.1:" + BaseEv.SettingInformation.setting.get(ConfigDetails.SYSTEM_SERVLET_PORT.getKey()) + "/swagger-ui/index.html");
         System.out.println(ResourceUtil.readUtf8Str("ban.txt"));
     }
 }

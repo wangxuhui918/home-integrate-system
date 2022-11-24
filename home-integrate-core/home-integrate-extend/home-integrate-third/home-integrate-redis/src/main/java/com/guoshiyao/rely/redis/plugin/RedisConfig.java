@@ -15,6 +15,7 @@ import cn.hutool.db.nosql.redis.RedisDS;
 import cn.hutool.setting.Setting;
 import com.guoshiyao.rely.BaseEv;
 import com.guoshiyao.rely.core.configration.annotation.RuleInjection;
+import com.guoshiyao.rely.core.configration.home.impl.enumtype.bean.properties.ConfigDetails;
 import com.guoshiyao.rely.coreextension.run.IThirdConfig;
 import com.guoshiyao.rely.plugin.exception.re.ex.ExceptionError;
 
@@ -59,12 +60,12 @@ public class RedisConfig implements IThirdConfig {
             }
         }
 //        setting.putAll(Line.env.getName(), thisproperties);
-        if (BaseEv.SettingInformation.setting.containsKey("home.redis.host")) {
+        if (BaseEv.SettingInformation.setting.containsKey(ConfigDetails.HOME_REDIS_HOST.getKey())) {
             try {
                 BaseEv.SettingInformation.redisds = RedisDS.create(setting, BaseEv.SettingInformation.runEnv);
             } catch (Exception e) {
                 e.printStackTrace();
-                throw new ExceptionError("Redis 服务 {} 连接失败!如需关闭redis功能,请直接将home.redis.host重置为\"\"/null", BaseEv.SettingInformation.setting.get("home.redis.host"))
+                throw new ExceptionError("Redis 服务 {} 连接失败!如需关闭redis功能,请直接将home.redis.host重置为\"\"/null", BaseEv.SettingInformation.setting.get(ConfigDetails.HOME_REDIS_HOST.getKey()))
                         ;
             }
         }

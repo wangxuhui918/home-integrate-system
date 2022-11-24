@@ -14,6 +14,7 @@ import cn.hutool.setting.Setting;
 import com.alibaba.dubbo.config.annotation.Service;
 import com.guoshiyao.rely.BaseEv;
 import com.guoshiyao.rely.core.configration.annotation.RuleInjection;
+import com.guoshiyao.rely.core.configration.home.impl.enumtype.bean.properties.ConfigDetails;
 import com.guoshiyao.rely.core.utils.AnnotationTools;
 import com.guoshiyao.rely.coreextension.run.IThirdConfig;
 import com.guoshiyao.rely.dubbo.config.DubboBaseConfiguration;
@@ -52,49 +53,49 @@ public class DubboExtendConfig implements IThirdConfig {
     @Override
     public void callSetting(Setting setting) {
         {
-            String key = "home.dubbo.reference.package";
+            String key = ConfigDetails.HOME_DUBBO_REFERENCE_PACKAGE.getKey();
             if (!setting.containsKey(key)) {
                 setting.put(key, (BaseEv.WorkDir.projectPackage + ".dubboservice"));
             }
         }
         {
-            String key = "home.dubbo.reference.timeout";
+            String key = ConfigDetails.HOME_DUBBO_REFERENCE_TIMEOUT.getKey();
             if (!setting.containsKey(key)) {
                 setting.put(key, ("120000"));
             }
         }
         {
-            String key = "home.dubbo.reference.url";
+            String key = ConfigDetails.HOME_DUBBO_REFERENCE_URL.getKey();
             if (!setting.containsKey(key)) {
                 setting.put(key, ("N/A"));
             }
         }
         {
-            String key = "home.dubbo.reference.agreement";
+            String key = ConfigDetails.HOME_DUBBO_REFERENCE_AGREEMENT.getKey();
             if (!setting.containsKey(key)) {
                 setting.put(key, ("dubbo"));
             }
         }
         {
-            String key = "home.dubbo.reference.host";
+            String key = ConfigDetails.HOME_DUBBO_REFERENCE_HOST.getKey();
             if (!setting.containsKey(key)) {
                 setting.put(key, ("SUCCESS"));
             }
         }
         {
-            String key = "home.dubbo.reference.port";
+            String key = ConfigDetails.HOME_DUBBO_REFERENCE_PORT.getKey();
             if (!setting.containsKey(key)) {
                 setting.put(key, ("2181"));
             }
         }
         {
-            String key = "home.dubbo.protocolconfig.threads";
+            String key = ConfigDetails.HOME_DUBBO_PROTOCOLCONFIG_THREADS.getKey();
             if (!setting.containsKey(key)) {
                 setting.put(key, ("300"));
             }
         }
         {
-            String key = "home.dubbo.protocolconfig.threadpool";
+            String key = ConfigDetails.HOME_DUBBO_PROTOCOLCONFIG_THREADPOOL.getKey();
             if (!setting.containsKey(key)) {
                 setting.put(key, ("fixed"));
             }

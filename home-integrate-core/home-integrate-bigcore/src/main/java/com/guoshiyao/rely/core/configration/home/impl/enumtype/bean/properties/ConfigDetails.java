@@ -1,9 +1,7 @@
 package com.guoshiyao.rely.core.configration.home.impl.enumtype.bean.properties;
 
-import cn.hutool.core.io.FileUtil;
-
-import java.io.File;
-import java.util.List;
+import com.guoshiyao.rely.BaseEv;
+import org.apache.poi.ss.formula.functions.T;
 
 public enum ConfigDetails {
 
@@ -117,25 +115,9 @@ public enum ConfigDetails {
         this.suff = suff;
     }
 
-    public static void main(String[] args) {
-        List<String> all = FileUtil.readUtf8Lines("C:\\develop-person\\home-integrate-system\\home-integrate-core\\home-integrate-bigcore\\src\\main\\java\\com\\guoshiyao\\rely\\core\\configration\\home\\impl\\enumtype\\bean\\properties\\123");
-        List<File> list = FileUtil.loopFiles("C:\\develop-person\\home-integrate-system");
-        for (int j = 0; j < list.size(); j++) {
-            File file = list.get(j);
-            if (file.getAbsolutePath().endsWith("java") && !file.getAbsolutePath().contains("ConfigDetails")) {
-                System.out.println(file.getAbsolutePath());
 
-            }
-        }
-
-        for (int i = 0; i < all.size(); i++) {
-            String a = all.get(i).split(" ")[0];
-            String b = all.get(i).split(" ")[1];
-            a = "\"" + a + "\"";
-            b = "ConfigDetails." + b + ".getKey()";
-            System.out.println(a + "----" + b);
-        }
-
+    public T getSeetingValue(Class<T> classs) {
+        return (T) BaseEv.SettingInformation.setting.getObj(this.getKey());
     }
 
     public ConfigMain getCodeType() {

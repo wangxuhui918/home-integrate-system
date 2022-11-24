@@ -11,6 +11,7 @@
 package com.guoshiyao.rely.flyway.bean;
 
 import com.guoshiyao.rely.BaseEv;
+import com.guoshiyao.rely.core.configration.home.impl.enumtype.bean.properties.ConfigDetails;
 import org.flywaydb.core.Flyway;
 import org.springframework.context.annotation.Bean;
 
@@ -22,10 +23,10 @@ public class FlywayBean {
 //        System.setProperty("spring.flyway.baseline-on-migrate", "true");
 //        System.setProperty("spring.flyway.out-of-order", "true");
 //        System.setProperty("spring.flyway.validate-on-migrate", "false");
-        String dbUrl = BaseEv.SettingInformation.setting.get("home.flywaydb.url");
-        String dbUserName = BaseEv.SettingInformation.setting.get("home.flywaydb.username");
-        String dbPassword = BaseEv.SettingInformation.setting.get("home.flywaydb.password");
-        String table = BaseEv.SettingInformation.setting.get("home.flywaydb.table");
+        String dbUrl = BaseEv.SettingInformation.setting.get(ConfigDetails.HOME_FLYWAYDB_URL.getKey());
+        String dbUserName = BaseEv.SettingInformation.setting.get(ConfigDetails.HOME_FLYWAYDB_USERNAME.getKey());
+        String dbPassword = BaseEv.SettingInformation.setting.get(ConfigDetails.HOME_FLYWAYDB_PASSWORD.getKey());
+        String table = BaseEv.SettingInformation.setting.get(ConfigDetails.HOME_FLYWAYDB_TABLE.getKey());
         //flyway_schema_history
         // 创建Flyway实例
         Flyway flyway = Flyway.configure().dataSource(dbUrl, dbUserName, dbPassword).table(table).load();

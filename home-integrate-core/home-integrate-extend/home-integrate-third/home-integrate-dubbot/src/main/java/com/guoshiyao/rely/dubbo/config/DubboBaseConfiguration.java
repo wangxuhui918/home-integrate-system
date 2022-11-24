@@ -16,6 +16,7 @@ import com.alibaba.dubbo.config.ProviderConfig;
 import com.alibaba.dubbo.config.RegistryConfig;
 import com.alibaba.dubbo.config.spring.AnnotationBean;
 import com.guoshiyao.rely.BaseEv;
+import com.guoshiyao.rely.core.configration.home.impl.enumtype.bean.properties.ConfigDetails;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
 
@@ -25,9 +26,9 @@ public class DubboBaseConfiguration {
     @Bean
     @ConditionalOnMissingBean(ProtocolConfig.class) // 容器中如果没有这个类,那么自动配置这个类
     public ProtocolConfig protocolconfig() {
-        ProtocolConfig sddf = new ProtocolConfig(BaseEv.SettingInformation.setting.get("home.dubbo.reference.agreement"),
-                BaseEv.SettingInformation.setting.getInt("home.dubbo.reference.port"));
-        sddf.setHost(BaseEv.SettingInformation.setting.get("home.dubbo.reference.host"));
+        ProtocolConfig sddf = new ProtocolConfig(BaseEv.SettingInformation.setting.get(ConfigDetails.HOME_DUBBO_REFERENCE_AGREEMENT.getKey()),
+                BaseEv.SettingInformation.setting.getInt(ConfigDetails.HOME_DUBBO_REFERENCE_PORT.getKey()));
+        sddf.setHost(BaseEv.SettingInformation.setting.get(ConfigDetails.HOME_DUBBO_REFERENCE_HOST.getKey()));
 
         //		Dispatcher
 //		all 所有消息都派发到线程池，包括请求，响应，连接事件，断开事件，心跳等。
@@ -39,12 +40,12 @@ public class DubboBaseConfiguration {
 //		fixed 固定大小线程池，启动时建立线程，不关闭，一直持有。(缺省)
 //		cached 缓存线程池，空闲一分钟自动删除，需要时重建。
 //		limited 可伸缩线程池，但池中的线程数只会增长不会收缩。(为避免收缩时突然来了大流量引起的性能问题)
-        Integer protocolthreadsnum = BaseEv.SettingInformation.setting.getInt("home.dubbo.protocolconfig.threads");
+        Integer protocolthreadsnum = BaseEv.SettingInformation.setting.getInt(ConfigDetails.HOME_DUBBO_PROTOCOLCONFIG_THREADS.getKey());
 //        if (protocolthreadsnum != null) {
         sddf.setThreads(protocolthreadsnum);
         sddf.setDispatcher("all");
 //        }
-        String protocolthreadpool = BaseEv.SettingInformation.setting.get("home.dubbo.protocolconfig.threadpool");
+        String protocolthreadpool = BaseEv.SettingInformation.setting.get(ConfigDetails.HOME_DUBBO_PROTOCOLCONFIG_THREADPOOL.getKey());
 //        if (protocolthreadpool != null && !protocolthreadpool.trim().equals("")) {
         sddf.setThreadpool(protocolthreadpool);
 //        } else {
@@ -58,7 +59,7 @@ public class DubboBaseConfiguration {
     @ConditionalOnMissingBean(AnnotationBean.class) // 容器中如果没有这个类,那么自动配置这个类
     public AnnotationBean annotationbean() {
         AnnotationBean sddf = new AnnotationBean();
-        sddf.setPackage(BaseEv.SettingInformation.setting.get("home.dubbo.reference.package"));
+        sddf.setPackage(BaseEv.SettingInformation.setting.get(ConfigDetails.HOME_DUBBO_REFERENCE_PACKAGE.getKey()));
         return sddf;
     }
 
@@ -76,9 +77,9 @@ public class DubboBaseConfiguration {
     @Bean
     @ConditionalOnMissingBean(value = {RegistryConfig.class}) // 容器中如果没有这个类,那么自动配置这个类
     public RegistryConfig registryconfig() {
-        RegistryConfig sddf = new RegistryConfig(BaseEv.SettingInformation.setting.get("home.dubbo.reference.url"));
-        sddf.setProtocol(BaseEv.SettingInformation.setting.get("home.dubbo.reference.agreement"));
-        sddf.setTimeout(BaseEv.SettingInformation.setting.getInt("home.dubbo.reference.timeout"));
+        RegistryConfig sddf = new RegistryConfig(BaseEv.SettingInformation.setting.get(ConfigDetails.HOME_DUBBO_REFERENCE_URL.getKey()));
+        sddf.setProtocol(BaseEv.SettingInformation.setting.get(ConfigDetails.HOME_DUBBO_REFERENCE_AGREEMENT.getKey()));
+        sddf.setTimeout(BaseEv.SettingInformation.setting.getInt(ConfigDetails.HOME_DUBBO_REFERENCE_TIMEOUT.getKey()));
         sddf.setClient("curator");
         sddf.setCheck(false);
         return sddf;
@@ -88,7 +89,7 @@ public class DubboBaseConfiguration {
     @ConditionalOnMissingBean(ApplicationConfig.class) // 容器中如果没有这个类,那么自动配置这个类
     public ApplicationConfig applicationconfig(RegistryConfig registryconfig) {
         ApplicationConfig sddf = new ApplicationConfig();
-        sddf.setName(BaseEv.SettingInformation.setting.get("home.dubbo.reference.agreement"));
+        sddf.setName(BaseEv.SettingInformation.setting.get(ConfigDetails.HOME_DUBBO_REFERENCE_AGREEMENT.getKey()));
         sddf.setRegistry(registryconfig);
         sddf.setQosEnable(false);
         //		sddf.setQosAcceptForeignIp(false);

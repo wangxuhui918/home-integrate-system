@@ -15,6 +15,7 @@ import com.ctrip.framework.apollo.Config;
 import com.ctrip.framework.apollo.ConfigService;
 import com.guoshiyao.rely.BaseEv;
 import com.guoshiyao.rely.core.configration.annotation.RuleInjection;
+import com.guoshiyao.rely.core.configration.home.impl.enumtype.bean.properties.ConfigDetails;
 import com.guoshiyao.rely.coreextension.run.IThirdConfig;
 
 import java.util.*;
@@ -25,7 +26,7 @@ public class ApolloExtendsConfig implements IThirdConfig {
 
     @Override
     public void after() {
-        if (BaseEv.SettingInformation.setting.containsKey("home.apollo.app.id") && BaseEv.SettingInformation.setting.containsKey("home.apollo.apollo.meta")) {
+        if (BaseEv.SettingInformation.setting.containsKey(ConfigDetails.HOME_APOLLO_APP_ID.getKey()) && BaseEv.SettingInformation.setting.containsKey(ConfigDetails.HOME_APOLLO_APOLLO_META.getKey())) {
             Config config = ConfigService.getAppConfig(); //config instance is singleton for each namespace and is never null
             Set<String> names = config.getPropertyNames();
             for (String key : names) {
@@ -52,25 +53,25 @@ public class ApolloExtendsConfig implements IThirdConfig {
     @Override
     public void callSetting(Setting setting) {
         {
-            String key = "home.apollo.url";
+            String key = ConfigDetails.HOME_APOLLO_URL.getKey();
             if (!setting.containsKey(key)) {
                 setting.put(key, ("NA"));
             }
         }
         {
-            String key = "home.apollo.username";
+            String key = ConfigDetails.HOME_APOLLO_USERNAME.getKey();
             if (!setting.containsKey(key)) {
                 setting.put(key, ("apollo"));
             }
         }
         {
-            String key = "home.apollo.password";
+            String key = ConfigDetails.HOME_APOLLO_PASSWORD.getKey();
             if (!setting.containsKey(key)) {
                 setting.put(key, ("apollo"));
             }
         }
         {
-            String key = "home.apollo.app.id";
+            String key = ConfigDetails.HOME_APOLLO_APP_ID.getKey();
             String key1 = "app.id";
             if (!setting.containsKey(key)) {
                 setting.put(key, (BaseEv.SettingInformation.idKey));
@@ -79,7 +80,7 @@ public class ApolloExtendsConfig implements IThirdConfig {
             }
         }
         {
-            String key = "home.apollo.apollo.meta";
+            String key = ConfigDetails.HOME_APOLLO_APOLLO_META.getKey();
             String key1 = "apollo.meta";
             if (!setting.containsKey(key)) {
                 setting.put(key, (""));
@@ -88,7 +89,7 @@ public class ApolloExtendsConfig implements IThirdConfig {
             }
         }
         {
-            String key = "home.apollo.apollo.env";
+            String key = ConfigDetails.HOME_APOLLO_APOLLO_ENV.getKey();
             String key1 = "apollo.env";
             if (!setting.containsKey(key)) {
                 setting.put(key, (BaseEv.SettingInformation.runEnv));

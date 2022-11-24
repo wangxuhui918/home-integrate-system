@@ -21,6 +21,7 @@ import cn.hutool.crypto.SecureUtil;
 import cn.hutool.http.HttpUtil;
 import cn.hutool.json.JSONUtil;
 import com.guoshiyao.rely.BaseEv;
+import com.guoshiyao.rely.core.configration.home.impl.enumtype.bean.properties.ConfigDetails;
 import com.guoshiyao.rely.plugin.exception.re.ex.ExceptionError;
 import io.minio.GetPresignedObjectUrlArgs;
 import io.minio.PutObjectArgs;
@@ -156,7 +157,7 @@ public class MinIoUtils {
                     .bucket(namespace).object(storagname).build());//60 * 60 * 24 * 9 .expiry(60 * 60 * 24)
             url = StrUtil.subBefore(url, "?", true);
             int px = StrUtil.ordinalIndexOf(url, "/", 3);
-            url = BaseEv.SettingInformation.setting.get("home.minio.endpoint") + url.substring(px);
+            url = BaseEv.SettingInformation.setting.get(ConfigDetails.HOME_MINIO_ENDPOINT.getKey()) + url.substring(px);
             {
                 gui.put(MinIOGen.storagname, storagname);
                 gui.put(MinIOGen.namespace, namespace);

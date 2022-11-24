@@ -14,6 +14,7 @@ import cn.hutool.core.annotation.AnnotationUtil;
 import cn.hutool.core.util.ClassUtil;
 import com.guoshiyao.rely.BaseEv;
 import com.guoshiyao.rely.annotation.RuleController;
+import com.guoshiyao.rely.core.configration.home.impl.enumtype.bean.properties.ConfigDetails;
 import com.guoshiyao.rely.outgoing.utils.CodeUtils;
 import com.guoshiyao.rely.plugin.exception.ExceptionApiNull;
 import com.guoshiyao.rely.plugin.exception.code.impl.CodeImpl;
@@ -52,13 +53,13 @@ public class ControllerParamHandV1 {
             }
             if (k == null) {//无InputParamAb拦截的情况
                 try {
-                    String className = BaseEv.SettingInformation.setting.get("system.inputparamab.class");
+                    String className = BaseEv.SettingInformation.setting.get(ConfigDetails.SYSTEM_INPUTPARAMAB_CLASS.getKey());
                     k = (InputParamAb) ClassUtil.loadClass(className, false).newInstance();
                 } catch (Exception e) {
                 }
             }
             if (k == null) {
-                ILoggerBaseUtils.warn("参数{}未配置{}子类", "system.inputparamab.class", InputParamAb.class.getName());
+                ILoggerBaseUtils.warn("参数{}未配置{}子类", ConfigDetails.SYSTEM_INPUTPARAMAB_CLASS.getKey(), InputParamAb.class.getName());
             }
             if (k != null) {
                 try {

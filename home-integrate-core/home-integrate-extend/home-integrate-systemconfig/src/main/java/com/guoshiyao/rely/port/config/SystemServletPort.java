@@ -12,6 +12,7 @@ package com.guoshiyao.rely.port.config;
 
 import cn.hutool.core.net.NetUtil;
 import com.guoshiyao.rely.BaseEv;
+import com.guoshiyao.rely.core.configration.home.impl.enumtype.bean.properties.ConfigDetails;
 import com.guoshiyao.rely.plugin.exception.re.ex.ExceptionError;
 import com.guoshiyao.rely.plugin.log.ILoggerBaseUtils;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
@@ -37,7 +38,7 @@ public class SystemServletPort {
         WebServerFactoryCustomizer<ConfigurableWebServerFactory> portBean = new WebServerFactoryCustomizer<ConfigurableWebServerFactory>() {
             @Override
             public void customize(ConfigurableWebServerFactory factory) {
-                Long port = BaseEv.SettingInformation.setting.getLong("system.servlet.port");
+                Long port = BaseEv.SettingInformation.setting.getLong(ConfigDetails.SYSTEM_SERVLET_PORT.getKey());
                 if (port == null) {
                     port = 8080L;
                 }
@@ -56,10 +57,10 @@ public class SystemServletPort {
     @Bean
     public MultipartConfigElement multipartConfigElement() {
         MultipartConfigFactory factory = new MultipartConfigFactory();
-        factory.setLocation(BaseEv.SettingInformation.setting.get("system.servlet.multipart.location"));
-        factory.setMaxFileSize(DataSize.of(BaseEv.SettingInformation.setting.getInt("system.servlet.multipart.max-file-size"), DataUnit.MEGABYTES));
-        factory.setMaxRequestSize(DataSize.of(BaseEv.SettingInformation.setting.getInt("system.servlet.multipart.max-request-size"), DataUnit.MEGABYTES));
-        factory.setFileSizeThreshold(DataSize.of(BaseEv.SettingInformation.setting.getInt("system.servlet.multipart.file-size-threshold"), DataUnit.MEGABYTES));
+        factory.setLocation(BaseEv.SettingInformation.setting.get(ConfigDetails.SYSTEM_SERVLET_MULTIPART_LOCATION.getKey()));
+        factory.setMaxFileSize(DataSize.of(BaseEv.SettingInformation.setting.getInt(ConfigDetails.SYSTEM_SERVLET_MULTIPART_MAX_FILE_SIZE.getKey()), DataUnit.MEGABYTES));
+        factory.setMaxRequestSize(DataSize.of(BaseEv.SettingInformation.setting.getInt(ConfigDetails.SYSTEM_SERVLET_MULTIPART_MAX_REQUEST_SIZE.getKey()), DataUnit.MEGABYTES));
+        factory.setFileSizeThreshold(DataSize.of(BaseEv.SettingInformation.setting.getInt(ConfigDetails.SYSTEM_SERVLET_MULTIPART_FILE_SIZE_THRESHOLD.getKey()), DataUnit.MEGABYTES));
         return factory.createMultipartConfig();
     }
 }
