@@ -44,37 +44,37 @@ public class PortConfig implements ISystemConfig {
         {
             String key = ConfigDetails.SYSTEM_SERVLET_PORT.getKey();
             if (!BaseEv.SettingInformation.setting.containsKey(key)) {
-                BaseEv.SettingInformation.setting.put(key, 8080 + "");
+                BaseEv.SettingInformation.setting.put(key,  ConfigDetails.SYSTEM_SERVLET_PORT.getValue() + "");
             }
         }
         {
             String key = ConfigDetails.SYSTEM_SERVLET_MULTIPART_LOCATION.getKey();
             if (!BaseEv.SettingInformation.setting.containsKey(key)) {
-                BaseEv.SettingInformation.setting.put(key, (BaseEv.WorkDir.workHomeDir + FileUtil.FILE_SEPARATOR + "temp" + FileUtil.FILE_SEPARATOR + "001"));
+                BaseEv.SettingInformation.setting.put(key, ConfigDetails.SYSTEM_SERVLET_MULTIPART_LOCATION.getValue());
             }
         }
         {
             String key = ConfigDetails.SYSTEM_SERVLET_MULTIPART_MAX_FILE_SIZE.getKey();
             if (!BaseEv.SettingInformation.setting.containsKey(key)) {
-                BaseEv.SettingInformation.setting.put(key, ("-1"));
+                BaseEv.SettingInformation.setting.put(key, ConfigDetails.SYSTEM_SERVLET_MULTIPART_MAX_FILE_SIZE.getValue());
             }
         }
         {
             String key = ConfigDetails.SYSTEM_SERVLET_MULTIPART_MAX_REQUEST_SIZE.getKey();
             if (!BaseEv.SettingInformation.setting.containsKey(key)) {
-                BaseEv.SettingInformation.setting.put(key, ("-1"));
+                BaseEv.SettingInformation.setting.put(key, ConfigDetails.SYSTEM_SERVLET_MULTIPART_MAX_REQUEST_SIZE.getValue());
             }
         }
         {
             String key = ConfigDetails.SYSTEM_SERVLET_MULTIPART_FILE_SIZE_THRESHOLD.getKey();
             if (!BaseEv.SettingInformation.setting.containsKey(key)) {
-                BaseEv.SettingInformation.setting.put(key, ("1"));
+                BaseEv.SettingInformation.setting.put(key, ConfigDetails.SYSTEM_SERVLET_MULTIPART_FILE_SIZE_THRESHOLD.getValue());
             }
         }
         {
             String key = ConfigDetails.SYSTEM_INPUTPARAMAB_CLASS.getKey();
             if (!BaseEv.SettingInformation.setting.containsKey(key)) {
-                BaseEv.SettingInformation.setting.put(key, "com.guoshiyao.rely.outgoing.InputParamRe");
+                BaseEv.SettingInformation.setting.put(key, ConfigDetails.SYSTEM_INPUTPARAMAB_CLASS.getValue());
             }
         }
         return new HashMap<>();

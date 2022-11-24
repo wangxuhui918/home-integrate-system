@@ -1,6 +1,7 @@
 package com.guoshiyao.rely.core.configration.home.impl.enumtype.bean.properties;
 
 import com.guoshiyao.rely.BaseEv;
+import com.guoshiyao.rely.core.utils.velocity.VelocityUtils;
 import org.apache.poi.ss.formula.functions.T;
 
 public enum ConfigDetails {
@@ -153,7 +154,7 @@ public enum ConfigDetails {
     }
 
     public String getValue() {
-        return value;
+        return VelocityUtils.convert(value, BaseEv.SettingInformation.context);
     }
 
     public void setValue(String value) {

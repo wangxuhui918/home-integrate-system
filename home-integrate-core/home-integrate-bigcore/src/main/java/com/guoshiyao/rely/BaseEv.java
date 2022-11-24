@@ -29,6 +29,9 @@ import java.util.*;
 public class BaseEv {
 
 
+    public static String PUBLIC_CORE_PACKAGE = ClassUtil.getPackage(BaseEv.class);
+    public static String PUBLIC_UK_NAME = SystemInformation.SYSTEM_EN_NAME.toUpperCase() + "_UK";
+
     public static class CompanyInformation {//公司信息
         public final static String COMPANY_LONG_NAME = "XXXX有限公司";//公司全称
         public final static String COMPANY_SHORT_NAME = "XXXX";//公司简称
@@ -56,14 +59,14 @@ public class BaseEv {
     }
 
     public static class SystemInformation {//系统信息
-        public static final String SYSTEM_CHINA_NAME = "帆有云系统";//系统中文名
-        public static final String SYSTEM_EN_NAME = "home";//系统英文名
-        public static final String SYSTEM_KEY = "model-project-company";//系统默认KEY
+        public static String SYSTEM_CHINA_NAME = "帆有云系统";//系统中文名
+        public static String SYSTEM_EN_NAME = "home";//系统英文名
+        public static String SYSTEM_KEY = "model-project-company";//系统默认KEY
     }
 
     public static class ProjectInformation {//项目信息
-        public static final boolean OPEN_THREAD_I18N = true;
-        public static final boolean OPEN_THREAD_USER = true;
+        public static boolean OPEN_THREAD_I18N = true;
+        public static boolean OPEN_THREAD_USER = true;
 
     }
 
@@ -82,26 +85,14 @@ public class BaseEv {
 
     public static class SettingInformation {//项目设置信息
 
-        @Target(ElementType.TYPE)
-        @Retention(RetentionPolicy.RUNTIME)
-        @Documented
-        @Inherited
-        public @interface RuleBaseEv {
-
-        }
-
-        public interface IBaseEv {
-            void init();
-        }
-
         public final static String corePacket = StrUtil.sub(ClassUtil.getPackage(BaseEv.class), 0,
                 StrUtil.ordinalIndexOf(ClassUtil.getPackage(BaseEv.class), ".", 2));//框架核心包
-        public static final HashMap<String, Tree<Class>> methTree = new HashMap<>();
         public final static List<Class> iocclasses = new ArrayList<>();//IOC翻转执行类
         public final static Setting setting = new Setting();// 用户配置
         public final static HashMap<String, HashMap<String, MessageCodeVo>> messages = new HashMap<>();//消息码信息
         public final static VelocityContext context = new VelocityContext();//系统模板引擎变量
         public final static Set<String> macSet = new HashSet<>();//存放本机所有Mac地址
+        public static HashMap<String, Tree<Class>> methTree = new HashMap<>();
         public static String idKey = SystemInformation.SYSTEM_KEY;//项目唯一ID
         public static Long distributedKey = 1L;
         public static String i18n = I18n.defaultI18n.getI18nCode();//项目国际化编码
@@ -115,7 +106,6 @@ public class BaseEv {
         public static RedisDS redisds = null;//已经初始化过的 redisds 可以直接创建 jredis (.getJedis())
         public static boolean autoUpdate = false;//是否自动更新
         public static List<IBaseEv> baseEvs = getRule(RuleBaseEv.class, IBaseEv.class);//各种工作目录,class路径,jar路径
-
 
         static {
             if (BaseEv.SettingInformation.baseEvs != null && BaseEv.SettingInformation.baseEvs.size() > 0) {//简洁版
@@ -142,11 +132,20 @@ public class BaseEv {
             return listarra;
         }
 
+
+        @Target(ElementType.TYPE)
+        @Retention(RetentionPolicy.RUNTIME)
+        @Documented
+        @Inherited
+        public @interface RuleBaseEv {
+
+        }
+
+        public interface IBaseEv {
+            void init();
+        }
+
     }
-
-
-    public static final String PUBLIC_CORE_PACKAGE = ClassUtil.getPackage(BaseEv.class);
-    public static final String PUBLIC_UK_NAME = SystemInformation.SYSTEM_EN_NAME.toUpperCase() + "_UK";
 
 
 }

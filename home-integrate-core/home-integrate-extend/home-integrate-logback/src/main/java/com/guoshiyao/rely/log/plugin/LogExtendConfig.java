@@ -49,31 +49,31 @@ public class LogExtendConfig implements ISystemConfig {
         {
             String key = ConfigDetails.HOME_LOG_APPID.getKey();
             if (!BaseEv.SettingInformation.setting.containsKey(key)) {
-                BaseEv.SettingInformation.setting.put(key, BaseEv.SettingInformation.idKey);
+                BaseEv.SettingInformation.setting.put(key, ConfigDetails.HOME_LOG_APPID.getValue());
             }
         }
         {
             String key = ConfigDetails.HOME_LOG_ROOTLEVEL.getKey();
             if (!BaseEv.SettingInformation.setting.containsKey(key)) {
-                BaseEv.SettingInformation.setting.put(key, "info");
+                BaseEv.SettingInformation.setting.put(key,  ConfigDetails.HOME_LOG_ROOTLEVEL.getValue());
             }
         }
         {
             String key = ConfigDetails.HOME_LOG_BUSINLEVEL.getKey();
             if (!BaseEv.SettingInformation.setting.containsKey(key)) {
-                BaseEv.SettingInformation.setting.put(key, "info");
+                BaseEv.SettingInformation.setting.put(key,  ConfigDetails.HOME_LOG_BUSINLEVEL.getValue());
             }
         }
         {
             String key = ConfigDetails.HOME_LOG_BUSINPACKAGE.getKey();
             if (!BaseEv.SettingInformation.setting.containsKey(key)) {
-                BaseEv.SettingInformation.setting.put(key, BaseEv.WorkDir.projectPackage);
+                BaseEv.SettingInformation.setting.put(key,  ConfigDetails.HOME_LOG_BUSINPACKAGE.getValue());
             }
         }
         {
             String key = ConfigDetails.HOME_LOG_DIR.getKey();
             if (!BaseEv.SettingInformation.setting.containsKey(key)) {
-                BaseEv.SettingInformation.setting.put(key, "target/log/" + BaseEv.SettingInformation.idKey);
+                BaseEv.SettingInformation.setting.put(key, ConfigDetails.HOME_LOG_DIR.getValue());
             }
         }
         return new HashMap<>();
