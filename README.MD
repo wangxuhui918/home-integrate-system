@@ -28,7 +28,7 @@ mvn install
 
 <dependency>
     <groupId>com.guoshiyao.rely</groupId>
-    <version>10.0.1-SNAPSHOT</version>
+    <version>10.1.1-RELEASE</version>
     <artifactId>home-integrate-all</artifactId>
 </dependency>
 ```
@@ -39,7 +39,7 @@ mvn install
 <!--已上传至Maven中央库-->
 <dependency>
     <groupId>com.guoshiyao.rely</groupId>
-    <version>10.0.1-SNAPSHOT</version>
+    <version>10.1.1-RELEASE</version>
     <artifactId>home-integrate-allpom</artifactId>
 </dependency>
 ```

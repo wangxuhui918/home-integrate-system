@@ -15,14 +15,14 @@
     </parent>
     <groupId>com.guoshiyao.rely</groupId>
     <artifactId>home-integrate-all</artifactId>
-    <version>10.0.1-SNAPSHOT</version>
+    <version>10.1.1-RELEASE</version>
     <packaging>jar</packaging>
 
 
     <dependencies>
         <dependency>
             <groupId>com.guoshiyao.rely</groupId>
-            <version>10.0.1-SNAPSHOT</version>
+            <version>10.1.1-RELEASE</version>
             <artifactId>home-integrate-pack</artifactId>
         </dependency>
     </dependencies>
