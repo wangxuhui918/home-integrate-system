@@ -43,7 +43,6 @@ public abstract class InputParamAb<D> {
      * 重写该方法验证用户权限信息
      */
     public AuthReturnType checkAuth() {
-
         return AuthReturnType.AuthSuccess;
     }
 
@@ -54,7 +53,7 @@ public abstract class InputParamAb<D> {
 
     public void setUserRe(UserImpl userRe) {
         if (BaseEv.ProjectInformation.OPEN_THREAD_USER) {
-            ThreadReUtils.putParam(KeyBase.USERRE.getName(), JSONUtil.parseObj(userRe));
+            ThreadReUtils.putParam(KeyBase.USERRE.getKeyName(), JSONUtil.parseObj(userRe));
         }
         this.userRe = userRe;
     }
@@ -81,7 +80,7 @@ public abstract class InputParamAb<D> {
 
     public void setI18n(String i18n) {
         if (BaseEv.ProjectInformation.OPEN_THREAD_I18N) {
-            ThreadReUtils.putParam(KeyBase.I18N.getName(), i18n);
+            ThreadReUtils.putParam(KeyBase.I18N.getKeyName(), i18n);
         }
         this.i18n = i18n;
     }

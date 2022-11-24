@@ -72,7 +72,7 @@ public class ThreadReUtils {
      */
     public static String getI18n() {
         try {
-            return allThreadLocal.get().get(KeyBase.I18N.getName(), String.class);
+            return allThreadLocal.get().get(KeyBase.I18N.getKeyName(), String.class);
         } catch (Exception e) {
             return null;
         }
@@ -85,7 +85,7 @@ public class ThreadReUtils {
      */
     public static <T> T getUserRe(Class<T> user) {
         try {
-            return allThreadLocal.get().get(KeyBase.USERRE.getName(), user);
+            return allThreadLocal.get().get(KeyBase.USERRE.getKeyName(), user);
 //            return JSONUtil.toBean(allThreadLocal.get().getJSONObject(KeyBase.USERRE.getName()), user);
         } catch (Exception e) {
             return null;

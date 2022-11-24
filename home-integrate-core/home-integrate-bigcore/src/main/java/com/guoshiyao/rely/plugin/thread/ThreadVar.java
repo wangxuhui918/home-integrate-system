@@ -25,10 +25,10 @@ public class ThreadVar extends JSONObject {
     private final int max = 10;//10KB
 
 
-    @Override
-    public JSONObject append(String key, Object value) throws JSONException {
-        return super.append(key, value);
-    }
+//    @Override
+//    public JSONObject append(String key, Object value) throws JSONException {
+//        return super.append(key, value);
+//    }
 
     @Override
     public JSONObject set(String key, Object value) throws JSONException {
@@ -40,7 +40,6 @@ public class ThreadVar extends JSONObject {
         } catch (Exception e) {
             throw e;
         }
-        System.out.println("run2");
         return super.set(key, value);
     }
 

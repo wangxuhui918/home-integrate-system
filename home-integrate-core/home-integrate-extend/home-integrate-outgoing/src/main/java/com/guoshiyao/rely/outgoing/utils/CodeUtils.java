@@ -49,11 +49,11 @@ public class CodeUtils {
     /**
      * 原始出参类转换为自定义出参类
      *
+     * @param result
+     * @return
      * @author 汪旭辉
      * @date 2021年9月28日
      * @readme
-     * @param result
-     * @return
      */
     private static OutputParamRe extractedConvertToRe(OutputParamAbs<ICode, JSON> result) {
         OutputParamRe re = new OutputParamRe();
@@ -62,4 +62,5 @@ public class CodeUtils {
         re.setI18n(result.getI18n());
         return re;
     }
+
 }

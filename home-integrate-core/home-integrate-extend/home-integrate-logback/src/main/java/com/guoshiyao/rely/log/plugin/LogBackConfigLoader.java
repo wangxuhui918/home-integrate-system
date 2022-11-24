@@ -37,12 +37,10 @@ public class LogBackConfigLoader {
      */
     public static void load(String externalConfigFileLocation) throws IOException, JoranException {
         LoggerContext lc = (LoggerContext) LoggerFactory.getILoggerFactory();
-
         JoranConfigurator configurator = new JoranConfigurator();
         configurator.setContext(lc);
         lc.reset();
         configurator.doConfigure(ResourceUtil.getStream(externalConfigFileLocation));
         StatusPrinter.printInCaseOfErrorsOrWarnings(lc);
-
     }
 }

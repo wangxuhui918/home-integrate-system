@@ -29,9 +29,8 @@ import java.util.logging.Logger;
 public class ILoggerBaseUtils {
     public final static Logger jdkLogger = Logger.getLogger(ILoggerBaseUtils.class.getName());
     public final static ConsoleHandler myConsoleHandler = new ConsoleHandler();
-    private static FileHandler filehandler = null;
     public static ILogger custLogger = null;
-
+    private static FileHandler filehandler = null;
 
     static {
         {//jdklogger
@@ -39,18 +38,18 @@ public class ILoggerBaseUtils {
             try {
                 if (StrUtil.isNotBlank(SystemUtil.get("loglevel"))) {//如果日志界别不为空则直接查找,根据名字和值自动查找
                     loglevel = Level.parse(SystemUtil.get("loglevel"));
-                    ILoggerBaseUtils.info("读取日志变量-Denv={}", loglevel);
+                    ILoggerBaseUtils.info("读取日志变量-Dloglevel={}", loglevel);
                 } else {
-                    ILoggerBaseUtils.info("默认日志变量-Denv={}", loglevel.getName());
+                    ILoggerBaseUtils.info("默认日志变量-Dloglevel={}", loglevel.getName());
                 }
             } catch (Exception e) {
-                ILoggerBaseUtils.info("默认日志变量-Denv={}", loglevel.getName());
+                ILoggerBaseUtils.info("默认日志变量-Dloglevel={}", loglevel.getName());
             }
-            String syslogpath = "target/log/" + BaseEv.SystemInformation.SYSTEM_EN_NAME + ".%u.sys.log";
+            String syslogpath = "target/" + BaseEv.SystemInformation.SYSTEM_EN_NAME + ".%u.sys.log";//log/
 //            ${syslog_dir}/${hostname}.%d.sys.log %h/java%u.log  SSLog%u.sys.log
             try {
                 if (StrUtil.isNotBlank(SystemUtil.get("syslogpath"))) {//如果日志界别不为空则直接查找,根据名字和值自动查找
-                    syslogpath = SystemUtil.get("syslogpath");
+                    syslogpath = SystemUtil.get("syslogpath") + "/" + BaseEv.SystemInformation.SYSTEM_EN_NAME + ".%u.sys.log";
                     ILoggerBaseUtils.info("读取日志变量-Dsyslogpath={}", syslogpath);
                 } else {
                     ILoggerBaseUtils.info("默认日志变量-Dsyslogpath={}", syslogpath);
@@ -58,10 +57,9 @@ public class ILoggerBaseUtils {
             } catch (Exception e) {
                 ILoggerBaseUtils.info("默认日志变量-Dsyslogpath={}", syslogpath);
             }
-
             {
                 try {
-                    filehandler = new FileHandler(syslogpath, 1024000, 1);
+                    filehandler = new FileHandler(syslogpath, 1024000, 16);
                     filehandler.setLevel(Level.ALL);
                     filehandler.setFormatter(new MyFormatter());
                     myConsoleHandler.setLevel(loglevel);
@@ -76,6 +74,10 @@ public class ILoggerBaseUtils {
             jdkLogger.addHandler(myConsoleHandler);
             jdkLogger.addHandler(filehandler);
         }
+    }
+
+    public static void main(String[] args) {
+        System.out.println(123);
     }
 
     public static void debug(String str, Object... strs) {

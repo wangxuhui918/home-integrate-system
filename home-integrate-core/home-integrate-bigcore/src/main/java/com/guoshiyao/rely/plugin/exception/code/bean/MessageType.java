@@ -5,7 +5,8 @@ public enum MessageType {
     SUCCESS("1", "成功的类型", true, "true", "111111"),//
     WARING("2", "警告的类型", true, "waring", "222222"),//
     ERR("3", "失败的类型", false, "false", "333333"),//
-    NO("404", "未知的错误类型", false, "notFound", "444444"),//
+    NOT_FOUND_TYPE("404", "未知的错误类型", false, "NOT_FOUND_TYPE", "444444"),//
+    NOT_FOUNT_CODE("5", "找不到消息码:{}!", false, "NOT_FOUNT_CODE", "555555"),//
 
     ;
 
@@ -29,13 +30,22 @@ public enum MessageType {
                 return o;
             }
         }
-        return NO;
+        return NOT_FOUND_TYPE;
     }
 
 
     public MessageTypeVo getMessageTypeVo() {
         return new MessageTypeVo(typeCode, mark, booleanMark, booleanStrMark, typeStateCode);
     }
+
+    public MessageCodeVo getMessageCodeVo() {
+        MessageCodeVo vo = new MessageCodeVo();
+        vo.setContext(mark);
+        vo.setStateCode(typeStateCode);
+        vo.setStateType(new MessageTypeVo(typeCode, mark, booleanMark, booleanStrMark, typeStateCode));
+        return vo;
+    }
+
 
     public String getTypeStateCode() {
         return typeStateCode;

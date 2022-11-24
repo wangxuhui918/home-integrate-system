@@ -17,6 +17,7 @@ import com.guoshiyao.rely.core.configration.project.impl.enumtype.utils.node.Nod
 import com.guoshiyao.rely.core.configration.utils.ProjectConfUtils;
 import com.guoshiyao.rely.coreextension.third.IMessageConfig;
 import com.guoshiyao.rely.plugin.exception.code.bean.MessageCodeVo;
+import com.guoshiyao.rely.plugin.log.ILoggerBaseUtils;
 
 import java.util.*;
 
@@ -37,6 +38,7 @@ public class MessageExtendConfig implements IMessageConfig {
             Map<String, String> othermessage = ProjectConfUtils.getAllMessageXmlContexts();
             for (String key : othermessage.keySet()) {
                 NodeUtils.getI18nMessageContext(othermessage.get(key), key, maps);
+                ILoggerBaseUtils.debug(MessageExtendConfig.class, "读取到{}文件中的消息码,共计{}条", key, othermessage.size() + "");
             }
         } catch (Exception e) {
 

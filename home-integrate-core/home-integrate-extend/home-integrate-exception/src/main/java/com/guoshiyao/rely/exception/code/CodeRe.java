@@ -17,8 +17,8 @@ import com.guoshiyao.rely.plugin.exception.code.bean.MessageCodeVo;
 import com.guoshiyao.rely.plugin.exception.code.bean.MessageType;
 import com.guoshiyao.rely.plugin.exception.code.bean.MessageTypeVo;
 import com.guoshiyao.rely.plugin.exception.code.impl.CodeImpl;
-import com.guoshiyao.rely.plugin.exception.re.ex.ExceptionError;
 import com.guoshiyao.rely.plugin.i18n.I18n;
+import com.guoshiyao.rely.plugin.log.ILoggerBaseUtils;
 import com.guoshiyao.rely.plugin.thread.ThreadReUtils;
 import com.guoshiyao.rely.plugin.thread.bean.KeyBase;
 
@@ -55,12 +55,14 @@ public class CodeRe extends CodeImpl {
         String i18nCode = "";
         if (BaseEv.ProjectInformation.OPEN_THREAD_I18N && (i18n == null || StrUtil.isBlank(i18n.getI18nCode()))) {//获取线程变量
             try {
-                i18nCode = ThreadReUtils.getStrParamByPath(KeyBase.I18N.getName());
+                i18nCode = ThreadReUtils.getStrParamByPath(KeyBase.I18N.getKeyName());
             } catch (Exception e) {
+                ILoggerBaseUtils.warn(CodeRe.class, "线程上下文i18nCode获取失败!");
             }
         }
         if (StrUtil.isBlank(i18nCode)) {
             i18nCode = BaseEv.SettingInformation.i18n;
+            ILoggerBaseUtils.warn(CodeRe.class, "线程上下文i18nCode为空,采用默认值:", BaseEv.SettingInformation.i18n);
         }
         MessageCodeVo messageCodeVo = null;
         try {
@@ -68,13 +70,22 @@ public class CodeRe extends CodeImpl {
         } catch (Exception e) {
         }
         if (messageCodeVo == null) {
-            throw new ExceptionError("找不到该消息码!");
+            //            throw new ExceptionError("找不到该消息码!");
+            messageCodeVo = MessageType.NOT_FOUNT_CODE.getMessageCodeVo();
+            this.code = messageCodeVo.getStateCode();
+            this.i18n = i18nCode;
+            this.type = messageCodeVo.getStateType();
+            this.className = this.getClass().getName();
+            this.text = StrUtil.format(messageCodeVo.getContext(), code);
+            ILoggerBaseUtils.warn(CodeRe.class, "在i18nCode[{}]中找不到消息码[{}],采用默认消息码[{}]", i18nCode, code, this.code);
+        } else {
+            this.code = code;
+            this.i18n = i18nCode;
+            this.type = messageCodeVo.getStateType();
+            this.className = this.getClass().getName();
+            this.text = StrUtil.format(messageCodeVo.getContext(), messages);
         }
-        this.code = code;
-        this.i18n = i18nCode;
-        this.type = messageCodeVo.getStateType();
-        this.className = this.getClass().getName();
-        this.text = StrUtil.format(messageCodeVo.getContext(), messages);
+
     }
 
     @Override
