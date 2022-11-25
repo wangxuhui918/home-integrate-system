@@ -10,6 +10,7 @@ package com.guoshiyao.rely.core.configration.utils;
 
 import com.guoshiyao.rely.BaseEv;
 
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -49,5 +50,8 @@ public class ProjectConfUtils {
         return BaseEv.SettingInformation.projectConf.getThisEnvPropertiesValue();
     }
 
+    public static HashMap<String, String> reloadPropertiesValue() {
+        return BaseEv.SettingInformation.projectConf.reloadPropertiesValue();
+    }
 
 }

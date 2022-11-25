@@ -23,7 +23,7 @@ import java.util.Map;
  * @readme
  */
 @RuleInjection
-public class CreateConfig implements ICreateConfig {
+public class ClassCreateConfig implements ICreateConfig {
 
 
     @Override
