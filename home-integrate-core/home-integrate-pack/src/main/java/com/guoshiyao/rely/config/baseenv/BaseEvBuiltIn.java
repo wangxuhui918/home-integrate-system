@@ -21,6 +21,7 @@ import cn.hutool.json.JSONUtil;
 import cn.hutool.system.SystemUtil;
 import com.guoshiyao.rely.BaseEv;
 import com.guoshiyao.rely.annotaion.Starter;
+import com.guoshiyao.rely.core.utils.data.JdbcFind;
 import com.guoshiyao.rely.plugin.exception.re.ex.ExceptionError;
 import com.guoshiyao.rely.plugin.log.ILoggerBaseUtils;
 
@@ -34,11 +35,11 @@ import java.util.Set;
 import java.util.jar.JarFile;
 import java.util.regex.Pattern;
 
-@BaseEv.SettingInformation.RuleBaseEv
+
 public class BaseEvBuiltIn implements BaseEv.SettingInformation.IBaseEv {
     @Override
     public void init() {
-        ILoggerBaseUtils.info("开始处理配置类[{}}", BaseEvBuiltIn.class.getName());
+        ILoggerBaseUtils.debug("开始处理配置类[{}}", BaseEvBuiltIn.class.getName());
 
         String idkey = "", i18n = "", projectPackage = "", runEnv = "", uk_value = "",
                 jarpath = "", mainClass = "", projectresourcepath = "", projectcodesourcepath = "",
@@ -115,7 +116,7 @@ public class BaseEvBuiltIn implements BaseEv.SettingInformation.IBaseEv {
                     String temp = NetUtil.getMacAddress(interfaceaddress.getAddress());
                     if (StrUtil.isNotBlank(temp)) {
                         try {
-                            ILoggerBaseUtils.info("扫描到网卡[{}]:[{}}", ++s, temp.toUpperCase());
+                            ILoggerBaseUtils.debug("扫描到网卡[{}]:[{}}", ++s, temp.toUpperCase());
                             macSet.add(temp.toUpperCase());
                         } catch (Exception e) {
                         }
@@ -211,7 +212,7 @@ public class BaseEvBuiltIn implements BaseEv.SettingInformation.IBaseEv {
         }
         {
             //
-            ILoggerBaseUtils.info("配置类赋值开始[{}}", BaseEvBuiltIn.class.getName());
+            ILoggerBaseUtils.debug("配置类赋值开始[{}}", BaseEvBuiltIn.class.getName());
             BaseEv.SettingInformation.idKey = idkey;
             BaseEv.SettingInformation.i18n = i18n;
             BaseEv.WorkDir.projectPackage = StrUtil.isNotBlank(projectPackage) ? projectPackage : ClassUtil.getPackage(ClassUtil.loadClass(mainClass, false));
@@ -228,10 +229,10 @@ public class BaseEvBuiltIn implements BaseEv.SettingInformation.IBaseEv {
             BaseEv.SettingInformation.macSet.addAll(macSet);
             BaseEv.SettingInformation.mainMac = mainMac;
             BaseEv.SettingInformation.UK = uk;
-            ILoggerBaseUtils.info("配置类赋值完成[{}}", BaseEvBuiltIn.class.getName());
+            BaseEv.SettingInformation.driverClasses.addAll(JdbcFind.getProjectJdbc());
         }
         {
-            ILoggerBaseUtils.info("公共模型赋值开始[{}}", BaseEvBuiltIn.class.getName());
+            ILoggerBaseUtils.debug("公共模型赋值开始[{}}", BaseEvBuiltIn.class.getName());
             BaseEv.SettingInformation.context.put("idKey", BaseEv.SettingInformation.idKey);
             BaseEv.SettingInformation.context.put("mainClass", BaseEv.SettingInformation.mainClass);
             BaseEv.SettingInformation.context.put("isdev", BaseEv.SettingInformation.isClassModel);
@@ -239,10 +240,7 @@ public class BaseEvBuiltIn implements BaseEv.SettingInformation.IBaseEv {
             BaseEv.SettingInformation.context.put("env", BaseEv.SettingInformation.runEnv);
             BaseEv.SettingInformation.context.put("projectPackage", BaseEv.WorkDir.projectPackage);
             BaseEv.SettingInformation.context.put("workHomeDir", BaseEv.WorkDir.workHomeDir);
-            ILoggerBaseUtils.info("公共模型赋值完成[{}}", BaseEvBuiltIn.class.getName());
         }
 
-
-        ILoggerBaseUtils.info("处理配置类完成[{}}", BaseEvBuiltIn.class.getName());
     }
 }

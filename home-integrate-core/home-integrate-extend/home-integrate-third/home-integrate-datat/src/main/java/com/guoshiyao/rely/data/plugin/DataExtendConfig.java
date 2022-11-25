@@ -31,7 +31,7 @@ public class DataExtendConfig implements IThirdConfig {
     @Override
     public List<Class> writeClasss() {
         //第0 个数据库
-        if ((JdbcFind.getProjectJdbc().size() > 0 || BaseEv.SettingInformation.setting.containsKey(ConfigDetails.HOME_DB_DRIVERCLASS_DOWNLOADURL.getKey())) && BaseEv.SettingInformation.setting.containsKey(ConfigDetails.HOME_DB_URL.getKey())) {
+        if ((BaseEv.SettingInformation.driverClasses.size() > 0 || BaseEv.SettingInformation.setting.containsKey(ConfigDetails.HOME_DB_DRIVERCLASS_DOWNLOADURL.getKey())) && BaseEv.SettingInformation.setting.containsKey(ConfigDetails.HOME_DB_URL.getKey())) {
             return Arrays.asList(new Class[]{DataSourcesConfig.class});
         } else {
             return new ArrayList<>();

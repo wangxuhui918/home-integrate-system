@@ -8,6 +8,8 @@
 
 package com.guoshiyao.rely.config.core.home;
 
+import com.guoshiyao.rely.config.core.home.bean.ConfigPluginDetails;
+import com.guoshiyao.rely.config.core.home.bean.FileStructure;
 import com.guoshiyao.rely.core.configration.annotation.RuleInjection;
 import com.guoshiyao.rely.core.configration.home.ICoreConf;
 import com.guoshiyao.rely.core.configration.home.bean.ConfigDetailsVo;
@@ -15,8 +17,6 @@ import com.guoshiyao.rely.core.configration.home.bean.ConfigMainVo;
 import com.guoshiyao.rely.core.configration.home.bean.FileStructureVo;
 import com.guoshiyao.rely.core.configration.home.impl.bean.ConfigDetails;
 import com.guoshiyao.rely.core.configration.home.impl.bean.ConfigMain;
-import com.guoshiyao.rely.config.core.home.bean.ConfigPluginDetails;
-import com.guoshiyao.rely.config.core.home.bean.FileStructure;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -61,6 +61,7 @@ public class CoreBuiltInImpl implements ICoreConf {
         List<ConfigMainVo> properties = new ArrayList<>();
         for (int i = 0; i < ConfigMain.values().length; i++) {
             ConfigMainVo m1 = new ConfigMainVo();
+            m1.setName(ConfigMain.values()[i].name());
             m1.setConfigFileName(ConfigMain.values()[i].getConfigFileName());
             m1.setContext(ConfigMain.values()[i].getContext());
             m1.setOnly_local(ConfigMain.values()[i].isOnly_local());
