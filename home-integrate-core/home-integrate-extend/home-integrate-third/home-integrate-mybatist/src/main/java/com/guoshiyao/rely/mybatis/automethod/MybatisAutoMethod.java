@@ -14,6 +14,8 @@ import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.lang.tree.Tree;
 import cn.hutool.core.util.ClassUtil;
 import cn.hutool.core.util.StrUtil;
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
 import com.guoshiyao.rely.BaseEv;
 import com.guoshiyao.rely.bean.Bean;
 import com.guoshiyao.rely.mybatis.annotation.RuleInjectionMehtod;
@@ -108,22 +110,16 @@ public class MybatisAutoMethod {
             if (myAnnotation.method() == com.guoshiyao.rely.mybatis.annotation.bean.Method.pageSelect) {
                 Object inputvo = input.getData();
                 Object domain = ClassUtil.loadClass(BaseEv.SettingInformation.methTree.get(methFullPath).getName().toString(), false).newInstance();
-                Object vo = input.getData().getClass().newInstance();
-
-//                Page pageRequest = new Page(Integer.parseInt(input.getPageNum()), Integer.parseInt(input.getPageSize()));
-                com.guoshiyao.rely.mybatis.page.Page pageRequest = new com.guoshiyao.rely.mybatis.page.Page(Integer.parseInt(input.getPageNum()), Integer.parseInt(input.getPageSize()));
+//                Object vo = input.getData().getClass().newInstance();
+                Page page = PageHelper.startPage(Integer.parseInt(input.getPageNum()), Integer.parseInt(input.getPageSize()));
                 HashMap<String, Object> pageData = new HashMap<>();
                 List returnlist = new ArrayList<>();
                 {
                     BeanUtil.copyProperties(inputvo, domain);
-                    pageData.put("pageSize", pageRequest.getPageSize());
-                    pageData.put("pageNumber", pageRequest.getPageNo());
-                    pageData.putAll(BeanUtil.beanToMap(domain));
                 }
                 {
-//                    RowBounds rowbounds = new RowBounds(pageRequest.getPageSize(), pageRequest.getPageSize());
-                    returnlist = BeanUtil.copyToList(mapper.selectByRowBounds(domain, pageRequest.getRowbounds()), input.getData().getClass());
-                    pageData.put("total", mapper.selectCount(domain));
+                    returnlist = BeanUtil.copyToList(mapper.select(domain), input.getData().getClass());
+                    pageData.put("total", page.getTotal());
                     pageData.put("data", returnlist);
                 }
                 return pageData;

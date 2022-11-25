@@ -15,6 +15,7 @@ package com.guoshiyao.rely.mybatis.page.inter;
  * @date 2018年11月8日
  * @readme TODO
  */
+@Deprecated
 public interface Pager {
     String getPageNumber();
 

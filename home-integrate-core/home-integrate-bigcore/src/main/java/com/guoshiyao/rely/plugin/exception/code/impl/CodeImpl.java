@@ -16,7 +16,6 @@ import com.guoshiyao.rely.plugin.exception.code.ICode;
 import com.guoshiyao.rely.plugin.exception.code.bean.MessageType;
 import com.guoshiyao.rely.plugin.exception.code.bean.MessageTypeVo;
 import com.guoshiyao.rely.plugin.i18n.I18n;
-import lombok.Data;
 
 /**
  * 消息码处理的基础实现类
@@ -25,7 +24,7 @@ import lombok.Data;
  * @date 2022年1月21日
  * @readme
  */
-@Data
+
 public class CodeImpl implements ICode {
     private String code;
     private String i18n;
@@ -152,5 +151,50 @@ public class CodeImpl implements ICode {
     @Override
     public String toString() {
         return JSONUtil.toJsonStr(this);
+    }
+
+    @Override
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    @Override
+    public String getI18n() {
+        return i18n;
+    }
+
+    public void setI18n(String i18n) {
+        this.i18n = i18n;
+    }
+
+    @Override
+    public MessageTypeVo getType() {
+        return type;
+    }
+
+    public void setType(MessageTypeVo type) {
+        this.type = type;
+    }
+
+    @Override
+    public String getText() {
+        return text;
+    }
+
+    public void setText(String text) {
+        this.text = text;
+    }
+
+    @Override
+    public String getClassName() {
+        return className;
+    }
+
+    public void setClassName(String className) {
+        this.className = className;
     }
 }

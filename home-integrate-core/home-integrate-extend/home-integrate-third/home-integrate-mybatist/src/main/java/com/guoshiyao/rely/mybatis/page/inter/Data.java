@@ -11,7 +11,7 @@
 package com.guoshiyao.rely.mybatis.page.inter;
 
 import org.apache.ibatis.session.RowBounds;
-
+@Deprecated
 public interface Data<T> {
     int selectCount();
 
