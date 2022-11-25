@@ -19,6 +19,8 @@ import java.util.Map;
 public interface IProjectConf {
 
 
+    HashMap<String, String> reloadPropertiesValue();
+
     Map<String, String> getAllMessageXmlContexts();
 
     String getDefaultMessageXmlContexts();

@@ -37,37 +37,32 @@ import java.util.*;
  * @readme
  */
 public class ProjectBuiltInImpl implements IProjectConf {
-    private static HashMap<String, String> thisEnvPropertiesValue = new HashMap<>();
-    private static Setting allEnvSetting = new Setting();
 
-
-    private static void reloadPropertiesValue() {
+    @Override
+    public HashMap<String, String> reloadPropertiesValue() {
+        HashMap<String, String> thisEnvPropertiesValue = new HashMap<>();
+        Setting allEnvSetting = new Setting();
         try {
-            {
-                allEnvSetting = new Setting();
-                List<URI> listUrl = ResourceFindUtils.findUri(BaseEv.SystemInformation.SYSTEM_EN_NAME + "-*.ini");//Line.env.getName()
-                for (int i = 0; i < listUrl.size(); i++) {
-                    ILoggerBaseUtils.debug("读取到[{}]配置文件", listUrl.get(i).toString());
-                    Setting o = new Setting(listUrl.get(i).toURL(), CharsetUtil.CHARSET_UTF_8, true);
-                    {//可使用表达式{}
-                        List<String> groups = o.getGroups();
-                        for (int j = 0; j < groups.size(); j++) {
-                            String groupName = groups.get(j);
-                            Set<String> keys = o.getMap(groupName).keySet();
-                            for (String key : keys) {
-                                try {
-                                    o.putByGroup(key, groupName, VelocityUtils.convert(o.getByGroup(key, groupName), BaseEv.SettingInformation.context));
-                                } catch (Exception e) {
-                                    ILoggerBaseUtils.warn("配置[{}]值[{}]转换失败!", key, o.getByGroup(key, groupName));
-                                }
-                            }
+            List<URI> listUrl = ResourceFindUtils.findUri(BaseEv.SystemInformation.SYSTEM_EN_NAME + "-*.ini");//Line.env.getName()
+            for (int i = 0; i < listUrl.size(); i++) {
+                ILoggerBaseUtils.debug("读取到[{}]配置文件", listUrl.get(i).toString());
+                Setting o = new Setting(listUrl.get(i).toURL(), CharsetUtil.CHARSET_UTF_8, true);
+                List<String> groups = o.getGroups();
+                for (int j = 0; j < groups.size(); j++) {
+                    String groupName = groups.get(j);
+                    Set<String> keys = o.getMap(groupName).keySet();
+                    for (String key : keys) {
+                        try {
+                            o.putByGroup(key, groupName, VelocityUtils.convert(o.getByGroup(key, groupName), BaseEv.SettingInformation.context));
+                        } catch (Exception e) {
+                            ILoggerBaseUtils.warn("配置[{}]值[{}]转换失败!", key, o.getByGroup(key, groupName));
                         }
                     }
-                    allEnvSetting.addSetting(o);
                 }
+                allEnvSetting.addSetting(o);
             }
 
-            {//塞入默认值
+            if (StrUtil.isNotBlank(BaseEv.SettingInformation.runEnv)) {//塞入默认值
                 List<String> envs = new ArrayList<>(Arrays.asList(BaseEv.SettingInformation.configEnv));
                 envs.add(BaseEv.SettingInformation.runEnv);
                 for (String envName : envs) {
@@ -79,7 +74,6 @@ public class ProjectBuiltInImpl implements IProjectConf {
                     }
                 }
             }
-
             {
                 thisEnvPropertiesValue.clear();
                 List<String> groups = allEnvSetting.getGroups();
@@ -90,11 +84,11 @@ public class ProjectBuiltInImpl implements IProjectConf {
                         thisEnvPropertiesValue.putAll(allEnvSetting.getMap(s));
                     }
                 }
-
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return thisEnvPropertiesValue;
     }
 
     @Override
@@ -129,7 +123,7 @@ public class ProjectBuiltInImpl implements IProjectConf {
 
     @Override
     public HashMap<String, String> getThisEnvPropertiesValue() {
-        return thisEnvPropertiesValue;
+        return reloadPropertiesValue();
     }
 
     @Override
@@ -209,8 +203,6 @@ public class ProjectBuiltInImpl implements IProjectConf {
             ProjectConfUtils.writeReadMes();
             ProjectConfUtils.install();
         }
-
-        reloadPropertiesValue();//重新加载总配置
 
     }
 

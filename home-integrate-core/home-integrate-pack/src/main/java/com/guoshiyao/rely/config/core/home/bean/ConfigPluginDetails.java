@@ -1,11 +1,12 @@
 package com.guoshiyao.rely.config.core.home.bean;
 
 import com.guoshiyao.rely.apollo.config.ApolloExtendsConfig;
-import com.guoshiyao.rely.config.newplugin.CreateConfig;
+import com.guoshiyao.rely.config.line.LineDefaultManager;
+import com.guoshiyao.rely.config.newplugin.ClassCreateConfig;
+import com.guoshiyao.rely.config.newplugin.RunCreateConfig;
 import com.guoshiyao.rely.data.plugin.DataExtendConfig;
 import com.guoshiyao.rely.dubbo.plugin.DubboExtendConfig;
 import com.guoshiyao.rely.flyway.plugin.FlywayExtendConfig;
-import com.guoshiyao.rely.config.line.LineDefaultManager;
 import com.guoshiyao.rely.log.plugin.LogExtendConfig;
 import com.guoshiyao.rely.message.MessageExtendConfig;
 import com.guoshiyao.rely.minio.plugin.MinIOExtendConfig;
@@ -22,7 +23,8 @@ public enum ConfigPluginDetails {
 
     PLUGIN_DETAIL_2(ConfigPluginType.CONFIG_PLUGIN_TYPE_3, LineDefaultManager.class.getName(), true),//
     PLUGIN_DETAIL_3(ConfigPluginType.CONFIG_PLUGIN_TYPE_4, ResourceFindUrl.class.getName(), true),//
-    PLUGIN_DETAIL_4(ConfigPluginType.CONFIG_PLUGIN_TYPE_5, CreateConfig.class.getName(), true),//
+    PLUGIN_DETAIL_4(ConfigPluginType.CONFIG_PLUGIN_TYPE_5, ClassCreateConfig.class.getName(), true),//
+    PLUGIN_DETAIL_4_1(ConfigPluginType.CONFIG_PLUGIN_TYPE_6, RunCreateConfig.class.getName(), true),//
     //
     PLUGIN_DETAIL_5(ConfigPluginType.CONFIG_PLUGIN_TYPE_6, DataExtendConfig.class.getName(), true),//
     PLUGIN_DETAIL_6(ConfigPluginType.CONFIG_PLUGIN_TYPE_6, MinIOExtendConfig.class.getName(), true),//
