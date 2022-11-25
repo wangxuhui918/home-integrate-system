@@ -20,6 +20,18 @@
     </parent>
 
 
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.guoshiyao.rely</groupId>
+                <artifactId>home-integrate-dependencies</artifactId>
+                <version>10.0.1-SNAPSHOT</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
     <modules>
         <module>home-integrate-core</module>
         <module>home-integrate-allpom</module>
