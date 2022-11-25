@@ -24,6 +24,7 @@ import org.apache.ibatis.session.RowBounds;
  * @url www.chenlintech.com
  * @date 2017年8月8日 上午11:41:07
  */
+@Deprecated
 @lombok.Data
 public class Page<T> {
 
