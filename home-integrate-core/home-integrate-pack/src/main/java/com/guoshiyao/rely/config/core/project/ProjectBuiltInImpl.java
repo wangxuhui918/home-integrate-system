@@ -16,7 +16,6 @@ import cn.hutool.core.util.ClassUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.setting.Setting;
 import com.guoshiyao.rely.BaseEv;
-import com.guoshiyao.rely.core.configration.annotation.RuleInjection;
 import com.guoshiyao.rely.core.configration.home.bean.ConfigDetailsVo;
 import com.guoshiyao.rely.core.configration.home.bean.ConfigMainVo;
 import com.guoshiyao.rely.core.configration.home.bean.FileStructureVo;
@@ -37,16 +36,10 @@ import java.util.*;
  * @date 2022/5/25
  * @readme
  */
-@RuleInjection
 public class ProjectBuiltInImpl implements IProjectConf {
     private static HashMap<String, String> thisEnvPropertiesValue = new HashMap<>();
     private static Setting allEnvSetting = new Setting();
 
-    static {
-        if (allEnvSetting.size() == 0) {
-            reloadPropertiesValue();
-        }
-    }
 
     private static void reloadPropertiesValue() {
         try {
@@ -54,7 +47,7 @@ public class ProjectBuiltInImpl implements IProjectConf {
                 allEnvSetting = new Setting();
                 List<URI> listUrl = ResourceFindUtils.findUri(BaseEv.SystemInformation.SYSTEM_EN_NAME + "-*.ini");//Line.env.getName()
                 for (int i = 0; i < listUrl.size(); i++) {
-                    ILoggerBaseUtils.info("读取到[{}]配置文件", listUrl.get(i).toString());
+                    ILoggerBaseUtils.debug("读取到[{}]配置文件", listUrl.get(i).toString());
                     Setting o = new Setting(listUrl.get(i).toURL(), CharsetUtil.CHARSET_UTF_8, true);
                     {//可使用表达式{}
                         List<String> groups = o.getGroups();
@@ -79,7 +72,7 @@ public class ProjectBuiltInImpl implements IProjectConf {
                 envs.add(BaseEv.SettingInformation.runEnv);
                 for (String envName : envs) {
                     for (ConfigDetails o : ConfigDetails.values()) {
-                        String groupname = o.getCodeType().getConfigFileName() + "-" + envName;
+                        String groupname = o.getCodeType().name() + "-" + envName;
                         if (!allEnvSetting.containsKey(groupname, o.getKey())) {
                             allEnvSetting.putByGroup(o.getKey(), groupname, o.getValue());
                         }
@@ -182,31 +175,21 @@ public class ProjectBuiltInImpl implements IProjectConf {
 
         for (String envName : envs) {
             if (BaseEv.SettingInformation.autoUpdate || !ProjectConfUtils.installed() || ((BaseEv.SettingInformation.UK).equals(envName) && BaseEv.SettingInformation.isClassModel)) {//数据库未初始化,手动更新配置
-                List<ConfigMainVo> sortx = CoreConfUtils.getPropertiesMain();
-                StringBuffer envstr = new StringBuffer("");
-                for (int k = 0; k < sortx.size(); k++) {
-                    ConfigMainVo modelConfigInfo = sortx.get(k);
-                    List<ConfigDetailsVo> listProperties = CoreConfUtils.getPropertiesDetails(modelConfigInfo.getConfigFileName());
+                List<ConfigMainVo> listMainConfig = CoreConfUtils.getPropertiesMain();
+                List<String> lineStr = new ArrayList<>();
+                for (int k = 0; k < listMainConfig.size(); k++) {
+                    ConfigMainVo mainConfig = listMainConfig.get(k);
+                    List<ConfigDetailsVo> listProperties = CoreConfUtils.getPropertiesDetails(mainConfig.getConfigFileName());
                     if (listProperties != null && listProperties.size() > 0) {
-                        envstr.append(StrUtil.format("\n\n\n\n\n\n[{}-{}]\n", modelConfigInfo.getConfigFileName(), envName));//格式为 code-env
-                        String context = "";
+                        lineStr.add(StrUtil.format("[{}-{}]", mainConfig.getName(), envName));//格式为 code-env
                         for (int i = 0; i < listProperties.size(); i++) {
                             ConfigDetailsVo o = listProperties.get(i);
-                            {
-                                o.setMark(VelocityUtils.convert(o.getMark(), BaseEv.SettingInformation.context));
-                            }
-                            {
-                                context += o.getMark() + "\n";
-                                context += StrUtil.blankToDefault(o.getBeforesuff(), "");
-                                context += o.getKey();
-                                context += o.getM();
-                                context += o.getValue() + "\n";
-                            }
+                            lineStr.add(VelocityUtils.convert(o.getMark(), BaseEv.SettingInformation.context));
+                            lineStr.add(StrUtil.blankToDefault(o.getBeforesuff(), "") + o.getKey() + o.getM() + o.getValue());
                         }
-                        envstr.append(context);//合并参数
-                    } else if (StrUtil.isNotBlank(modelConfigInfo.getContext())) {
-                        String name_en = VelocityUtils.convert(modelConfigInfo.getConfigFileName(), BaseEv.SettingInformation.context);
-                        String context = VelocityUtils.convert(modelConfigInfo.getContext(), BaseEv.SettingInformation.context);
+                    } else if (StrUtil.isNotBlank(mainConfig.getContext())) {
+                        String name_en = VelocityUtils.convert(mainConfig.getConfigFileName(), BaseEv.SettingInformation.context);
+                        String context = VelocityUtils.convert(mainConfig.getContext(), BaseEv.SettingInformation.context);
                         String file = BaseEv.WorkDir.projectresourcepath + FileUtil.FILE_SEPARATOR + name_en;
                         if (!FileUtil.exist(file)) {
                             FileUtil.writeUtf8String(context, file);
@@ -216,7 +199,7 @@ public class ProjectBuiltInImpl implements IProjectConf {
                 {//写入文件
                     String file = BaseEv.WorkDir.projectresourcepath + FileUtil.FILE_SEPARATOR + BaseEv.SystemInformation.SYSTEM_EN_NAME + "-" + envName + ".ini";
                     if (!FileUtil.exist(file)) {
-                        FileUtil.writeUtf8String(envstr.toString(), file);
+                        FileUtil.writeUtf8Lines(lineStr, file);
                     }
                 }
             }

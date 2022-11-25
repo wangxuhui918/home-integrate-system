@@ -14,10 +14,10 @@ package com.guoshiyao.rely.config.line;
 import cn.hutool.core.map.MapUtil;
 import cn.hutool.core.util.StrUtil;
 import com.guoshiyao.rely.BaseEv;
-import com.guoshiyao.rely.core.configration.annotation.RuleInjection;
 import com.guoshiyao.rely.core.IClassModelConfig;
 import com.guoshiyao.rely.core.ILineManager;
 import com.guoshiyao.rely.core.IRunModelConfig;
+import com.guoshiyao.rely.core.configration.annotation.RuleInjection;
 import com.guoshiyao.rely.core.configration.utils.CoreConfUtils;
 import com.guoshiyao.rely.coreextension.run.ISystemConfig;
 import com.guoshiyao.rely.coreextension.run.IThirdConfig;
@@ -51,17 +51,15 @@ public class LineDefaultManager implements ILineManager {
         if (BaseEv.SettingInformation.isClassModel) {//仅在class模式下需要处理的东西
             for (int i = 0; i < classmodelconfigrerules.size(); i++) {
                 IClassModelConfig info = classmodelconfigrerules.get(i);
-                ILoggerBaseUtils.info("[{}]功能处理器[{}]开始处理[{}]", "class", info.getClass(), "before");
+                ILoggerBaseUtils.debug("功能处理器[{}]开始处理[{}]", info.getClass(), "before");
                 info.before();
-                ILoggerBaseUtils.info("[{}]功能处理器[{}]处理完成[{}]", "class", info.getClass(), "before");
             }
         }
         {//运行时模式需要处理的部分
             for (int i = 0; i < runmodelconfigrerules.size(); i++) {
                 IRunModelConfig info = runmodelconfigrerules.get(i);
-                ILoggerBaseUtils.info("[{}]功能处理器[{}]开始处理[{}]", "jar", info.getClass(), "before");
+                ILoggerBaseUtils.debug("功能处理器[{}]开始处理[{}]", info.getClass(), "before");
                 info.before();
-                ILoggerBaseUtils.info("[{}]功能处理器[{}]处理完成[{}]", "jar", info.getClass(), "before");
             }
         }
     }
@@ -76,32 +74,29 @@ public class LineDefaultManager implements ILineManager {
             //读取系统参数
             for (int i = 0; i < runmodelconfigrerules.size(); i++) {
                 IRunModelConfig info = runmodelconfigrerules.get(i);
-                ILoggerBaseUtils.info("[{}]功能处理器[{}]开始处理[{}]", "jar", info.getClass(), "writeProperties");
+                ILoggerBaseUtils.debug("功能处理器[{}]开始处理[{}]", info.getClass(), "writeProperties");
                 if (info instanceof ISystemConfig) {
                     BaseEv.SettingInformation.setting.putAll(info.getProperties());
                 }
-                ILoggerBaseUtils.info("[{}]功能处理器[{}]处理完成[{}]", "jar", info.getClass(), "writeProperties");
             }
             //读取第三方参数
             for (int i = 0; i < runmodelconfigrerules.size(); i++) {
                 IRunModelConfig info = runmodelconfigrerules.get(i);
-                ILoggerBaseUtils.info("[{}]功能处理器[{}]开始处理[{}]", "jar", info.getClass(), "writeProperties");
+                ILoggerBaseUtils.debug("功能处理器[{}]开始处理[{}]", info.getClass(), "writeProperties");
                 if (info instanceof IThirdConfig) {
                     BaseEv.SettingInformation.setting.putAll(info.getProperties());
                 }
-                ILoggerBaseUtils.info("[{}]功能处理器[{}]处理完成[{}]", "jar", info.getClass(), "writeProperties");
             }
             for (int i = 0; i < classmodelconfigrerules.size(); i++) {
                 IClassModelConfig info = classmodelconfigrerules.get(i);
-                ILoggerBaseUtils.info("[{}]功能处理器[{}]开始处理[{}]", "class", info.getClass(), "writeProperties");
+                ILoggerBaseUtils.debug("功能处理器[{}]开始处理[{}]", info.getClass(), "writeProperties");
                 BaseEv.SettingInformation.setting.putAll(info.getProperties());
-                ILoggerBaseUtils.info("[{}]功能处理器[{}]处理完成[{}]", "class", info.getClass(), "writeProperties");
             }
         }
         //额外参数处理器,比如配置参数变动值
         for (int i = 0; i < runmodelconfigrerules.size(); i++) {
             IRunModelConfig info1 = runmodelconfigrerules.get(i);
-            ILoggerBaseUtils.info("[{}]功能处理器[{}]开始处理[{}]", "jar", info1.getClass(), "callSetting");
+            ILoggerBaseUtils.debug("功能处理器[{}]开始处理[{}]", info1.getClass(), "callSetting");
             if (info1 instanceof IThirdConfig) {
                 for (IRunModelConfig info : runmodelconfigrerules) {
                     if (info instanceof IThirdConfig) {
@@ -109,10 +104,9 @@ public class LineDefaultManager implements ILineManager {
                     }
                 }
             }
-            ILoggerBaseUtils.info("[{}]功能处理器[{}]处理完成[{}]", "jar", info1.getClass(), "callSetting");
         }
         {
-            ILoggerBaseUtils.info("首次压入环境变量[{}]开始", "System.setProperty");
+            ILoggerBaseUtils.debug("首次压入环境变量[{}]开始", "System.setProperty");
             {
                 Map<String, String> notBlankMap = MapUtil.filter(new HashMap<>(BaseEv.SettingInformation.setting), t -> StrUtil.isNotBlank(t.getValue()));
                 ILoggerBaseUtils.debug("清空并重新压入项目变量");
@@ -124,7 +118,6 @@ public class LineDefaultManager implements ILineManager {
                 ILoggerBaseUtils.debug("压入系统变量[{}]:[{}]", key, BaseEv.SettingInformation.setting.get(key));
                 System.setProperty(key, BaseEv.SettingInformation.setting.get(key));
             }
-            ILoggerBaseUtils.info("首次压入环境变量[{}]完成", "System.setProperty");
         }
 
     }
@@ -137,46 +130,41 @@ public class LineDefaultManager implements ILineManager {
         //IOC对象加载,按照顺序
         for (int i = 0; i < runmodelconfigrerules.size(); i++) {
             IRunModelConfig info = runmodelconfigrerules.get(i);
-            ILoggerBaseUtils.info("[{}]功能处理器[{}]开始处理[{}]", "jar", info.getClass(), "writeClasss");
+            ILoggerBaseUtils.debug("功能处理器[{}]开始处理[{}]", info.getClass(), "writeClasss");
             if (info instanceof ISystemConfig) {
                 BaseEv.SettingInformation.iocclasses.addAll(info.writeClasss());
             }
-            ILoggerBaseUtils.info("[{}]功能处理器[{}]处理完成[{}]", "jar", info.getClass(), "writeClasss");
         }
         for (int i = 0; i < runmodelconfigrerules.size(); i++) {
             IRunModelConfig info = runmodelconfigrerules.get(i);
-            ILoggerBaseUtils.info("[{}]功能处理器[{}]开始处理[{}]", "jar", info.getClass(), "writeClasss");
+            ILoggerBaseUtils.debug("功能处理器[{}]开始处理[{}]", info.getClass(), "writeClasss");
             if (info instanceof IThirdConfig) {
                 BaseEv.SettingInformation.iocclasses.addAll(info.writeClasss());
             }
-            ILoggerBaseUtils.info("[{}]功能处理器[{}]处理完成[{}]", "jar", info.getClass(), "writeClasss");
         }
         if (BaseEv.SettingInformation.isClassModel) {//提前处理非Jar模式需要处理的东西
             for (int i = 0; i < classmodelconfigrerules.size(); i++) {
                 IClassModelConfig info = classmodelconfigrerules.get(i);
-                ILoggerBaseUtils.info("[{}]功能处理器[{}]开始处理[{}]", "class", info.getClass(), "writeClasss");
+                ILoggerBaseUtils.debug("功能处理器[{}]开始处理[{}]", info.getClass(), "writeClasss");
                 BaseEv.SettingInformation.iocclasses.addAll(info.writeClasss());
-                ILoggerBaseUtils.info("[{}]功能处理器[{}]处理完成[{}]", "class", info.getClass(), "writeClasss");
             }
         }
 
         for (int i = 0; i < runmodelconfigrerules.size(); i++) {
             IRunModelConfig info = runmodelconfigrerules.get(i);
-            ILoggerBaseUtils.info("[{}]功能处理器[{}]开始处理[{}]", "jar", info.getClass(), "after");
+            ILoggerBaseUtils.debug("功能处理器[{}]开始处理[{}]", info.getClass(), "after");
             info.after();
-            ILoggerBaseUtils.info("[{}]功能处理器[{}]处理完成[{}]", "jar", info.getClass(), "after");
         }
 
         if (BaseEv.SettingInformation.isClassModel) {//提前处理非Jar模式需要处理的东西
             for (int i = 0; i < classmodelconfigrerules.size(); i++) {
                 IClassModelConfig info = classmodelconfigrerules.get(i);
-                ILoggerBaseUtils.info("[{}]功能处理器[{}]开始处理[{}]", "class", info.getClass(), "after");
+                ILoggerBaseUtils.debug("功能处理器[{}]开始处理[{}]", info.getClass(), "after");
                 info.after();
-                ILoggerBaseUtils.info("[{}]功能处理器[{}]处理完成[{}]", "class", info.getClass(), "after");
             }
         }
         {
-            ILoggerBaseUtils.info("二次压入系统变量[{}]开始", "System.setProperty");
+            ILoggerBaseUtils.debug("二次压入系统变量[{}]开始", "System.setProperty");
             {
                 Map<String, String> notBlankMap = MapUtil.filter(new HashMap<>(BaseEv.SettingInformation.setting), t -> StrUtil.isNotBlank(t.getValue()));
                 ILoggerBaseUtils.debug("清空并重新压入项目变量");
@@ -188,7 +176,6 @@ public class LineDefaultManager implements ILineManager {
                 ILoggerBaseUtils.debug("压入系统变量[{}]:[{}]", key, BaseEv.SettingInformation.setting.get(key));
                 System.setProperty(key, BaseEv.SettingInformation.setting.get(key));
             }
-            ILoggerBaseUtils.info("二次压入系统变量[{}]完成", "System.setProperty");
         }
     }
 

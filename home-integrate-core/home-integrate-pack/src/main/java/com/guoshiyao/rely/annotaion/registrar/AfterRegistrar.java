@@ -11,7 +11,6 @@
 
 package com.guoshiyao.rely.annotaion.registrar;
 
-import com.guoshiyao.rely.config.EndInit;
 import org.springframework.boot.autoconfigure.AutoConfigureAfter;
 import org.springframework.context.annotation.ImportSelector;
 import org.springframework.core.type.AnnotationMetadata;
@@ -26,7 +25,7 @@ public class AfterRegistrar implements ImportSelector {
 
     @Override
     public String[] selectImports(AnnotationMetadata annotationmetadata) {
-        return new String[]{EndInit.class.getTypeName()};
+        return new String[]{};
     }
 
 }

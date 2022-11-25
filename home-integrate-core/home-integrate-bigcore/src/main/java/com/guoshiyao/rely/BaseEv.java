@@ -27,7 +27,6 @@ import com.guoshiyao.rely.plugin.i18n.I18n;
 import org.apache.velocity.VelocityContext;
 
 import javax.sql.DataSource;
-import java.lang.annotation.*;
 import java.util.*;
 
 public class BaseEv {
@@ -117,6 +116,7 @@ public class BaseEv {
         public static ICoreConf homeConf;//按需调整
         public static IProjectConf projectConf;
         public static IResource resourcetool;
+        public static Set<Class<?>> driverClasses = new HashSet<>();
 
         public static void init() {
             if (resourcetool == null) {
@@ -134,14 +134,6 @@ public class BaseEv {
             baseEv.init();
         }
 
-
-        @Target(ElementType.TYPE)
-        @Retention(RetentionPolicy.RUNTIME)
-        @Documented
-        @Inherited
-        public @interface RuleBaseEv {
-
-        }
 
         public interface IBaseEv {
             void init();

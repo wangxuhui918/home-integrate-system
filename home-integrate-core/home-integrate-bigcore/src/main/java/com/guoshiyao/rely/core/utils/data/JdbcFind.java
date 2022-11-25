@@ -65,15 +65,15 @@ public class JdbcFind {
      */
     public static Set<Class<?>> getProjectJdbc() {
         String[] types = new String[]{"oracle", "mysql", "sqlserver", "h2", "sqllite"};
-        ILoggerBaseUtils.info("寻找可用 JDBC 驱动...........");
+        ILoggerBaseUtils.debug("寻找可用 JDBC 驱动...........");
         Set<Class<?>> classes = new HashSet<>();
         for (DataType datatype : DataType.values()) {
             Set<Class<?>> classes0 = ClassUtil.scanPackageBySuper(datatype.getPrefix(), java.sql.Driver.class);
             classes.addAll(classes0);
         }
         if (classes.size() > 0) {
-            ILoggerBaseUtils.info("寻找到可用驱动,请确认是否匹配.........." + JSONUtil.toJsonStr(classes));
-            ILoggerBaseUtils.info(JSONUtil.toJsonStr(classes));
+            ILoggerBaseUtils.debug("寻找到可用驱动,请确认是否匹配.........." + JSONUtil.toJsonStr(classes));
+            ILoggerBaseUtils.debug(JSONUtil.toJsonStr(classes));
         } else {
             ILoggerBaseUtils.warn("未查询到 JDBC 驱动包..........");
         }

@@ -14,6 +14,7 @@ import java.io.Serializable;
 
 public class ConfigMainVo implements Serializable {
     private String configFileName;
+    private String name;
     private String context;
     private boolean only_local;
     private boolean use_uk;
@@ -28,6 +29,13 @@ public class ConfigMainVo implements Serializable {
         this.configFileName = configFileName;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 
     public String getContext() {
         return context;

@@ -32,7 +32,7 @@ public class MyBatisPlusConfig implements IThirdConfig {
 
     @Override
     public List<Class> writeClasss() {
-        int deriversize = JdbcFind.getProjectJdbc().size();
+        int deriversize = BaseEv.SettingInformation.driverClasses.size();
         int userlclass = AnnotationTools.getRuleClassForClass(BaseMapper.class, BaseEv.WorkDir.projectPackage);
         if (deriversize > 0 && userlclass > 0 && BaseEv.SettingInformation.setting.containsKey(ConfigDetails.HOME_DB_URL.getKey())) {//正确配置
             return Arrays.asList(new Class[]{MapperConfiguration.class, MybatisPlusAutoConfiguration.class});

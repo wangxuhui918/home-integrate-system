@@ -40,20 +40,17 @@ public class HomeUtils {
         List<ILineManager> plugins = CoreConfUtils.getPlugins(ILineManager.class);
         ///处理mac地址完成
         for (int i = 0; i < plugins.size(); i++) {
-            ILoggerBaseUtils.info("链式处理器[{}]开始处理[{}]", plugins.get(i).getClass(), "before");
+            ILoggerBaseUtils.info("总链式处理器[{}]开始处理[{}]", plugins.get(i).getClass(), "before");
             plugins.get(i).before();
-            ILoggerBaseUtils.info("链式处理器[{}]处理完成[{}]", plugins.get(i).getClass(), "before");
         }
         for (int i = 0; i < plugins.size(); i++) {
-            ILoggerBaseUtils.info("链式处理器[{}]开始处理[{}]", plugins.get(i).getClass(), "start");
+            ILoggerBaseUtils.info("总链式处理器[{}]开始处理[{}]", plugins.get(i).getClass(), "start");
             plugins.get(i).start();
-            ILoggerBaseUtils.info("链式处理器[{}]处理完成[{}]", plugins.get(i).getClass(), "start");
         }
 
         for (int i = 0; i < plugins.size(); i++) {
-            ILoggerBaseUtils.info("链式处理器[{}]开始处理[{}]", plugins.get(i).getClass(), "after");
+            ILoggerBaseUtils.info("总链式处理器[{}]开始处理[{}]", plugins.get(i).getClass(), "after");
             plugins.get(i).after();
-            ILoggerBaseUtils.info("链式处理器[{}]处理完成[{}]", plugins.get(i).getClass(), "after");
         }
 
         ILoggerBaseUtils.info("[{}]加载完成", BaseEv.SystemInformation.SYSTEM_CHINA_NAME);
