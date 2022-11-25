@@ -11,7 +11,7 @@
 package com.guoshiyao.rely.mybatis.starter.mybatis.config;
 
 import com.guoshiyao.rely.BaseEv;
-import com.guoshiyao.rely.core.configration.home.impl.enumtype.bean.properties.ConfigDetails;
+import com.guoshiyao.rely.core.configration.home.impl.bean.ConfigDetails;
 import org.springframework.context.annotation.Bean;
 import tk.mybatis.spring.mapper.MapperScannerConfigurer;
 

@@ -27,11 +27,9 @@
         <module>home-integrate-mybatistplus</module>
         <module>home-integrate-faitht</module>
         <module>home-integrate-apollot</module>
-        <module>home-integrate-snowflake</module>
-        <module>home-integrate-flywayt</module>
+         <module>home-integrate-flywayt</module>
         <module>home-integrate-createconfig</module>
-        <module>home-integrate-gittools</module>
-        <module>home-integrate-minio</module>
+         <module>home-integrate-minio</module>
         <module>home-integrate-redis</module>
     </modules>
 </project>

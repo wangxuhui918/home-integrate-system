@@ -16,7 +16,7 @@ import com.alibaba.dubbo.config.ProviderConfig;
 import com.alibaba.dubbo.config.RegistryConfig;
 import com.alibaba.dubbo.config.spring.AnnotationBean;
 import com.guoshiyao.rely.BaseEv;
-import com.guoshiyao.rely.core.configration.home.impl.enumtype.bean.properties.ConfigDetails;
+import com.guoshiyao.rely.core.configration.home.impl.bean.ConfigDetails;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
 

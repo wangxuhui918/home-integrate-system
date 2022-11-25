@@ -15,7 +15,7 @@ import com.ctrip.framework.apollo.Config;
 import com.ctrip.framework.apollo.ConfigService;
 import com.guoshiyao.rely.BaseEv;
 import com.guoshiyao.rely.core.configration.annotation.RuleInjection;
-import com.guoshiyao.rely.core.configration.home.impl.enumtype.bean.properties.ConfigDetails;
+import com.guoshiyao.rely.core.configration.home.impl.bean.ConfigDetails;
 import com.guoshiyao.rely.coreextension.run.IThirdConfig;
 
 import java.util.*;

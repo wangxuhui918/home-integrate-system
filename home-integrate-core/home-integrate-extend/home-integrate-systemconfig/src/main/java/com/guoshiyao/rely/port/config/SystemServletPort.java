@@ -12,7 +12,7 @@ package com.guoshiyao.rely.port.config;
 
 import cn.hutool.core.net.NetUtil;
 import com.guoshiyao.rely.BaseEv;
-import com.guoshiyao.rely.core.configration.home.impl.enumtype.bean.properties.ConfigDetails;
+import com.guoshiyao.rely.core.configration.home.impl.bean.ConfigDetails;
 import com.guoshiyao.rely.plugin.exception.re.ex.ExceptionError;
 import com.guoshiyao.rely.plugin.log.ILoggerBaseUtils;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;

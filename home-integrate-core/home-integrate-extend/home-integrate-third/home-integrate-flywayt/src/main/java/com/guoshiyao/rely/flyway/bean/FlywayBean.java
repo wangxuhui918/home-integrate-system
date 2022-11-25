@@ -11,7 +11,7 @@
 package com.guoshiyao.rely.flyway.bean;
 
 import com.guoshiyao.rely.BaseEv;
-import com.guoshiyao.rely.core.configration.home.impl.enumtype.bean.properties.ConfigDetails;
+import com.guoshiyao.rely.core.configration.home.impl.bean.ConfigDetails;
 import org.flywaydb.core.Flyway;
 import org.springframework.context.annotation.Bean;
 

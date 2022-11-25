@@ -13,7 +13,7 @@ package com.guoshiyao.rely.message;
 import cn.hutool.setting.Setting;
 import com.guoshiyao.rely.BaseEv;
 import com.guoshiyao.rely.core.configration.annotation.RuleInjection;
-import com.guoshiyao.rely.core.configration.project.impl.enumtype.utils.node.NodeUtils;
+import com.guoshiyao.rely.message.utils.NodeUtils;
 import com.guoshiyao.rely.core.configration.utils.ProjectConfUtils;
 import com.guoshiyao.rely.coreextension.third.IMessageConfig;
 import com.guoshiyao.rely.plugin.exception.code.bean.MessageCodeVo;

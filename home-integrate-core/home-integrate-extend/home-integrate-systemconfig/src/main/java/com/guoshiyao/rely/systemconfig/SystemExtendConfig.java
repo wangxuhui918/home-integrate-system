@@ -10,8 +10,8 @@
 
 package com.guoshiyao.rely.systemconfig;
 
-import com.guoshiyao.rely.core.configration.annotation.RuleInjection;
 import com.guoshiyao.rely.bean.Bean;
+import com.guoshiyao.rely.core.configration.annotation.RuleInjection;
 import com.guoshiyao.rely.coreextension.run.ISystemConfig;
 
 import java.util.*;
@@ -45,7 +45,7 @@ public class SystemExtendConfig implements ISystemConfig {
     public List<Class> writeClasss() {
         LinkedHashMap<String, List<Class>> map = new LinkedHashMap<>();
         return Arrays
-                .asList(new Class[]{StartPingService.class, Bean.class});
+                .asList(new Class[]{Bean.class});
     }
 
 }

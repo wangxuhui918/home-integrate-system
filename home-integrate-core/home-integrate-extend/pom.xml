@@ -19,12 +19,9 @@
     <packaging>pom</packaging>
     <name>home-integrate-extend</name>
     <modules>
-        <module>home-integrate-exception</module>
         <module>home-integrate-message</module>
         <module>home-integrate-systemconfig</module>
-        <module>home-integrate-outgoing</module>
         <module>home-integrate-logback</module>
-        <module>home-integrate-sysuser</module>
         <module>home-integrate-third</module>
     </modules>
 </project>

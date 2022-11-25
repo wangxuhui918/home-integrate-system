@@ -10,7 +10,7 @@
 package com.guoshiyao.rely.minio.utils;
 
 import com.guoshiyao.rely.BaseEv;
-import com.guoshiyao.rely.core.configration.home.impl.enumtype.bean.properties.ConfigDetails;
+import com.guoshiyao.rely.core.configration.home.impl.bean.ConfigDetails;
 import com.guoshiyao.rely.plugin.exception.re.ex.ExceptionError;
 import io.minio.BucketExistsArgs;
 import io.minio.MakeBucketArgs;

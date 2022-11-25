@@ -14,7 +14,7 @@ import cn.hutool.setting.Setting;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.guoshiyao.rely.BaseEv;
 import com.guoshiyao.rely.core.configration.annotation.RuleInjection;
-import com.guoshiyao.rely.core.configration.home.impl.enumtype.bean.properties.ConfigDetails;
+import com.guoshiyao.rely.core.configration.home.impl.bean.ConfigDetails;
 import com.guoshiyao.rely.core.utils.AnnotationTools;
 import com.guoshiyao.rely.core.utils.data.JdbcFind;
 import com.guoshiyao.rely.coreextension.run.IThirdConfig;

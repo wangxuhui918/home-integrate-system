@@ -9,20 +9,25 @@
 
 package com.guoshiyao.rely.core.utils.resource;
 
-import com.guoshiyao.rely.core.IResource;
-import com.guoshiyao.rely.core.configration.utils.CoreConfUtils;
+import com.guoshiyao.rely.BaseEv;
+import com.guoshiyao.rely.plugin.exception.re.ex.ExceptionError;
 
 import java.net.URI;
 import java.util.List;
 
 public class ResourceFindUtils {
-    private static List<IResource> creatconfigall = CoreConfUtils.getPlugins(IResource.class);
 
     public static List<String> findClassesPath(String patternPath) {
-        return creatconfigall.get(0).findClassesPath(patternPath);
+        if (BaseEv.SettingInformation.resourcetool == null) {
+            throw new ExceptionError(ResourceFindUtils.class.getName() + "缺失核心实现类!");
+        }
+        return BaseEv.SettingInformation.resourcetool.findClassesPath(patternPath);
     }
 
     public static List<URI> findUri(String patternPath) {
-        return creatconfigall.get(0).find(patternPath);
+        if (BaseEv.SettingInformation.resourcetool == null) {
+            throw new ExceptionError(ResourceFindUtils.class.getName() + "缺失核心实现类!");
+        }
+        return BaseEv.SettingInformation.resourcetool.find(patternPath);
     }
 }
