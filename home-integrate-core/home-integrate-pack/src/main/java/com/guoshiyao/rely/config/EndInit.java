@@ -25,10 +25,9 @@ public class EndInit implements CommandLineRunner {
     public void run(String... args) {
         ILoggerBaseUtils.info("开始翻转日志管理器!!");
         ILoggerBaseUtils.custLogger = new LoggerUtil();
-        ILoggerBaseUtils.info("翻转日志管理器成功!!");
         ILoggerBaseUtils.info("开始处理雪花算法集群ID!!");
         IdUtils.workerId = BaseEv.SettingInformation.distributedKey;
-        ILoggerBaseUtils.info("处理雪花算法集群ID完成!!");
+
 
         ILoggerBaseUtils.info("用户目录 : {} [key]:[{}] ", BaseEv.WorkDir.userHomeDir, "Line.userHomeDir");
         ILoggerBaseUtils.info("运行用户名 : {} [key]:[{}] ", BaseEv.WorkDir.systemUserName, "Line.systemUserName");
@@ -56,6 +55,8 @@ public class EndInit implements CommandLineRunner {
         ILoggerBaseUtils.info("默认redis连接池 : {} [key]:[{}] ", BaseEv.SettingInformation.redisds == null ? "" : BaseEv.SettingInformation.redisds.toString(), "Line.redisds");
         ILoggerBaseUtils.info("默认jdbc_jar包路径 : {} [key]:[{}] ", BaseEv.WorkDir.main_jdbc_jar_fullpath, "Line.main_jdbc_jar_fullpath");
         ILoggerBaseUtils.info("swagger 地址 : {} ", "http://127.0.0.1:" + BaseEv.SettingInformation.setting.get(ConfigDetails.SYSTEM_SERVLET_PORT.getKey()) + "/swagger-ui/index.html");
+
+
         System.out.println(ResourceUtil.readUtf8Str("ban.txt"));
     }
 }
