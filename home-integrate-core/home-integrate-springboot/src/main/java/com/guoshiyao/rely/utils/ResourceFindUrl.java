@@ -12,7 +12,6 @@ package com.guoshiyao.rely.utils;
 import cn.hutool.core.io.FileUtil;
 import cn.hutool.core.util.StrUtil;
 import com.guoshiyao.rely.BaseEv;
-import com.guoshiyao.rely.core.configration.annotation.RuleInjection;
 import com.guoshiyao.rely.core.IResource;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
@@ -22,7 +21,7 @@ import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 
-@RuleInjection
+
 public class ResourceFindUrl implements IResource {
 
 

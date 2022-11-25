@@ -8,8 +8,7 @@
 
 package com.guoshiyao.rely.core.configration.utils;
 
-import com.guoshiyao.rely.core.configration.project.IProjectConf;
-import com.guoshiyao.rely.core.configration.project.impl.enumtype.ProjectBuiltInImpl;
+import com.guoshiyao.rely.BaseEv;
 
 import java.util.Map;
 
@@ -19,36 +18,35 @@ import java.util.Map;
  * @readme
  */
 public class ProjectConfUtils {
-    private static IProjectConf projectConf = new ProjectBuiltInImpl();
 
     public static void writeProperties() {
-        projectConf.writeProperties();
+        BaseEv.SettingInformation.projectConf.writeProperties();
     }
 
 
     public static void writeReadMes() {
-        projectConf.writeFileStructures();
+        BaseEv.SettingInformation.projectConf.writeFileStructures();
     }
 
 
     public static boolean installed() {
-        return projectConf.installed();
+        return BaseEv.SettingInformation.projectConf.installed();
     }
 
     public static void install() {
-        projectConf.install();
+        BaseEv.SettingInformation.projectConf.install();
     }
 
     public static String getZoneMessageFileContext() {
-        return projectConf.getDefaultMessageXmlContexts();
+        return BaseEv.SettingInformation.projectConf.getDefaultMessageXmlContexts();
     }
 
     public static Map<String, String> getAllMessageXmlContexts() {
-        return projectConf.getAllMessageXmlContexts();
+        return BaseEv.SettingInformation.projectConf.getAllMessageXmlContexts();
     }
 
     public static Map<String, String> getThisEnvPropertiesValue() {
-        return projectConf.getThisEnvPropertiesValue();
+        return BaseEv.SettingInformation.projectConf.getThisEnvPropertiesValue();
     }
 
 

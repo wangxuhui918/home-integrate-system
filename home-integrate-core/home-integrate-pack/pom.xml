@@ -17,8 +17,19 @@
     <artifactId>home-integrate-pack</artifactId>
 
     <dependencies>
+        <!--        自定义工具类项目-->
+        <dependency>
+            <groupId>com.guoshiyao.rely</groupId>
+            <artifactId>home-tools-git</artifactId>
+            <version>10.1.1-RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>com.guoshiyao.rely</groupId>
+            <artifactId>home-tools-snowflake</artifactId>
+            <version>10.1.1-RELEASE</version>
+        </dependency>
 
-
+        <!--        自定义组件-->
         <dependency>
             <groupId>com.guoshiyao.rely</groupId>
             <version>10.0.1-SNAPSHOT</version>
@@ -28,49 +39,31 @@
             <groupId>com.guoshiyao.rely</groupId>
             <version>10.0.1-SNAPSHOT</version>
             <artifactId>home-integrate-bigcore</artifactId>
-
         </dependency>
         <dependency>
             <groupId>com.guoshiyao.rely</groupId>
             <version>10.0.1-SNAPSHOT</version>
             <artifactId>home-integrate-systemconfig</artifactId>
-
-        </dependency>
-        <dependency>
-            <groupId>com.guoshiyao.rely</groupId>
-            <version>10.0.1-SNAPSHOT</version>
-            <artifactId>home-integrate-exception</artifactId>
-
         </dependency>
         <dependency>
             <groupId>com.guoshiyao.rely</groupId>
             <version>10.0.1-SNAPSHOT</version>
             <artifactId>home-integrate-message</artifactId>
-
         </dependency>
         <dependency>
             <groupId>com.guoshiyao.rely</groupId>
             <version>10.0.1-SNAPSHOT</version>
             <artifactId>home-integrate-springboot</artifactId>
-
         </dependency>
         <dependency>
             <groupId>com.guoshiyao.rely</groupId>
             <version>10.0.1-SNAPSHOT</version>
             <artifactId>home-integrate-actut</artifactId>
-
-        </dependency>
-        <dependency>
-            <groupId>com.guoshiyao.rely</groupId>
-            <version>10.0.1-SNAPSHOT</version>
-            <artifactId>home-integrate-sysuser</artifactId>
-
         </dependency>
         <dependency>
             <groupId>com.guoshiyao.rely</groupId>
             <version>10.0.1-SNAPSHOT</version>
             <artifactId>home-integrate-apollot</artifactId>
-
         </dependency>
         <dependency>
             <groupId>com.guoshiyao.rely</groupId>
@@ -110,17 +103,7 @@
         <dependency>
             <groupId>com.guoshiyao.rely</groupId>
             <version>10.0.1-SNAPSHOT</version>
-            <artifactId>home-integrate-outgoing</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.guoshiyao.rely</groupId>
-            <version>10.0.1-SNAPSHOT</version>
             <artifactId>home-integrate-swaggert</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.guoshiyao.rely</groupId>
-            <version>10.0.1-SNAPSHOT</version>
-            <artifactId>home-integrate-snowflake</artifactId>
         </dependency>
         <dependency>
             <groupId>com.guoshiyao.rely</groupId>
@@ -132,11 +115,7 @@
             <version>10.0.1-SNAPSHOT</version>
             <artifactId>home-integrate-createconfig</artifactId>
         </dependency>
-        <dependency>
-            <groupId>com.guoshiyao.rely</groupId>
-            <version>10.0.1-SNAPSHOT</version>
-            <artifactId>home-integrate-gittools</artifactId>
-        </dependency>
+
         <dependency>
             <groupId>com.guoshiyao.rely</groupId>
             <version>10.0.1-SNAPSHOT</version>

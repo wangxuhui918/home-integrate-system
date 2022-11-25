@@ -8,7 +8,6 @@
 
 package com.guoshiyao.rely;
 
-import cn.hutool.core.collection.CollUtil;
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.io.FileUtil;
 import cn.hutool.core.lang.tree.Tree;
@@ -17,6 +16,11 @@ import cn.hutool.core.util.StrUtil;
 import cn.hutool.db.nosql.redis.RedisDS;
 import cn.hutool.setting.Setting;
 import cn.hutool.system.SystemUtil;
+import com.guoshiyao.rely.core.IResource;
+import com.guoshiyao.rely.core.configration.home.ICoreConf;
+import com.guoshiyao.rely.core.configration.project.IProjectConf;
+import com.guoshiyao.rely.core.configration.utils.CoreConfUtils;
+import com.guoshiyao.rely.core.configration.utils.ProjectConfUtils;
 import com.guoshiyao.rely.plugin.exception.code.bean.MessageCodeVo;
 import com.guoshiyao.rely.plugin.exception.re.ex.ExceptionError;
 import com.guoshiyao.rely.plugin.i18n.I18n;
@@ -83,6 +87,10 @@ public class BaseEv {
         public static Class mainClassC = null;//启动类
     }
 
+    public static class InterfaceInformation {
+
+    }
+
     public static class SettingInformation {//项目设置信息
 
         public final static String corePacket = StrUtil.sub(ClassUtil.getPackage(BaseEv.class), 0,
@@ -105,31 +113,25 @@ public class BaseEv {
         public static String UK = "";//用户唯一标志
         public static RedisDS redisds = null;//已经初始化过的 redisds 可以直接创建 jredis (.getJedis())
         public static boolean autoUpdate = false;//是否自动更新
-        public static List<IBaseEv> baseEvs = getRule(RuleBaseEv.class, IBaseEv.class);//各种工作目录,class路径,jar路径
+        public static IBaseEv baseEv;//各种工作目录,class路径,jar路径
+        public static ICoreConf homeConf;//按需调整
+        public static IProjectConf projectConf;
+        public static IResource resourcetool;
 
-        static {
-            if (BaseEv.SettingInformation.baseEvs != null && BaseEv.SettingInformation.baseEvs.size() > 0) {//简洁版
-                for (int i = 0; i < BaseEv.SettingInformation.baseEvs.size(); i++) {
-                    BaseEv.SettingInformation.baseEvs.get(i).init();
-                }
-            } else {
-                throw new ExceptionError("缺失Line初始化规则,请实现projectCoreConfRes...", "sun.java.command");
+        public static void init() {
+            if (resourcetool == null) {
+                throw new ExceptionError(IResource.class.getName() + "缺失核心实现类!");
             }
-        }
-
-        public static <A extends Annotation, T> List<T> getRule(Class<A> annotaione, Class<T> classe) {
-            List<T> listarra = new ArrayList<>();
-            Set<Class<?>> annotaiones = ClassUtil.scanPackageByAnnotation(SettingInformation.corePacket, annotaione);
-            Set<Class<?>> classes = ClassUtil.scanPackageBySuper(SettingInformation.corePacket, classe);
-            Collection<Class<?>> intersectionSet = CollUtil.intersection(annotaiones, classes);
-            for (Class<?> class1 : intersectionSet) {
-                try {
-                    T sd = (T) ClassUtil.loadClass(class1.getName(), false).newInstance();
-                    listarra.add(sd);
-                } catch (Exception e) {
-                }
+            if (projectConf == null) {
+                throw new ExceptionError(ProjectConfUtils.class.getName() + "缺失核心实现类!");
             }
-            return listarra;
+            if (homeConf == null) {
+                throw new ExceptionError(CoreConfUtils.class.getName() + "缺失核心实现类!");
+            }
+            if (baseEv == null) {
+                throw new ExceptionError(BaseEv.class.getName() + ".baseEv 需要实现接口");
+            }
+            baseEv.init();
         }
 
 

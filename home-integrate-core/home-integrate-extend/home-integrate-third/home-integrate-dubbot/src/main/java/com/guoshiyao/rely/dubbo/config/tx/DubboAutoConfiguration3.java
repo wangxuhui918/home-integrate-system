@@ -12,7 +12,7 @@ package com.guoshiyao.rely.dubbo.config.tx;
 
 import com.alibaba.dubbo.config.ConsumerConfig;
 import com.guoshiyao.rely.BaseEv;
-import com.guoshiyao.rely.core.configration.home.impl.enumtype.bean.properties.ConfigDetails;
+import com.guoshiyao.rely.core.configration.home.impl.bean.ConfigDetails;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
 

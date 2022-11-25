@@ -14,7 +14,6 @@ import cn.hutool.setting.Setting;
 import com.alibaba.dubbo.config.annotation.Service;
 import com.guoshiyao.rely.BaseEv;
 import com.guoshiyao.rely.core.configration.annotation.RuleInjection;
-import com.guoshiyao.rely.core.configration.home.impl.enumtype.bean.properties.ConfigDetails;
 import com.guoshiyao.rely.core.utils.AnnotationTools;
 import com.guoshiyao.rely.coreextension.run.IThirdConfig;
 import com.guoshiyao.rely.dubbo.config.DubboBaseConfiguration;

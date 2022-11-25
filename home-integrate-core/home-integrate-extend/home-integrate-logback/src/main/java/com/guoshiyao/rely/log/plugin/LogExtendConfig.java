@@ -10,11 +10,8 @@
 
 package com.guoshiyao.rely.log.plugin;
 
-import com.guoshiyao.rely.BaseEv;
 import com.guoshiyao.rely.core.configration.annotation.RuleInjection;
-import com.guoshiyao.rely.core.configration.home.impl.enumtype.bean.properties.ConfigDetails;
 import com.guoshiyao.rely.coreextension.run.ISystemConfig;
-import com.guoshiyao.rely.log.bean.EndLogBean;
 import com.guoshiyao.rely.plugin.exception.re.ex.ExceptionError;
 
 import java.util.Arrays;
@@ -41,7 +38,7 @@ public class LogExtendConfig implements ISystemConfig {
 
     @Override
     public List<Class> writeClasss() {
-        return Arrays.asList(new Class[]{EndLogBean.class});
+        return Arrays.asList(new Class[]{});
     }
 
     @Override
