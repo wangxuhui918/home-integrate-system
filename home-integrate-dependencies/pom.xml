@@ -5,21 +5,61 @@
   ~  * 汪旭辉
   ~  */
   -->
+
 <project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.guoshiyao.rely</groupId>
     <artifactId>home-integrate-dependencies</artifactId>
+    <name>home-integrate-dependencies</name>
+    <description>home-integrate-dependencies</description>
     <version>10.0.1-SNAPSHOT</version>
     <packaging>pom</packaging>
+
+
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.6.2</version>
+    </parent>
+
     <dependencyManagement>
         <dependencies>
             <!--            sptingboot-->
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-dependencies</artifactId>
+                <type>pom</type>
                 <version>2.6.2</version>
-                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot</artifactId>
+                <version>2.6.2</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter</artifactId>
+                <version>2.6.2</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-web</artifactId>
+                <version>2.6.2</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-thymeleaf</artifactId>
+                <version>2.6.2</version>
+            </dependency>
+
+            <dependency>
+                <groupId>net.sourceforge.nekohtml</groupId>
+                <artifactId>nekohtml</artifactId>
+                <version>1.9.22</version>
             </dependency>
             <!--            常用工具包-->
             <!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
@@ -307,57 +347,22 @@
                 <version>2.13.0</version>
 
             </dependency>
-            <!--            other me tools-->
-            <dependency>
-                <groupId>com.guoshiyao.rely</groupId>
-                <artifactId>home-tools-git</artifactId>
-                <version>10.1.1-RELEASE</version>
 
-            </dependency>
-            <dependency>
-                <groupId>com.guoshiyao.rely</groupId>
-                <artifactId>home-tools-snowflake</artifactId>
-                <version>10.1.1-RELEASE</version>
-
-            </dependency>
-            <dependency>
-                <groupId>com.guoshiyao.rely</groupId>
-                <artifactId>home-integrate-resource</artifactId>
-                <version>1.0.0-RELEASE</version>
-
-            </dependency>
         </dependencies>
     </dependencyManagement>
-    <issueManagement>
-        <system>System Issue</system>
-        <url>https://guoshiyao.com/home/issues</url>
-    </issueManagement>
-    <licenses>
-        <license>
-            <name>Mulan Permissive Software License，Version 1</name>
-            <url>http://license.coscl.org.cn/MulanPSL</url>
-        </license>
-    </licenses>
-    <developers>
-        <developer>
-            <name>wangxuhui918</name>
-            <email>wangxuhui918@163.com</email>
-        </developer>
-    </developers>
-    <distributionManagement>
-        <snapshotRepository>
-            <id>sonatype-nexus-snapshots</id>
-            <name>Sonatype Nexus Snapshots</name>
-            <url>https://s01.oss.sonatype.org/content/repositories/snapshots/</url>
-        </snapshotRepository>
-        <repository>
-            <id>sonatype-nexus-staging</id>
-            <name>Nexus Release Repository</name>
-            <url>https://s01.oss.sonatype.org/content/repositories/releases/</url>
-        </repository>
-    </distributionManagement>
+    <dependencies>
+        <dependency>
+            <groupId>com.guoshiyao.rely</groupId>
+            <version>10.0.1-SNAPSHOT</version>
+            <artifactId>home-integrate-pack</artifactId>
+        </dependency>
+    </dependencies>
     <build>
         <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -369,39 +374,6 @@
                     </compilerArgs>
                     <fork>true</fork>
                 </configuration>
-            </plugin>
-            <!-- Javadoc -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-javadoc-plugin</artifactId>
-                <version>3.1.1</version>
-                <configuration>
-                    <doclint>none</doclint>
-                </configuration>
-                <executions>
-                    <execution>
-                        <id>attach-javadocs</id>
-                        <goals>
-                            <goal>jar</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-            <!-- source包 -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-source-plugin</artifactId>
-                <configuration>
-                    <attach>true</attach>
-                </configuration>
-                <executions>
-                    <execution>
-                        <phase>compile</phase>
-                        <goals>
-                            <goal>jar</goal>
-                        </goals>
-                    </execution>
-                </executions>
             </plugin>
         </plugins>
     </build>

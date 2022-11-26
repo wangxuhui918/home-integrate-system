@@ -12,17 +12,15 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.guoshiyao.rely</groupId>
-        <version>10.1.1-RELEASE</version>
-        <artifactId>home-integrate-core</artifactId>
+        <version>10.0.1-SNAPSHOT</version>
+        <artifactId>home-integrate-extend</artifactId>
     </parent>
-    <artifactId>home-integrate-extend</artifactId>
+    <artifactId>home-integrate-tools</artifactId>
     <packaging>pom</packaging>
-    <name>home-integrate-extend</name>
+    <name>home-integrate-tools</name>
     <modules>
-        <module>home-integrate-message</module>
-        <module>home-integrate-systemconfig</module>
-        <module>home-integrate-logback</module>
-        <module>home-integrate-third</module>
-        <module>home-integrate-tools</module>
+        <module>home-integrate-resource</module>
+        <module>home-tools-git</module>
+        <module>home-tools-snowflake</module>
     </modules>
 </project>
