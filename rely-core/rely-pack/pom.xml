@@ -12,7 +12,7 @@
     <parent>
         <groupId>com.guoshiyao.rely</groupId>
         <artifactId>rely-core</artifactId>
-        <version>10.1.3-RELEASE</version>
+        <version>10.1.4-RELEASE</version>
     </parent>
     <artifactId>rely-pack</artifactId>
 
@@ -21,120 +21,120 @@
         <dependency>
             <groupId>com.guoshiyao.rely</groupId>
             <artifactId>home-tools-git</artifactId>
-            <version>10.1.3-RELEASE</version>
+            <version>10.1.4-RELEASE</version>
         </dependency>
         <dependency>
             <groupId>com.guoshiyao.rely</groupId>
             <artifactId>home-tools-snowflake</artifactId>
-            <version>10.1.3-RELEASE</version>
+            <version>10.1.4-RELEASE</version>
         </dependency>
 
         <!--        自定义组件-->
         <dependency>
             <groupId>com.guoshiyao.rely</groupId>
-            <version>10.1.3-RELEASE</version>
+            <version>10.1.4-RELEASE</version>
             <artifactId>rely-springboot</artifactId>
         </dependency>
         <dependency>
             <groupId>com.guoshiyao.rely</groupId>
-            <version>10.1.3-RELEASE</version>
+            <version>10.1.4-RELEASE</version>
             <artifactId>rely-bigcore</artifactId>
         </dependency>
         <dependency>
             <groupId>com.guoshiyao.rely</groupId>
-            <version>10.1.3-RELEASE</version>
+            <version>10.1.4-RELEASE</version>
             <artifactId>rely-systemconfig</artifactId>
         </dependency>
         <dependency>
             <groupId>com.guoshiyao.rely</groupId>
-            <version>10.1.3-RELEASE</version>
+            <version>10.1.4-RELEASE</version>
             <artifactId>rely-message</artifactId>
         </dependency>
         <dependency>
             <groupId>com.guoshiyao.rely</groupId>
-            <version>10.1.3-RELEASE</version>
+            <version>10.1.4-RELEASE</version>
             <artifactId>rely-springboot</artifactId>
         </dependency>
         <dependency>
             <groupId>com.guoshiyao.rely</groupId>
-            <version>10.1.3-RELEASE</version>
+            <version>10.1.4-RELEASE</version>
             <artifactId>rely-actut</artifactId>
         </dependency>
         <dependency>
             <groupId>com.guoshiyao.rely</groupId>
-            <version>10.1.3-RELEASE</version>
+            <version>10.1.4-RELEASE</version>
             <artifactId>rely-apollot</artifactId>
         </dependency>
         <dependency>
             <groupId>com.guoshiyao.rely</groupId>
-            <version>10.1.3-RELEASE</version>
+            <version>10.1.4-RELEASE</version>
             <artifactId>rely-datat</artifactId>
         </dependency>
         <dependency>
             <groupId>com.guoshiyao.rely</groupId>
-            <version>10.1.3-RELEASE</version>
+            <version>10.1.4-RELEASE</version>
             <artifactId>rely-dubbot</artifactId>
         </dependency>
         <dependency>
             <groupId>com.guoshiyao.rely</groupId>
-            <version>10.1.3-RELEASE</version>
+            <version>10.1.4-RELEASE</version>
             <artifactId>rely-faitht</artifactId>
         </dependency>
         <dependency>
             <groupId>com.guoshiyao.rely</groupId>
-            <version>10.1.3-RELEASE</version>
+            <version>10.1.4-RELEASE</version>
             <artifactId>rely-logback</artifactId>
         </dependency>
         <dependency>
             <groupId>com.guoshiyao.rely</groupId>
-            <version>10.1.3-RELEASE</version>
+            <version>10.1.4-RELEASE</version>
             <artifactId>rely-mybatist</artifactId>
         </dependency>
         <dependency>
             <groupId>com.guoshiyao.rely</groupId>
-            <version>10.1.3-RELEASE</version>
+            <version>10.1.4-RELEASE</version>
             <artifactId>rely-mybatistplus</artifactId>
         </dependency>
         <dependency>
             <groupId>com.guoshiyao.rely</groupId>
-            <version>10.1.3-RELEASE</version>
+            <version>10.1.4-RELEASE</version>
             <artifactId>rely-swaggert</artifactId>
         </dependency>
         <dependency>
             <groupId>com.guoshiyao.rely</groupId>
-            <version>10.1.3-RELEASE</version>
+            <version>10.1.4-RELEASE</version>
             <artifactId>rely-swaggert</artifactId>
         </dependency>
         <dependency>
             <groupId>com.guoshiyao.rely</groupId>
-            <version>10.1.3-RELEASE</version>
+            <version>10.1.4-RELEASE</version>
             <artifactId>rely-flywayt</artifactId>
         </dependency>
         <dependency>
             <groupId>com.guoshiyao.rely</groupId>
-            <version>10.1.3-RELEASE</version>
+            <version>10.1.4-RELEASE</version>
             <artifactId>rely-createconfig</artifactId>
         </dependency>
 
         <dependency>
             <groupId>com.guoshiyao.rely</groupId>
-            <version>10.1.3-RELEASE</version>
+            <version>10.1.4-RELEASE</version>
             <artifactId>rely-redis</artifactId>
         </dependency>
         <dependency>
             <groupId>com.guoshiyao.rely</groupId>
-            <version>10.1.3-RELEASE</version>
+            <version>10.1.4-RELEASE</version>
             <artifactId>rely-minio</artifactId>
         </dependency>
         <dependency>
             <groupId>com.guoshiyao.rely</groupId>
             <artifactId>home-tools-git</artifactId>
-            <version>10.1.3-RELEASE</version>
+            <version>10.1.4-RELEASE</version>
         </dependency>
         <dependency>
             <groupId>com.guoshiyao.rely</groupId>
             <artifactId>home-tools-snowflake</artifactId>
-            <version>10.1.3-RELEASE</version>
+            <version>10.1.4-RELEASE</version>
         </dependency>
     </dependencies>
 </project>

@@ -15,7 +15,7 @@
     <parent>
         <artifactId>rely-third</artifactId>
         <groupId>com.guoshiyao.rely</groupId>
-        <version>10.1.3-RELEASE</version>
+        <version>10.1.4-RELEASE</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -30,7 +30,7 @@
     <dependencies>
         <dependency>
             <groupId>com.guoshiyao.rely</groupId>
-            <version>10.1.3-RELEASE</version>
+            <version>10.1.4-RELEASE</version>
             <artifactId>rely-springboot</artifactId>
         </dependency>
         <dependency>

@@ -20,7 +20,7 @@
 
 <parent>
     <groupId>com.guoshiyao.rely</groupId>
-    <version>10.1.3-RELEASE</version>
+    <version>10.1.4-RELEASE</version>
     <artifactId>rely-dependencies</artifactId>
 </parent>
 
@@ -28,7 +28,7 @@
     <dependency>
         <groupId>com.guoshiyao.rely</groupId>
         <artifactId>rely-all</artifactId>
-        <version>10.1.3-RELEASE</version>
+        <version>10.1.4-RELEASE</version>
         <type>pom</type>
     </dependency>
 </dependencies>
@@ -41,7 +41,7 @@
 
 <parent>
     <groupId>com.guoshiyao.rely</groupId>
-    <version>10.1.3-RELEASE</version>
+    <version>10.1.4-RELEASE</version>
     <artifactId>rely-dependencies</artifactId>
 </parent>
 
@@ -49,7 +49,7 @@
     <dependency>
         <groupId>com.guoshiyao.rely</groupId>
         <artifactId>rely-pack</artifactId>
-        <version>10.1.3-RELEASE</version>
+        <version>10.1.4-RELEASE</version>
     </dependency>
 </dependencies>
 
