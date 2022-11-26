@@ -12,7 +12,7 @@
     <parent>
         <groupId>com.guoshiyao.rely</groupId>
         <artifactId>home-integrate-core</artifactId>
-        <version>10.1.2-RELEASE</version>
+        <version>10.1.3-RELEASE</version>
     </parent>
     <artifactId>home-integrate-pack</artifactId>
 
@@ -21,125 +21,120 @@
         <dependency>
             <groupId>com.guoshiyao.rely</groupId>
             <artifactId>home-tools-git</artifactId>
-            <version>10.1.2-RELEASE</version>
+            <version>10.1.3-RELEASE</version>
         </dependency>
         <dependency>
             <groupId>com.guoshiyao.rely</groupId>
             <artifactId>home-tools-snowflake</artifactId>
-            <version>10.1.2-RELEASE</version>
+            <version>10.1.3-RELEASE</version>
         </dependency>
 
         <!--        自定义组件-->
         <dependency>
             <groupId>com.guoshiyao.rely</groupId>
-            <version>10.1.2-RELEASE</version>
+            <version>10.1.3-RELEASE</version>
             <artifactId>home-integrate-springboot</artifactId>
         </dependency>
         <dependency>
             <groupId>com.guoshiyao.rely</groupId>
-            <version>10.1.2-RELEASE</version>
+            <version>10.1.3-RELEASE</version>
             <artifactId>home-integrate-bigcore</artifactId>
         </dependency>
         <dependency>
             <groupId>com.guoshiyao.rely</groupId>
-            <version>10.1.2-RELEASE</version>
+            <version>10.1.3-RELEASE</version>
             <artifactId>home-integrate-systemconfig</artifactId>
         </dependency>
         <dependency>
             <groupId>com.guoshiyao.rely</groupId>
-            <version>10.1.2-RELEASE</version>
+            <version>10.1.3-RELEASE</version>
             <artifactId>home-integrate-message</artifactId>
         </dependency>
         <dependency>
             <groupId>com.guoshiyao.rely</groupId>
-            <version>10.1.2-RELEASE</version>
+            <version>10.1.3-RELEASE</version>
             <artifactId>home-integrate-springboot</artifactId>
         </dependency>
         <dependency>
             <groupId>com.guoshiyao.rely</groupId>
-            <version>10.1.2-RELEASE</version>
+            <version>10.1.3-RELEASE</version>
             <artifactId>home-integrate-actut</artifactId>
         </dependency>
         <dependency>
             <groupId>com.guoshiyao.rely</groupId>
-            <version>10.1.2-RELEASE</version>
+            <version>10.1.3-RELEASE</version>
             <artifactId>home-integrate-apollot</artifactId>
         </dependency>
         <dependency>
             <groupId>com.guoshiyao.rely</groupId>
-            <version>10.1.2-RELEASE</version>
+            <version>10.1.3-RELEASE</version>
             <artifactId>home-integrate-datat</artifactId>
         </dependency>
         <dependency>
             <groupId>com.guoshiyao.rely</groupId>
-            <version>10.1.2-RELEASE</version>
+            <version>10.1.3-RELEASE</version>
             <artifactId>home-integrate-dubbot</artifactId>
         </dependency>
         <dependency>
             <groupId>com.guoshiyao.rely</groupId>
-            <version>10.1.2-RELEASE</version>
+            <version>10.1.3-RELEASE</version>
             <artifactId>home-integrate-faitht</artifactId>
         </dependency>
         <dependency>
             <groupId>com.guoshiyao.rely</groupId>
-            <version>10.1.2-RELEASE</version>
+            <version>10.1.3-RELEASE</version>
             <artifactId>home-integrate-logback</artifactId>
         </dependency>
         <dependency>
             <groupId>com.guoshiyao.rely</groupId>
-            <version>10.1.2-RELEASE</version>
+            <version>10.1.3-RELEASE</version>
             <artifactId>home-integrate-mybatist</artifactId>
         </dependency>
         <dependency>
             <groupId>com.guoshiyao.rely</groupId>
-            <version>10.1.2-RELEASE</version>
+            <version>10.1.3-RELEASE</version>
             <artifactId>home-integrate-mybatistplus</artifactId>
         </dependency>
         <dependency>
             <groupId>com.guoshiyao.rely</groupId>
-            <version>10.1.2-RELEASE</version>
+            <version>10.1.3-RELEASE</version>
             <artifactId>home-integrate-swaggert</artifactId>
         </dependency>
         <dependency>
             <groupId>com.guoshiyao.rely</groupId>
-            <version>10.1.2-RELEASE</version>
+            <version>10.1.3-RELEASE</version>
             <artifactId>home-integrate-swaggert</artifactId>
         </dependency>
         <dependency>
             <groupId>com.guoshiyao.rely</groupId>
-            <version>10.1.2-RELEASE</version>
+            <version>10.1.3-RELEASE</version>
             <artifactId>home-integrate-flywayt</artifactId>
         </dependency>
         <dependency>
             <groupId>com.guoshiyao.rely</groupId>
-            <version>10.1.2-RELEASE</version>
+            <version>10.1.3-RELEASE</version>
             <artifactId>home-integrate-createconfig</artifactId>
         </dependency>
 
         <dependency>
             <groupId>com.guoshiyao.rely</groupId>
-            <version>10.1.2-RELEASE</version>
+            <version>10.1.3-RELEASE</version>
             <artifactId>home-integrate-redis</artifactId>
         </dependency>
         <dependency>
             <groupId>com.guoshiyao.rely</groupId>
-            <version>10.1.2-RELEASE</version>
+            <version>10.1.3-RELEASE</version>
             <artifactId>home-integrate-minio</artifactId>
         </dependency>
         <dependency>
             <groupId>com.guoshiyao.rely</groupId>
             <artifactId>home-tools-git</artifactId>
-            <version>10.1.2-RELEASE</version>
+            <version>10.1.3-RELEASE</version>
         </dependency>
         <dependency>
             <groupId>com.guoshiyao.rely</groupId>
             <artifactId>home-tools-snowflake</artifactId>
-            <version>10.1.2-RELEASE</version>
-        </dependency>
-        <dependency>
-            <groupId>com.guoshiyao.rely</groupId>
-            <artifactId>home-integrate-resource</artifactId>
-            <version>10.1.2-RELEASE</version>
+            <version>10.1.3-RELEASE</version>
         </dependency>
     </dependencies>
 </project>

@@ -20,7 +20,7 @@
 
 <parent>
     <groupId>com.guoshiyao.rely</groupId>
-    <version>10.1.2-RELEASE</version>
+    <version>10.1.3-RELEASE</version>
     <artifactId>home-integrate-dependencies</artifactId>
 </parent>
 
@@ -28,7 +28,7 @@
     <dependency>
         <groupId>com.guoshiyao.rely</groupId>
         <artifactId>home-integrate-all</artifactId>
-        <version>10.1.2-RELEASE</version>
+        <version>10.1.3-RELEASE</version>
         <type>pom</type>
     </dependency>
 </dependencies>
@@ -41,7 +41,7 @@
 
 <parent>
     <groupId>com.guoshiyao.rely</groupId>
-    <version>10.1.2-RELEASE</version>
+    <version>10.1.3-RELEASE</version>
     <artifactId>home-integrate-dependencies</artifactId>
 </parent>
 
@@ -49,7 +49,7 @@
     <dependency>
         <groupId>com.guoshiyao.rely</groupId>
         <artifactId>home-integrate-pack</artifactId>
-        <version>10.1.2-RELEASE</version>
+        <version>10.1.3-RELEASE</version>
     </dependency>
 </dependencies>
 

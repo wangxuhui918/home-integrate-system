@@ -23,7 +23,7 @@ public class RomensWebMvcConfigurationSupport extends WebMvcConfigurationSupport
         registry.addResourceHandler("/swagger-ui/**")
                 .addResourceLocations("classpath:/META-INF/resources/webjars/springfox-swagger-ui/");
         registry.addResourceHandler("/webjars/**").addResourceLocations("classpath:/META-INF/resources/webjars/");
-
+        registry.addResourceHandler("/**").addResourceLocations("classpath:/static/");
         registry.addResourceHandler("/css/**").addResourceLocations("classpath:/static/css/");
         registry.addResourceHandler("/ajax/**").addResourceLocations("classpath:/static/ajax/");
         registry.addResourceHandler("/file/**").addResourceLocations("classpath:/static/file/");
@@ -43,7 +43,7 @@ public class RomensWebMvcConfigurationSupport extends WebMvcConfigurationSupport
         converters.add(converter());
     }
 
-//    @Bean
+    //    @Bean
     public HomeMessageConverter converter() {
         return new HomeMessageConverter();
     }
