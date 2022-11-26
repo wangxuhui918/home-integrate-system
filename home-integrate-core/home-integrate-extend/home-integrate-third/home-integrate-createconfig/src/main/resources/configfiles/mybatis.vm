@@ -1,6 +1,0 @@
-#扫描mapper地址,默认为启动类下的 mapper文件夹
-#home.mybatis.basepackage=${projectPackage}.mapper
-#扫描mapper地址,默认为启动类下的 mapper文件夹
-#home.mybatis.typealiasespackage=${projectPackage}.mapper
-#扫描mapper.xml,默认为资源文件夹下的 mapper文件夹
-#home.mybatis.mapperlocations=classpath:**/mapper/**.xml
