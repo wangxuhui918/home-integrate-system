@@ -1,0 +1,22 @@
+#home.db.url=jdbc:mysql://localhost:3306/home?useSSL=false&serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=UTF-8
+#home.db.username=root
+#home.db.password=password
+#home.db.driverclassname=com.mysql.cj.jdbc.Driver
+#驱动下载地址,使用 url 后可以不填写home.db.driverclassname,MAVEN POM 中无需加载驱动坐标,优先级低于home.db.driverclassname
+#home.db.driverclass.downloadurl=https://repo1.maven.org/maven2/mysql/mysql-connector-java/5.1.49/mysql-connector-java-5.1.49.jar
+#home.db.validationquery=select 'x'
+#home.db.maxactive=30
+#home.db.initialsize=1
+#home.db.maxwait=60000
+#home.db.minidle=3
+#home.db.timebetweenevictionrunsmillis=60000
+#home.db.minevictableidletimemillis=300000
+#home.db.testwhileidle=true
+#home.db.testonborrow=false
+#home.db.testonreturn=false
+#home.db.poolpreparedstatements=true
+#home.db.removeabandoned=true
+#home.db.removeabandonedtimeout=60
+#home.db.numtestsperevictionrun=60
+#home.db.maxopenpreparedstatements=20
+#home.db.filters=stat,wall

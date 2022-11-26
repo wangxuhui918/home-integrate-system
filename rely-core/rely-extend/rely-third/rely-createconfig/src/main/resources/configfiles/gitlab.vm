@@ -1,0 +1,14 @@
+#git代码文件夹目录
+#home.gitlab.gitdir=${workHomeDir}/git/download
+#gitlab的地址
+#home.gitlab.gitlaburl=http://192.168.150.61:2080/
+#gitlab管理token
+#home.gitlab.token=
+#gitlab用户名
+#home.gitlab.username=wangxuhui
+#gitlab密码
+#home.gitlab.password=
+#gitlab checout default branch
+#home.gitlab.branch=master
+#gitlab log
+#home.gitlab.log=${workHomeDir}/git/log/log.txt

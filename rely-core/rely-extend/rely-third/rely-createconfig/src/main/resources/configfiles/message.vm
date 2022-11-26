@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<message>
+
+	<member code="DEMO01" conmtext="客户基础数据维护成功" type="true" />
+
+	<group name="${idKey}">
+		<member code="01" conmtext="获取数据成功" type="true" />
+		<member code="02" conmtext="主键目前只能有一个!!" type="false" />
+		<member code="03" conmtext="{}为不支持的数据库类型" type="false" />
+	</group>
+
+
+</message>

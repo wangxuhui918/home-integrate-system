@@ -1,0 +1,6 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+com.guoshiyao.rely.apollo.configraion.ApolloAutoConfigurationRe
+org.springframework.context.ApplicationContextInitializer=\
+com.guoshiyao.rely.apollo.configraion.ApolloApplicationContextInitializerRe
+org.springframework.boot.env.EnvironmentPostProcessor=\
+com.guoshiyao.rely.apollo.configraion.ApolloApplicationContextInitializerRe
