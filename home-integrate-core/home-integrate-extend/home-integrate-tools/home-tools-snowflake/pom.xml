@@ -11,11 +11,11 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.guoshiyao.rely</groupId>
-    <version>10.0.1-SNAPSHOT</version>
+    <version>10.1.2-RELEASE</version>
     <artifactId>home-tools-snowflake</artifactId>
     <parent>
         <groupId>com.guoshiyao.rely</groupId>
-        <version>10.0.1-SNAPSHOT</version>
+        <version>10.1.2-RELEASE</version>
         <artifactId>home-integrate-tools</artifactId>
     </parent>
 

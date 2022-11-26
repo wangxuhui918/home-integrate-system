@@ -13,7 +13,7 @@
     <artifactId>home-integrate-dependencies</artifactId>
     <name>home-integrate-dependencies</name>
     <description>home-integrate-dependencies</description>
-    <version>10.0.1-SNAPSHOT</version>
+    <version>10.1.2-RELEASE</version>
     <packaging>pom</packaging>
 
 
@@ -353,10 +353,24 @@
     <dependencies>
         <dependency>
             <groupId>com.guoshiyao.rely</groupId>
-            <version>10.0.1-SNAPSHOT</version>
+            <version>10.1.2-RELEASE</version>
             <artifactId>home-integrate-pack</artifactId>
         </dependency>
     </dependencies>
+
+
+    <distributionManagement>
+        <snapshotRepository>
+            <id>sonatype-nexus-snapshots</id>
+            <name>Sonatype Nexus Snapshots</name>
+            <url>https://s01.oss.sonatype.org/content/repositories/snapshots/</url>
+        </snapshotRepository>
+        <repository>
+            <id>sonatype-nexus-staging</id>
+            <name>Nexus Release Repository</name>
+            <url>https://s01.oss.sonatype.org/content/repositories/releases/</url>
+        </repository>
+    </distributionManagement>
     <build>
         <plugins>
             <plugin>

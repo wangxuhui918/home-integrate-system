@@ -7,7 +7,7 @@
  <dependency>
     <groupId>com.guoshiyao.rely</groupId>
     <artifactId>home-tools-git</artifactId>
-    <version>10.0.1-SNAPSHOT</version>
+    <version>10.1.2-RELEASE</version>
  </dependency>
 
 ```

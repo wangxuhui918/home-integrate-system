@@ -12,26 +12,13 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.guoshiyao.rely</groupId>
-        <version>10.0.1-SNAPSHOT</version>
+        <version>10.1.2-RELEASE</version>
         <artifactId>home-integrate-tools</artifactId>
     </parent>
-    <version>10.0.1-SNAPSHOT</version>
+    <version>10.1.2-RELEASE</version>
     <groupId>com.guoshiyao.rely</groupId>
     <artifactId>home-integrate-resource</artifactId>
     <name>home-integrate-resource</name>
-
-    <distributionManagement>
-        <snapshotRepository>
-            <id>sonatype-nexus-snapshots</id>
-            <name>Sonatype Nexus Snapshots</name>
-            <url>https://s01.oss.sonatype.org/content/repositories/snapshots/</url>
-        </snapshotRepository>
-        <repository>
-            <id>sonatype-nexus-staging</id>
-            <name>Nexus Release Repository</name>
-            <url>https://s01.oss.sonatype.org/content/repositories/releases/</url>
-        </repository>
-    </distributionManagement>
 
     <build>
         <resources>
