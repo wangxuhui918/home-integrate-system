@@ -21,6 +21,7 @@
         <dependency>
             <groupId>com.guoshiyao.rely</groupId>
             <artifactId>home-integrate-resource</artifactId>
+            <version>10.0.1-SNAPSHOT</version>
          </dependency>
 
         <dependency>

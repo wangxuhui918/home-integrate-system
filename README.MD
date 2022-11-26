@@ -6,42 +6,53 @@
 
 👉 实现自动配置（例如自动扫描Controller注解，无相关注解/Swagger配置则不加载Swagger）。
 
-# 📘安装(2选1即可)
+# 📘安装(建议推荐第二种方式)
+
+1. 前提为先对 ***home-integrate-system*** 进行打包安装(mvn install)
 
 ## 全量包(本地构建)
 
-```shell
-
-cd ../home-integrate-system
-
-```
-
-```shell
-
-cd ../home-integrate-system/home-integrate-package/home-integrate-packageextends/home-integrate-all
-
-mvn install 
-
-```
+1. 单独对 ***home-integrate-all*** 模块进行打包(mvn install)
+3. 全量包会把所有代码编译为一个全量包,需要注意与项目的jar依赖版本冲突,可参考 ***home-integrate-allpom*** 中的版本号
+4. 按照如下方式进行引入
 
 ```xml
 
-<dependency>
+<parent>
     <groupId>com.guoshiyao.rely</groupId>
     <version>10.0.1-SNAPSHOT</version>
-    <artifactId>home-integrate-all</artifactId>
-</dependency>
-```
+    <artifactId>home-integrate-dependencies</artifactId>
+</parent>
 
+<dependencies>
+    <dependency>
+        <groupId>com.guoshiyao.rely</groupId>
+        <artifactId>home-integrate-allpom</artifactId>
+        <version>10.0.1-SNAPSHOT</version>
+        <type>pom</type>
+    </dependency>
+</dependencies>
+
+```
+ 
 ## Maven仓库坐标
 
 ```xml
-<!--已上传至Maven中央库-->
-<dependency>
+
+<parent>
     <groupId>com.guoshiyao.rely</groupId>
     <version>10.0.1-SNAPSHOT</version>
-    <artifactId>home-integrate-allpom</artifactId>
-</dependency>
+    <artifactId>home-integrate-dependencies</artifactId>
+</parent>
+
+<dependencies>
+    <dependency>
+        <groupId>com.guoshiyao.rely</groupId>
+        <artifactId>home-integrate-pack</artifactId>
+        <version>10.0.1-SNAPSHOT</version>
+    </dependency>
+</dependencies>
+
 ```
 
 # 使用
