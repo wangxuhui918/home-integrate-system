@@ -7,7 +7,7 @@
 
  <dependency>
     <groupId>com.guoshiyao.rely</groupId>
-     <version>10.1.3-RELEASE</version>
+     <version>10.1.3-SNAPSHOT</version>
     <artifactId>home-tools-snowflake</artifactId>
   </dependency>
 
