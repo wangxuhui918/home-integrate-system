@@ -13,7 +13,7 @@
 ## 全量包(本地构建)
 
 1. 单独对 ***home-integrate-all*** 模块进行打包(mvn install)
-3. 全量包会把所有代码编译为一个全量包,需要注意与项目的jar依赖版本冲突,可参考 ***home-integrate-allpom*** 中的版本号
+3. 全量包会把所有代码编译为一个全量包,需要注意与项目的jar依赖版本冲突,可参考 ***home-integrate-dependencies*** 中的版本号
 4. 按照如下方式进行引入
 
 ```xml
@@ -27,7 +27,7 @@
 <dependencies>
     <dependency>
         <groupId>com.guoshiyao.rely</groupId>
-        <artifactId>home-integrate-allpom</artifactId>
+        <artifactId>home-integrate-all</artifactId>
         <version>10.0.1-SNAPSHOT</version>
         <type>pom</type>
     </dependency>
