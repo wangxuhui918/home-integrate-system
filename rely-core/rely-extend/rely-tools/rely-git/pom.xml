@@ -6,10 +6,10 @@
 
     <groupId>com.guoshiyao</groupId>
     <artifactId>home-tools-git</artifactId>
-    <version>10.1.3-RELEASE</version>
+    <version>10.1.3-SNAPSHOT</version>
     <parent>
         <groupId>com.guoshiyao</groupId>
-        <version>10.1.3-RELEASE</version>
+        <version>10.1.3-SNAPSHOT</version>
         <artifactId>rely-tools</artifactId>
     </parent>
     <properties>

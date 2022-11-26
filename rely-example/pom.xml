@@ -5,11 +5,11 @@
 
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.guoshiyao</groupId>
-    <version>10.1.3-RELEASE</version>
+    <version>10.1.3-SNAPSHOT</version>
     <artifactId>rely-example</artifactId>
     <parent>
         <groupId>com.guoshiyao</groupId>
-        <version>10.1.3-RELEASE</version>
+        <version>10.1.3-SNAPSHOT</version>
         <artifactId>rely-dependencies</artifactId>
     </parent>
 
@@ -22,7 +22,7 @@
         <dependency>
             <groupId>com.guoshiyao</groupId>
             <artifactId>rely-pack</artifactId>
-            <version>10.1.3-RELEASE</version>
+            <version>10.1.3-SNAPSHOT</version>
         </dependency>
     </dependencies>
 

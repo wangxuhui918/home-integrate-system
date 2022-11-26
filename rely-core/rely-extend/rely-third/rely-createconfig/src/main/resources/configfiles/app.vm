@@ -1,0 +1,5 @@
+#当前文件与 apollo
+#app.id=${idKey}
+#apollo.meta=http://106.54.227.205:8080
+#dev,uat,pro 可以通过系统env传入,注释后自动通过传入变量决定,
+#apollo.env=${env}
