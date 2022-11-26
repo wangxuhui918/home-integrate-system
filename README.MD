@@ -1,6 +1,6 @@
 # 📚简介
 
-(帆有云SpringBoot轻量级业务框架,简称:帆有云框架)home-integrate-system(以下简称系统)
+(帆有云SpringBoot轻量级业务框架,简称:帆有云框架)rely-system(以下简称系统)
 ，是一个轻量级,完全开源的Springboot框架，系统通过以类spi的方式封装常用工具插件（阿波罗，数据库，dubbo，flyway，git，mybatis，tk-mybatis，redis，雪花算法，swagger-ui，hutool等）
 ，降低了系统集成难度。
 
@@ -8,12 +8,12 @@
 
 # 📘安装(建议推荐第二种方式)
 
-1. 前提为先对 ***home-integrate-system*** 进行打包安装(mvn install)
+1. 前提为先对 ***rely-system*** 进行打包安装(mvn install)
 
 ## 全量包(本地构建)
 
-1. 单独对 ***home-integrate-all*** 模块进行打包(mvn install)
-3. 全量包会把所有代码编译为一个全量包,需要注意与项目的jar依赖版本冲突,可参考 ***home-integrate-dependencies*** 中的版本号
+1. 单独对 ***rely-all*** 模块进行打包(mvn install)
+3. 全量包会把所有代码编译为一个全量包,需要注意与项目的jar依赖版本冲突,可参考 ***rely-dependencies*** 中的版本号
 4. 按照如下方式进行引入
 
 ```xml
@@ -21,13 +21,13 @@
 <parent>
     <groupId>com.guoshiyao.rely</groupId>
     <version>10.1.3-RELEASE</version>
-    <artifactId>home-integrate-dependencies</artifactId>
+    <artifactId>rely-dependencies</artifactId>
 </parent>
 
 <dependencies>
     <dependency>
         <groupId>com.guoshiyao.rely</groupId>
-        <artifactId>home-integrate-all</artifactId>
+        <artifactId>rely-all</artifactId>
         <version>10.1.3-RELEASE</version>
         <type>pom</type>
     </dependency>
@@ -42,13 +42,13 @@
 <parent>
     <groupId>com.guoshiyao.rely</groupId>
     <version>10.1.3-RELEASE</version>
-    <artifactId>home-integrate-dependencies</artifactId>
+    <artifactId>rely-dependencies</artifactId>
 </parent>
 
 <dependencies>
     <dependency>
         <groupId>com.guoshiyao.rely</groupId>
-        <artifactId>home-integrate-pack</artifactId>
+        <artifactId>rely-pack</artifactId>
         <version>10.1.3-RELEASE</version>
     </dependency>
 </dependencies>
