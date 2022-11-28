@@ -8,7 +8,7 @@
  <dependency>
     <groupId>com.guoshiyao.rely</groupId>
      <version>10.1.3-SNAPSHOT</version>
-    <artifactId>home-tools-snowflake</artifactId>
+    <artifactId>rely-snowflake</artifactId>
   </dependency>
 
 ```
