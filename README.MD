@@ -16,7 +16,7 @@
 
 <parent>
     <groupId>com.guoshiyao.rely</groupId>
-    <version>10.1.3-SNAPSHOT</version>
+    <version>11.0.1-SNAPSHOT</version>
     <artifactId>rely-dependencies</artifactId>
 </parent>
 
@@ -24,7 +24,7 @@
 <dependency>
     <groupId>com.guoshiyao.rely</groupId>
     <artifactId>rely-pack</artifactId>
-    <version>10.1.3-SNAPSHOT</version>
+    <version>11.0.1-SNAPSHOT</version>
 </dependency>
 </dependencies>
 

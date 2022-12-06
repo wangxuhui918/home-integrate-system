@@ -7,7 +7,7 @@
  <dependency>
     <groupId>com.guoshiyao.rely</groupId>
     <artifactId>rely-git</artifactId>
-    <version>10.1.3-SNAPSHOT</version>
+    <version>11.0.1-SNAPSHOT</version>
  </dependency>
 
 ```
