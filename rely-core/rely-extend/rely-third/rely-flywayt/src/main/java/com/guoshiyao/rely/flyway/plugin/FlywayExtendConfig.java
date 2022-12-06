@@ -25,8 +25,7 @@ import java.util.*;
 
 @RuleInjection
 public class FlywayExtendConfig implements IThirdConfig {
-    public final static String filep = "db" + FileUtil.FILE_SEPARATOR + "migration" + FileUtil.FILE_SEPARATOR + "**" + FileUtil.FILE_SEPARATOR
-            + "**.sql";
+    public final static String filep = "db" + FileUtil.FILE_SEPARATOR + "migration" + FileUtil.FILE_SEPARATOR + "**" + FileUtil.FILE_SEPARATOR + "**.sql";
 
     @Override
     public void after() {
@@ -40,20 +39,24 @@ public class FlywayExtendConfig implements IThirdConfig {
 
     @Override
     public List<Class> writeClasss() {
-        try {
-            ResourcePatternResolver resourceLoader = new PathMatchingResourcePatternResolver();
-            Resource[] source = resourceLoader.getResources(filep);
-            if (source.length == 0) {
-                return new ArrayList<>();
-            }
-            if (!BaseEv.SettingInformation.setting.containsKey(ConfigDetails.HOME_FLYWAYDB_URL.getKey())) {
-                return new ArrayList<>();
-            }
-        } catch (Exception e) {
+//        try {
+//            ResourcePatternResolver resourceLoader = new PathMatchingResourcePatternResolver();
+//            Resource[] source = resourceLoader.getResources(filep);
+//            if (source.length == 0) {
+//                return new ArrayList<>();
+//            }
+//            if (!BaseEv.SettingInformation.setting.containsKey(ConfigDetails.HOME_FLYWAYDB_URL.getKey())) {
+//                return new ArrayList<>();
+//            }
+//        } catch (Exception e) {
+//            return new ArrayList<>();
+//        }
+        if (BaseEv.SettingInformation.setting.getBool(ConfigDetails.FLYWAYDB_ENABLE.getKey())) {
+            return Arrays.asList(new Class[]{FlywayBean.class});
+        } else {
             return new ArrayList<>();
         }
-        LinkedHashMap<String, List<Class>> map = new LinkedHashMap<>();
-        return Arrays.asList(new Class[]{FlywayBean.class});
+
     }
 
     @Override
@@ -84,13 +87,7 @@ public class FlywayExtendConfig implements IThirdConfig {
                     setting.put(key, (BaseEv.SettingInformation.setting.get(ConfigDetails.HOME_DB_PASSWORD.getKey())));
             }
         }
-//        {
-//            String key = ConfigDetails.HOME_FLYWAYDB_TABLE.getKey();
-//            if (!setting.containsKey(key)) {
-//                if (BaseEv.SettingInformation.setting.get("home.db.table") != null)
-//                    setting.put(key, ("flyway_schema_history"));
-//            }
-//        }
+
     }
 
 }

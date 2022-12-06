@@ -50,24 +50,23 @@ public class RedisConfig implements IThirdConfig {
      */
     @Override
     public void after() {
-        Setting setting = new Setting();
-        //        Map<String, String> thisproperties = new HashMap<String, String>();
-        for (String key : BaseEv.SettingInformation.setting.keySet()) {//筛选 redis 的内容
-            if (StrUtil.startWith(key, StrUtil.sub(ConfigDetails.HOME_REDIS_HOST.getKey(), 0, StrUtil.ordinalIndexOf(ConfigDetails.HOME_REDIS_HOST.getKey(), ".", 2)))) {
-                setting.putByGroup(key, BaseEv.SettingInformation.runEnv, BaseEv.SettingInformation.setting.get(key));
-//                thisproperties.put(StrUtil.sub(key, "home.redis.".length(), key.length()), Line.setting.get(key).getValue());
+        if (BaseEv.SettingInformation.setting.getBool(ConfigDetails.REDIS_ENABLE.getKey())) {
+            Setting setting = new Setting();
+            for (String key : BaseEv.SettingInformation.setting.keySet()) {//筛选 redis 的内容
+                if (StrUtil.startWith(key, StrUtil.sub(ConfigDetails.HOME_REDIS_HOST.getKey(), 0, StrUtil.ordinalIndexOf(ConfigDetails.HOME_REDIS_HOST.getKey(), ".", 1)))) {
+                    setting.putByGroup(key, BaseEv.SettingInformation.runEnv, BaseEv.SettingInformation.setting.get(key));
+                }
+            }
+            if (BaseEv.SettingInformation.setting.containsKey(ConfigDetails.HOME_REDIS_HOST.getKey())) {
+                try {
+                    BaseEv.SettingInformation.redisds = RedisDS.create(setting, BaseEv.SettingInformation.runEnv);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    throw new ExceptionError("Redis 服务 {} 连接失败!如需关闭redis功能,请直接将redis.host重置为\"\"/null", BaseEv.SettingInformation.setting.get(ConfigDetails.HOME_REDIS_HOST.getKey()));
+                }
             }
         }
-//        setting.putAll(Line.env.getName(), thisproperties);
-        if (BaseEv.SettingInformation.setting.containsKey(ConfigDetails.HOME_REDIS_HOST.getKey())) {
-            try {
-                BaseEv.SettingInformation.redisds = RedisDS.create(setting, BaseEv.SettingInformation.runEnv);
-            } catch (Exception e) {
-                e.printStackTrace();
-                throw new ExceptionError("Redis 服务 {} 连接失败!如需关闭redis功能,请直接将home.redis.host重置为\"\"/null", BaseEv.SettingInformation.setting.get(ConfigDetails.HOME_REDIS_HOST.getKey()))
-                        ;
-            }
-        }
+
     }
 
 

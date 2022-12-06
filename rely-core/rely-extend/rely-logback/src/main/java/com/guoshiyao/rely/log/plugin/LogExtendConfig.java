@@ -10,7 +10,9 @@
 
 package com.guoshiyao.rely.log.plugin;
 
+import com.guoshiyao.rely.BaseEv;
 import com.guoshiyao.rely.core.configration.annotation.RuleInjection;
+import com.guoshiyao.rely.core.configration.home.impl.bean.ConfigDetails;
 import com.guoshiyao.rely.coreextension.run.ISystemConfig;
 import com.guoshiyao.rely.plugin.exception.re.ex.ExceptionError;
 
@@ -24,10 +26,12 @@ public class LogExtendConfig implements ISystemConfig {
 
     @Override
     public void after() {
-        try {
-            LogBackConfigLoader.load("ching.xml");
-        } catch (Exception e) {
-            throw new ExceptionError("日志管理器{}加载失败!请检查文件是否符合规范!!", "ching.xml");
+        if (BaseEv.SettingInformation.setting.getBool(ConfigDetails.LOG_ENABLE.getKey())) {
+            try {
+                LogBackConfigLoader.load("ching.xml");
+            } catch (Exception e) {
+                throw new ExceptionError("日志管理器{}加载失败!请检查文件是否符合规范!!", "ching.xml");
+            }
         }
     }
 
@@ -43,14 +47,6 @@ public class LogExtendConfig implements ISystemConfig {
 
     @Override
     public Map<String, String> getProperties() {
-
-
-//        {
-//            String key = ConfigDetails.HOME_LOG_DIR.getKey();
-//            if (!BaseEv.SettingInformation.setting.containsKey(key)) {
-//                BaseEv.SettingInformation.setting.put(key, ConfigDetails.HOME_LOG_DIR.getValue());
-//            }
-//        }
         return new HashMap<>();
     }
 

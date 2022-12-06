@@ -14,6 +14,7 @@ public class ConfigInitValue {
             "\n" +
             "\n" +
             "</message>";
+    public final static String suffp = "#";
 
 
 }

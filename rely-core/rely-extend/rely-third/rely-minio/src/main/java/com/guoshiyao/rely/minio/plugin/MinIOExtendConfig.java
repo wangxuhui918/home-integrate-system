@@ -30,7 +30,7 @@ public class MinIOExtendConfig implements IThirdConfig {
     @Override
     public List<Class> writeClasss() {
         //第0 个数据库
-        if (BaseEv.SettingInformation.setting.containsKey(ConfigDetails.HOME_MINIO_ENDPOINT.getKey()) && BaseEv.SettingInformation.setting.containsKey(ConfigDetails.HOME_MINIO_NAMESPACE_RE.getKey())) {
+        if (BaseEv.SettingInformation.setting.getBool(ConfigDetails.MINIO_ENABLE.getKey())) {
             MinIOGen.intiConect();
         }
         return new ArrayList<>();
@@ -53,7 +53,7 @@ public class MinIOExtendConfig implements IThirdConfig {
     @Override
     public void callSetting(Setting setting) {
 
- 
+
     }
 
 }

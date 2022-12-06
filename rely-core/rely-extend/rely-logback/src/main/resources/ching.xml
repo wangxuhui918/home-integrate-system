@@ -12,8 +12,8 @@
 
 <configuration scan="true" scanPeriod="60 seconds" debug="false">
 
-    <property scope="context" name="serviceName" value="${home.log.appid}"/>
-    <property name="syslog_dir" value="${home.log.dir}"/>
+    <property scope="context" name="serviceName" value="${log.appid}"/>
+    <property name="syslog_dir" value="${log.dir}"/>
     <property name="maxHistory" value="30"/>
 
 <!--    %d %-5level [${serviceName}] [%thread] [%logger{36}:%line] - %traceId %m%n-->
@@ -23,7 +23,7 @@
             </pattern>
         </encoder>
         <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
-            <level>${home.log.syslevel}</level>
+            <level>${log.syslevel}</level>
         </filter>
     </appender>
 
@@ -55,12 +55,12 @@
         </encoder>
     </appender>
 
-    <root level="${home.log.rootlevel}">
+    <root level="${log.rootlevel}">
         <appender-ref ref="CONSOLE"/>
         <appender-ref ref="SYS_FILE"/>
     </root>
 
-    <logger name="${home.log.businpackage}" level="${home.log.businlevel}" additivity="false">
+    <logger name="${log.businpackage}" level="${log.businlevel}" additivity="false">
         <appender-ref ref="CONSOLE"/>
         <appender-ref ref="BUSINESS_LOG_FILE"/>
     </logger>

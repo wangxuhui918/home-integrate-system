@@ -8,11 +8,14 @@
 
 package com.guoshiyao.rely.core.utils.properties;
 
+import cn.hutool.core.io.FileUtil;
 import cn.hutool.core.io.resource.ResourceUtil;
 import cn.hutool.core.util.StrUtil;
 import com.guoshiyao.rely.plugin.log.ILoggerBaseUtils;
 
 import java.io.BufferedReader;
+import java.io.Reader;
+import java.net.URI;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map.Entry;
@@ -27,6 +30,24 @@ public class PropertiesUtils {
         Properties p = new Properties();
         try {
             in = ResourceUtil.getUtf8Reader(resourcePath);
+            p.load(in);
+            Set<Entry<Object, Object>> entrySet = p.entrySet();
+            for (Entry<Object, Object> entry : entrySet) {
+                map.put((String) entry.getKey(), (String) entry.getValue());
+            }
+        } catch (Exception e) {
+            ILoggerBaseUtils.warn(resourcePath + " 配置读取失败.............");
+        }
+        return map;
+    }
+
+
+    public static HashMap<String, String> getProperties(URI resourcePath) {
+        HashMap<String, String> map = new HashMap<>();
+        Reader in = null;
+        Properties p = new Properties();
+        try {
+            in = FileUtil.getUtf8Reader(resourcePath.getPath());
             p.load(in);
             Set<Entry<Object, Object>> entrySet = p.entrySet();
             for (Entry<Object, Object> entry : entrySet) {

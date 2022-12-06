@@ -10,14 +10,8 @@
 
 package com.guoshiyao.rely.port.config;
 
-import cn.hutool.core.net.NetUtil;
 import com.guoshiyao.rely.BaseEv;
 import com.guoshiyao.rely.core.configration.home.impl.bean.ConfigDetails;
-import com.guoshiyao.rely.plugin.exception.re.ex.ExceptionError;
-import com.guoshiyao.rely.plugin.log.ILoggerBaseUtils;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
-import org.springframework.boot.web.server.ConfigurableWebServerFactory;
-import org.springframework.boot.web.server.WebServerFactoryCustomizer;
 import org.springframework.boot.web.servlet.MultipartConfigFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.util.unit.DataSize;
@@ -32,35 +26,37 @@ import javax.servlet.MultipartConfigElement;
  */
 public class SystemServletPort {
 
-    @Bean
-    @ConditionalOnMissingBean(WebServerFactoryCustomizer.class)
-    public WebServerFactoryCustomizer<ConfigurableWebServerFactory> initPort() {
-        WebServerFactoryCustomizer<ConfigurableWebServerFactory> portBean = new WebServerFactoryCustomizer<ConfigurableWebServerFactory>() {
-            @Override
-            public void customize(ConfigurableWebServerFactory factory) {
-                Long port = BaseEv.SettingInformation.setting.getLong(ConfigDetails.SYSTEM_SERVLET_PORT.getKey());
-                if (port == null) {
-                    port = 8080L;
-                }
-                boolean isuse = NetUtil.isUsableLocalPort(port.intValue());
-                if (!isuse) {
-                    throw new ExceptionError("端口{}被占用, 系统退出", port.toString());
-                } else {
-                    factory.setPort(port.intValue());
-                    ILoggerBaseUtils.debug("已设置端口" + port);
-                }
-            }
-        };
-        return portBean;
-    }
+//    @Bean
+//    @ConditionalOnMissingBean(WebServerFactoryCustomizer.class)
+//    public WebServerFactoryCustomizer<ConfigurableWebServerFactory> initPort() {
+//        WebServerFactoryCustomizer<ConfigurableWebServerFactory> portBean = new WebServerFactoryCustomizer<ConfigurableWebServerFactory>() {
+//            @Override
+//            public void customize(ConfigurableWebServerFactory factory) {
+//                Long port = BaseEv.SettingInformation.setting.getLong(ConfigDetails.SYSTEM_SERVLET_PORT.getKey());
+//                if (port == null) {
+//                    port = 8080L;
+//                }
+//                boolean isuse = NetUtil.isUsableLocalPort(port.intValue());
+//                if (!isuse) {
+//                    throw new ExceptionError("端口{}被占用, 系统退出", port.toString());
+//                } else {
+//                    factory.setPort(port.intValue());
+//                    ILoggerBaseUtils.debug("已设置端口" + port);
+//                }
+//            }
+//        };
+//        return portBean;
+//    }
 
     @Bean
     public MultipartConfigElement multipartConfigElement() {
         MultipartConfigFactory factory = new MultipartConfigFactory();
-        factory.setLocation(BaseEv.SettingInformation.setting.get(ConfigDetails.SYSTEM_SERVLET_MULTIPART_LOCATION.getKey()));
-        factory.setMaxFileSize(DataSize.of(BaseEv.SettingInformation.setting.getInt(ConfigDetails.SYSTEM_SERVLET_MULTIPART_MAX_FILE_SIZE.getKey()), DataUnit.MEGABYTES));
-        factory.setMaxRequestSize(DataSize.of(BaseEv.SettingInformation.setting.getInt(ConfigDetails.SYSTEM_SERVLET_MULTIPART_MAX_REQUEST_SIZE.getKey()), DataUnit.MEGABYTES));
-        factory.setFileSizeThreshold(DataSize.of(BaseEv.SettingInformation.setting.getInt(ConfigDetails.SYSTEM_SERVLET_MULTIPART_FILE_SIZE_THRESHOLD.getKey()), DataUnit.MEGABYTES));
+        if (BaseEv.SettingInformation.setting.getBool(ConfigDetails.SERVLET_MULTIPART_ENABLE.getKey())) {
+            factory.setLocation(BaseEv.SettingInformation.setting.get(ConfigDetails.SERVLET_MULTIPART_LOCATION.getKey()));
+            factory.setMaxFileSize(DataSize.of(BaseEv.SettingInformation.setting.getInt(ConfigDetails.SERVLET_MULTIPART_MAX_FILE_SIZE.getKey()), DataUnit.MEGABYTES));
+            factory.setMaxRequestSize(DataSize.of(BaseEv.SettingInformation.setting.getInt(ConfigDetails.SERVLET_MULTIPART_MAX_REQUEST_SIZE.getKey()), DataUnit.MEGABYTES));
+            factory.setFileSizeThreshold(DataSize.of(BaseEv.SettingInformation.setting.getInt(ConfigDetails.SERVLET_MULTIPART_FILE_SIZE_THRESHOLD.getKey()), DataUnit.MEGABYTES));
+        }
         return factory.createMultipartConfig();
     }
 }

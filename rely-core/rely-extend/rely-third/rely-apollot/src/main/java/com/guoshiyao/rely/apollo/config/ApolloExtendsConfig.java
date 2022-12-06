@@ -26,18 +26,22 @@ public class ApolloExtendsConfig implements IThirdConfig {
 
     @Override
     public void after() {
-        if (BaseEv.SettingInformation.setting.containsKey(ConfigDetails.HOME_APOLLO_APP_ID.getKey()) && BaseEv.SettingInformation.setting.containsKey(ConfigDetails.HOME_APOLLO_APOLLO_META.getKey())) {
-            Config config = ConfigService.getAppConfig(); //config instance is singleton for each namespace and is never null
+        if (BaseEv.SettingInformation.setting.getBool(ConfigDetails.APOLLO_BOOTSTRAP_ENABLED.getKey())) {
+            Config config = ConfigService.getAppConfig();
             Set<String> names = config.getPropertyNames();
             for (String key : names) {
                 BaseEv.SettingInformation.setting.put(key, config.getProperty(key, ""));
             }
+        } else {
+//            BaseEv.SettingInformation.setting.putByGroup(ConfigDetails.APOLLO_BOOTSTRAP_ENABLED.getKey(), BaseEv.SettingInformation.runEnv, "false");
+//            System.setProperty(ConfigDetails.APOLLO_BOOTSTRAP_ENABLED.getKey(), "false");
+//            System.setProperty(ConfigDetails.APOLLO_BOOTSTRAP_EAGERLOAD_ENABLED.getKey(), "false");
         }
     }
 
     @Override
     public void before() {
-        System.setProperty("apollo.bootstrap.enabled", "false");
+
     }
 
     @Override
@@ -52,26 +56,6 @@ public class ApolloExtendsConfig implements IThirdConfig {
 
     @Override
     public void callSetting(Setting setting) {
-
-//        {
-//            String key = ConfigDetails.HOME_APOLLO_APP_ID.getKey();
-//            String key1 = "app.id";
-//            if (!setting.containsKey(key)) {
-//                setting.put(key, (BaseEv.SettingInformation.idKey));
-//            } else {
-//                System.setProperty(key1, setting.get(key).toString());
-//            }
-//        }
-
-//        {
-//            String key = ConfigDetails.HOME_APOLLO_APOLLO_ENV.getKey();
-//            String key1 = "apollo.env";
-//            if (!setting.containsKey(key)) {
-//                setting.put(key, (BaseEv.SettingInformation.runEnv));
-//            } else {
-//                System.setProperty(key1, setting.get(key).toString());
-//            }
-//        }
 
     }
 

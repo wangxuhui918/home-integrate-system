@@ -30,6 +30,7 @@
     <modules>
         <module>rely-core</module>
         <module>rely-dependencies</module>
+        <module>rely-example</module>
     </modules>
 
 

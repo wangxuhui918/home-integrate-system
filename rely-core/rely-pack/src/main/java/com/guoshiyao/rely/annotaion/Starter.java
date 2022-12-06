@@ -10,6 +10,7 @@
 
 package com.guoshiyao.rely.annotaion;
 
+import com.ctrip.framework.apollo.spring.annotation.EnableApolloConfig;
 import com.guoshiyao.rely.annotaion.registrar.AfterRegistrar;
 import com.guoshiyao.rely.annotaion.registrar.BeforeRegistrar;
 import com.guoshiyao.rely.plugin.i18n.I18n;
@@ -42,6 +43,7 @@ import java.lang.annotation.*;
         @Filter(type = FilterType.CUSTOM, classes = AutoConfigurationExcludeFilter.class)})
 @ServletComponentScan
 @EnableTransactionManagement
+//@EnableApolloConfig
 public @interface Starter {
 
 
