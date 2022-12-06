@@ -6,11 +6,11 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.guoshiyao.rely</groupId>
     <version>11.0.1-SNAPSHOT</version>
-    <artifactId>rely-example</artifactId>
+    <artifactId>example</artifactId>
     <parent>
         <groupId>com.guoshiyao.rely</groupId>
         <version>11.0.1-SNAPSHOT</version>
-        <artifactId>rely-dependencies</artifactId>
+        <artifactId>dependencies</artifactId>
     </parent>
 
     <properties>
@@ -21,7 +21,7 @@
     <dependencies>
         <dependency>
             <groupId>com.guoshiyao.rely</groupId>
-            <artifactId>rely-pack</artifactId>
+            <artifactId>pack</artifactId>
             <version>11.0.1-SNAPSHOT</version>
         </dependency>
     </dependencies>

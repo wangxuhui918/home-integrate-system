@@ -13,16 +13,16 @@
     <parent>
         <groupId>com.guoshiyao.rely</groupId>
         <version>11.0.1-SNAPSHOT</version>
-        <artifactId>rely-third</artifactId>
+        <artifactId>third</artifactId>
     </parent>
-    <artifactId>rely-swaggert</artifactId>
+    <artifactId>swaggert</artifactId>
     <name>rely-swaggert</name>
     <dependencies>
 
         <dependency>
             <groupId>com.guoshiyao.rely</groupId>
             <version>11.0.1-SNAPSHOT</version>
-            <artifactId>rely-springboot</artifactId>
+            <artifactId>springboot</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>

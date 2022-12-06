@@ -17,13 +17,13 @@
 <parent>
     <groupId>com.guoshiyao.rely</groupId>
     <version>11.0.1-SNAPSHOT</version>
-    <artifactId>rely-dependencies</artifactId>
+    <artifactId>dependencies</artifactId>
 </parent>
 
 <dependencies>
 <dependency>
     <groupId>com.guoshiyao.rely</groupId>
-    <artifactId>rely-pack</artifactId>
+    <artifactId>pack</artifactId>
     <version>11.0.1-SNAPSHOT</version>
 </dependency>
 </dependencies>

@@ -12,16 +12,16 @@
     <parent>
         <groupId>com.guoshiyao.rely</groupId>
         <version>11.0.1-SNAPSHOT</version>
-        <artifactId>rely-third</artifactId>
+        <artifactId>third</artifactId>
     </parent>
-    <artifactId>rely-mybatist</artifactId>
+    <artifactId>mybatist</artifactId>
 
 
     <dependencies>
         <dependency>
             <groupId>com.guoshiyao.rely</groupId>
             <version>11.0.1-SNAPSHOT</version>
-            <artifactId>rely-springboot</artifactId>
+            <artifactId>springboot</artifactId>
 
         </dependency>
 

@@ -9,7 +9,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.guoshiyao.rely</groupId>
-    <artifactId>rely-dependencies</artifactId>
+    <artifactId>dependencies</artifactId>
     <name>rely-dependencies</name>
     <description>rely-dependencies</description>
     <version>11.0.1-SNAPSHOT</version>
@@ -342,7 +342,7 @@
         <dependency>
             <groupId>com.guoshiyao.rely</groupId>
             <version>11.0.1-SNAPSHOT</version>
-            <artifactId>rely-pack</artifactId>
+            <artifactId>pack</artifactId>
         </dependency>
     </dependencies>
     <distributionManagement>

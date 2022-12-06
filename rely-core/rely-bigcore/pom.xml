@@ -12,9 +12,9 @@
     <parent>
         <groupId>com.guoshiyao.rely</groupId>
         <version>11.0.1-SNAPSHOT</version>
-        <artifactId>rely-core</artifactId>
+        <artifactId>core</artifactId>
     </parent>
-    <artifactId>rely-bigcore</artifactId>
+    <artifactId>bigcore</artifactId>
     <name>rely-bigcore</name>
 
 

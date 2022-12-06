@@ -13,9 +13,9 @@
     <parent>
         <groupId>com.guoshiyao.rely</groupId>
         <version>11.0.1-SNAPSHOT</version>
-        <artifactId>rely-extend</artifactId>
+        <artifactId>extend</artifactId>
     </parent>
-    <artifactId>rely-third</artifactId>
+    <artifactId>third</artifactId>
     <packaging>pom</packaging>
     <name>rely-third</name>
     <modules>

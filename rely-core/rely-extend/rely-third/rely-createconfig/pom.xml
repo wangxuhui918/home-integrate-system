@@ -14,9 +14,9 @@
     <parent>
         <groupId>com.guoshiyao.rely</groupId>
         <version>11.0.1-SNAPSHOT</version>
-        <artifactId>rely-third</artifactId>
+        <artifactId>third</artifactId>
     </parent>
-    <artifactId>rely-createconfig</artifactId>
+    <artifactId>createconfig</artifactId>
     <name>rely-createconfig</name>
     <description>rely-createconfig</description>
 
@@ -25,7 +25,7 @@
         <dependency>
             <groupId>com.guoshiyao.rely</groupId>
             <version>11.0.1-SNAPSHOT</version>
-            <artifactId>rely-springboot</artifactId>
+            <artifactId>springboot</artifactId>
 
         </dependency>
     </dependencies>

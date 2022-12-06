@@ -13,9 +13,9 @@
     <parent>
         <groupId>com.guoshiyao.rely</groupId>
         <version>11.0.1-SNAPSHOT</version>
-        <artifactId>rely-third</artifactId>
+        <artifactId>third</artifactId>
     </parent>
-    <artifactId>rely-dubbot</artifactId>
+    <artifactId>dubbot</artifactId>
     <name>rely-dubbot</name>
 
     <!-- <dependencyManagement> <dependencies> <dependency> <groupId>org.apache.curator</groupId>
@@ -28,7 +28,7 @@
         <dependency>
             <groupId>com.guoshiyao.rely</groupId>
             <version>11.0.1-SNAPSHOT</version>
-            <artifactId>rely-springboot</artifactId>
+            <artifactId>springboot</artifactId>
 
         </dependency>
 

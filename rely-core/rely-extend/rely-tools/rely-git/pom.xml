@@ -5,12 +5,12 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.guoshiyao.rely</groupId>
-    <artifactId>rely-git</artifactId>
+    <artifactId>git</artifactId>
     <version>11.0.1-SNAPSHOT</version>
     <parent>
         <groupId>com.guoshiyao.rely</groupId>
         <version>11.0.1-SNAPSHOT</version>
-        <artifactId>rely-tools</artifactId>
+        <artifactId>tools</artifactId>
     </parent>
     <properties>
         <maven.compiler.source>8</maven.compiler.source>

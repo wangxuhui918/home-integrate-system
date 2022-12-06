@@ -14,9 +14,9 @@
     <parent>
         <groupId>com.guoshiyao.rely</groupId>
         <version>11.0.1-SNAPSHOT</version>
-        <artifactId>rely-third</artifactId>
+        <artifactId>third</artifactId>
     </parent>
-    <artifactId>rely-flywayt</artifactId>
+    <artifactId>flywayt</artifactId>
     <name>rely-flywayt</name>
     <description>rely-flywayt</description>
 
@@ -24,7 +24,7 @@
         <dependency>
             <groupId>com.guoshiyao.rely</groupId>
             <version>11.0.1-SNAPSHOT</version>
-            <artifactId>rely-springboot</artifactId>
+            <artifactId>springboot</artifactId>
 
         </dependency>
 

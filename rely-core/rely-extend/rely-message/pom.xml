@@ -15,9 +15,9 @@
     <parent>
         <groupId>com.guoshiyao.rely</groupId>
         <version>11.0.1-SNAPSHOT</version>
-        <artifactId>rely-extend</artifactId>
+        <artifactId>extend</artifactId>
     </parent>
-    <artifactId>rely-message</artifactId>
+    <artifactId>message</artifactId>
     <name>rely-message</name>
 
 
@@ -25,7 +25,7 @@
         <dependency>
             <groupId>com.guoshiyao.rely</groupId>
             <version>11.0.1-SNAPSHOT</version>
-            <artifactId>rely-springboot</artifactId>
+            <artifactId>springboot</artifactId>
 
         </dependency>
 

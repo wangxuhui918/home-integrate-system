@@ -12,11 +12,11 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.guoshiyao.rely</groupId>
     <version>11.0.1-SNAPSHOT</version>
-    <artifactId>rely-snowflake</artifactId>
+    <artifactId>snowflake</artifactId>
     <parent>
         <groupId>com.guoshiyao.rely</groupId>
         <version>11.0.1-SNAPSHOT</version>
-        <artifactId>rely-tools</artifactId>
+        <artifactId>tools</artifactId>
     </parent>
 
     <properties>
