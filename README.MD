@@ -6,35 +6,10 @@
 
 👉 实现自动配置（例如自动扫描Controller注解，无相关注解/Swagger配置则不加载Swagger）。
 
-# 📘安装(建议推荐第二种方式)
+# 📘安装
 
 1. 前提为先对 ***rely-system*** 进行打包安装(mvn install)
 
-## 全量包(本地构建)
-
-1. 单独对 ***rely-all*** 模块进行打包(mvn install)
-3. 全量包会把所有代码编译为一个全量包,需要注意与项目的jar依赖版本冲突,可参考 ***rely-dependencies*** 中的版本号
-4. 按照如下方式进行引入
-
-```xml
-
-<parent>
-    <groupId>com.guoshiyao.rely</groupId>
-    <version>10.1.3-SNAPSHOT</version>
-    <artifactId>rely-dependencies</artifactId>
-</parent>
-
-<dependencies>
-    <dependency>
-        <groupId>com.guoshiyao.rely</groupId>
-        <artifactId>rely-all</artifactId>
-        <version>10.1.3-SNAPSHOT</version>
-        <type>pom</type>
-    </dependency>
-</dependencies>
-
-```
- 
 ## Maven仓库坐标
 
 ```xml
