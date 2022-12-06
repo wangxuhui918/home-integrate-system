@@ -36,6 +36,7 @@ public class PropertiesUtils {
                 map.put((String) entry.getKey(), (String) entry.getValue());
             }
         } catch (Exception e) {
+            e.printStackTrace();
             ILoggerBaseUtils.warn(resourcePath + " 配置读取失败.............");
         }
         return map;
@@ -54,28 +55,12 @@ public class PropertiesUtils {
                 map.put((String) entry.getKey(), (String) entry.getValue());
             }
         } catch (Exception e) {
+            e.printStackTrace();
             ILoggerBaseUtils.warn(resourcePath + " 配置读取失败.............");
         }
         return map;
     }
 
-    /**
-     * 该方法不建议使用
-     * mainClass 参数已经无效,
-     *
-     * @param mainClass
-     * @param resourcePath
-     * @return
-     */
-    @Deprecated
-    public static HashMap<String, String> getProperties(String mainClass, String resourcePath) {
-        return getProperties(resourcePath);
-    }
-
-//    public static void main(String[] args) {
-//        String line = "##sddfsff3=1222=343";
-//        System.out.println(StrUtil.subAfter(StrUtil.subBefore(line, "=", false), "#", true));
-//    }
 
     public static List<String> beyongProperties(String oldPropertiesPath, String newString) {
         HashMap<String, String> oldValues = getProperties(oldPropertiesPath);

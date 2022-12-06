@@ -49,7 +49,7 @@ public class ProjectBuiltInPropertiesImpl implements IProjectConf {
             for (int i = 0; i < listUrl.size(); i++) {
                 String env = ReUtil.findAll("application-(.*?)\\.properties", listUrl.get(i).toString(), 1).get(0);
                 ILoggerBaseUtils.debug("读取到[{}]配置文件", listUrl.get(i).toString());
-                HashMap<String, String> properties = PropertiesUtils.getProperties(listUrl.get(i));
+                HashMap<String, String> properties = PropertiesUtils.getProperties("application-" + env + ".properties");
                 Setting o = new Setting();
                 for (Object key : properties.keySet()) {
                     o.putByGroup(key.toString(), env, properties.get(key.toString()).toString());
