@@ -6,35 +6,10 @@
 
 👉 实现自动配置（例如自动扫描Controller注解，无相关注解/Swagger配置则不加载Swagger）。
 
-# 📘安装(建议推荐第二种方式)
+# 📘安装
 
 1. 前提为先对 ***rely-system*** 进行打包安装(mvn install)
 
-## 全量包(本地构建)
-
-1. 单独对 ***rely-all*** 模块进行打包(mvn install)
-3. 全量包会把所有代码编译为一个全量包,需要注意与项目的jar依赖版本冲突,可参考 ***rely-dependencies*** 中的版本号
-4. 按照如下方式进行引入
-
-```xml
-
-<parent>
-    <groupId>com.guoshiyao.rely</groupId>
-    <version>10.1.3-SNAPSHOT</version>
-    <artifactId>rely-dependencies</artifactId>
-</parent>
-
-<dependencies>
-    <dependency>
-        <groupId>com.guoshiyao.rely</groupId>
-        <artifactId>rely-all</artifactId>
-        <version>10.1.3-SNAPSHOT</version>
-        <type>pom</type>
-    </dependency>
-</dependencies>
-
-```
- 
 ## Maven仓库坐标
 
 ```xml
@@ -46,11 +21,11 @@
 </parent>
 
 <dependencies>
-    <dependency>
-        <groupId>com.guoshiyao.rely</groupId>
-        <artifactId>rely-pack</artifactId>
-        <version>10.1.3-SNAPSHOT</version>
-    </dependency>
+<dependency>
+    <groupId>com.guoshiyao.rely</groupId>
+    <artifactId>rely-pack</artifactId>
+    <version>10.1.3-SNAPSHOT</version>
+</dependency>
 </dependencies>
 
 ```
@@ -247,17 +222,17 @@ public class CodeFileController {
 #gitlab.log=C:\Users\wangxuhui\\home\home-example-ewell\/git/log/log.txt
 [LOGBACK-dev]
 ; 默认为idkey debug
-home.log.appid=home-example-ewell
+home.log.appid = home-example-ewell
 ; 根日志级别 debug info  warn  error trance 默认debug# 从高到地低 OFF 、 FATAL 、 ERROR 、 WARN 、 INFO 、 DEBUG 、 TRACE 、 ALL -->
-home.log.rootlevel=info
+home.log.rootlevel = info
 ; 系统日志级别 默认debug
-home.log.syslevel=info
+home.log.syslevel = info
 ; 业务日志级别 默认debug
-home.log.businlevel=info
+home.log.businlevel = info
 ; 业务日志包路径,空的话默认为系统扫描到的包路径
-home.log.businpackage=com.guoshiyao.example
+home.log.businpackage = com.guoshiyao.example
 ; 日志存储位置
-home.log.dir=target/log/home-example-ewell
+home.log.dir = target/log/home-example-ewell
 [MYBATIS-dev]
 ; 扫描mapper地址,默认为启动类下的 mapper文件夹
 #mybatis.basepackage=com.guoshiyao.example.mapper
@@ -327,20 +302,20 @@ home.log.dir=target/log/home-example-ewell
 #swagger.name=SwaggeAPI
 [SYSTEMCONFIG-dev]
 ; 系统容器rest端口号
-system.servlet.port=8080
+system.servlet.port = 8080
 ; 不限制文件大小
-system.servlet.multipart.max-file-size=-1
+system.servlet.multipart.max-file-size = -1
 ; 不限制请求体大小
-system.servlet.multipart.max-request-size=-1
+system.servlet.multipart.max-request-size = -1
 ; 临时IO目录
 ;system.servlet.multipart.location=C:\Users\wangxuhui\\home\home-example-ewell\/temp/001
 ; 超过1Mb，就IO到临时目录
-system.servlet.multipart.file-size-threshold=1
+system.servlet.multipart.file-size-threshold = 1
 ; 默认入参处理函数
 ;system.inputparamab.class=com.guoshiyao.rely.outgoing.InputParamRe
 [SYSTEMEXTEND-dev]
 ; 示例扩展属性
-home.extend.readme=示例值
+home.extend.readme = 示例值
 
 
 ```
@@ -355,8 +330,6 @@ home.extend.readme=示例值
 6. 等待维护者合并
 
 # 近期计划
-
-
 
 # 技术支持
 
