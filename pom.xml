@@ -28,9 +28,9 @@
     </dependencyManagement>
 
     <modules>
-        <module>rely-core</module>
-<!--        <module>rely-dependencies</module>-->
-<!--        <module>rely-example</module>-->
+        <module>core</module>
+<!--        <module>dependencies</module>-->
+<!--        <module>example</module>-->
     </modules>
 
 
