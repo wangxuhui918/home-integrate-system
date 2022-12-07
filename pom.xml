@@ -29,8 +29,8 @@
 
     <modules>
         <module>core</module>
-<!--        <module>dependencies</module>-->
-<!--        <module>example</module>-->
+        <module>dependencies</module>
+        <!--        <module>example</module>-->
     </modules>
 
 
