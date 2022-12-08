@@ -8,9 +8,9 @@
     <version>11.0.1-SNAPSHOT</version>
     <artifactId>example</artifactId>
     <parent>
+        <artifactId>dependencies</artifactId>
         <groupId>com.guoshiyao.rely</groupId>
         <version>11.0.1-SNAPSHOT</version>
-        <artifactId>dependencies</artifactId>
     </parent>
 
     <properties>
