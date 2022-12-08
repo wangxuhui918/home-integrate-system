@@ -1,0 +1,37 @@
+
+
+<!--
+  ~ /*
+  ~  * Copyright (c) 2022
+  ~  * http://license.coscl.org.cn/MulanPSL2
+  ~  * 汪旭辉
+  ~  */
+  -->
+
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.guoshiyao.rely</groupId>
+        <version>11.0.1-SNAPSHOT</version>
+        <artifactId>third</artifactId>
+    </parent>
+    <artifactId>flywayt</artifactId>
+    <name>flywayt</name>
+    <description>flywayt</description>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.guoshiyao.rely</groupId>
+            <version>11.0.1-SNAPSHOT</version>
+            <artifactId>springboot</artifactId>
+
+        </dependency>
+
+        <dependency>
+            <groupId>org.flywaydb</groupId>
+            <artifactId>flyway-core</artifactId>
+         </dependency>
+    </dependencies>
+
+</project>

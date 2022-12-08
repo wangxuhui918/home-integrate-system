@@ -1,0 +1,10 @@
+#
+# /*
+#  * Copyright (c) 2022
+#  * http://license.coscl.org.cn/MulanPSL2
+#  * 汪旭辉
+#  */
+#
+
+com.guoshiyao.rely.hutool.bean.StringConverter
+com.guoshiyao.rely.hutool.bean.DateConverter

@@ -17,9 +17,9 @@
 
     <modules>
 <!--        <module>all</module>-->
-        <module>dependencies</module>
+<!--        <module>dependencies</module>-->
 <!--        <module>example</module>-->
-        <module>framework</module>
+<!--        <module>framework</module>-->
     </modules>
 
 
