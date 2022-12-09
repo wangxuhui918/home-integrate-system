@@ -39,7 +39,7 @@ import java.util.List;
 @Order(Integer.MAX_VALUE)
 public class MybatisAutoMethod {
 
-    public final static String name = "@annotation(annotation.configration.core.cn.bigcore.micro.RuleInjection)";
+    public final static String name = "@annotation(cn.bigcore.micro.core.configration.annotation.RuleInjection)";
 
 
     @Pointcut(name)
