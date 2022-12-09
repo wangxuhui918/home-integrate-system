@@ -15,15 +15,15 @@
 ```xml
 
 <parent>
-    <groupId>com.guoshiyao.rely</groupId>
+    <groupId>cn.bigcore</groupId>
     <version>11.0.1-SNAPSHOT</version>
-    <artifactId>dependencies</artifactId>
+    <artifactId>micro-dependencies</artifactId>
 </parent>
 
 <dependencies>
 <dependency>
-    <groupId>com.guoshiyao.rely</groupId>
-    <artifactId>pack</artifactId>
+    <groupId>cn.bigcore</groupId>
+    <artifactId>micro-pack</artifactId>
     <version>11.0.1-SNAPSHOT</version>
 </dependency>
 </dependencies>
@@ -37,8 +37,8 @@
 ```java
 package cn.vesan.code;
 
-import com.guoshiyao.rely.annotaion.Starter;
-import com.guoshiyao.rely.message.i18n.I18n;
+import annotaion.cn.bigcore.micro.Starter;
+import cn.bigcore.micro.message.i18n.I18n;
 import org.springframework.boot.SpringApplication;
 
 @Starter(idkey = "vesan-lowformat", i18n = I18n.CN)
@@ -135,8 +135,8 @@ apollo.meta=
 apollo.apollo.env=dev
 # 开关
 dubbo.enabled=false
-# dubbo默认扫描包:com.guoshiyao.example.dubboservice
-dubbo.scan.basePackages=com.guoshiyao.example.dubboservice
+# dubbo默认扫描包:cn.bigcore.micro.example.dubboservice
+dubbo.scan.basePackages=cn.bigcore.micro.example.dubboservice
 # dubbo连接超时时间
 dubbo.reference.timeout=120000
 # dubbo注册中心地址:zookeeper://zookeeper.com:2181
@@ -214,23 +214,23 @@ log.syslevel=info
 # 业务日志级别 默认debug
 log.businlevel=info
 # 业务日志包路径,空的话默认为系统扫描到的包路径
-log.businpackage=com.guoshiyao.example
+log.businpackage=cn.bigcore.micro.example
 # 日志存储位置
 log.dir=target/log/home-example-ewell
 # 开关
 mybatis.enable=false
 # 扫描mapper地址,默认为启动类下的 mapper文件夹
-mybatis.basepackage=com.guoshiyao.example.mapper
+mybatis.basepackage=cn.bigcore.micro.example.mapper
 # 扫描mapper地址,默认为启动类下的 mapper文件夹
-mybatis.typealiasespackage=com.guoshiyao.example.mapper
+mybatis.typealiasespackage=cn.bigcore.micro.example.mapper
 # 扫描mapper.xml,默认为资源文件夹下的 mapper文件夹
 mybatis.mapperlocations=classpath:**/mapper/**.xml
 # 开关
 mybatisplus.enable=false
 # 扫描mapper地址,默认为启动类下的 mapper文件夹
-mybatisplus.basepackage=com.guoshiyao.example.mapper
+mybatisplus.basepackage=cn.bigcore.micro.example.mapper
 # 扫描mapper地址,默认为启动类下的 mapper文件夹
-mybatisplus.typealiasespackage=com.guoshiyao.example.mapper
+mybatisplus.typealiasespackage=cn.bigcore.micro.example.mapper
 # 扫描mapper.xml,默认为资源文件夹下的 mapper文件夹
 mybatisplus.mapperlocations=classpath:**/mapper/**.xml
 # 开关
@@ -286,7 +286,7 @@ redis.timeBetweenEvictionRunsMillis=-1
 # 开关
 swagger.enable=true
 # swagger 默认扫描 api路径为启动类所在目录下的 api目录
-swagger.basepackage=com.guoshiyao.example.api
+swagger.basepackage=cn.bigcore.micro.example.api
 # swagger命名,暂时命名为SwaggerAPI
 swagger.name=SwaggeAPI
 # 系统容器rest端口号
@@ -302,7 +302,7 @@ system.servlet.multipart.max-request-size=-1
 # 超过1Mb，就IO到临时目录
 system.servlet.multipart.file-size-threshold=1
 # 默认入参处理函数
-#system.inputparamab.class=com.guoshiyao.rely.outgoing.InputParamRe
+#system.inputparamab.class=outgoing.cn.bigcore.micro.InputParamRe
 # 示例扩展属性
 extend.readme=示例值
 
