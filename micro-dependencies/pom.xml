@@ -12,7 +12,7 @@
     <artifactId>micro-dependencies</artifactId>
     <name>micro-dependencies</name>
     <description>micro-dependencies</description>
-    <version>11.0.1-RELEASE</version>
+    <version>11.0.1.101-RELEASE</version>
     <packaging>pom</packaging>
 
     <parent>
