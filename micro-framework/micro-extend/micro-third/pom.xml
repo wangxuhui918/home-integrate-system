@@ -1,0 +1,35 @@
+<!--
+  ~ /*
+  ~  * Copyright (c) 2022
+  ~  * http://license.coscl.org.cn/MulanPSL2
+  ~  * 汪旭辉
+  ~  */
+  -->
+
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>cn.bigcore</groupId>
+        <version>11.0.1-RELEASE</version>
+        <artifactId>micro-extend</artifactId>
+    </parent>
+    <artifactId>micro-third</artifactId>
+    <packaging>pom</packaging>
+    <name>micro-third</name>
+    <modules>
+        <module>micro-swaggert</module>
+        <module>micro-datat</module>
+        <module>micro-dubbot</module>
+        <module>micro-actut</module>
+        <module>micro-mybatist</module>
+        <module>micro-mybatistplus</module>
+        <module>micro-faitht</module>
+        <module>micro-apollot</module>
+         <module>micro-flywayt</module>
+        <module>micro-createconfig</module>
+         <module>micro-minio</module>
+        <module>micro-redis</module>
+    </modules>
+</project>

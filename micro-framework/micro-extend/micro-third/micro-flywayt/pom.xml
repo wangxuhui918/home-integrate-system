@@ -1,0 +1,37 @@
+
+
+<!--
+  ~ /*
+  ~  * Copyright (c) 2022
+  ~  * http://license.coscl.org.cn/MulanPSL2
+  ~  * 汪旭辉
+  ~  */
+  -->
+
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>cn.bigcore</groupId>
+        <version>11.0.1-RELEASE</version>
+        <artifactId>micro-third</artifactId>
+    </parent>
+    <artifactId>micro-flywayt</artifactId>
+    <name>micro-flywayt</name>
+    <description>micro-flywayt</description>
+
+    <dependencies>
+        <dependency>
+            <groupId>cn.bigcore</groupId>
+            <version>11.0.1-RELEASE</version>
+            <artifactId>micro-springboot</artifactId>
+
+        </dependency>
+
+        <dependency>
+            <groupId>org.flywaydb</groupId>
+            <artifactId>flyway-core</artifactId>
+         </dependency>
+    </dependencies>
+
+</project>

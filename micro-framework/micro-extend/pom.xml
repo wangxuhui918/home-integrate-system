@@ -1,0 +1,28 @@
+<!--
+  ~ /*
+  ~  * Copyright (c) 2022
+  ~  * http://license.coscl.org.cn/MulanPSL2
+  ~  * 汪旭辉
+  ~  */
+  -->
+
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>cn.bigcore</groupId>
+        <version>11.0.1-RELEASE</version>
+        <artifactId>micro-framework</artifactId>
+    </parent>
+    <artifactId>micro-extend</artifactId>
+    <packaging>pom</packaging>
+    <name>micro-extend</name>
+    <modules>
+        <module>micro-message</module>
+        <module>micro-systemconfig</module>
+        <module>micro-logback</module>
+        <module>micro-third</module>
+        <module>micro-tools</module>
+    </modules>
+</project>
