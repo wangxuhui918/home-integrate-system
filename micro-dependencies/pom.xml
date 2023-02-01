@@ -58,6 +58,8 @@
         <aspectjweaver.version>1.9.7</aspectjweaver.version>
         <jedis.version>3.7.0</jedis.version>
         <swaggerannotations.version>2.1.11</swaggerannotations.version>
+        <fastjson.version>1.2.83</fastjson.version>
+
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -321,7 +323,11 @@
                 <artifactId>swagger-annotations</artifactId>
                 <version>${swaggerannotations.version}</version>
             </dependency>
-
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>fastjson</artifactId>
+                <version>${fastjson.version}</version>
+            </dependency>
             <!-- jackson-->
             <dependency>
                 <groupId>com.fasterxml.jackson.core</groupId>
