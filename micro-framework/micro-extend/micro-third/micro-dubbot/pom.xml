@@ -12,7 +12,7 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>cn.bigcore</groupId>
-        <version>11.0.1.101-RELEASE</version>
+        <version>11.0.1.102-RELEASE</version>
         <artifactId>micro-third</artifactId>
     </parent>
     <artifactId>micro-dubbot</artifactId>
@@ -27,7 +27,7 @@
     <dependencies>
         <dependency>
             <groupId>cn.bigcore</groupId>
-            <version>11.0.1.101-RELEASE</version>
+            <version>11.0.1.102-RELEASE</version>
             <artifactId>micro-springboot</artifactId>
 
         </dependency>
