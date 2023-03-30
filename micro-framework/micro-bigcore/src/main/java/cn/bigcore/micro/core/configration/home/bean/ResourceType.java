@@ -4,12 +4,7 @@ public enum ResourceType {
 
     SOURCE_TYPE("1", "源代码路径"),//
     RESOURCE_TYPE("2", "资源路径"),//
-
-
-    //
-
-
-    ;
+     ;
 
     private String code;
     private String name;

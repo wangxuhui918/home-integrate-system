@@ -12,18 +12,13 @@ package cn.bigcore.micro.core.configration.annotation;
 
 import java.lang.annotation.*;
 
+/**
+ * 用来标识有效规则的注解类
+ */
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 @Inherited
 public @interface RuleInjection {
-    /**
-     * 加载开关 默认打开,关闭后
-     *
-     * @return
-     * @author 汪旭辉
-     * @date 2021年9月29日
-     * @readme
-     */
-    boolean on() default true;
+
 }

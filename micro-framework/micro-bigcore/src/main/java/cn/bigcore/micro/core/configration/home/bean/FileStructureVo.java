@@ -11,11 +11,20 @@ package cn.bigcore.micro.core.configration.home.bean;
 /**
  * @author 汪旭辉
  * @date 2022/5/25
- * @readme
+ * @readme 项目结构描述配置
  */
 public class FileStructureVo {
+    /**
+     * 路径
+     */
     private String path;
+    /**
+     * 文件结构类型
+     */
     private ResourceType resourceType;
+    /**
+     * 文件内容
+     */
     private String context;
 
     public String getPath() {
