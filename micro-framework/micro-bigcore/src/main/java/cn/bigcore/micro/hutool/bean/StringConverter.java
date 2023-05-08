@@ -46,7 +46,7 @@ public class StringConverter extends AbstractConverter<String> {
             return blobToStr((Blob) value);
         } else if (value instanceof Type) {
             return ((Type) value).getTypeName();
-        } else if (value instanceof Date) {//加入默认时间转换器
+        } else if (value instanceof Date) {//加入默认时间转换器,bean转换器,转换Date-String,默认为yyyy-MM-dd HH:mm:ss格式
             return DateUtil.format((Date) value, DatePattern.NORM_DATETIME_FORMAT);
         }
 
