@@ -116,7 +116,6 @@ public class BaseEv {
         public static ICoreConf homeConf;//按需调整
         public static IProjectConf projectConf;
         public static IResource resourcetool;
-        public static Set<Class<?>> driverClasses = new HashSet<>();
 
         public static void init() {
             if (resourcetool == null) {

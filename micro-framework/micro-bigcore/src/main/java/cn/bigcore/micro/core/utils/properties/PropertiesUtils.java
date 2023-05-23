@@ -22,8 +22,17 @@ import java.util.Map.Entry;
 import java.util.Properties;
 import java.util.Set;
 
+/**
+ * properties 文件读取工具
+ */
 public class PropertiesUtils {
 
+    /**
+     * 获取key-value集合
+     *
+     * @param resourcePath
+     * @return
+     */
     public static HashMap<String, String> getProperties(String resourcePath) {
         HashMap<String, String> map = new HashMap<>();
         BufferedReader in = null;
@@ -43,6 +52,12 @@ public class PropertiesUtils {
     }
 
 
+    /**
+     * 根据URI获取key-value集合
+     *
+     * @param resourcePath
+     * @return
+     */
     public static HashMap<String, String> getProperties(URI resourcePath) {
         HashMap<String, String> map = new HashMap<>();
         Reader in = null;
@@ -60,43 +75,5 @@ public class PropertiesUtils {
         }
         return map;
     }
-
-
-    public static List<String> beyongProperties(String oldPropertiesPath, String newString) {
-        HashMap<String, String> oldValues = getProperties(oldPropertiesPath);
-        HashMap<String, String> oldValues1 = getProperties(oldPropertiesPath);
-        String readString = ResourceUtil.readUtf8Str(oldPropertiesPath);
-
-        List<String> newContexts = StrUtil.split(newString, "\n");
-
-        int s = 0;
-        for (int i = 0; i < newContexts.size(); i++) {
-            String line = newContexts.get(i);
-            if (StrUtil.isNotBlank(line) && StrUtil.indexOf(line, '=') > 0) {
-                line = line.trim();
-                String dep = line.startsWith("#") ? "#" : "";//是否注释
-                String key = line.startsWith("#") ? StrUtil.subAfter(StrUtil.subBefore(line, "=", false), "#", true).trim() : StrUtil.subBefore(line, "=", false).trim();
-                String d = "=";
-                if (oldValues.containsKey(key)) {
-                    newContexts.set(i, key + d + oldValues.get(key));
-                    s++;
-                    oldValues.remove(key);
-                } else if (!oldValues.containsKey(key) && readString.contains(key + "=")) {
-                    s++;
-                }
-            }
-        }
-        if (s == 0) {
-            return null;
-        }
-        if (oldValues1 == null || oldValues1.size() == 0) {
-            return newContexts;
-        }
-        if (oldValues.size() > 0) {
-            for (String key : oldValues.keySet()) {
-                newContexts.add(key + "=" + oldValues.get(key));
-            }
-        }
-        return newContexts;
-    }
+ 
 }

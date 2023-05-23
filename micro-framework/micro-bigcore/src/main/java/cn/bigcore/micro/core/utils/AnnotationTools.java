@@ -21,6 +21,9 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Set;
 
+/**
+ * 注解工具类
+ */
 public class AnnotationTools {
 
     public static int getRuleClassForClass(Class classe, String packet) {

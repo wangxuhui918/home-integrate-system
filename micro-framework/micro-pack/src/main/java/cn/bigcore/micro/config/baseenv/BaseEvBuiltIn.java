@@ -8,6 +8,10 @@
 
 package cn.bigcore.micro.config.baseenv;
 
+import cn.bigcore.micro.BaseEv;
+import cn.bigcore.micro.annotaion.Starter;
+import cn.bigcore.micro.plugin.exception.re.ex.ExceptionError;
+import cn.bigcore.micro.plugin.log.ILoggerBaseUtils;
 import cn.hutool.core.annotation.AnnotationUtil;
 import cn.hutool.core.io.FileUtil;
 import cn.hutool.core.io.ManifestUtil;
@@ -19,11 +23,6 @@ import cn.hutool.core.util.StrUtil;
 import cn.hutool.core.util.URLUtil;
 import cn.hutool.json.JSONUtil;
 import cn.hutool.system.SystemUtil;
-import cn.bigcore.micro.BaseEv;
-import cn.bigcore.micro.annotaion.Starter;
-import cn.bigcore.micro.core.utils.data.JdbcFind;
-import cn.bigcore.micro.plugin.exception.re.ex.ExceptionError;
-import cn.bigcore.micro.plugin.log.ILoggerBaseUtils;
 
 import java.io.File;
 import java.net.InterfaceAddress;
@@ -229,8 +228,7 @@ public class BaseEvBuiltIn implements BaseEv.SettingInformation.IBaseEv {
             BaseEv.SettingInformation.macSet.addAll(macSet);
             BaseEv.SettingInformation.mainMac = mainMac;
             BaseEv.SettingInformation.UK = uk;
-            BaseEv.SettingInformation.driverClasses.addAll(JdbcFind.getProjectJdbc());
-        }
+         }
         {
             ILoggerBaseUtils.debug("公共模型赋值开始[{}}", BaseEvBuiltIn.class.getName());
             BaseEv.SettingInformation.context.put("idKey", BaseEv.SettingInformation.idKey);

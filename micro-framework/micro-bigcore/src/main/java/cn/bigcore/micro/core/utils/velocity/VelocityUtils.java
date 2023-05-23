@@ -16,6 +16,9 @@ import org.apache.velocity.app.VelocityEngine;
 
 import java.io.StringWriter;
 
+/**
+ * Velocity 静态模型转换工具
+ */
 public class VelocityUtils {
 
     public static String convert(String vlc, VelocityContext context) {
