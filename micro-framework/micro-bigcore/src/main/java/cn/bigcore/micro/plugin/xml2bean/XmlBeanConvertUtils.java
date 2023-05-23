@@ -14,19 +14,19 @@ import java.util.List;
 public class XmlBeanConvertUtils {
 
 
-    public static void testmain(String[] args) {
-        String xmlContext = ResourceUtil.readUtf8Str("xmldemo.xml");
-        List<BeanDemo> beandemo = EsbXmlToBean(xmlContext, BeanDemo.class);
-        System.out.println(JSONUtil.formatJsonStr(JSONUtil.toJsonStr(beandemo)));
-        String xmlStr = EsbBeanToXml(beandemo.toArray());
-        System.out.println(xmlStr);
-        //样例包含
-        //1. BeanDemo 复杂表单包含 BeanDetailTwo+BeanDetailThrid
-        //1. BeanDetailTwo 一个简单对象
-        //1. BeanDetailThrid 一个复杂对象(嵌套List+字段)
-        //原理,通过fastjson+@JSONField 注解进行 bean<-->json转换
-
-    }
+//    public static void testmain(String[] args) {
+//        String xmlContext = ResourceUtil.readUtf8Str("xmldemo.xml");
+//        List<BeanDemo> beandemo = EsbXmlToBean(xmlContext, BeanDemo.class);
+//        System.out.println(JSONUtil.formatJsonStr(JSONUtil.toJsonStr(beandemo)));
+//        String xmlStr = EsbBeanToXml(beandemo.toArray());
+//        System.out.println(xmlStr);
+//        //样例包含
+//        //1. BeanDemo 复杂表单包含 BeanDetailTwo+BeanDetailThrid
+//        //1. BeanDetailTwo 一个简单对象
+//        //1. BeanDetailThrid 一个复杂对象(嵌套List+字段)
+//        //原理,通过fastjson+@JSONField 注解进行 bean<-->json转换
+//
+//    }
 
     /**
      * //XML 转 JavaBean
