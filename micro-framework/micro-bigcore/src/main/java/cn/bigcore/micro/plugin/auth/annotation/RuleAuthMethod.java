@@ -12,10 +12,14 @@ package cn.bigcore.micro.plugin.auth.annotation;
 
 import java.lang.annotation.*;
 
+
 @Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 @Inherited
+/**
+ * 权限码管理
+ */
 public @interface RuleAuthMethod {
 
     String method_code() default "";
