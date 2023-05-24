@@ -8,10 +8,8 @@
 
 package cn.bigcore.micro.plugin.auth;
 
-import cn.bigcore.micro.plugin.auth.impl.UserImpl;
-
 @FunctionalInterface
-public interface IAuthCheck<U extends UserImpl, A extends IAuth> {
+public interface IAuthCheck<U extends IUser, A extends IAuth> {
     /**
      * 校验用户是否有该方法的访问权限
      *

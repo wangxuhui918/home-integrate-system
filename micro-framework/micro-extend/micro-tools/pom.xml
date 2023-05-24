@@ -21,5 +21,6 @@
     <modules>
         <module>micro-git</module>
         <module>micro-snowflake</module>
+        <module>micro-validationtoken</module>
     </modules>
 </project>

@@ -16,7 +16,7 @@ import java.util.Map;
 /**
  * @author 汪旭辉
  * @date 2022/4/2
- * @readme 基础用户对象
+ * @readme 基础用户对象实现
  */
 public class UserImpl implements IUser, Serializable {
 
