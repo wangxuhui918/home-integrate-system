@@ -11,13 +11,13 @@
 package cn.bigcore.micro.outgoing;
 
 import cn.bigcore.micro.plugin.exception.code.ICode;
-import cn.bigcore.micro.plugin.exception.code.impl.BaseCodeUtils;
+import cn.bigcore.micro.plugin.exception.code.BaseCodeUtils;
 import cn.bigcore.micro.plugin.outgoing.IOutG;
 import cn.bigcore.micro.plugin.outgoing.OutputParamAbs;
 import cn.hutool.core.exceptions.ExceptionUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.json.JSON;
-import cn.bigcore.micro.plugin.exception.ExceptionAbs;
+import cn.bigcore.micro.plugin.exception.ExceptionMessageAbstract;
 import cn.bigcore.micro.plugin.outgoing.InputParamAb;
 
 /**
@@ -33,9 +33,9 @@ public class OutRe implements IOutG<JSON, JSON> {
     public OutputParamAbs<ICode, JSON> go(InputParamAb<JSON> inputparamer, ICode code,
                                           cn.hutool.json.JSON data, Exception exception) {
         if (exception != null) {
-            if (exception instanceof ExceptionAbs && StrUtil.isNotBlank(((ExceptionAbs) exception).getClassName())) {//自定义异常,有异常码
+            if (exception instanceof ExceptionMessageAbstract && StrUtil.isNotBlank(((ExceptionMessageAbstract) exception).getClassName())) {//自定义异常,有异常码
                 if (code == null) {
-                    code = ((ExceptionAbs) exception).getCode();//获取 exception 中的msg code 信息,转为对象
+                    code = ((ExceptionMessageAbstract) exception).getCode();//获取 exception 中的msg code 信息,转为对象
                 } //抛出的异常无异常码
             } else {//其他异常类型
                 exception.printStackTrace();

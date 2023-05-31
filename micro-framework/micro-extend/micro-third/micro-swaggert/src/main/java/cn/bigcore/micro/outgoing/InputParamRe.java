@@ -12,7 +12,7 @@ package cn.bigcore.micro.outgoing;
 
 import cn.hutool.json.JSONObject;
 import cn.hutool.json.JSONUtil;
-import cn.bigcore.micro.plugin.exception.ExceptionAbs;
+import cn.bigcore.micro.plugin.exception.ExceptionMessageAbstract;
 import cn.bigcore.micro.plugin.outgoing.InputParamAb;
 
 import java.util.List;
@@ -39,7 +39,7 @@ public class InputParamRe<G> extends InputParamAb<JSONObject> {
      * @date 2021年12月8日
      * @readme
      */
-    public void throwNull(String expression, ExceptionAbs exab) {
+    public void throwNull(String expression, ExceptionMessageAbstract exab) {
         java.lang.Object object = getData().getByPath(expression);
         if (object == null) {
             throw exab;
@@ -53,7 +53,7 @@ public class InputParamRe<G> extends InputParamAb<JSONObject> {
      * @param expression
      * @param exab
      */
-    public void throwEmpty(String expression, ExceptionAbs exab) {
+    public void throwEmpty(String expression, ExceptionMessageAbstract exab) {
         java.lang.Object object = getData().getByPath(expression);
         if (checkObjectNull(object)) {
             throw exab;

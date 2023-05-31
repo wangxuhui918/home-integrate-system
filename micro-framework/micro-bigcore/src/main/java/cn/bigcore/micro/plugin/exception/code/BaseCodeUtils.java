@@ -1,7 +1,8 @@
-package cn.bigcore.micro.plugin.exception.code.impl;
+package cn.bigcore.micro.plugin.exception.code;
 
 import cn.bigcore.micro.plugin.exception.code.bean.MessageType;
 import cn.bigcore.micro.plugin.exception.code.bean.MessageTypeVo;
+import cn.bigcore.micro.plugin.exception.code.impl.CodeImpl;
 import cn.bigcore.micro.plugin.i18n.I18n;
 import cn.hutool.core.util.StrUtil;
 

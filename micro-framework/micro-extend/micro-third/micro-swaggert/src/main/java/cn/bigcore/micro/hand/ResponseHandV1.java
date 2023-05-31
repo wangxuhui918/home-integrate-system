@@ -12,7 +12,7 @@ package cn.bigcore.micro.hand;
 
 import cn.bigcore.micro.annotation.RuleController;
 import cn.bigcore.micro.outgoing.utils.CodeUtils;
-import cn.bigcore.micro.plugin.exception.code.impl.BaseCodeUtils;
+import cn.bigcore.micro.plugin.exception.code.BaseCodeUtils;
 import cn.bigcore.micro.plugin.outgoing.OutputParamAbs;
 import cn.hutool.core.util.ClassUtil;
 import cn.hutool.json.JSONUtil;
