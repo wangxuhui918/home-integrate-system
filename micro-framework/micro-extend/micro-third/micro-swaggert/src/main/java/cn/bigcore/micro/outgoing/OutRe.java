@@ -12,7 +12,7 @@ package cn.bigcore.micro.outgoing;
 
 import cn.bigcore.micro.plugin.exception.code.ICode;
 import cn.bigcore.micro.plugin.exception.code.BaseCodeUtils;
-import cn.bigcore.micro.plugin.outgoing.IOutG;
+import cn.bigcore.micro.plugin.outgoing.MessageDataOutInterface;
 import cn.bigcore.micro.plugin.outgoing.OutputParamAbs;
 import cn.hutool.core.exceptions.ExceptionUtil;
 import cn.hutool.core.util.StrUtil;
@@ -27,7 +27,7 @@ import cn.bigcore.micro.plugin.outgoing.InputParamAb;
  * @date 2021年9月28日
  * @readme
  */
-public class OutRe implements IOutG<JSON, JSON> {
+public class OutRe implements MessageDataOutInterface<JSON, JSON> {
 
     @Override
     public OutputParamAbs<ICode, JSON> go(InputParamAb<JSON> inputparamer, ICode code,

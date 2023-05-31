@@ -21,7 +21,7 @@ import cn.bigcore.micro.plugin.exception.code.ICode;
  * @date 2021年9月28日
  * @readme
  */
-public interface IOutG<I, D> {
+public interface MessageDataOutInterface<I, D> {
 
     /**
      * @param inputparamer 方法入参对象
