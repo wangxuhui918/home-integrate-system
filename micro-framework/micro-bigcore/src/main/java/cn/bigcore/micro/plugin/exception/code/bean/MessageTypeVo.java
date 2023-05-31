@@ -6,6 +6,10 @@ package cn.bigcore.micro.plugin.exception.code.bean;
  * @readme
  */
 public class MessageTypeVo {
+    /**
+     * 字段说明可参照枚举类
+     * cn.bigcore.micro.plugin.exception.code.bean.MessageType
+     */
     private String typeCode;
     private String mark;
     private boolean booleanMark;
