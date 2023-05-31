@@ -14,7 +14,7 @@ import cn.bigcore.micro.annotation.RuleController;
 import cn.bigcore.micro.outgoing.OutputParamRe;
 import cn.bigcore.micro.outgoing.utils.CodeUtils;
 import cn.bigcore.micro.plugin.exception.ExceptionApiNull;
-import cn.bigcore.micro.plugin.exception.code.impl.CodeImpl;
+import cn.bigcore.micro.plugin.exception.code.impl.BaseCodeUtils;
 import cn.hutool.core.util.StrUtil;
 import cn.bigcore.micro.plugin.exception.ExceptionAbs;
 import org.slf4j.Logger;
@@ -29,7 +29,7 @@ public class ExceptionHandV1 {
     @ExceptionHandler(Exception.class)
     public OutputParamRe exception(Exception ex) {
         if (ex instanceof ExceptionApiNull) {//如果为ExceptionApiNull空,则直接返回空数据
-            return CodeUtils.go(CodeImpl.getinfo());
+            return CodeUtils.go(BaseCodeUtils.getinfo());
         }
         if (ex instanceof ExceptionAbs && StrUtil.isNotBlank(((ExceptionAbs) ex).getClassName())) {//自定义异常,有异常码
             ex.printStackTrace();
