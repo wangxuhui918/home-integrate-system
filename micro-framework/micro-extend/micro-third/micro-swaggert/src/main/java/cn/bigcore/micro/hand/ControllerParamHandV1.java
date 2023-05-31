@@ -15,7 +15,7 @@ import cn.bigcore.micro.annotation.RuleController;
 import cn.bigcore.micro.core.configration.home.impl.bean.ConfigDetails;
 import cn.bigcore.micro.outgoing.utils.CodeUtils;
 import cn.bigcore.micro.plugin.exception.ExceptionApiNull;
-import cn.bigcore.micro.plugin.exception.code.impl.BaseCodeUtils;
+import cn.bigcore.micro.plugin.exception.code.BaseCodeUtils;
 import cn.bigcore.micro.plugin.log.ILoggerBaseUtils;
 import cn.bigcore.micro.plugin.outgoing.AuthReturnType;
 import cn.hutool.core.annotation.AnnotationUtil;

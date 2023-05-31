@@ -24,7 +24,7 @@ import cn.hutool.json.JSONUtil;
  * @date 2021年9月26日
  * @readme
  */
-public abstract class ExceptionAbs extends RuntimeException {
+public abstract class ExceptionMessageAbstract extends RuntimeException {
     private final String msg;
     private final String className;
 
@@ -37,7 +37,7 @@ public abstract class ExceptionAbs extends RuntimeException {
      * @date 2021年9月27日
      * @readme mark
      */
-    public ExceptionAbs(ICode code) {
+    public ExceptionMessageAbstract(ICode code) {
         super(code.toString());
         this.msg = code.toString();
         this.className = code.getClassName();
@@ -73,7 +73,7 @@ public abstract class ExceptionAbs extends RuntimeException {
             code = (ICode) ClassUtil.loadClass((this).getClassName(),false).newInstance();
             BeanUtil.copyProperties(JSONUtil.parse(this.getMsg()), code);
         } catch (Exception e) {
-            throw new ExceptionError(ExceptionAbs.class.getName() + "对应子类的 Msg  转换为 " + ICode.class.getName() + "子类失败");
+            throw new ExceptionError(ExceptionMessageAbstract.class.getName() + "对应子类的 Msg  转换为 " + ICode.class.getName() + "子类失败");
         }
         return code;
     }

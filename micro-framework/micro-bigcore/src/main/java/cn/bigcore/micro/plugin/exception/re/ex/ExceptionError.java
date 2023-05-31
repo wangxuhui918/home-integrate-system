@@ -11,8 +11,8 @@
 package cn.bigcore.micro.plugin.exception.re.ex;
 
 import cn.bigcore.micro.plugin.exception.code.ICode;
-import cn.bigcore.micro.plugin.exception.code.impl.BaseCodeUtils;
-import cn.bigcore.micro.plugin.exception.ExceptionAbs;
+import cn.bigcore.micro.plugin.exception.code.BaseCodeUtils;
+import cn.bigcore.micro.plugin.exception.ExceptionMessageAbstract;
 
 /**
  * 文本异常抛出
@@ -21,7 +21,7 @@ import cn.bigcore.micro.plugin.exception.ExceptionAbs;
  * @date 2022年1月21日
  * @readme
  */
-public class ExceptionError extends ExceptionAbs {
+public class ExceptionError extends ExceptionMessageAbstract {
     private static final long serialVersionUID = 42L;
 
     /**
