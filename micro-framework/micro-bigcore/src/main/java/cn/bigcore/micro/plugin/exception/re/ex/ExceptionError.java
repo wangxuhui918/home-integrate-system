@@ -11,7 +11,7 @@
 package cn.bigcore.micro.plugin.exception.re.ex;
 
 import cn.bigcore.micro.plugin.exception.code.ICode;
-import cn.bigcore.micro.plugin.exception.code.impl.CodeImpl;
+import cn.bigcore.micro.plugin.exception.code.impl.BaseCodeUtils;
 import cn.bigcore.micro.plugin.exception.ExceptionAbs;
 
 /**
@@ -32,7 +32,7 @@ public class ExceptionError extends ExceptionAbs {
      * @readme mark 入参为[?你好!] [张三] 格式化结果为 [张三你好!]
      */
     public ExceptionError(String text, Object... format) {
-        super(CodeImpl.getError(text, format));
+        super(BaseCodeUtils.getError(text, format));
     }
 
     public ExceptionError(ICode msgInfo) {

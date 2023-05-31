@@ -11,7 +11,7 @@
 package cn.bigcore.micro.outgoing;
 
 import cn.bigcore.micro.plugin.exception.code.ICode;
-import cn.bigcore.micro.plugin.exception.code.impl.CodeImpl;
+import cn.bigcore.micro.plugin.exception.code.impl.BaseCodeUtils;
 import cn.bigcore.micro.plugin.outgoing.IOutG;
 import cn.bigcore.micro.plugin.outgoing.OutputParamAbs;
 import cn.hutool.core.exceptions.ExceptionUtil;
@@ -48,7 +48,7 @@ public class OutRe implements IOutG<JSON, JSON> {
             if (exception != null) {
                 except_mess_txt = ExceptionUtil.getRootCauseMessage(exception);
             }
-            code = CodeImpl.getError(except_mess_txt);
+            code = BaseCodeUtils.getError(except_mess_txt);
         } else {
             returninfo.setI18n(code.getI18n());
         }

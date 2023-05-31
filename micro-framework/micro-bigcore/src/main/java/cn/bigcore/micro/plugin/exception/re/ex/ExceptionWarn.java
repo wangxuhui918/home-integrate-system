@@ -12,7 +12,7 @@ package cn.bigcore.micro.plugin.exception.re.ex;
 
 import cn.bigcore.micro.plugin.exception.code.ICode;
 import cn.bigcore.micro.plugin.exception.ExceptionAbs;
-import cn.bigcore.micro.plugin.exception.code.impl.CodeImpl;
+import cn.bigcore.micro.plugin.exception.code.impl.BaseCodeUtils;
 
 /**
  * 文本异常抛出
@@ -32,7 +32,7 @@ public class ExceptionWarn extends ExceptionAbs {
      * @readme mark 入参为[?你好!] [张三] 格式化结果为 [张三你好!]
      */
     public ExceptionWarn(String text, String... format) {
-        super(CodeImpl.getWarn(text, format));
+        super(BaseCodeUtils.getWarn(text, format));
     }
 
     public ExceptionWarn(ICode msgInfo) {
