@@ -12,7 +12,7 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>cn.bigcore</groupId>
-        <version>11.0.1.104-RELEASE</version>
+        <version>11.0.1.105-RELEASE</version>
         <artifactId>micro-extend</artifactId>
     </parent>
     <artifactId>micro-third</artifactId>
