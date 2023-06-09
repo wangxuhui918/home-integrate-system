@@ -1,47 +1,71 @@
-# 📚简介
+# 1.📚简介
 
-(帆有云SpringBoot轻量级业务框架,简称:帆有云框架)home-integrate-system(以下简称系统)
-，是一个轻量级,完全开源的Springboot框架，系统通过以类spi的方式封装常用工具插件（阿波罗，数据库，dubbo，flyway，git，mybatis，tk-mybatis，redis，雪花算法，swagger-ui，hutool等）
-，降低了系统集成难度。
+&emsp;&emsp;***home-integrate-system***(帆有云)是一个轻量级开源的Springboot框架,以插件方式提供功能扩展方便二次开发.统一微服务开发标准,方便管理,节约成本.
 
-👉 实现自动配置（例如自动扫描Controller注解，无相关注解/Swagger配置则不加载Swagger）。
+## 已经内置的插件
+1. 阿波罗
+2. 数据库
+3. dubbo
+4. flyway
+5. git
+6. mybatis
+7. tk-mybatis
+8. redis
+9. 雪花算法
+10. swagger-ui
+11. hutool
+12. 其他工具
 
-# 📘安装
+# 2.📘安装
 
-1. 前提为先对 ***home-integrate-system*** 进行打包安装(mvn install)
-
-## Maven仓库坐标
+pom.xml文件引入parent和dependency节点,如下:
 
 ```xml
 
-<parent>
-    <groupId>cn.bigcore</groupId>
-    <version>11.0.1-SNAPSHOT</version>
-    <artifactId>micro-dependencies</artifactId>
-</parent>
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
-<dependencies>
-<dependency>
+    <modelVersion>4.0.0</modelVersion>
     <groupId>cn.bigcore</groupId>
-    <artifactId>micro-pack</artifactId>
     <version>11.0.1-SNAPSHOT</version>
-</dependency>
-</dependencies>
+    <artifactId>micro-example</artifactId>
+    <parent>
+        <artifactId>micro-dependencies</artifactId>
+        <groupId>cn.bigcore</groupId>
+        <version>11.0.1-SNAPSHOT</version>
+    </parent>
+
+    <properties>
+        <maven.compiler.source>8</maven.compiler.source>
+        <maven.compiler.target>8</maven.compiler.target>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>cn.bigcore</groupId>
+            <artifactId>micro-pack</artifactId>
+            <version>11.0.1-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
+
+</project>
 
 ```
 
-# 使用
+# 3.使用
 
-1. 启动类加上注解 **Starter**,如下
+启动类加上注解 **Starter**,如下
 
 ```java
-package cn.vesan.code;
+package cn.bigcore.code;
 
 import annotaion.cn.bigcore.micro.Starter;
 import cn.bigcore.micro.message.i18n.I18n;
 import org.springframework.boot.SpringApplication;
 
-@Starter(idkey = "vesan-lowformat", i18n = I18n.CN)
+@Starter(idkey = "bigcore_demo", i18n = I18n.CN)
 public class LowFormatApplication {
     public static void main(String[] args) {
         SpringApplication.run(LowFormatApplication.class, args);
@@ -50,18 +74,123 @@ public class LowFormatApplication {
 
 ```
 
-2. Starter 属性说明(以1中类为例)
 
-|属性| 说明     | 默认值                   | 必填 |
-|----|--------|-----------------------|----|
-|idkey| 项目唯一ID | 必填项                   | ✅  |
-|i18n| 区域编码   | I18n.CN               | ❎ |
-|runEnv| 当前运行环境 | ...                   | ❎  |
-|configEnv| 配置默认环境 | dev,uat,pro           | ❎  |
-|exclude| 不加载的类  | ...                   | ❎  |
-|scanBasePackages| 扫描包    | cn.vesan.code(启动类所在包) | ❎  |
+# 4.启动
 
-# 📝部分功能的使用
+直接运行启动类即可(初次使用会生成项目结构)
+
+
+# 5.说明
+
+
+## 5.1 启动类说明
+
+### 5.1.1 使用说明
+
+使用@Starter注解类作为本框架的唯一入口,通过该注解类完成系统的启动,装配以及各项功能启动.如下:
+
+```java
+@Starter(idkey = "bigcore_demo", i18n = I18n.CN)
+public class LowFormatApplication {
+    public static void main(String[] args) {
+        SpringApplication.run(LowFormatApplication.class, args);
+    }
+}
+```
+
+### 5.1.2 其他属性:
+
+
+|属性|说明|默认值|必填|
+|----|----|----|----|
+|idkey| 项目唯一ID(区分微服务,读取日志,获取apollo配置等) | 必填项                   | ✅  |
+|i18n| 区域编码(消息码,国际化编码等) | I18n.CN               | ❎ |
+|runEnv| 当前环境变量 | ...                   | ❎  |
+|configEnv| 环境变量范围 | dev,uat,pro           | ❎  |
+|exclude| 不加载的类 | ...                   | ❎  |
+|scanBasePackages| 扫描包 | cn.vesan.code(启动类所在包) | ❎  |
+
+
+## 5.2 *_UK(用户唯一标识)
+
+框架在用户根目录下生成一个 *_UK(默认为HOME_UK)文件,文件内容为:网卡MAC地址+用户名,样例如下
+```txt
+9A-E7-F4-BB-4D-65zhangsan
+```
+
+ ***注:用户唯一标识可以自定义,建议不要与其他同事重复***
+
+
+## 5.3 配置文件
+
+### 5.3.1 配置文件生成范围
+框架按照 ***@Starter.configEnv*** 属性(默认为:dev,uat,pro)生成对应的配置文件,对应生成如下配置文件
+
+| configEnv | 对应配置文件                     |
+|-----------|----------------------------|
+| dev       | application-dev.properties |
+| uat       | application-uat.properties |
+| pro       | application-pro.properties |
+| 用户唯一标识    | application-用户唯一标识.properties |
+
+也可以重写***@Starter.configEnv***属性,例如:
+
+```java
+
+@Starter(idkey = "home-example-ewell",configEnv = {"kaifa","ceshi"})
+public class ExampleApplication {
+    public static void main(String[] args) {
+        SpringApplication.run(ExampleApplication.class, args);
+        Environment environment = Bean.getBean(Environment.class);
+        System.out.println(environment.getProperty(ConfigDetails.APOLLO_BOOTSTRAP_ENABLED.getKey()).toString());
+    }
+}
+
+```
+对应生成如下配置文件
+
+| configEnv | 对应配置文件                     |
+|-----------|----------------------------|
+| kaifa       | application-kaifa.properties |
+| ceshi       | application-ceshi.properties |
+| 用户唯一标识    | application-用户唯一标识.properties |
+
+### 5.3.1 配置文件读取优先级
+
+@Starter.runEnv>运行时环境变量'-Denv={}'>用户唯一标识,例如框架已有如下配置前提下:
+
+| configEnv | 对应配置文件                     |
+|-----------|----------------------------|
+| dev       | application-dev.properties |
+| uat       | application-uat.properties |
+| pro       | application-pro.properties |
+| 用户唯一标识    | application-用户唯一标识.properties |
+
+读取的配置文件如下所示:
+
+| @Starter.runEnv | -Denv={}    | 用户唯一标识   |结果| 说明                                  |
+|-----------------|-------------|----------|-----------|-------------------------------------|
+| dev             | uat         | zhangsan      |application-dev.properties| 只要runEnv有值直接读取该配置                   |
+| -----------     | uat         | zhangsan      |application-uat.properties| 未指定runEnv的情况下会读取环境变量-Denv={}值       |
+| -----------     | ----------- | zhangsan |application-zhangsan.properties| @Starter.runEnv,-Denv={} 均未指定的情况下读取 用户唯一标识|
+
+***注:上述指定的变量必须在 配置文件生成范围 内,否则系统会提示错误***
+
+## 5.4 消息码
+
+框架启动后会在resources资源目录下生成message-{}.xml文件,标识符取决于@Starter.i18n属性,具体范围见:
+***cn.bigcore.micro.plugin.i18n.I18n***
+
+## 5.5 主配置类
+
+用以获取系统启动前后的各项参数和配置:
+
+***cn.bigcore.micro.BaseEv***
+
+
+# 5.📝部分功能的使用
+
+
 
 ## Controller(请求体,消息码,入参,出参)
 

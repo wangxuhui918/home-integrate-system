@@ -14,10 +14,8 @@ import cn.bigcore.micro.core.configration.home.impl.bean.ConfigDetails;
 import org.springframework.boot.SpringApplication;
 import org.springframework.core.env.Environment;
 
-@Starter(idkey = "home-example-ewell")
+@Starter(idkey = "home-example-ewell",configEnv = {"kaifa","ceshi"})
 public class ExampleApplication {
-
-
     public static void main(String[] args) {
         SpringApplication.run(ExampleApplication.class, args);
         Environment environment = Bean.getBean(Environment.class);
