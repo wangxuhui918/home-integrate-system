@@ -27,6 +27,7 @@ import cn.hutool.system.SystemUtil;
 import java.io.File;
 import java.net.InterfaceAddress;
 import java.net.NetworkInterface;
+import java.net.URLDecoder;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
@@ -98,8 +99,8 @@ public class BaseEvBuiltIn implements BaseEv.SettingInformation.IBaseEv {
                 String target = FileUtil.getParent(f1, i + 1);
                 String root = FileUtil.getParent(f1, i + 2);
                 if (StrUtil.endWith(classes, "classes") && StrUtil.endWith(target, "target")) {
-                    projectresourcepath = root + FileUtil.FILE_SEPARATOR + "src" + FileUtil.FILE_SEPARATOR + "main" + FileUtil.FILE_SEPARATOR + "resources" + FileUtil.FILE_SEPARATOR;
-                    projectcodesourcepath = root + FileUtil.FILE_SEPARATOR + "src" + FileUtil.FILE_SEPARATOR + "main" + FileUtil.FILE_SEPARATOR + "java" + FileUtil.FILE_SEPARATOR;
+                    projectresourcepath = URLDecoder.decode(root) + FileUtil.FILE_SEPARATOR + "src" + FileUtil.FILE_SEPARATOR + "main" + FileUtil.FILE_SEPARATOR + "resources" + FileUtil.FILE_SEPARATOR;
+                    projectcodesourcepath = URLDecoder.decode(root) + FileUtil.FILE_SEPARATOR + "src" + FileUtil.FILE_SEPARATOR + "main" + FileUtil.FILE_SEPARATOR + "java" + FileUtil.FILE_SEPARATOR;
                     break;
                 }
                 if (classes == null) {
@@ -228,7 +229,7 @@ public class BaseEvBuiltIn implements BaseEv.SettingInformation.IBaseEv {
             BaseEv.SettingInformation.macSet.addAll(macSet);
             BaseEv.SettingInformation.mainMac = mainMac;
             BaseEv.SettingInformation.UK = uk;
-         }
+        }
         {
             ILoggerBaseUtils.debug("公共模型赋值开始[{}}", BaseEvBuiltIn.class.getName());
             BaseEv.SettingInformation.context.put("idKey", BaseEv.SettingInformation.idKey);
