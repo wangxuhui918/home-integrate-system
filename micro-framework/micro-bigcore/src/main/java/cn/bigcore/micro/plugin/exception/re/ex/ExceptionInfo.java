@@ -11,8 +11,8 @@
 package cn.bigcore.micro.plugin.exception.re.ex;
 
 import cn.bigcore.micro.plugin.exception.code.ICode;
-import cn.bigcore.micro.plugin.exception.ExceptionAbs;
-import cn.bigcore.micro.plugin.exception.code.impl.CodeImpl;
+import cn.bigcore.micro.plugin.exception.ExceptionMessageAbstract;
+import cn.bigcore.micro.plugin.exception.code.BaseCodeUtils;
 
 /**
  * 文本异常抛出
@@ -21,7 +21,7 @@ import cn.bigcore.micro.plugin.exception.code.impl.CodeImpl;
  * @date 2022年1月21日
  * @readme
  */
-public class ExceptionInfo extends ExceptionAbs {
+public class ExceptionInfo extends ExceptionMessageAbstract {
     private static final long serialVersionUID = 42L;
 
     /**
@@ -32,7 +32,7 @@ public class ExceptionInfo extends ExceptionAbs {
      * @readme mark 入参为[?你好!] [张三] 格式化结果为 [张三你好!]
      */
     public ExceptionInfo(String text, String... format) {
-        super(CodeImpl.getinfo(text, format));
+        super(BaseCodeUtils.getinfo(text, format));
     }
 
     public ExceptionInfo(ICode msgInfo) {

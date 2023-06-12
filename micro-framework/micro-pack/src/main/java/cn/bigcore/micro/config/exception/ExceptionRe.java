@@ -10,9 +10,9 @@
 
 package cn.bigcore.micro.config.exception;
 
-import cn.bigcore.micro.plugin.exception.ExceptionAbs;
+import cn.bigcore.micro.plugin.exception.ExceptionMessageAbstract;
 
-public class ExceptionRe extends ExceptionAbs {
+public class ExceptionRe extends ExceptionMessageAbstract {
     private static final long serialVersionUID = 42L;
 
     public ExceptionRe(CodeRe msgInfo) {

@@ -12,10 +12,10 @@
 package cn.bigcore.micro.plugin.outgoing;
 
 import cn.bigcore.micro.BaseEv;
-import cn.bigcore.micro.plugin.auth.impl.UserImpl;
+import cn.bigcore.micro.plugin.auth.IUser;
+import cn.bigcore.micro.plugin.thread.ThreadReUtils;
 import cn.bigcore.micro.plugin.thread.bean.KeyBase;
 import cn.hutool.json.JSONUtil;
-import cn.bigcore.micro.plugin.thread.ThreadReUtils;
 
 /**
  * 入参基类
@@ -31,7 +31,7 @@ public abstract class InputParamAb<D> {
     //入参数据
     private D data;//inputparamab
 
-    private UserImpl userRe;
+    private IUser userRe;
 
     @Deprecated
     private String pageSize;
@@ -47,11 +47,11 @@ public abstract class InputParamAb<D> {
     }
 
 
-    public UserImpl getUserRe() {
+    public IUser getUserRe() {
         return userRe;
     }
 
-    public void setUserRe(UserImpl userRe) {
+    public void setUserRe(IUser userRe) {
         if (BaseEv.ProjectInformation.OPEN_THREAD_USER) {
             ThreadReUtils.putParam(KeyBase.USERRE.getKeyName(), JSONUtil.parseObj(userRe));
         }

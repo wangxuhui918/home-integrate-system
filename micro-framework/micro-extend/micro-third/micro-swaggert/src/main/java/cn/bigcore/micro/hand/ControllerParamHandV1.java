@@ -15,7 +15,7 @@ import cn.bigcore.micro.annotation.RuleController;
 import cn.bigcore.micro.core.configration.home.impl.bean.ConfigDetails;
 import cn.bigcore.micro.outgoing.utils.CodeUtils;
 import cn.bigcore.micro.plugin.exception.ExceptionApiNull;
-import cn.bigcore.micro.plugin.exception.code.impl.CodeImpl;
+import cn.bigcore.micro.plugin.exception.code.BaseCodeUtils;
 import cn.bigcore.micro.plugin.log.ILoggerBaseUtils;
 import cn.bigcore.micro.plugin.outgoing.AuthReturnType;
 import cn.hutool.core.annotation.AnnotationUtil;
@@ -66,10 +66,10 @@ public class ControllerParamHandV1 {
                     AuthReturnType authReturnType = k.checkAuth();
                     if (authReturnType == AuthReturnType.AuthSuccess) {//鉴权通过
                     } else {//鉴权失败
-                        return CodeUtils.go(CodeImpl.getBuiltinCode(CodeImpl.getError().getType(), BaseEv.SettingInformation.i18n, authReturnType.getCode(), authReturnType.getName()));
+                        return CodeUtils.go(BaseCodeUtils.getBuiltinCode(BaseCodeUtils.getError().getType(), BaseEv.SettingInformation.i18n, authReturnType.getCode(), authReturnType.getName()));
                     }
                 } catch (Exception e) {
-                    return CodeUtils.go(CodeImpl.getError("未知鉴权异常!"));
+                    return CodeUtils.go(BaseCodeUtils.getError("未知鉴权异常!"));
                 }
             }
         }
