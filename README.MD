@@ -59,10 +59,8 @@ pom.xml文件引入parent和dependency节点,如下:
 启动类加上注解 **Starter**,如下
 
 ```java
-package cn.bigcore.code;
-
-import annotaion.cn.bigcore.micro.Starter;
-import cn.bigcore.micro.message.i18n.I18n;
+import cn.bigcore.micro.annotaion.Starter;
+import cn.bigcore.micro.plugin.i18n.I18n;
 import org.springframework.boot.SpringApplication;
 
 @Starter(idkey = "bigcore_demo", i18n = I18n.CN)
