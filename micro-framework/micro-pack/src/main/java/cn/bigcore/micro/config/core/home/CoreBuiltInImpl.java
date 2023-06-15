@@ -62,7 +62,7 @@ public class CoreBuiltInImpl implements ICoreConf {
         for (int i = 0; i < ConfigMain.values().length; i++) {
             ConfigMainVo m1 = new ConfigMainVo();
             m1.setName(ConfigMain.values()[i].name());
-            m1.setConfigFileName(ConfigMain.values()[i].getConfigName());
+            m1.setConfigName(ConfigMain.values()[i].getConfigName());
             m1.setContext(ConfigMain.values()[i].getContext());
             properties.add(m1);
         }
