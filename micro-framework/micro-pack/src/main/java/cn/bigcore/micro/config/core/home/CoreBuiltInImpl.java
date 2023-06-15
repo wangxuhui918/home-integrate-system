@@ -10,10 +10,10 @@ package cn.bigcore.micro.config.core.home;
 
 import cn.bigcore.micro.config.core.home.bean.ConfigPluginDetails;
 import cn.bigcore.micro.config.core.home.bean.FileStructure;
-import cn.bigcore.micro.core.configration.home.bean.ConfigMainVo;
 import cn.bigcore.micro.core.configration.annotation.RuleInjection;
 import cn.bigcore.micro.core.configration.home.ICoreConf;
 import cn.bigcore.micro.core.configration.home.bean.ConfigDetailsVo;
+import cn.bigcore.micro.core.configration.home.bean.ConfigMainVo;
 import cn.bigcore.micro.core.configration.home.bean.FileStructureVo;
 import cn.bigcore.micro.core.configration.home.impl.bean.ConfigDetails;
 import cn.bigcore.micro.core.configration.home.impl.bean.ConfigMain;
@@ -62,11 +62,8 @@ public class CoreBuiltInImpl implements ICoreConf {
         for (int i = 0; i < ConfigMain.values().length; i++) {
             ConfigMainVo m1 = new ConfigMainVo();
             m1.setName(ConfigMain.values()[i].name());
-            m1.setConfigFileName(ConfigMain.values()[i].getConfigFileName());
+            m1.setConfigFileName(ConfigMain.values()[i].getConfigName());
             m1.setContext(ConfigMain.values()[i].getContext());
-            m1.setOnly_local(ConfigMain.values()[i].isOnly_local());
-            m1.setUse_uk(ConfigMain.values()[i].isUse_uk());
-            m1.setNeed_format_zone(ConfigMain.values()[i].isNeed_format_zone());
             properties.add(m1);
         }
         return properties;
@@ -77,14 +74,14 @@ public class CoreBuiltInImpl implements ICoreConf {
         List<ConfigDetailsVo> properties = new ArrayList<>();
         ConfigMain configmain = ConfigMain.getByFileName(configFileName);
         for (int j = 0; j < ConfigDetails.values().length && configmain != null; j++) {
-            if (ConfigDetails.values()[j].getCodeType().getConfigFileName().equals(configmain.getConfigFileName())) {
+            if (ConfigDetails.values()[j].getCodeType().getConfigName().equals(configmain.getConfigName())) {
                 ConfigDetailsVo m2 = new ConfigDetailsVo();
                 m2.setBeforesuff(ConfigDetails.values()[j].getSuff());
                 m2.setKey(ConfigDetails.values()[j].getKey());
                 m2.setM(ConfigDetails.values()[j].getM());
                 m2.setValue(ConfigDetails.values()[j].getValue());
                 m2.setMark(ConfigDetails.values()[j].getMark());
-                m2.setName_en(ConfigDetails.values()[j].getCodeType().getConfigFileName());
+                m2.setName_en(ConfigDetails.values()[j].getCodeType().getConfigName());
                 properties.add(m2);
             }
         }
