@@ -34,8 +34,9 @@ import java.util.*;
 /**
  * @author 汪旭辉
  * @date 2022/5/25
- * @readme
+ * @readme ini文件格式方式, 已经在注册表中注销
  */
+@Deprecated
 public class ProjectBuiltInImpl implements IProjectConf {
 
     @Override
@@ -173,7 +174,7 @@ public class ProjectBuiltInImpl implements IProjectConf {
                 List<String> lineStr = new ArrayList<>();
                 for (int k = 0; k < listMainConfig.size(); k++) {
                     ConfigMainVo mainConfig = listMainConfig.get(k);
-                    List<ConfigDetailsVo> listProperties = CoreConfUtils.getPropertiesDetails(mainConfig.getConfigFileName());
+                    List<ConfigDetailsVo> listProperties = CoreConfUtils.getPropertiesDetails(mainConfig.getConfigName());
                     if (listProperties != null && listProperties.size() > 0) {
                         lineStr.add(StrUtil.format("[{}-{}]", mainConfig.getName(), envName));//格式为 code-env
                         for (int i = 0; i < listProperties.size(); i++) {
@@ -182,7 +183,7 @@ public class ProjectBuiltInImpl implements IProjectConf {
                             lineStr.add(StrUtil.blankToDefault(o.getBeforesuff(), "") + o.getKey() + o.getM() + o.getValue());
                         }
                     } else if (StrUtil.isNotBlank(mainConfig.getContext())) {
-                        String name_en = VelocityUtils.convert(mainConfig.getConfigFileName(), BaseEv.SettingInformation.context);
+                        String name_en = VelocityUtils.convert(mainConfig.getConfigName(), BaseEv.SettingInformation.context);
                         String context = VelocityUtils.convert(mainConfig.getContext(), BaseEv.SettingInformation.context);
                         String file = BaseEv.WorkDir.projectresourcepath + FileUtil.FILE_SEPARATOR + name_en;
                         if (!FileUtil.exist(file)) {
