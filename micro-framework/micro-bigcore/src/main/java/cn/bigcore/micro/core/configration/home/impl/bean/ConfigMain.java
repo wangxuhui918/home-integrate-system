@@ -3,53 +3,62 @@ package cn.bigcore.micro.core.configration.home.impl.bean;
 public enum ConfigMain {
 
 
-    APOLLO("apollo.ini", false, false, false, ""),//
-    DUBBO("dubbo.ini", false, false, false, ""),//
-    DB("db.ini", false, false, false, ""),//
-    FLYWAY("flyway.ini", false, false, false, ""),//
-    GITLAB("gitlab.ini", false, false, false, ""),//
-    LOGBACK("logback.ini", false, false, false, ""),//
-    MYBATIS("mybatis.ini", false, false, false, ""),//
-    MYBATIS_PLUS("mybatisplus.ini", false, false, false, ""),//
-    MINIO("minio.ini", false, false, false, ""),//
-    REDIS("redis.ini", false, false, false, ""),//
-    SWAGGER("swagger.ini", false, false, false, ""),//
-    SYSTEMCONFIG("systemconfig.ini", false, false, false, ""),//
-    SYSTEMEXTEND("systemextend.ini", false, false, false, ""),//
-    MESSAGE("message-${i18n}.xml", false, false, true, ConfigInitValue.message_model),//
+    APOLLO("apollo.ini", ""),//
+    DUBBO("dubbo.ini", ""),//
+    DB("db.ini", ""),//
+    FLYWAY("flyway.ini", ""),//
+    GITLAB("gitlab.ini", ""),//
+    LOGBACK("logback.ini", ""),//
+    MYBATIS("mybatis.ini", ""),//
+    MYBATIS_PLUS("mybatisplus.ini", ""),//
+    MINIO("minio.ini", ""),//
+    REDIS("redis.ini", ""),//
+    SWAGGER("swagger.ini", ""),//
+    SYSTEMCONFIG("systemconfig.ini", ""),//
+    SYSTEMEXTEND("systemextend.ini", ""),//
+    MESSAGE("message-${i18n}.xml", "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>\n" +
+            "<message>\n" +
+            "\n" +
+            "\t<member code=\"DEMO01\" conmtext=\"客户基础数据维护成功\" type=\"true\" />\n" +
+            "\n" +
+            "\t<group name=\"${idKey}\">\n" +
+            "\t\t<member code=\"01\" conmtext=\"获取数据成功\" type=\"true\" />\n" +
+            "\t\t<member code=\"02\" conmtext=\"主键目前只能有一个!!\" type=\"false\" />\n" +
+            "\t\t<member code=\"03\" conmtext=\"{}为不支持的数据库类型\" type=\"false\" />\n" +
+            "\t</group>\n" +
+            "\n" +
+            "\n" +
+            "</message>"),//
 
 
     ;
 
-    private String configFileName;
-    private String context;
-    private boolean only_local;
-    private boolean use_uk;
-    private boolean need_format_zone;
 
-    ConfigMain(String configFileName, boolean only_local, boolean use_uk, boolean need_format_zone, String context) {
-        this.configFileName = configFileName;
+    private String configName;
+    private String context;
+
+
+    ConfigMain(String configName, String context) {
+        this.configName = configName;
         this.context = context;
-        this.only_local = only_local;
-        this.use_uk = use_uk;
-        this.need_format_zone = need_format_zone;
+
     }
 
     public static ConfigMain getByFileName(String configFileName) {
         for (ConfigMain o : ConfigMain.values()) {
-            if (o.getConfigFileName().equals(configFileName)) {
+            if (o.getConfigName().equals(configFileName)) {
                 return o;
             }
         }
         return null;
     }
 
-    public String getConfigFileName() {
-        return configFileName;
+    public String getConfigName() {
+        return configName;
     }
 
-    public void setConfigFileName(String configFileName) {
-        this.configFileName = configFileName;
+    public void setConfigName(String configName) {
+        this.configName = configName;
     }
 
 
@@ -60,30 +69,5 @@ public enum ConfigMain {
     public void setContext(String context) {
         this.context = context;
     }
-
-    public boolean isOnly_local() {
-        return only_local;
-    }
-
-    public void setOnly_local(boolean only_local) {
-        this.only_local = only_local;
-    }
-
-    public boolean isUse_uk() {
-        return use_uk;
-    }
-
-    public void setUse_uk(boolean use_uk) {
-        this.use_uk = use_uk;
-    }
-
-    public boolean isNeed_format_zone() {
-        return need_format_zone;
-    }
-
-    public void setNeed_format_zone(boolean need_format_zone) {
-        this.need_format_zone = need_format_zone;
-    }
-
 
 }
