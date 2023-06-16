@@ -11,7 +11,7 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>cn.bigcore</groupId>
-        <version>11.0.1.105-RELEASE</version>
+        <version>11.0.1.106-RELEASE</version>
         <artifactId>micro-framework</artifactId>
     </parent>
     <artifactId>micro-bigcore</artifactId>

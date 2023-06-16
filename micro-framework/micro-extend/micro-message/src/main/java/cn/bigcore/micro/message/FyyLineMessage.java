@@ -11,6 +11,7 @@
 package cn.bigcore.micro.message;
 
 import cn.bigcore.micro.FyyInitEnv;
+import cn.bigcore.micro.config.annotation.FyyRuleInjection;
 import cn.bigcore.micro.exception.code.bean.FyyMessageCode;
 import cn.bigcore.micro.line.FyyLineMessageInterface;
 import cn.bigcore.micro.log.FyyLogBaseUtils;
