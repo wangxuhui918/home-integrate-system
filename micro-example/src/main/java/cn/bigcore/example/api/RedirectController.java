@@ -8,20 +8,21 @@
 
 package cn.bigcore.example.api;
 
+import cn.bigcore.example.api.vo.DemoVo;
+
+import cn.bigcore.micro.annotation.FyyRuleController;
+import cn.bigcore.micro.exception.FyyCodeRe;
+import cn.bigcore.micro.exception.re.ex.FyyExceptionError;
+import cn.bigcore.micro.outgoing.FyyInputParamRe;
+import cn.bigcore.micro.outgoing.FyyOutputParamRe;
+import cn.bigcore.micro.outgoing.utils.FyyCodeUtils;
 import cn.hutool.core.io.resource.ResourceUtil;
 import cn.hutool.core.util.StrUtil;
-import cn.bigcore.example.api.vo.DemoVo;
-import cn.bigcore.micro.annotation.RuleController;
-import cn.bigcore.micro.config.exception.CodeRe;
-import cn.bigcore.micro.outgoing.InputParamRe;
-import cn.bigcore.micro.outgoing.OutputParamRe;
-import cn.bigcore.micro.outgoing.utils.CodeUtils;
-import cn.bigcore.micro.plugin.exception.re.ex.ExceptionError;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
-@RuleController
+@FyyRuleController
 @Controller
 public class RedirectController extends BaseController {
 
@@ -49,7 +50,7 @@ public class RedirectController extends BaseController {
     @ApiOperation(value = "样例", notes = " ")
     @RequestMapping(value = "/example/example", method = {RequestMethod.POST, RequestMethod.GET})
     @ResponseBody
-    public Object example(@RequestBody InputParamRe<DemoVo> input) {
+    public Object example(@RequestBody FyyInputParamRe<DemoVo> input) {
         return input.getInputData().getDemo_id();
     }
 
@@ -57,16 +58,16 @@ public class RedirectController extends BaseController {
     @ApiOperation(value = "样例", notes = " ")
     @RequestMapping(value = "/example/output2", method = {RequestMethod.POST, RequestMethod.GET})
     @ResponseBody
-    public OutputParamRe output2(@RequestBody InputParamRe<DemoVo> input) {
-        return CodeUtils.go(new CodeRe("A001", "你的"));
+    public FyyOutputParamRe output2(@RequestBody FyyInputParamRe<DemoVo> input) {
+        return FyyCodeUtils.go(new FyyCodeRe("A001", "你的"));
     }
 
     @ApiOperation(value = "样例", notes = " ")
     @RequestMapping(value = "/example/output3", method = {RequestMethod.POST, RequestMethod.GET})
     @ResponseBody
-    public void output3(@RequestBody InputParamRe<DemoVo> input) {
+    public void output3(@RequestBody FyyInputParamRe<DemoVo> input) {
         if (StrUtil.equals(input.getInputData().getName(), "阿莫西林")) {//正常的业务异常
-            throw new ExceptionError("药品{},库存不足", "阿莫西林");
+            throw new FyyExceptionError("药品{},库存不足", "阿莫西林");
         } else {//继续处理流程
             //1. 进行库存扣减正常业务,此时会返回给前端内置true的消息体
             //2. 如果此时出现空指针等异常也会封装为false消息码体并返回

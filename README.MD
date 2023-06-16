@@ -29,12 +29,12 @@ pom.xml文件引入parent和dependency节点,如下:
 
     <modelVersion>4.0.0</modelVersion>
     <groupId>cn.bigcore</groupId>
-    <version>11.0.1.105-RELEASE</version>
+    <version>11.0.2-SNAPSHOT</version>
     <artifactId>micro-example</artifactId>
     <parent>
         <artifactId>micro-dependencies</artifactId>
         <groupId>cn.bigcore</groupId>
-        <version>11.0.1.105-RELEASE</version>
+        <version>11.0.2-SNAPSHOT</version>
     </parent>
 
     <properties>
@@ -46,7 +46,7 @@ pom.xml文件引入parent和dependency节点,如下:
         <dependency>
             <groupId>cn.bigcore</groupId>
             <artifactId>micro-pack</artifactId>
-            <version>11.0.1.105-RELEASE</version>
+            <version>11.0.2-SNAPSHOT</version>
         </dependency>
     </dependencies>
 
@@ -56,17 +56,23 @@ pom.xml文件引入parent和dependency节点,如下:
 
 # 3.使用
 
-启动类加上注解 **Starter**,如下
+启动类加上注解 **FyyStarter**,如下
 
 ```java
-import cn.bigcore.micro.annotaion.Starter;
-import cn.bigcore.micro.plugin.i18n.I18n;
-import org.springframework.boot.SpringApplication;
 
-@Starter(idkey = "bigcore_demo", i18n = I18n.CN)
-public class LowFormatApplication {
+package cn.bigcore.example;
+
+
+import cn.bigcore.micro.bean.FyyBean;
+import cn.bigcore.micro.config.config.impl.bean.FyyConfigEntryDetailsValues;
+import cn.bigcore.micro.starter.FyyStarter;
+import org.springframework.boot.SpringApplication;
+import org.springframework.core.env.Environment;
+
+@FyyStarter(idkey = "home-example-ewell"})
+public class ExampleApplication {
     public static void main(String[] args) {
-        SpringApplication.run(LowFormatApplication.class, args);
+        SpringApplication.run(ExampleApplication.class, args);
     }
 }
 
@@ -85,15 +91,12 @@ public class LowFormatApplication {
 
 ### 5.1.1 使用说明
 
-使用@Starter注解类作为本框架的唯一入口,通过该注解类完成系统的启动,装配以及各项功能启动.如下:
+使用@FyyStarter注解类作为本框架的唯一入口,通过该注解类完成系统的启动,装配以及各项功能启动.如下:
 
 ```java
-@Starter(idkey = "bigcore_demo", i18n = I18n.CN)
-public class LowFormatApplication {
-    public static void main(String[] args) {
-        SpringApplication.run(LowFormatApplication.class, args);
-    }
-}
+
+@FyyStarter(idkey = "home-example-ewell"})
+
 ```
 
 ### 5.1.2 其他属性:
@@ -116,13 +119,13 @@ public class LowFormatApplication {
 9A-E7-F4-BB-4D-65zhangsan
 ```
 
-***注:用户唯一标识可以自定义,建议不要与其他同事重复***
+ ***注:用户唯一标识可以自定义,建议不要与其他同事重复***
 
 
 ## 5.3 配置文件
 
 ### 5.3.1 配置文件生成范围
-框架按照 ***@Starter.configEnv*** 属性(默认为:dev,uat,pro)生成对应的配置文件,对应生成如下配置文件
+框架按照 ***@FyyStarter.configEnv*** 属性(默认为:dev,uat,pro)生成对应的配置文件,对应生成如下配置文件
 
 | configEnv | 对应配置文件                     |
 |-----------|----------------------------|
@@ -131,16 +134,14 @@ public class LowFormatApplication {
 | pro       | application-pro.properties |
 | 用户唯一标识    | application-用户唯一标识.properties |
 
-也可以重写***@Starter.configEnv***属性,例如:
+也可以重写***@FyyStarter.configEnv***属性,例如:
 
 ```java
 
-@Starter(idkey = "home-example-ewell",configEnv = {"kaifa","ceshi"})
+@FyyStarter(idkey = "home-example-ewell", configEnv = {"kaifa", "ceshi"})
 public class ExampleApplication {
     public static void main(String[] args) {
         SpringApplication.run(ExampleApplication.class, args);
-        Environment environment = Bean.getBean(Environment.class);
-        System.out.println(environment.getProperty(ConfigDetails.APOLLO_BOOTSTRAP_ENABLED.getKey()).toString());
     }
 }
 
@@ -155,7 +156,7 @@ public class ExampleApplication {
 
 ### 5.3.1 配置文件读取优先级
 
-@Starter.runEnv>运行时环境变量'-Denv={}'>用户唯一标识,例如框架已有如下配置前提下:
+@FyyStarter.runEnv>运行时环境变量'-Denv={}'>用户唯一标识,例如框架已有如下配置前提下:
 
 | configEnv | 对应配置文件                     |
 |-----------|----------------------------|
@@ -177,13 +178,13 @@ public class ExampleApplication {
 ## 5.4 消息码
 
 框架启动后会在resources资源目录下生成message-{}.xml文件,标识符取决于@Starter.i18n属性,具体范围见:
-***cn.bigcore.micro.plugin.i18n.I18n***
+***cn.bigcore.micro.plugin.i18n.FyyI18n***
 
 ## 5.5 主配置类
 
 用以获取系统启动前后的各项参数和配置:
 
-***cn.bigcore.micro.BaseEv***
+***cn.bigcore.micro.FyyInitEnv***
 
 
 # 5.📝部分功能的使用
@@ -194,42 +195,91 @@ public class ExampleApplication {
 
 ```java
 
-@RuleAnnotationApi
+/*
+ *
+ *  * Copyright (c) 2022
+ *  * http://license.coscl.org.cn/MulanPSL2
+ *  * 汪旭辉
+ *
+ */
+
+package cn.bigcore.example.api;
+
+import cn.bigcore.example.api.vo.DemoVo;
+
+import cn.bigcore.micro.annotation.FyyRuleController;
+import cn.bigcore.micro.exception.FyyCodeRe;
+import cn.bigcore.micro.exception.re.ex.FyyExceptionError;
+import cn.bigcore.micro.outgoing.FyyInputParamRe;
+import cn.bigcore.micro.outgoing.FyyOutputParamRe;
+import cn.bigcore.micro.outgoing.utils.FyyCodeUtils;
+import cn.hutool.core.io.resource.ResourceUtil;
+import cn.hutool.core.util.StrUtil;
+import io.swagger.annotations.ApiOperation;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.*;
+
+@FyyRuleController
 @Controller
-@Api(tags = "(CodeFile)控制层")
-public class CodeFileController {
+public class RedirectController extends BaseController {
 
-    @RequestMapping(value = "/codeFile/add", method = {RequestMethod.POST})
-    @ApiOperation(value = "添加")
+    @ApiOperation(value = "读取文件", notes = " ")
+    @RequestMapping(value = "/example/readCodeFile", method = {RequestMethod.POST, RequestMethod.GET})
     @ResponseBody
-    @PostMapping
-    public Object add(@RequestBody InputParamReLow<CodeFileVo> input) {
-        return this.codeFileService.insert(input.getInputData());
+    public String readCodeFile(String fileResourcePath) {
+        return ResourceUtil.readUtf8Str(fileResourcePath);
     }
 
-    @RequestMapping(value = "/codeFile/add", method = {RequestMethod.POST})
-    @ApiOperation(value = "添加")
-    @ResponseBody
-    @PostMapping
-    public void add(@RequestBody InputParamReLow<CodeFileVo> input) {
-        this.codeFileService.insert(input.getInputData());
+
+    @ApiOperation(value = "安装流程", notes = " ")
+    @RequestMapping(value = "index", method = {RequestMethod.POST, RequestMethod.GET})
+    public String mainindex() {
+        return "example/index.html";
     }
 
-    @RequestMapping(value = "/codeFile/add", method = {RequestMethod.POST})
-    @ApiOperation(value = "添加")
-    @ResponseBody
-    @PostMapping
-    public OutputParamAb add(@RequestBody InputParamReLow<CodeFileVo> input) {
-        this.codeFileService.insert(input.getInputData());
+    @ApiOperation(value = "安装流程", notes = " ")
+    @RequestMapping(value = "/example/{index}", method = {RequestMethod.POST, RequestMethod.GET})
+    public String index(@PathVariable String index) {
+        return "example/" + index + ".html";
     }
-    1.反参要求为OutputParamAb子类,
-    当反参非 OutputParamAb
-    会自动创建一个新的OutputParamAb类,并将结果加入OutputParamAb.data中
-    2.入参要求InputParamReLow<T>,可通过input.getInputData()获取入参实体类,并提供一系列方法
-    3.自动捕获Service中的业务异常并通过OutputParamAb加工返回给前端
-    4.反参目前实现了OutputParamRe
+
+
+    @ApiOperation(value = "样例", notes = " ")
+    @RequestMapping(value = "/example/example", method = {RequestMethod.POST, RequestMethod.GET})
+    @ResponseBody
+    public Object example(@RequestBody FyyInputParamRe<DemoVo> input) {
+        return input.getInputData().getDemo_id();
+    }
+
+
+    @ApiOperation(value = "样例", notes = " ")
+    @RequestMapping(value = "/example/output2", method = {RequestMethod.POST, RequestMethod.GET})
+    @ResponseBody
+    public FyyOutputParamRe output2(@RequestBody FyyInputParamRe<DemoVo> input) {
+        return FyyCodeUtils.go(new FyyCodeRe("A001", "你的"));
+    }
+
+    @ApiOperation(value = "样例", notes = " ")
+    @RequestMapping(value = "/example/output3", method = {RequestMethod.POST, RequestMethod.GET})
+    @ResponseBody
+    public void output3(@RequestBody FyyInputParamRe<DemoVo> input) {
+        if (StrUtil.equals(input.getInputData().getName(), "阿莫西林")) {//正常的业务异常
+            throw new FyyExceptionError("药品{},库存不足", "阿莫西林");
+        } else {//继续处理流程
+            //1. 进行库存扣减正常业务,此时会返回给前端内置true的消息体
+            //2. 如果此时出现空指针等异常也会封装为false消息码体并返回
+        }
+    }
+}
+
+    1.反参要求为FyyOutputParamAb子类,
+    当反参非 FyyOutputParamAb
+    会自动创建一个新的FyyOutputParamAb类,并将结果加入FyyOutputParamAb.data中
+    2.入参要求FyyInputParamReLow<T>,可通过input.getInputData()获取入参实体类,并提供一系列方法
+    3.自动捕获Service中的业务异常并通过FyyOutputParamAb加工返回给前端
+    4.反参目前实现了FyyOutputParamRe
     5.
-    Conttroller需要实现加入 @RuleAnnotationApi 注解
+    Conttroller需要实现加入 @FyyRuleController 注解
 }
 ```
 

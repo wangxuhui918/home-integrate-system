@@ -6,5 +6,5 @@
 #  */
 #
 
-cn.bigcore.micro.hutool.bean.StringConverter
-cn.bigcore.micro.hutool.bean.DateConverter
+cn.bigcore.micro.hutool.StringConverter
+cn.bigcore.micro.hutool.DateConverter
