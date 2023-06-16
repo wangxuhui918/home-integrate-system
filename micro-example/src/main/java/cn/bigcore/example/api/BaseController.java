@@ -2,9 +2,9 @@ package cn.bigcore.example.api;
 
 
 import cn.bigcore.example.api.otherutils.*;
+import cn.bigcore.micro.mybatis.page.FyyMybatisPage;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import cn.bigcore.micro.mybatis.page.Page;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.WebDataBinder;
@@ -115,7 +115,7 @@ public class BaseController {
      * 响应请求分页数据
      */
     @SuppressWarnings({"rawtypes", "unchecked"})
-    protected TableDataInfo getDataTable(Page<?> info) {
+    protected TableDataInfo getDataTable(FyyMybatisPage<?> info) {
         TableDataInfo rspData = new TableDataInfo();
         rspData.setCode(0);
         rspData.setRows((List<?>) info.getRows());
