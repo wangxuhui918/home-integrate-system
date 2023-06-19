@@ -10,6 +10,8 @@ package cn.bigcore.micro.config;
 
 import cn.bigcore.micro.config.config.bean.FyyConfigEntryVo;
 import cn.bigcore.micro.config.config.bean.FyyConfigResourceType;
+import cn.bigcore.micro.daemon.FyyProjectConfigRoot;
+import cn.bigcore.micro.exception.re.ex.FyyExceptionError;
 import cn.bigcore.micro.utils.FyyConfigProjectUtils;
 import cn.bigcore.micro.log.FyyLogBaseUtils;
 import cn.hutool.core.date.DateUtil;
@@ -67,8 +69,32 @@ public class FyyConfigProjectPropertiesImpl implements FyyConfigProjectInterface
                     }
                 }
             }
-            {
-                thisEnvPropertiesValue.clear();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        {
+            thisEnvPropertiesValue.clear();
+            FyyProjectConfigRoot projectConfigRoot = FyyInitEnv.SettingInformation.daemonRoot.getProject_config().get(FyyInitEnv.SettingInformation.idKey);
+            if (projectConfigRoot != null && StrUtil.isNotBlank(projectConfigRoot.getPrject_application_properties_path())) {
+                if (!FileUtil.exist(projectConfigRoot.getPrject_application_properties_path())) {
+                    throw new FyyExceptionError("配置文件:{}不存在!", projectConfigRoot.getPrject_application_properties_path());
+                }
+                String path = projectConfigRoot.getPrject_application_properties_path();
+                HashMap<String, String> properties = FyyPropertiesUtils.getProperties(path);
+                if (properties == null || properties.size() == 0) {
+                    throw new FyyExceptionError("读取{}文件中自定义配置路径失败,配置为空!", FyyInitEnv.WorkDir.MAIN_CONFIG);
+                }
+                FyyLogBaseUtils.debug("加载主配置{},服务:{},配置{}!", FyyInitEnv.WorkDir.MAIN_CONFIG, FyyInitEnv.SettingInformation.idKey, path);
+                thisEnvPropertiesValue.putAll(properties);
+                {
+                    Setting o = new Setting();
+                    for (Object key : properties.keySet()) {
+                        o.putByGroup(key.toString(), FyyInitEnv.SettingInformation.runEnv, properties.get(key.toString()).toString());
+                    }
+                    allEnvSetting.clear(FyyInitEnv.SettingInformation.runEnv);
+                    allEnvSetting.addSetting(o);
+                }
+            } else {
                 List<String> groups = allEnvSetting.getGroups();
                 FyyLogBaseUtils.info("加载环境[{}]配置", FyyInitEnv.SettingInformation.runEnv);
                 for (int j = 0; j < groups.size(); j++) {
@@ -78,8 +104,6 @@ public class FyyConfigProjectPropertiesImpl implements FyyConfigProjectInterface
                     }
                 }
             }
-        } catch (Exception e) {
-            e.printStackTrace();
         }
         return thisEnvPropertiesValue;
     }
@@ -92,8 +116,7 @@ public class FyyConfigProjectPropertiesImpl implements FyyConfigProjectInterface
             for (int i = 0; i < listUri.size(); i++) {
                 if (!listUri.get(i).toString().contains("-" + FyyInitEnv.SettingInformation.i18n)) {
                     String name = StrUtil.subBetween(listUri.get(i).toString(), "message-", ".xml");
-                    String context =
-                            FileUtil.readString(listUri.get(i).toURL(), CharsetUtil.CHARSET_UTF_8);
+                    String context = FileUtil.readString(listUri.get(i).toURL(), CharsetUtil.CHARSET_UTF_8);
                     map.put(name, context);
                 }
             }
@@ -161,7 +184,7 @@ public class FyyConfigProjectPropertiesImpl implements FyyConfigProjectInterface
         envs.add(FyyInitEnv.SettingInformation.runEnv);
 
         for (String envName : envs) {
-            if (FyyInitEnv.SettingInformation.autoUpdate || !FyyConfigProjectUtils.installed() || ((FyyInitEnv.SettingInformation.UK).equals(envName) && FyyInitEnv.SettingInformation.isClassModel)) {//数据库未初始化,手动更新配置
+            if (FyyInitEnv.SettingInformation.autoUpdate || !FyyConfigProjectUtils.installed() || ((FyyInitEnv.SettingInformation.daemonRoot.getDevelop_user_id()).equals(envName) && FyyInitEnv.SettingInformation.isClassModel)) {//数据库未初始化,手动更新配置
                 List<FyyConfigEntryVo> listMainConfig = FyyConfigFrameUtils.getPropertiesMain();
                 List<String> lineStr = new ArrayList<>();
                 for (int k = 0; k < listMainConfig.size(); k++) {

@@ -10,6 +10,7 @@ package cn.bigcore.micro;
 
 import cn.bigcore.micro.config.FyyReourceInterface;
 import cn.bigcore.micro.config.FyyConfigProjectInterface;
+import cn.bigcore.micro.daemon.FyyProjectDaemonRoot;
 import cn.bigcore.micro.utils.FyyConfigProjectUtils;
 import cn.bigcore.micro.exception.code.bean.FyyMessageCode;
 import cn.bigcore.micro.i18n.FyyI18n;
@@ -63,8 +64,8 @@ public class FyyInitEnv {
 
     public static class SystemInformation {//系统信息
         public static String SYSTEM_CHINA_NAME = "帆有云系统";//系统中文名
-        public static String SYSTEM_EN_NAME = "home";//系统英文名
-        public static String SYSTEM_KEY = "model-project-company";//系统默认KEY
+        public static String SYSTEM_EN_NAME = "fyy";//系统英文名
+        public static String SYSTEM_KEY = "fyy-demo-company";//系统默认KEY
     }
 
     public static class ProjectInformation {//项目信息
@@ -77,6 +78,7 @@ public class FyyInitEnv {
         public final static String userHomeDir = SystemUtil.getUserInfo().getHomeDir();//获取当前用户名
         public final static String systemUserName = SystemUtil.getUserInfo().getName().trim().replace("/", "").replace("\\", "");//各种工作目录
         public final static String UK_FILE = SystemUtil.getUserInfo().getHomeDir() + FileUtil.FILE_SEPARATOR + PUBLIC_UK_NAME;//用户唯一标志
+        public final static String MAIN_CONFIG = SystemUtil.getUserInfo().getHomeDir() + FileUtil.FILE_SEPARATOR + SystemInformation.SYSTEM_EN_NAME + ".json";//主配置
         public static String projectresourcepath = "";//工程资源目录
         public static String projectcodesourcepath = "";//工程源码目录
         public static String jarpath = "";//jarpath 当前jar包所在目录,仅限于isdev=false
@@ -109,7 +111,7 @@ public class FyyInitEnv {
         public static String mainMac = "";//存放本机主要 mac
         public static boolean isClassModel = false;//通过是否jar运行判断是否为开发模式
         public static DataSource dataSource = null;//预留一个系统数据源,通过其他创建进行赋值和创建
-        public static String UK = "";//用户唯一标志
+        public static FyyProjectDaemonRoot daemonRoot = new FyyProjectDaemonRoot();//用户主标志
         public static RedisDS redisds = null;//已经初始化过的 redisds 可以直接创建 jredis (.getJedis())
         public static boolean autoUpdate = false;//是否自动更新
         public static FyyInitEnvLoadInterface baseEv;//各种工作目录,class路径,jar路径

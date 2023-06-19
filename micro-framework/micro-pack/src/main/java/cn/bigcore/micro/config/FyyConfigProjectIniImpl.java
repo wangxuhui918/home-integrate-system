@@ -168,7 +168,7 @@ public class FyyConfigProjectIniImpl implements FyyConfigProjectInterface {
         envs.add(FyyInitEnv.SettingInformation.runEnv);
 
         for (String envName : envs) {
-            if (FyyInitEnv.SettingInformation.autoUpdate || !FyyConfigProjectUtils.installed() || ((FyyInitEnv.SettingInformation.UK).equals(envName) && FyyInitEnv.SettingInformation.isClassModel)) {//数据库未初始化,手动更新配置
+            if (FyyInitEnv.SettingInformation.autoUpdate || !FyyConfigProjectUtils.installed() || ((FyyInitEnv.SettingInformation.daemonRoot.getDevelop_user_id()).equals(envName) && FyyInitEnv.SettingInformation.isClassModel)) {//数据库未初始化,手动更新配置
                 List<FyyConfigEntryVo> listMainConfig = FyyConfigFrameUtils.getPropertiesMain();
                 List<String> lineStr = new ArrayList<>();
                 for (int k = 0; k < listMainConfig.size(); k++) {

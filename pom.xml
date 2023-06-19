@@ -16,10 +16,10 @@
 
 
     <modules>
-<!--        <module>micro-all</module>-->
-<!--        <module>micro-dependencies</module>-->
-<!--        <module>micro-example</module>-->
-<!--        <module>micro-framework</module>-->
+        <module>micro-all</module>
+        <module>micro-dependencies</module>
+        <module>micro-example</module>
+        <module>micro-framework</module>
     </modules>
 
 

@@ -19,16 +19,16 @@
     </properties>
 
     <dependencies>
-<!--        <dependency>-->
-<!--            <groupId>cn.bigcore</groupId>-->
-<!--            <artifactId>micro-pack</artifactId>-->
-<!--            <version>11.0.2-SNAPSHOT</version>-->
-<!--        </dependency>-->
         <dependency>
             <groupId>cn.bigcore</groupId>
-            <artifactId>micro-all</artifactId>
+            <artifactId>micro-pack</artifactId>
             <version>11.0.2-SNAPSHOT</version>
         </dependency>
+<!--        <dependency>-->
+<!--            <groupId>cn.bigcore</groupId>-->
+<!--            <artifactId>micro-all</artifactId>-->
+<!--            <version>11.0.2-SNAPSHOT</version>-->
+<!--        </dependency>-->
     </dependencies>
 
 </project>

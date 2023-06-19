@@ -9,6 +9,8 @@
 package cn.bigcore.micro.init;
 
 import cn.bigcore.micro.FyyInitEnv;
+import cn.bigcore.micro.daemon.FyyProjectConfigRoot;
+import cn.bigcore.micro.daemon.FyyProjectDaemonRoot;
 import cn.bigcore.micro.starter.FyyStarter;
 import cn.bigcore.micro.exception.re.ex.FyyExceptionError;
 import cn.bigcore.micro.log.FyyLogBaseUtils;
@@ -40,17 +42,20 @@ public class FyyInitEnvLoad implements FyyInitEnv.SettingInformation.FyyInitEnvL
     @Override
     public void load() {
         FyyLogBaseUtils.debug("开始处理配置类[{}}", FyyInitEnvLoad.class.getName());
-
-        String idkey = "", i18n = "", projectPackage = "", runEnv = "", uk_value = "",
-                jarpath = "", mainClass = "", projectresourcepath = "", projectcodesourcepath = "",
-                mainMac = "", uk = "", workHomeDir = "";
-        String[] configEnv = null;
-        Boolean isClassModel = null;
-        Class mainClassC = null;
-        boolean updateProperties = false;
-        Set<String> macSet = new HashSet<>();
-
+//        uk_value = "",uk = "",
+        String idkey, i18n, projectPackage, runEnv, jarpath, mainClass, projectresourcepath, projectcodesourcepath, mainMac;
+        String workHomeDir;
+        FyyProjectDaemonRoot daemonRoot;
+        String[] configEnv;
+        Boolean isClassModel;
+        Class mainClassC;
+        boolean updateProperties;
+        Set<String> macSet;
         {
+            mainClassC = null;
+            mainClass = "";
+            isClassModel = null;
+            jarpath = "";
             String startCommad = System.getProperty("sun.java.command");
             FyyLogBaseUtils.info("获取到启动命令值:[{}}", startCommad);
             try {
@@ -92,68 +97,35 @@ public class FyyInitEnvLoad implements FyyInitEnv.SettingInformation.FyyInitEnvL
                 throw new FyyExceptionError("未知异常:{}", e.getMessage());
             }
         }
-        if (isClassModel) {
-            String f1 = FileUtil.getAbsolutePath(ClassUtil.loadClass(FyyInitEnvLoad.class.getName()).getClassLoader().getResource("").getPath());
-            for (int i = 0; ; i++) {
-                String classes = FileUtil.getParent(f1, i);
-                String target = FileUtil.getParent(f1, i + 1);
-                String root = FileUtil.getParent(f1, i + 2);
-                if (StrUtil.endWith(classes, "classes") && StrUtil.endWith(target, "target")) {
-                    projectresourcepath = URLDecoder.decode(root) + FileUtil.FILE_SEPARATOR + "src" + FileUtil.FILE_SEPARATOR + "main" + FileUtil.FILE_SEPARATOR + "resources" + FileUtil.FILE_SEPARATOR;
-                    projectcodesourcepath = URLDecoder.decode(root) + FileUtil.FILE_SEPARATOR + "src" + FileUtil.FILE_SEPARATOR + "main" + FileUtil.FILE_SEPARATOR + "java" + FileUtil.FILE_SEPARATOR;
-                    break;
-                }
-                if (classes == null) {
-                    throw new FyyExceptionError("获取根目录{}失败", f1);
-                }
-            }
-        }
 
         {
-            int s = 0;
-            for (NetworkInterface networkinterface : NetUtil.getNetworkInterfaces()) {
-                for (InterfaceAddress interfaceaddress : networkinterface.getInterfaceAddresses()) {
-                    String temp = NetUtil.getMacAddress(interfaceaddress.getAddress());
-                    if (StrUtil.isNotBlank(temp)) {
-                        try {
-                            FyyLogBaseUtils.debug("扫描到网卡[{}]:[{}}", ++s, temp.toUpperCase());
-                            macSet.add(temp.toUpperCase());
-                        } catch (Exception e) {
-                        }
-                    }
-                }
-            }
-            mainMac = macSet.iterator().next();
-            FyyLogBaseUtils.info("获取到随机主网卡:[{}}", mainMac);
-        }
-        {
-            try {
-                uk_value = FileUtil.readUtf8String(FyyInitEnv.WorkDir.UK_FILE);
-            } catch (Exception e) {
-            }
-            if (StrUtil.isBlank(uk_value) && isClassModel) {
-                for (int i = 0; ; i++) {
-                    FyyLogBaseUtils.warn("[{}]系统在本机首次运行,文件[{}]需要写入用户标识(例如:中文姓名,英文姓名[只能为中文,英文,数字]),请输入并点击Enter", FyyInitEnv.SystemInformation.SYSTEM_EN_NAME, FyyInitEnv.WorkDir.UK_FILE);
-                    String uktag = Console.input();
-                    String pattern = "^[\\u4e00-\\u9fa5,A-Za-z0-9]{0,}";
-                    boolean isMatch = Pattern.matches(pattern, uktag);
-                    if (isMatch) {
-                        uk_value = uktag;
-                        break;
-                    }
-                }
-                FileUtil.writeUtf8String(uk_value, FyyInitEnv.WorkDir.UK_FILE);
-            } else if (StrUtil.isBlank(uk_value) && !isClassModel) {
-                uk_value = mainMac + FyyInitEnv.WorkDir.systemUserName;
-                FileUtil.writeUtf8String(uk_value, FyyInitEnv.WorkDir.UK_FILE);
-            }
-            uk = StrUtil.blankToDefault(uk_value, "local");//都获取不到使用local默认值
-            FyyLogBaseUtils.info("获取到用户标识:[{}}", uk);
-        }
-
-        {
+            runEnv = "";
+            idkey = "";
+            i18n = "";
+            configEnv = null;
+            projectPackage = "";
+            updateProperties = false;
+            workHomeDir = "";
             {
                 FyyStarter starter = AnnotationUtil.getAnnotation(mainClassC, FyyStarter.class);
+                try {
+                    runEnv = starter.runEnv();
+                    if (StrUtil.isBlank(runEnv)) {//自动选择根据环境变量确定
+                        List<String> lista = Arrays.asList(SystemUtil.get("env"), SystemUtil.get("ENV"), SystemUtil.get("Env"), SystemUtil.get("ENv"), SystemUtil.get("ENv"));
+                        for (int i = 0; i < lista.size(); i++) {
+                            String BaseEvBuiltInImplEnv = lista.get(i);
+                            if (StrUtil.isNotBlank(BaseEvBuiltInImplEnv)) {
+                                runEnv = BaseEvBuiltInImplEnv;
+                                break;
+                            }
+                        }
+                    }
+                    runEnv = StrUtil.blankToDefault(runEnv, "");
+                    if (StrUtil.isBlank(runEnv) && !isClassModel) {
+                        throw new FyyExceptionError("[jar]运行模式需指定一个环境变量:[-Denv={}]", JSONUtil.toJsonStr(configEnv));
+                    }
+                } catch (Exception e) {
+                }
                 try {
                     i18n = starter.i18n().getI18nCode();
                 } catch (Exception e) {
@@ -165,30 +137,6 @@ public class FyyInitEnvLoad implements FyyInitEnv.SettingInformation.FyyInitEnvL
                     }
                 } catch (Exception e) {
                 }
-
-                {
-                    try {
-                        runEnv = starter.runEnv();
-                        if (StrUtil.isBlank(runEnv)) {//自动选择根据环境变量确定
-                            List<String> lista = Arrays.asList(SystemUtil.get("env"), SystemUtil.get("ENV"), SystemUtil.get("Env"), SystemUtil.get("ENv"), SystemUtil.get("ENv"));
-                            for (int i = 0; i < lista.size(); i++) {
-                                String BaseEvBuiltInImplEnv = lista.get(i);
-                                if (StrUtil.isNotBlank(BaseEvBuiltInImplEnv)) {
-                                    runEnv = BaseEvBuiltInImplEnv;
-                                    break;
-                                }
-                            }
-                        }
-                    } catch (Exception e) {
-                    }
-                    {
-                        runEnv = StrUtil.blankToDefault(runEnv, "");
-                        if (StrUtil.isBlank(runEnv) && !isClassModel) {
-                            throw new FyyExceptionError("[jar]运行模式需指定一个环境变量:[-Denv={}]", JSONUtil.toJsonStr(configEnv));
-                        }
-                    }
-                }
-
                 try {
                     idkey = starter.idkey();
                 } catch (Exception e) {
@@ -210,6 +158,88 @@ public class FyyInitEnvLoad implements FyyInitEnv.SettingInformation.FyyInitEnvL
                 workHomeDir = SystemUtil.getUserInfo().getHomeDir() + FileUtil.FILE_SEPARATOR + FyyInitEnv.SystemInformation.SYSTEM_EN_NAME + FileUtil.FILE_SEPARATOR + idkey + FileUtil.FILE_SEPARATOR;
             }
         }
+
+
+        {
+            projectresourcepath = "";
+            projectcodesourcepath = "";
+            if (isClassModel) {
+
+                String f1 = FileUtil.getAbsolutePath(ClassUtil.loadClass(FyyInitEnvLoad.class.getName()).getClassLoader().getResource("").getPath());
+                for (int i = 0; ; i++) {
+                    String classes = FileUtil.getParent(f1, i);
+                    String target = FileUtil.getParent(f1, i + 1);
+                    String root = FileUtil.getParent(f1, i + 2);
+                    if (StrUtil.endWith(classes, "classes") && StrUtil.endWith(target, "target")) {
+                        projectresourcepath = URLDecoder.decode(root) + FileUtil.FILE_SEPARATOR + "src" + FileUtil.FILE_SEPARATOR + "main" + FileUtil.FILE_SEPARATOR + "resources" + FileUtil.FILE_SEPARATOR;
+                        projectcodesourcepath = URLDecoder.decode(root) + FileUtil.FILE_SEPARATOR + "src" + FileUtil.FILE_SEPARATOR + "main" + FileUtil.FILE_SEPARATOR + "java" + FileUtil.FILE_SEPARATOR;
+                        break;
+                    }
+                    if (classes == null) {
+                        throw new FyyExceptionError("获取根目录{}失败", f1);
+                    }
+                }
+            }
+        }
+
+        {
+            macSet = new HashSet<>();
+            int s = 0;
+            for (NetworkInterface networkinterface : NetUtil.getNetworkInterfaces()) {
+                for (InterfaceAddress interfaceaddress : networkinterface.getInterfaceAddresses()) {
+                    String temp = NetUtil.getMacAddress(interfaceaddress.getAddress());
+                    if (StrUtil.isNotBlank(temp)) {
+                        try {
+                            FyyLogBaseUtils.debug("扫描到网卡[{}]:[{}}", ++s, temp.toUpperCase());
+                            macSet.add(temp.toUpperCase());
+                        } catch (Exception e) {
+                        }
+                    }
+                }
+            }
+            mainMac = macSet.iterator().next();
+            FyyLogBaseUtils.info("获取到随机主网卡:[{}}", mainMac);
+        }
+        {
+            daemonRoot = null;
+            try {
+                String daemonJson = FileUtil.readUtf8String(FyyInitEnv.WorkDir.MAIN_CONFIG);
+                daemonRoot = JSONUtil.toBean(daemonJson, FyyProjectDaemonRoot.class);
+            } catch (Exception e) {
+            }
+            if (daemonRoot == null || StrUtil.isBlank(daemonRoot.getDevelop_user_id())) {
+                if (isClassModel) {
+                    daemonRoot = new FyyProjectDaemonRoot();
+                    while (true) {
+                        FyyLogBaseUtils.warn("[{}]系统在本机首次运行,文件[{}]需要写入用户标识(例如:中文姓名,英文姓名[只能为中文,英文,数字]),请输入并点击Enter", FyyInitEnv.SystemInformation.SYSTEM_EN_NAME, FyyInitEnv.WorkDir.MAIN_CONFIG);
+                        String develop_user_id = Console.input();
+                        String pattern = "^[\\u4e00-\\u9fa5,A-Za-z0-9]{0,}";
+                        boolean isMatch = Pattern.matches(pattern, develop_user_id);
+                        if (isMatch) {
+                            daemonRoot.setDevelop_user_id(develop_user_id);
+                            break;
+                        }
+                    }
+                    FileUtil.writeUtf8String(JSONUtil.formatJsonStr(JSONUtil.toJsonStr(daemonRoot)), FyyInitEnv.WorkDir.MAIN_CONFIG);
+                } else {
+                    daemonRoot = new FyyProjectDaemonRoot();
+                    daemonRoot.setDevelop_user_id(mainMac + FyyInitEnv.WorkDir.systemUserName);
+                    FileUtil.writeUtf8String(JSONUtil.formatJsonStr(JSONUtil.toJsonStr(daemonRoot)), FyyInitEnv.WorkDir.MAIN_CONFIG);
+                }
+            }
+            if (!daemonRoot.getProject_config().containsKey(idkey)) {
+                FyyProjectConfigRoot configRoot = new FyyProjectConfigRoot();
+                configRoot.setProject_name_en(idkey);
+                configRoot.setProject_name_cn(idkey);
+                configRoot.setPrject_application_properties_path("");
+                daemonRoot.getProject_config().put(idkey, configRoot);
+                FileUtil.writeUtf8String(JSONUtil.formatJsonStr(JSONUtil.toJsonStr(daemonRoot)), FyyInitEnv.WorkDir.MAIN_CONFIG);
+            }
+            FyyInitEnv.SettingInformation.daemonRoot = daemonRoot;
+            FyyLogBaseUtils.info("获取到用户标识:[{}}", JSONUtil.toJsonStr(daemonRoot));
+        }
+
+
         {
             //
             FyyLogBaseUtils.debug("配置类赋值开始[{}}", FyyInitEnvLoad.class.getName());
@@ -219,7 +249,7 @@ public class FyyInitEnvLoad implements FyyInitEnv.SettingInformation.FyyInitEnvL
             FyyInitEnv.WorkDir.workHomeDir = workHomeDir;
             FyyInitEnv.SettingInformation.autoUpdate = updateProperties;
             FyyInitEnv.SettingInformation.configEnv = configEnv;
-            FyyInitEnv.SettingInformation.runEnv = StrUtil.blankToDefault(runEnv, uk);
+            FyyInitEnv.SettingInformation.runEnv = StrUtil.blankToDefault(runEnv, daemonRoot.getDevelop_user_id());
             FyyInitEnv.WorkDir.jarpath = jarpath;
             FyyInitEnv.SettingInformation.isClassModel = isClassModel;
             FyyInitEnv.WorkDir.mainClassC = mainClassC;
@@ -228,7 +258,7 @@ public class FyyInitEnvLoad implements FyyInitEnv.SettingInformation.FyyInitEnvL
             FyyInitEnv.WorkDir.projectcodesourcepath = projectcodesourcepath;
             FyyInitEnv.SettingInformation.macSet.addAll(macSet);
             FyyInitEnv.SettingInformation.mainMac = mainMac;
-            FyyInitEnv.SettingInformation.UK = uk;
+//            FyyInitEnv.SettingInformation.UK = uk;
         }
         {
             FyyLogBaseUtils.debug("公共模型赋值开始[{}}", FyyInitEnvLoad.class.getName());
