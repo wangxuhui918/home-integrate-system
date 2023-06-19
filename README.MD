@@ -112,12 +112,44 @@ public class ExampleApplication {
 |scanBasePackages| 扫描包 | cn.vesan.code(启动类所在包) | ❎  |
 
 
-## 5.2 *_UK(用户唯一标识)
+## 5.2 fyy.json(用户唯一标识)
 
-框架在用户根目录下生成一个 *_UK(默认为HOME_UK)文件,文件内容为:网卡MAC地址+用户名,样例如下
-```txt
-9A-E7-F4-BB-4D-65zhangsan
+框架在用户根目录下生成一个 ***fyy.json*** 文件,文件内容如下
+
+```aidl
+project_config:项目详细配置
+         project_config-key:项目名称
+         project_config-project_name_en:项目名
+         prject_application_properties_path:指定配置文件
+develop_user_id:用户唯一标识        
 ```
+
+```json
+
+{
+    "project_config":
+    {
+        "home-example-ewell1":
+        {
+            "project_name_en": "home-example-ewell1",
+            "project_name_cn": "home-example-ewell1",
+            "prject_application_properties_path": ""
+        },
+        "home-example-ewell":
+        {
+            "project_name_en": "home-example-ewell",
+            "project_name_cn": "home-example-ewell",
+            "prject_application_properties_path": ""
+        }
+    },
+    "develop_user_id": "wangxuhui"
+}
+
+```
+
+
+并在项目下会生成:***application-用户唯一标识.properties*** 配置文件
+
 
  ***注:用户唯一标识可以自定义,建议不要与其他同事重复***
 
