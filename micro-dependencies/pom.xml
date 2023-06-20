@@ -27,6 +27,8 @@
         <springboot.version>2.6.2</springboot.version>
         <springframework.version>5.3.13</springframework.version>
         <nekohtml.version>1.9.22</nekohtml.version>
+        <mysql.version>8.0.12</mysql.version>
+        <druid.version>1.2.7</druid.version>
         <lombok.version>1.18.22</lombok.version>
         <guava.version>31.0.1-jre</guava.version>
         <logback.version>1.2.3</logback.version>
@@ -295,6 +297,18 @@
                 <groupId>redis.clients</groupId>
                 <artifactId>jedis</artifactId>
                 <version>${jedis.version}</version>
+            </dependency>
+            <!--数据源-->
+            <dependency>
+                <groupId>mysql</groupId>
+                <artifactId>mysql-connector-java</artifactId>
+                <version>${mysql.version}</version>
+            </dependency>
+            <!-- https://mvnrepository.com/artifact/com.alibaba/druid -->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>druid</artifactId>
+                <version>${druid.version}</version>
             </dependency>
 
             <!-- swagger2 -->
