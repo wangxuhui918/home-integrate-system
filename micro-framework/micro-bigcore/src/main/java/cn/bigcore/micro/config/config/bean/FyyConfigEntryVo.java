@@ -31,5 +31,12 @@ public class FyyConfigEntryVo implements Serializable {
      */
     private String context;
 
+    public FyyConfigEntryVo() {
+    }
+
+    public FyyConfigEntryVo(String configName, String context) {
+        this.configName = configName;
+        this.context = context;
+    }
 }
 

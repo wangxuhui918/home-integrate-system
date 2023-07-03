@@ -47,5 +47,17 @@ public class FyyConfigEntryDetailsVo implements Serializable {
      * 当前参数文件名
      */
     private String name_en;
+
+    public FyyConfigEntryDetailsVo() {
+    }
+
+    public FyyConfigEntryDetailsVo(String key, String beforesuff, String m, String value, String mark, String name_en) {
+        this.key = key;
+        this.beforesuff = beforesuff;
+        this.m = m;
+        this.value = value;
+        this.mark = mark;
+        this.name_en = name_en;
+    }
 }
 
