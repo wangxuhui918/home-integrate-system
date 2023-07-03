@@ -11,7 +11,7 @@
 package cn.bigcore.micro.mybatisplus.starter.mybatis.config;
 
 import cn.bigcore.micro.FyyInitEnv;
-import cn.bigcore.micro.config.config.impl.bean.FyyConfigEntryDetailsValues;
+import cn.bigcore.micro.base.FyyConfigEntryDetailsValues;
 import org.mybatis.spring.mapper.MapperScannerConfigurer;
 import org.springframework.context.annotation.Bean;
 

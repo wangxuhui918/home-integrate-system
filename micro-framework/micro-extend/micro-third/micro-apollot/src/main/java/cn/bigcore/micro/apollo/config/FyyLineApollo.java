@@ -11,7 +11,7 @@
 package cn.bigcore.micro.apollo.config;
 
 import cn.bigcore.micro.FyyInitEnv;
-import cn.bigcore.micro.config.config.impl.bean.FyyConfigEntryDetailsValues;
+import cn.bigcore.micro.base.FyyConfigEntryDetailsValues;
 import cn.bigcore.micro.line.FyyLineThirdExtendInterface;
 import cn.hutool.setting.Setting;
 import com.ctrip.framework.apollo.Config;

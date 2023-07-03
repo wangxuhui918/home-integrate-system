@@ -11,7 +11,7 @@
 package cn.bigcore.micro.config;
 
 import cn.bigcore.micro.FyyInitEnv;
-import cn.bigcore.micro.config.config.impl.bean.FyyConfigEntryDetailsValues;
+import cn.bigcore.micro.base.FyyConfigEntryDetailsValues;
 import org.springframework.boot.web.servlet.MultipartConfigFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.util.unit.DataSize;

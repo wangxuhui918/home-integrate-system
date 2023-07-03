@@ -1,7 +1,7 @@
 package cn.bigcore.micro.line;
 
 import cn.bigcore.micro.config.FyyLineSystemConfigPort;
-import cn.bigcore.micro.config.config.FyyConfigPluginType;
+import cn.bigcore.micro.base.FyyConfigPluginType;
 import cn.bigcore.micro.data.FyyLineData;
 import cn.bigcore.micro.dubbo.plugin.FyyLineDubbo;
 import cn.bigcore.micro.flyway.plugin.FyyLineFlyway;

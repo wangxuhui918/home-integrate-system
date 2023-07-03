@@ -1,4 +1,4 @@
-package cn.bigcore.micro.config.config.impl.bean;
+package cn.bigcore.micro.base;
 
 /**
  * 配置条目值

@@ -11,7 +11,7 @@
 package cn.bigcore.micro.minio.utils;
 
 import cn.bigcore.micro.FyyInitEnv;
-import cn.bigcore.micro.config.config.impl.bean.FyyConfigEntryDetailsValues;
+import cn.bigcore.micro.base.FyyConfigEntryDetailsValues;
 import cn.bigcore.micro.exception.re.ex.FyyExceptionError;
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.date.DateUtil;

@@ -15,7 +15,7 @@ import com.alibaba.druid.pool.DruidDataSource;
 import com.alibaba.druid.support.http.StatViewServlet;
 import com.alibaba.druid.support.http.WebStatFilter;
 import cn.bigcore.micro.FyyInitEnv;
-import cn.bigcore.micro.config.config.impl.bean.FyyConfigEntryDetailsValues;
+import cn.bigcore.micro.base.FyyConfigEntryDetailsValues;
 import cn.bigcore.micro.exception.re.ex.FyyExceptionError;
 import cn.bigcore.micro.log.FyyLogBaseUtils;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;

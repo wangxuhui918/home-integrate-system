@@ -15,7 +15,7 @@ import cn.bigcore.micro.log.FyyLogBaseUtils;
 import cn.bigcore.micro.snowflake.utils.FyyIdUtils;
 import cn.hutool.core.io.resource.ResourceUtil;
 import cn.hutool.json.JSONUtil;
-import cn.bigcore.micro.config.config.impl.bean.FyyConfigEntryDetailsValues;
+import cn.bigcore.micro.base.FyyConfigEntryDetailsValues;
 import cn.bigcore.micro.log.utils.FyyLoggerUtil;
 import org.springframework.boot.CommandLineRunner;
 

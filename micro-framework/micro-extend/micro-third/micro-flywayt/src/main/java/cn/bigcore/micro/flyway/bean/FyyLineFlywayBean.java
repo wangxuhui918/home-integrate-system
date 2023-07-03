@@ -11,7 +11,7 @@
 package cn.bigcore.micro.flyway.bean;
 
 import cn.bigcore.micro.FyyInitEnv;
-import cn.bigcore.micro.config.config.impl.bean.FyyConfigEntryDetailsValues;
+import cn.bigcore.micro.base.FyyConfigEntryDetailsValues;
 import org.flywaydb.core.Flyway;
 import org.springframework.context.annotation.Bean;
 

@@ -13,7 +13,7 @@ import cn.bigcore.micro.config.config.bean.FyyConfigEntryDetailsVo;
 import cn.bigcore.micro.config.config.bean.FyyConfigEntryVo;
 import cn.bigcore.micro.config.config.bean.FyyConfigFileStructureVo;
 import cn.bigcore.micro.config.config.bean.FyyConfigResourceType;
-import cn.bigcore.micro.config.config.impl.bean.FyyConfigEntryDetailsValues;
+import cn.bigcore.micro.base.FyyConfigEntryDetailsValues;
 import cn.bigcore.micro.utils.FyyConfigFrameUtils;
 import cn.bigcore.micro.utils.FyyConfigProjectUtils;
 import cn.bigcore.micro.utils.resource.FyyResourceFindUtils;

@@ -13,7 +13,7 @@ package cn.bigcore.micro.log.plugin;
 import cn.bigcore.micro.line.FyyLineSystemInterface;
 import cn.bigcore.micro.FyyInitEnv;
 import cn.bigcore.micro.config.annotation.FyyRuleInjection;
-import cn.bigcore.micro.config.config.impl.bean.FyyConfigEntryDetailsValues;
+import cn.bigcore.micro.base.FyyConfigEntryDetailsValues;
 import cn.bigcore.micro.exception.re.ex.FyyExceptionError;
 
 import java.util.Arrays;

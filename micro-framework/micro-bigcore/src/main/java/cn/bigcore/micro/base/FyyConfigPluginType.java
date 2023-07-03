@@ -1,4 +1,4 @@
-package cn.bigcore.micro.config.config;
+package cn.bigcore.micro.base;
 
 import cn.bigcore.micro.line.base.FyyLineSourceModelInterface;
 import cn.bigcore.micro.config.FyyReourceInterface;

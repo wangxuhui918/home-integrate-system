@@ -1,4 +1,4 @@
-package cn.bigcore.micro.config.config.impl.bean;
+package cn.bigcore.micro.base;
 
 import cn.bigcore.micro.FyyInitEnv;
 import cn.bigcore.micro.utils.velocity.FyyVelocityUtils;
