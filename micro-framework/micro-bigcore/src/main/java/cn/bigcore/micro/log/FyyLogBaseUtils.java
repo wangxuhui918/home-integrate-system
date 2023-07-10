@@ -13,6 +13,7 @@
  */
 package cn.bigcore.micro.log;
 
+import cn.hutool.core.io.FileUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.system.SystemUtil;
 import cn.bigcore.micro.FyyInitEnv;
@@ -44,6 +45,10 @@ public class FyyLogBaseUtils {
                 }
             } catch (Exception e) {
                 FyyLogBaseUtils.info("默认日志变量-Dloglevel={}", loglevel.getName());
+            }
+            try {
+                FileUtil.mkdir("target");//创建目录
+            } catch (Exception e) {
             }
             String syslogpath = "target/" + FyyInitEnv.SystemInformation.SYSTEM_EN_NAME + ".%u.sys.log";//log/
 //            ${syslog_dir}/${hostname}.%d.sys.log %h/java%u.log  SSLog%u.sys.log
