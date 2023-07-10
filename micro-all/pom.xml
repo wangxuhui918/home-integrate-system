@@ -8,7 +8,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>cn.bigcore</groupId>
     <artifactId>micro-all</artifactId>
-    <version>11.0.6-SNAPSHOT</version>
+    <version>11.0.6-RELEASE</version>
     <packaging>jar</packaging>
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -19,7 +19,7 @@
     <dependencies>
         <dependency>
             <groupId>cn.bigcore</groupId>
-            <version>11.0.6-SNAPSHOT</version>
+            <version>11.0.6-RELEASE</version>
             <artifactId>micro-pack</artifactId>
         </dependency>
     </dependencies>
