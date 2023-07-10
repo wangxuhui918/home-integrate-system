@@ -8,7 +8,7 @@
     <parent>
         <artifactId>micro-third</artifactId>
         <groupId>cn.bigcore</groupId>
-        <version>11.0.7-RELEASE</version>
+        <version>11.0.8-SNAPSHOT</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -23,7 +23,7 @@
     <dependencies>
         <dependency>
             <groupId>cn.bigcore</groupId>
-            <version>11.0.7-RELEASE</version>
+            <version>11.0.8-SNAPSHOT</version>
             <artifactId>micro-springboot</artifactId>
         </dependency>
         <dependency>

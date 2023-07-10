@@ -9,7 +9,7 @@
     <parent>
         <groupId>cn.bigcore</groupId>
         <artifactId>micro-framework</artifactId>
-        <version>11.0.7-RELEASE</version>
+        <version>11.0.8-SNAPSHOT</version>
     </parent>
     <artifactId>micro-pack</artifactId>
 
@@ -18,120 +18,120 @@
         <dependency>
             <groupId>cn.bigcore</groupId>
             <artifactId>micro-git</artifactId>
-            <version>11.0.7-RELEASE</version>
+            <version>11.0.8-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>cn.bigcore</groupId>
             <artifactId>micro-snowflake</artifactId>
-            <version>11.0.7-RELEASE</version>
+            <version>11.0.8-SNAPSHOT</version>
         </dependency>
 
         <!--        自定义组件-->
         <dependency>
             <groupId>cn.bigcore</groupId>
-            <version>11.0.7-RELEASE</version>
+            <version>11.0.8-SNAPSHOT</version>
             <artifactId>micro-springboot</artifactId>
         </dependency>
         <dependency>
             <groupId>cn.bigcore</groupId>
-            <version>11.0.7-RELEASE</version>
+            <version>11.0.8-SNAPSHOT</version>
             <artifactId>micro-bigcore</artifactId>
         </dependency>
         <dependency>
             <groupId>cn.bigcore</groupId>
-            <version>11.0.7-RELEASE</version>
+            <version>11.0.8-SNAPSHOT</version>
             <artifactId>micro-systemconfig</artifactId>
         </dependency>
         <dependency>
             <groupId>cn.bigcore</groupId>
-            <version>11.0.7-RELEASE</version>
+            <version>11.0.8-SNAPSHOT</version>
             <artifactId>micro-message</artifactId>
         </dependency>
         <dependency>
             <groupId>cn.bigcore</groupId>
-            <version>11.0.7-RELEASE</version>
+            <version>11.0.8-SNAPSHOT</version>
             <artifactId>micro-springboot</artifactId>
         </dependency>
         <dependency>
             <groupId>cn.bigcore</groupId>
-            <version>11.0.7-RELEASE</version>
+            <version>11.0.8-SNAPSHOT</version>
             <artifactId>micro-actut</artifactId>
         </dependency>
         <dependency>
             <groupId>cn.bigcore</groupId>
-            <version>11.0.7-RELEASE</version>
+            <version>11.0.8-SNAPSHOT</version>
             <artifactId>micro-apollot</artifactId>
         </dependency>
         <dependency>
             <groupId>cn.bigcore</groupId>
-            <version>11.0.7-RELEASE</version>
+            <version>11.0.8-SNAPSHOT</version>
             <artifactId>micro-datat</artifactId>
         </dependency>
         <dependency>
             <groupId>cn.bigcore</groupId>
-            <version>11.0.7-RELEASE</version>
+            <version>11.0.8-SNAPSHOT</version>
             <artifactId>micro-dubbot</artifactId>
         </dependency>
         <dependency>
             <groupId>cn.bigcore</groupId>
-            <version>11.0.7-RELEASE</version>
+            <version>11.0.8-SNAPSHOT</version>
             <artifactId>micro-faitht</artifactId>
         </dependency>
         <dependency>
             <groupId>cn.bigcore</groupId>
-            <version>11.0.7-RELEASE</version>
+            <version>11.0.8-SNAPSHOT</version>
             <artifactId>micro-logback</artifactId>
         </dependency>
         <dependency>
             <groupId>cn.bigcore</groupId>
-            <version>11.0.7-RELEASE</version>
+            <version>11.0.8-SNAPSHOT</version>
             <artifactId>micro-mybatist</artifactId>
         </dependency>
         <dependency>
             <groupId>cn.bigcore</groupId>
-            <version>11.0.7-RELEASE</version>
+            <version>11.0.8-SNAPSHOT</version>
             <artifactId>micro-mybatistplus</artifactId>
         </dependency>
         <dependency>
             <groupId>cn.bigcore</groupId>
-            <version>11.0.7-RELEASE</version>
+            <version>11.0.8-SNAPSHOT</version>
             <artifactId>micro-swaggert</artifactId>
         </dependency>
         <dependency>
             <groupId>cn.bigcore</groupId>
-            <version>11.0.7-RELEASE</version>
+            <version>11.0.8-SNAPSHOT</version>
             <artifactId>micro-swaggert</artifactId>
         </dependency>
         <dependency>
             <groupId>cn.bigcore</groupId>
-            <version>11.0.7-RELEASE</version>
+            <version>11.0.8-SNAPSHOT</version>
             <artifactId>micro-flywayt</artifactId>
         </dependency>
         <dependency>
             <groupId>cn.bigcore</groupId>
-            <version>11.0.7-RELEASE</version>
+            <version>11.0.8-SNAPSHOT</version>
             <artifactId>micro-createconfig</artifactId>
         </dependency>
 
         <dependency>
             <groupId>cn.bigcore</groupId>
-            <version>11.0.7-RELEASE</version>
+            <version>11.0.8-SNAPSHOT</version>
             <artifactId>micro-redis</artifactId>
         </dependency>
         <dependency>
             <groupId>cn.bigcore</groupId>
-            <version>11.0.7-RELEASE</version>
+            <version>11.0.8-SNAPSHOT</version>
             <artifactId>micro-minio</artifactId>
         </dependency>
         <dependency>
             <groupId>cn.bigcore</groupId>
             <artifactId>micro-git</artifactId>
-            <version>11.0.7-RELEASE</version>
+            <version>11.0.8-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>cn.bigcore</groupId>
             <artifactId>micro-snowflake</artifactId>
-            <version>11.0.7-RELEASE</version>
+            <version>11.0.8-SNAPSHOT</version>
         </dependency>
     </dependencies>
 </project>
