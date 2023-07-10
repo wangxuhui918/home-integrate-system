@@ -7,7 +7,7 @@
  <dependency>
     <groupId>cn.bigcore</groupId>
     <artifactId>micro-git</artifactId>
-    <version>11.0.5-RELEASE</version>
+    <version>11.0.6-SNAPSHOT</version>
  </dependency>
 
 ```
