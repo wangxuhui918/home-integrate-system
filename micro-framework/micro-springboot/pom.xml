@@ -8,7 +8,7 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>cn.bigcore</groupId>
-        <version>11.0.3-SNAPSHOT</version>
+        <version>11.0.3-RELEASE</version>
         <artifactId>micro-framework</artifactId>
     </parent>
     <artifactId>micro-springboot</artifactId>
@@ -19,7 +19,7 @@
 
         <dependency>
             <groupId>cn.bigcore</groupId>
-            <version>11.0.3-SNAPSHOT</version>
+            <version>11.0.3-RELEASE</version>
             <artifactId>micro-bigcore</artifactId>
         </dependency>
 
