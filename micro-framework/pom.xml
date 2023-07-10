@@ -10,14 +10,14 @@
     <artifactId>micro-framework</artifactId>
     <packaging>pom</packaging>
     <name>micro-framework</name>
-    <version>11.0.6-RELEASE</version>
+    <version>11.0.7-SNAPSHOT</version>
 
     <dependencyManagement>
         <dependencies>
             <dependency>
                 <groupId>cn.bigcore</groupId>
                 <artifactId>micro-dependencies</artifactId>
-                <version>11.0.6-RELEASE</version>
+                <version>11.0.7-SNAPSHOT</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
