@@ -26,7 +26,7 @@ import java.util.List;
 public class FyyConfigFrameUtils {
 
     public static <T> List<T> getPlugins(Class<T> a) {
-        List<String> plugins = FyyInitEnv.SettingInformation.homeConf.getPlugins(a.getSimpleName());
+        List<String> plugins = FyyInitEnv.SettingInformation.homeConf.getPlugins(a);
         List<T> returnlist = new ArrayList<>();
         for (int i = 0; i < plugins.size(); i++) {
             Class class0 = ClassUtil.loadClass(plugins.get(i), false);

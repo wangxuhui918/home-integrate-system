@@ -19,12 +19,13 @@ import java.util.List;
  */
 public interface FyyConfigFrameInterface {
 
+    <T> List<String> getPlugins(Class<T> a);
+
     List<FyyConfigEntryVo> getPropertiesMain();
 
     List<FyyConfigEntryDetailsVo> getPropertiesDetails(String configFileName);
 
     List<FyyConfigFileStructureVo> getFileStructures();
 
-    List<String> getPlugins(String tableName);
 
 }
