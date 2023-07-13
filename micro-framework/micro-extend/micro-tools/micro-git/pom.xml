@@ -3,10 +3,10 @@
 
     <groupId>cn.bigcore</groupId>
     <artifactId>micro-git</artifactId>
-    <version>11.0.8-RELEASE</version>
+    <version>11.0.9-SNAPSHOT</version>
     <parent>
         <groupId>cn.bigcore</groupId>
-        <version>11.0.8-RELEASE</version>
+        <version>11.0.9-SNAPSHOT</version>
         <artifactId>micro-tools</artifactId>
     </parent>
     <properties>
