@@ -11,11 +11,7 @@
 
 package cn.bigcore.micro.outgoing;
 
-import cn.bigcore.micro.FyyInitEnv;
 import cn.bigcore.micro.auth.FyyUserInterface;
-import cn.bigcore.micro.thread.FyyThreadReUtils;
-import cn.bigcore.micro.thread.bean.FyyKeyBase;
-import cn.hutool.json.JSONUtil;
 
 /**
  * 入参基类
@@ -25,72 +21,29 @@ import cn.hutool.json.JSONUtil;
  * @date 2021年9月27日
  * @readme
  */
-public abstract class FyyInputParamInterface<D> {
-    //入参国际化编码
-    private String i18n;
-    //入参数据
-    private D data;//inputparamab
+public interface FyyInputParamInterface<D> {
 
-    private FyyUserInterface userRe;
+    public String getI18n();
 
-    @Deprecated
-    private String pageSize;
+    public void setI18n(String i18n);
 
-    @Deprecated
-    private String pageNum;
+    public String getPageSize();
 
-    /**
-     * 重写该方法验证用户权限信息
-     */
-    public FyyAuthReturnType checkAuth() {
-        return FyyAuthReturnType.AuthSuccess;
-    }
+    public void setPageSize(String pageSize);
 
+    public String getPageNum();
 
-    public FyyUserInterface getUserRe() {
-        return userRe;
-    }
+    public void setPageNum(String pageNum);
 
-    public void setUserRe(FyyUserInterface userRe) {
-        if (FyyInitEnv.ProjectInformation.OPEN_THREAD_USER) {
-            FyyThreadReUtils.putParam(FyyKeyBase.USERRE.getKeyName(), JSONUtil.parseObj(userRe));
-        }
-        this.userRe = userRe;
-    }
+    public D getData();
 
-    public String getPageSize() {
-        return pageSize;
-    }
+    public void setData(D data);
 
-    public void setPageSize(String pageSize) {
-        this.pageSize = pageSize;
-    }
+    public FyyUserInterface getUserRe();
 
-    public String getPageNum() {
-        return pageNum;
-    }
+    public void setUserRe(FyyUserInterface userRe);
 
-    public void setPageNum(String pageNum) {
-        this.pageNum = pageNum;
-    }
-
-    public String getI18n() {
-        return i18n;
-    }
-
-    public void setI18n(String i18n) {
-        if (FyyInitEnv.ProjectInformation.OPEN_THREAD_I18N) {
-            FyyThreadReUtils.putParam(FyyKeyBase.I18N.getKeyName(), i18n);
-        }
-        this.i18n = i18n;
-    }
-
-    public D getData() {
-        return data;
-    }
-
-    public void setData(D data) {
-        this.data = data;
-    }
+    public FyyAuthReturnType checkAuth();
 
 }
+

@@ -10,15 +10,18 @@
 
 package cn.bigcore.micro.outgoing;
 
+import cn.bigcore.micro.auth.FyyUserInterface;
 import cn.hutool.json.JSONObject;
 import cn.hutool.json.JSONUtil;
 import cn.bigcore.micro.exception.FyyExceptionMessageAbstract;
+import io.swagger.annotations.ApiModelProperty;
 
 import java.util.List;
 import java.util.Map;
 
-public class FyyInputParamRe<G> extends FyyInputParamInterface<JSONObject> {
+public class FyyInputParamRe<G> extends FyyInputParamParent<JSONObject> {
 
+    @ApiModelProperty(example = "前端入参")
     private G inputData;
 
     public G getInputData() {
@@ -38,6 +41,7 @@ public class FyyInputParamRe<G> extends FyyInputParamInterface<JSONObject> {
      * @date 2021年12月8日
      * @readme
      */
+    @ApiModelProperty(hidden = true)
     public void throwNull(String expression, FyyExceptionMessageAbstract exab) {
         java.lang.Object object = getData().getByPath(expression);
         if (object == null) {
@@ -52,6 +56,7 @@ public class FyyInputParamRe<G> extends FyyInputParamInterface<JSONObject> {
      * @param expression
      * @param exab
      */
+    @ApiModelProperty(hidden = true)
     public void throwEmpty(String expression, FyyExceptionMessageAbstract exab) {
         java.lang.Object object = getData().getByPath(expression);
         if (checkObjectNull(object)) {
@@ -65,6 +70,7 @@ public class FyyInputParamRe<G> extends FyyInputParamInterface<JSONObject> {
      * @param object
      * @return
      */
+    @ApiModelProperty(hidden = true)
     public static boolean checkObjectNull(Object object) {
         boolean empty = false;
         if (object == null) {
@@ -93,6 +99,7 @@ public class FyyInputParamRe<G> extends FyyInputParamInterface<JSONObject> {
      * @param object
      * @return
      */
+    @ApiModelProperty(hidden = true)
     public static boolean checkJSONObjectNull(Object object) {
         if (((JSONObject) object).isEmpty()) {
             return true;
@@ -114,6 +121,7 @@ public class FyyInputParamRe<G> extends FyyInputParamInterface<JSONObject> {
      * @param object
      * @return
      */
+    @ApiModelProperty(hidden = true)
     public static boolean checkBasicTypeNull(Object object) {
         //基本类型默认值
         //基本类型经过Object一转，就会成包装类。
