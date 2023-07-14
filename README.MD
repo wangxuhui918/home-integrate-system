@@ -29,12 +29,12 @@ pom.xml文件引入parent和dependency节点,如下:
 
     <modelVersion>4.0.0</modelVersion>
     <groupId>cn.bigcore</groupId>
-    <version>11.0.8-SNAPSHOT</version>
+    <version>11.0.9-SNAPSHOT</version>
     <artifactId>micro-example</artifactId>
     <parent>
         <artifactId>micro-dependencies</artifactId>
         <groupId>cn.bigcore</groupId>
-        <version>11.0.8-SNAPSHOT</version>
+        <version>11.0.9-SNAPSHOT</version>
     </parent>
 
     <properties>
@@ -46,7 +46,7 @@ pom.xml文件引入parent和dependency节点,如下:
         <dependency>
             <groupId>cn.bigcore</groupId>
             <artifactId>micro-pack</artifactId>
-            <version>11.0.8-SNAPSHOT</version>
+            <version>11.0.9-SNAPSHOT</version>
         </dependency>
     </dependencies>
 
