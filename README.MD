@@ -223,7 +223,650 @@ public class ExampleApplication {
 
 
 
-## Controller(请求体,消息码,入参,出参)
+## Domain(数据库对象)
+
+```java
+
+package cn.bigcore.manager.api.domain;
+
+import java.util.Date;
+
+import java.io.Serializable;
+import javax.persistence.Column;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
+@Table(name = "`dict_object_type`")
+@ApiModel(value = "对象类型")
+public class DictObjectTypeDomain implements Serializable {
+
+    /**
+     * 类型编码,例如1,2,3
+     */
+    @Id
+    @Column(name = "code")
+    @ApiModelProperty(value = "类型编码,例如1,2,3")
+    private String code;
+
+
+    /**
+     * 类型名称,例如患者,医院,终端,等,该表数据增加来源代码,通过表控制权限
+     */
+    @Column(name = "name")
+    @ApiModelProperty(value = "类型名称,例如患者,医院,终端,等,该表数据增加来源代码,通过表控制权限")
+    private String name;
+
+    /**
+     * 创建人ID
+     */
+    @Column(name = "create_user_id")
+    @ApiModelProperty(value = "创建人ID")
+    private String createUserId;
+
+    /**
+     * 创建时间
+     */
+    @Column(name = "create_time")
+    @ApiModelProperty(value = "创建时间")
+    private Date createTime;
+
+    /**
+     * 更新时间
+     */
+    @Column(name = "update_time")
+    @ApiModelProperty(value = "更新时间")
+    private Date updateTime;
+
+    /**
+     * 备注
+     */
+    @Column(name = "mark")
+    @ApiModelProperty(value = "备注")
+    private String mark;
+
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getCreateUserId() {
+        return createUserId;
+    }
+
+    public void setCreateUserId(String createUserId) {
+        this.createUserId = createUserId;
+    }
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
+    public Date getUpdateTime() {
+        return updateTime;
+    }
+
+    public void setUpdateTime(Date updateTime) {
+        this.updateTime = updateTime;
+    }
+
+    public String getMark() {
+        return mark;
+    }
+
+    public void setMark(String mark) {
+        this.mark = mark;
+    }
+
+}
+
+```
+
+## Vo(页面表现层对象)
+
+```java
+
+package cn.bigcore.manager.api.vo;
+
+import java.util.Date;
+
+import java.lang.String;
+
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
+
+import java.io.Serializable;
+
+/**
+ * 对象类型(`dict_object_type`)页面对象
+ *
+ * @author bigcore
+ * @since 2023-07-14 11:16:46
+ */
+@ApiModel(value = "对象类型")
+public class DictObjectTypeVo implements Serializable {
+
+    /**
+     * 类型编码,例如1,2,3
+     */
+    @ApiModelProperty(value = "类型编码,例如1,2,3", example = "类型编码,例如1,2,3")
+    private String code;
+
+    /**
+     * 类型名称,例如患者,医院,终端,等,该表数据增加来源代码,通过表控制权限
+     */
+    @ApiModelProperty(value = "类型名称,例如患者,医院,终端,等,该表数据增加来源代码,通过表控制权限", example = "类型名称,例如患者,医院,终端,等,该表数据增加来源代码,通过表控制权限")
+    private String name;
+
+    /**
+     * 创建人ID
+     */
+    @ApiModelProperty(value = "创建人ID", example = "创建人ID")
+    private String createUserId;
+
+    /**
+     * 创建时间
+     */
+    @ApiModelProperty(value = "创建时间", example = "创建时间")
+    private String createTime;
+
+    /**
+     * 更新时间
+     */
+    @ApiModelProperty(value = "更新时间", example = "更新时间")
+    private String updateTime;
+
+    /**
+     * 备注
+     */
+    @ApiModelProperty(value = "备注", example = "备注")
+    private String mark;
+
+
+    public java.lang.String getCode() {
+        return code;
+    }
+
+    public void setCode(java.lang.String code) {
+        this.code = code;
+    }
+
+    public java.lang.String getName() {
+        return name;
+    }
+
+    public void setName(java.lang.String name) {
+        this.name = name;
+    }
+
+    public java.lang.String getCreateUserId() {
+        return createUserId;
+    }
+
+    public void setCreateUserId(java.lang.String createUserId) {
+        this.createUserId = createUserId;
+    }
+
+    public java.lang.String getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(java.lang.String createTime) {
+        this.createTime = createTime;
+    }
+
+    public java.lang.String getUpdateTime() {
+        return updateTime;
+    }
+
+    public void setUpdateTime(java.lang.String updateTime) {
+        this.updateTime = updateTime;
+    }
+
+    public java.lang.String getMark() {
+        return mark;
+    }
+
+    public void setMark(java.lang.String mark) {
+        this.mark = mark;
+    }
+
+}
+
+
+
+```
+
+## 持久层接口
+
+```java
+
+package cn.bigcore.manager.mapper;
+
+import java.util.Date;
+
+import cn.bigcore.manager.api.domain.DictObjectTypeDomain;
+import tk.mybatis.mapper.common.Mapper;
+
+/**
+ * 对象类型(`dict_object_type`)持久层接口
+ *
+ * @author bigcore
+ * @since 2023-07-14 11:16:47
+ */
+public interface DictObjectTypeMapper extends Mapper<DictObjectTypeDomain> {
+
+
+    //-----------------------以上为默认方法,新方法请写在下面------------------------//
+}
+
+
+
+```
+
+## 持久层逻辑(*.xml)
+
+```xml
+
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.bigcore.manager.mapper.DictObjectTypeMapper">
+
+    <resultMap type="cn.bigcore.manager.api.domain.DictObjectTypeDomain" id="DictObjectTypeMap">
+        <id property="code" column="code" jdbcType="VARCHAR"/>
+        <result property="name" column="name" jdbcType="VARCHAR"/>
+        <result property="createUserId" column="create_user_id" jdbcType="VARCHAR"/>
+        <result property="createTime" column="create_time" jdbcType="TIMESTAMP"/>
+        <result property="updateTime" column="update_time" jdbcType="TIMESTAMP"/>
+        <result property="mark" column="mark" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <!--以上为默认方法,新方法请写在下面-->
+
+
+</mapper>
+
+
+
+```
+
+## 公共应用层(application)
+
+```java
+
+package cn.bigcore.manager.application;
+
+import java.util.Date;
+
+import cn.bigcore.manager.api.domain.DictObjectTypeDomain;
+import cn.bigcore.manager.api.vo.DictObjectTypeVo;
+import cn.bigcore.manager.mapper.DictObjectTypeMapper;
+
+import java.util.List;
+
+import cn.bigcore.micro.exception.re.ex.FyyExceptionError;
+import cn.bigcore.micro.mybatis.starter.mybatis.other.base.FyyBaseBiz;
+import cn.bigcore.micro.snowflake.utils.FyyIdUtils;
+import cn.hutool.core.bean.BeanUtil;
+import cn.hutool.core.util.StrUtil;
+import org.springframework.stereotype.Component;
+
+/**
+ * 对象类型(`dict_object_type`)公共应用原子层
+ *
+ * @author bigcore
+ * @since 2023-07-14 11:16:47
+ */
+@Component("dictObjectTypeApplication")
+public class DictObjectTypeApplication extends FyyBaseBiz<DictObjectTypeMapper, DictObjectTypeDomain> {
+
+    /**
+     * 新增数据
+     *
+     * @param dictObjectType 实例对象
+     * @return 实例对象
+     */
+    public int insert(DictObjectTypeVo dictObjectType) {
+        String code = FyyIdUtils.genIdString();
+        dictObjectType.setCode(code);
+        DictObjectTypeDomain domain = new DictObjectTypeDomain();
+        BeanUtil.copyProperties(dictObjectType, domain);
+        return mapper.insert(domain);
+    }
+
+    /**
+     * 通过主键删除数据
+     *
+     * @param 主键
+     * @return 是否成功
+     */
+    public int deleteByKey(DictObjectTypeVo dictObjectType) {
+        if (StrUtil.isBlank(dictObjectType.getCode())) {
+            throw new FyyExceptionError("主键{}不能为空", "Code");
+        }
+        DictObjectTypeDomain domain = new DictObjectTypeDomain();
+        BeanUtil.copyProperties(dictObjectType, domain);
+        return mapper.deleteByPrimaryKey(domain);
+    }
+
+    /**
+     * 修改数据
+     *
+     * @param dictObjectType 实例对象
+     * @return 实例对象
+     */
+    public int updateByKey(DictObjectTypeVo dictObjectType) {
+        if (StrUtil.isBlank(dictObjectType.getCode())) {
+            throw new FyyExceptionError("主键{}不能为空", "Code");
+        }
+        DictObjectTypeDomain domain = new DictObjectTypeDomain();
+        BeanUtil.copyProperties(dictObjectType, domain);
+        return mapper.updateByPrimaryKeySelective(domain);
+    }
+
+    /**
+     * 按照条件查询
+     *
+     * @param dictObjectType 筛选条件
+     * @return 查询结果
+     */
+    public List<DictObjectTypeVo> select(DictObjectTypeVo dictObjectType) {
+        DictObjectTypeDomain domain = new DictObjectTypeDomain();
+        BeanUtil.copyProperties(dictObjectType, domain);
+        List<DictObjectTypeDomain> listDomain = mapper.select(domain);
+        if (listDomain == null || listDomain.size() == 0) {
+            return null;
+        }
+        return BeanUtil.copyToList(listDomain, DictObjectTypeVo.class);
+    }
+
+    /**
+     * 通过ID查询单条数据
+     *
+     * @param 主键
+     * @return 实例对象
+     */
+    public DictObjectTypeVo selectByKey(DictObjectTypeVo dictObjectType) {
+        DictObjectTypeDomain domain = new DictObjectTypeDomain();
+        if (StrUtil.isBlank(dictObjectType.getCode())) {
+            throw new FyyExceptionError("主键{}不能为空", "Code");
+        }
+        domain.setCode(dictObjectType.getCode());
+        domain = mapper.selectOne(domain);
+        if (domain == null) {
+            return null;
+        }
+        DictObjectTypeVo info = new DictObjectTypeVo();
+        BeanUtil.copyProperties(domain, info);
+        return info;
+    }
+
+    //-----------------------以上为默认方法,新方法请写在下面------------------------//
+
+}
+
+
+```
+
+## 业务层接口
+
+```java
+
+package cn.bigcore.manager.service;
+
+import java.util.Date;
+
+import cn.bigcore.manager.api.vo.DictObjectTypeVo;
+
+import java.util.List;
+
+/**
+ * 对象类型(`dict_object_type`)逻辑层接口
+ *
+ * @author bigcore
+ * @since 2023-07-14 11:16:46
+ */
+public interface DictObjectTypeService {
+
+    /**
+     * 新增数据
+     *
+     * @param dictObjectType 实例对象
+     * @return 实例对象
+     */
+    int insert(DictObjectTypeVo dictObjectType);
+
+    /**
+     * 通过主键删除数据
+     *
+     * @param 主键
+     * @return 是否成功
+     */
+    int deleteByKey(DictObjectTypeVo dictObjectType);
+
+    /**
+     * 修改数据
+     *
+     * @param dictObjectType 实例对象
+     * @return 实例对象
+     */
+    int updateByKey(DictObjectTypeVo dictObjectType);
+
+    /**
+     * 按照条件查询
+     *
+     * @param dictObjectType 筛选条件
+     * @return 查询结果
+     */
+    List<DictObjectTypeVo> select(DictObjectTypeVo dictObjectType);
+
+    /**
+     * 通过ID查询单条数据
+     *
+     * @param 主键
+     * @return 实例对象
+     */
+    DictObjectTypeVo selectByKey(DictObjectTypeVo dictObjectType);
+
+    //-----------------------以上为默认方法,新方法请写在下面------------------------//
+
+}
+
+
+```
+
+
+## 业务层逻辑
+
+```java
+
+package cn.bigcore.manager.service.impl;
+
+import java.util.Date;
+
+import cn.bigcore.manager.api.domain.DictObjectTypeDomain;
+import cn.bigcore.manager.api.vo.DictObjectTypeVo;
+import cn.bigcore.manager.mapper.DictObjectTypeMapper;
+import cn.bigcore.manager.service.DictObjectTypeService;
+import cn.bigcore.manager.application.DictObjectTypeApplication;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+import javax.annotation.Resource;
+
+/**
+ * 对象类型(`dict_object_type`)逻辑层实现类
+ *
+ * @author bigcore
+ * @since 2023-07-14 11:16:46
+ */
+@Service("dictObjectTypeService")
+public class DictObjectTypeServiceImpl implements DictObjectTypeService {
+    @Resource
+    private DictObjectTypeApplication applicat;
+
+    /**
+     * 新增数据
+     *
+     * @param dictObjectType 实例对象
+     * @return 实例对象
+     */
+    @Override
+    public int insert(DictObjectTypeVo dictObjectType) {
+        return applicat.insert(dictObjectType);
+    }
+
+    /**
+     * 通过主键删除数据
+     *
+     * @param 主键
+     * @return 是否成功
+     */
+    @Override
+    public int deleteByKey(DictObjectTypeVo dictObjectType) {
+        return applicat.deleteByKey(dictObjectType);
+    }
+
+    /**
+     * 修改数据
+     *
+     * @param dictObjectType 实例对象
+     * @return 实例对象
+     */
+    @Override
+    public int updateByKey(DictObjectTypeVo dictObjectType) {
+        return applicat.updateByKey(dictObjectType);
+    }
+
+    /**
+     * 按照条件查询
+     *
+     * @param dictObjectType 筛选条件
+     * @return 查询结果
+     */
+    @Override
+    public List<DictObjectTypeVo> select(DictObjectTypeVo dictObjectType) {
+        return applicat.select(dictObjectType);
+    }
+
+    /**
+     * 通过ID查询单条数据
+     *
+     * @param 主键
+     * @return 实例对象
+     */
+    @Override
+    public DictObjectTypeVo selectByKey(DictObjectTypeVo dictObjectType) {
+        return applicat.selectByKey(dictObjectType);
+    }
+
+    //-----------------------以上为默认方法,新方法请写在下面------------------------//
+
+}
+
+
+```
+
+## 控制层逻辑(Controller)
+
+
+```java
+
+package cn.bigcore.manager.api;
+
+import java.util.Date;
+
+import cn.bigcore.manager.api.vo.DictObjectTypeVo;
+import cn.bigcore.manager.service.DictObjectTypeService;
+import cn.bigcore.micro.annotation.FyyRuleController;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import javax.annotation.Resource;
+
+import cn.bigcore.manager.configuration.ETLInputParamRe;
+
+/**
+ * 对象类型(`dict_object_type`)控制层
+ *
+ * @author bigcore
+ * @since 2023-07-14 11:16:47
+ */
+@FyyRuleController
+@Controller
+@Api(tags = "对象类型(DictObjectType)控制层")
+public class DictObjectTypeController {
+    @Resource
+    private DictObjectTypeService service;
+    //-----------------------默认方法,默认关闭------------------------//
+
+//    @ApiOperation(value = "新增对象类型(DictObjectType)", notes = " ")
+//    @RequestMapping(value = "/dictObjectType/insert", method = {RequestMethod.POST})
+//    @ResponseBody
+//    public Object insert(@RequestBody ETLInputParamRe<DictObjectTypeVo> input) {
+//        return service.insert(input.getInputData());
+//    }
+
+//    @ApiOperation(value = "删除对象类型(DictObjectType)", notes = " ")
+//    @RequestMapping(value = "/dictObjectType/deleteByKey", method = {RequestMethod.POST})
+//    @ResponseBody
+//    public Object deleteByKey(@RequestBody ETLInputParamRe<DictObjectTypeVo> input) {
+//        return service.deleteByKey(input.getInputData());
+//    }
+
+//    @ApiOperation(value = "修改对象类型(DictObjectType)", notes = " ")
+//    @RequestMapping(value = "/dictObjectType/updateByKey", method = {RequestMethod.POST})
+//    @ResponseBody
+//    public Object updateByKey(@RequestBody ETLInputParamRe<DictObjectTypeVo> input) {
+//        return service.updateByKey(input.getInputData());
+//    }
+
+//    @ApiOperation(value = "查询对象类型(DictObjectType)", notes = " ")
+//    @RequestMapping(value = "/dictObjectType/select", method = {RequestMethod.POST})
+//    @ResponseBody
+//    public Object select(@RequestBody ETLInputParamRe<DictObjectTypeVo> input) {
+//        return service.select(input.getInputData());
+//    }
+
+//    @ApiOperation(value = "按照主键查询对象类型(DictObjectType)", notes = " ")
+//    @RequestMapping(value = "/dictObjectType/selectByKey", method = {RequestMethod.POST})
+//    @ResponseBody
+//    public Object selectByKey(@RequestBody ETLInputParamRe<DictObjectTypeVo> input) {
+//        return service.selectByKey(input.getInputData());
+//    }
+
+    //-----------------------以上为默认方法,新方法请写在下面------------------------//
+
+}
+
+
+
+```
+
+## 控制层(Controller其他用法)
 
 ```java
 

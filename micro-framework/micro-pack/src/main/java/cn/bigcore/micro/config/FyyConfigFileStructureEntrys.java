@@ -4,6 +4,7 @@ import cn.bigcore.micro.config.config.bean.FyyConfigResourceType;
 
 public enum FyyConfigFileStructureEntrys {
 
+
     FILE_STRUCTURE_1("api/domain/readme.txt", FyyConfigResourceType.SOURCE_TYPE, "数据库对象"),//
     FILE_STRUCTURE_2("dubboservice/impl/readme.txt", FyyConfigResourceType.SOURCE_TYPE, "dubbo实现类接口"),//
     FILE_STRUCTURE_3("dubboservice/readme.txt", FyyConfigResourceType.SOURCE_TYPE, "dubbo暴露端口,一般该类暴露在单独的maven中"),//
@@ -17,6 +18,9 @@ public enum FyyConfigFileStructureEntrys {
     FILE_STRUCTURE_11("service/readme.txt", FyyConfigResourceType.SOURCE_TYPE, "业务接口类"),//
     FILE_STRUCTURE_12("readme.txt", FyyConfigResourceType.SOURCE_TYPE, "基础包标记点"),//
     FILE_STRUCTURE_13("configuration/readme.txt", FyyConfigResourceType.SOURCE_TYPE, "业务实现类"),//
+    FILE_STRUCTURE_14("application/readme.txt", FyyConfigResourceType.SOURCE_TYPE, "公共应用原子层"),//
+    FILE_STRUCTURE_15("application/common/readme.txt", FyyConfigResourceType.SOURCE_TYPE, "公共应用业务层"),//
+
 
 
     ;
