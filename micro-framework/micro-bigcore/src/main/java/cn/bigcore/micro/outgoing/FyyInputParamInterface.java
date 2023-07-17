@@ -13,6 +13,8 @@ package cn.bigcore.micro.outgoing;
 
 import cn.bigcore.micro.auth.FyyUserInterface;
 
+import java.lang.reflect.Method;
+
 /**
  * 入参基类
  *
@@ -43,7 +45,7 @@ public interface FyyInputParamInterface<D> {
 
     public void setUserRe(FyyUserInterface userRe);
 
-    public FyyAuthReturnType checkAuth();
+    public FyyAuthReturnType checkAuth(Method method);
 
 }
 

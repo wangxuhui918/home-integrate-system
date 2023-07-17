@@ -24,7 +24,10 @@ import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
+import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.core.annotation.Order;
+
+import java.lang.reflect.Method;
 
 @Aspect
 @Order(Integer.MAX_VALUE - 1)
@@ -62,7 +65,9 @@ public class FyyControllerParamHandV1 {
             }
             if (k != null) {
                 try {
-                    FyyAuthReturnType authReturnType = k.checkAuth();
+                    MethodSignature ms = (MethodSignature) jp.getSignature();
+                    Method targetMethod = jp.getTarget().getClass().getDeclaredMethod(ms.getName(), ms.getParameterTypes());
+                    FyyAuthReturnType authReturnType = k.checkAuth(targetMethod);
                     if (authReturnType == FyyAuthReturnType.AuthSuccess) {//鉴权通过
                     } else {//鉴权失败
                         return cn.bigcore.micro.outgoing.utils.FyyCodeUtils.go(FyyCodeUtils.getBuiltinCode(FyyCodeUtils.getError().getType(), FyyInitEnv.SettingInformation.i18n, authReturnType.getCode(), authReturnType.getName()));

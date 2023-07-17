@@ -19,6 +19,8 @@ import cn.hutool.json.JSONObject;
 import cn.hutool.json.JSONUtil;
 import io.swagger.annotations.ApiModelProperty;
 
+import java.lang.reflect.Method;
+
 /**
  * 入参基类
  *
@@ -46,7 +48,7 @@ public class FyyInputParamParent<D extends JSONObject> implements FyyInputParamI
      * 重写该方法验证用户权限信息
      */
     @ApiModelProperty(hidden = true)
-    public FyyAuthReturnType checkAuth() {
+    public FyyAuthReturnType checkAuth(Method method) {
         return FyyAuthReturnType.AuthSuccess;
     }
 
