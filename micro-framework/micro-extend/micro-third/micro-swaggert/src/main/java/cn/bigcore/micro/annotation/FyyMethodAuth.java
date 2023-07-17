@@ -8,5 +8,7 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 public @interface FyyMethodAuth {
-    String[] value() default "";
+    String code() default "";
+
+    String name() default "";
 }
