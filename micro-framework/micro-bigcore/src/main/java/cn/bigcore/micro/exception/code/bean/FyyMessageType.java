@@ -12,11 +12,11 @@ public class FyyMessageType {
      */
     private String typeCode;
     private String mark;
-    private boolean booleanMark;
+    private Boolean booleanMark;
     private String booleanStrMark;
     private String typeStateCode;
 
-    public FyyMessageType(String typeCode, String mark, boolean booleanMark, String booleanStrMark, String typeStateCode) {
+    public FyyMessageType(String typeCode, String mark, Boolean booleanMark, String booleanStrMark, String typeStateCode) {
         this.typeCode = typeCode;
         this.mark = mark;
         this.booleanMark = booleanMark;
@@ -44,7 +44,7 @@ public class FyyMessageType {
         return booleanMark;
     }
 
-    public void setBooleanMark(boolean booleanMark) {
+    public void setBooleanMark(Boolean booleanMark) {
         this.booleanMark = booleanMark;
     }
 
