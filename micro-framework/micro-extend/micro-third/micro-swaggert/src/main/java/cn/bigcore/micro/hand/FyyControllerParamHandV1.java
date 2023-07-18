@@ -14,6 +14,7 @@ import cn.bigcore.micro.FyyInitEnv;
 import cn.bigcore.micro.annotation.FyyRuleController;
 import cn.bigcore.micro.base.FyyConfigEntryDetailsValues;
 import cn.bigcore.micro.exception.FyyExceptionApiNull;
+import cn.bigcore.micro.exception.FyyExceptionMessageAbstract;
 import cn.bigcore.micro.exception.code.FyyCodeUtils;
 import cn.bigcore.micro.log.FyyLogBaseUtils;
 import cn.bigcore.micro.outgoing.FyyAuthReturnType;
@@ -72,6 +73,8 @@ public class FyyControllerParamHandV1 {
                     } else {//鉴权失败
                         return cn.bigcore.micro.outgoing.utils.FyyCodeUtils.go(FyyCodeUtils.getBuiltinCode(FyyCodeUtils.getError().getType(), FyyInitEnv.SettingInformation.i18n, authReturnType.getCode(), authReturnType.getName()));
                     }
+                } catch (FyyExceptionMessageAbstract e1) {
+                    return cn.bigcore.micro.outgoing.utils.FyyCodeUtils.go(FyyCodeUtils.getError(e1.getMsg()));
                 } catch (Exception e) {
                     return cn.bigcore.micro.outgoing.utils.FyyCodeUtils.go(FyyCodeUtils.getError("未知鉴权异常!"));
                 }
