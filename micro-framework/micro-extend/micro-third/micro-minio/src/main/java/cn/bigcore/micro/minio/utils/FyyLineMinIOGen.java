@@ -50,7 +50,11 @@ public class FyyLineMinIOGen {
             boolean isExist = client.bucketExists(BucketExistsArgs.builder().bucket(bucketName).build());
             if (!isExist) {
                 client.makeBucket(MakeBucketArgs.builder().bucket(bucketName).build());
-                client.setBucketPolicy(SetBucketPolicyArgs.builder().bucket(bucketName).config(bp1).build());
+                if (FyyInitEnv.SettingInformation.setting.getBool(FyyConfigEntryDetailsValues.HOME_MINIO_NAMESPACE_ACCESS_OPEN.getKey())) {
+                    client.setBucketPolicy(SetBucketPolicyArgs.builder().bucket(bucketName).config(bp1).build());
+                } else {
+                    client.setBucketPolicy(SetBucketPolicyArgs.builder().bucket(bucketName).build());
+                }
             }
         } catch (Exception e) {
             try {

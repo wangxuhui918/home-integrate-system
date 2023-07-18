@@ -90,6 +90,7 @@ public enum FyyConfigEntryDetailsValues {
     HOME_MINIO_ACCESSKEY(FyyConfigEntryValues.MINIO, "minio.accesskey", "=", "", "# api 请求用户名:SDS*DSJDlerw9(were)", ""),//
     HOME_MINIO_SECRETKEY(FyyConfigEntryValues.MINIO, "minio.secretKey", "=", "", "# api 请求密钥:SDS*DSJDlerdsfsdf", ""),//
     HOME_MINIO_NAMESPACE_RE(FyyConfigEntryValues.MINIO, "minio.namespace_re", "=", "${idKey}", "# 桶 命名空间,必填", ""),//
+    HOME_MINIO_NAMESPACE_ACCESS_OPEN(FyyConfigEntryValues.MINIO, "minio.open", "=", "false", "# 桶 命名空间,必填", ""),//
     HOME_MINIO_DEOM(FyyConfigEntryValues.MINIO, "minio.deom", "=", "demop", "# 测试增加数据", ""),//
     //
     //

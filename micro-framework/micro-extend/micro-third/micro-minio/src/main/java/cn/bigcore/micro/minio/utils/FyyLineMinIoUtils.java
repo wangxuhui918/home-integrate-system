@@ -23,14 +23,17 @@ import cn.hutool.core.util.StrUtil;
 import cn.hutool.crypto.SecureUtil;
 import cn.hutool.http.HttpUtil;
 import cn.hutool.json.JSONUtil;
-import io.minio.GetPresignedObjectUrlArgs;
-import io.minio.PutObjectArgs;
-import io.minio.RemoveBucketArgs;
-import io.minio.RemoveObjectArgs;
+import io.minio.*;
+import io.minio.errors.ErrorResponseException;
+import io.minio.errors.InvalidResponseException;
+import io.minio.errors.XmlParserException;
 import io.minio.http.Method;
+import org.apache.poi.ss.formula.functions.T;
 
 import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import java.io.InputStream;
+import java.security.NoSuchAlgorithmException;
 import java.util.Date;
 import java.util.HashMap;
 
@@ -47,8 +50,8 @@ public class FyyLineMinIoUtils {
      * @date 2022年2月22日
      * @readme
      */
-    public static <T> T download(String jsonstr, String dirpath, FyyLineMinIOCallBack<T> met, boolean deletetemplocalfile,
-                                 boolean deleteserverfile) {
+    public static <T> T downloadUsegGuest(String jsonstr, String dirpath, FyyLineMinIOCallBack<T> met, boolean deletetemplocalfile,
+                                          boolean deleteserverfile) {
         FyyLineMinIOGen.checkMinIOState();
         T t = null;
         HashMap<String, String> map = new HashMap<>();
@@ -78,6 +81,25 @@ public class FyyLineMinIoUtils {
         }
         return t;
     }
+
+    public static InputStream downloadUseUser(String jsonstr) {
+        FyyLineMinIOGen.checkMinIOState();
+        HashMap<String, String> map = new HashMap<>();
+        {
+            Object o = JSONUtil.parseObj(jsonstr);
+            BeanUtil.copyProperties(o, map);
+        }
+        GetObjectArgs.Builder getObjectArgsBuilder = GetObjectArgs.builder()
+                .bucket(map.get(FyyLineMinIOGen.namespace))
+                .object(map.get(FyyLineMinIOGen.storagname));
+
+        try {
+            return FyyLineMinIOGen.client.getObject(getObjectArgsBuilder.build());
+        } catch (Exception e) {
+            throw new FyyExceptionError("文件下载失败: {}  {}", map.get(FyyLineMinIOGen.namespace), map.get(FyyLineMinIOGen.storagname));
+        }
+    }
+
 
     public static boolean deleteBucket(String namespace) {
         FyyLineMinIOGen.checkMinIOState();
