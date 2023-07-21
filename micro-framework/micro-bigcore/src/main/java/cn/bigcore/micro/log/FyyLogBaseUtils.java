@@ -13,12 +13,19 @@
  */
 package cn.bigcore.micro.log;
 
-import cn.hutool.core.io.FileUtil;
-import cn.hutool.core.util.StrUtil;
-import cn.hutool.system.SystemUtil;
 import cn.bigcore.micro.FyyInitEnv;
+import cn.bigcore.micro.exception.re.ex.FyyExceptionError;
 import cn.bigcore.micro.log.base.FyyLogFormatter;
+import cn.hutool.core.annotation.AnnotationUtil;
+import cn.hutool.core.io.FileUtil;
+import cn.hutool.core.io.ManifestUtil;
+import cn.hutool.core.util.ClassUtil;
+import cn.hutool.core.util.StrUtil;
+import cn.hutool.core.util.URLUtil;
+import cn.hutool.system.SystemUtil;
 
+import java.io.File;
+import java.util.jar.JarFile;
 import java.util.logging.ConsoleHandler;
 import java.util.logging.FileHandler;
 import java.util.logging.Level;
@@ -39,22 +46,62 @@ public class FyyLogBaseUtils {
             try {
                 if (StrUtil.isNotBlank(SystemUtil.get("loglevel"))) {//如果日志界别不为空则直接查找,根据名字和值自动查找
                     loglevel = Level.parse(SystemUtil.get("loglevel"));
-                    FyyLogBaseUtils.info("读取日志变量-Dloglevel={}", loglevel);
-                } else {
-                    FyyLogBaseUtils.info("默认日志变量-Dloglevel={}", loglevel.getName());
                 }
             } catch (Exception e) {
-                FyyLogBaseUtils.info("默认日志变量-Dloglevel={}", loglevel.getName());
             }
+
+            {
+                String startCommad = System.getProperty("sun.java.command");
+                String[] startCmdStr = StrUtil.splitToArray(startCommad, " ");
+                if (startCmdStr != null && startCmdStr.length > 0) {
+                    for (int i = 0; i < startCmdStr.length; i++) {
+                        try {
+                            if (AnnotationUtil.hasAnnotation(ClassUtil.loadClass(startCmdStr[i], false), ClassUtil.loadClass("cn.bigcore.micro.starter.FyyStarter", false))) {
+                                String idkey = AnnotationUtil.getAnnotationValue(ClassUtil.loadClass(startCmdStr[i], false), ClassUtil.loadClass("cn.bigcore.micro.starter.FyyStarter", false), "idkey");
+                                if (StrUtil.isNotBlank(idkey)) {
+                                    startCommad = startCmdStr[i];
+                                    break;
+                                }
+                            }
+                        } catch (Exception e) {
+                            continue;
+                        }
+                    }
+                }
+                try {
+                    Class mainClassC = null;
+                    if (StrUtil.isNotBlank(startCommad)) {
+                        startCommad = StrUtil.subBefore(startCommad, " ", false);
+                    }
+                    if (URLUtil.isJarFileURL(new File(startCommad).toURI().toURL())) {//如果是运行时
+                        java.util.jar.Manifest masin = ManifestUtil.getManifest(new JarFile(new File(startCommad)));
+                        mainClassC = ClassUtil.loadClass(masin.getMainAttributes().getValue("Start-Class"), false);
+                    } else if (ClassUtil.isNormalClass(ClassUtil.loadClass(startCommad, false))) {//如果是非运行时
+                        mainClassC = ClassUtil.loadClass(startCommad, false);
+                    } else {
+                        throw new FyyExceptionError("环境变量[{}]值错误", "sun.java.command");
+                    }
+                    String idkey = AnnotationUtil.getAnnotationValue(mainClassC, ClassUtil.loadClass("cn.bigcore.micro.starter.FyyStarter", false), "idkey");
+                    if (StrUtil.isNotBlank(idkey)) {
+                        FyyInitEnv.SettingInformation.idKey = idkey;
+                    } else {
+                        throw new FyyExceptionError("环境变量[{}]值错误", "idkey");
+                    }
+                } catch (Exception e) {
+                    throw new FyyExceptionError("环境变量[{}]值错误", "idkey");
+                }
+            }
+
+            String syslogpath = SystemUtil.getUserInfo().getHomeDir() + FileUtil.FILE_SEPARATOR + FyyInitEnv.SystemInformation.SYSTEM_EN_NAME + FileUtil.FILE_SEPARATOR + FyyInitEnv.SettingInformation.idKey + FileUtil.FILE_SEPARATOR + FyyInitEnv.SettingInformation.idKey + ".%u.sys.log";
+
             try {
-                FileUtil.mkdir("target");//创建目录
+                FileUtil.mkParentDirs(syslogpath);
             } catch (Exception e) {
+                e.printStackTrace();
             }
-            String syslogpath = "target/" + FyyInitEnv.SystemInformation.SYSTEM_EN_NAME + ".%u.sys.log";//log/
-//            ${syslog_dir}/${hostname}.%d.sys.log %h/java%u.log  SSLog%u.sys.log
             try {
                 if (StrUtil.isNotBlank(SystemUtil.get("syslogpath"))) {//如果日志界别不为空则直接查找,根据名字和值自动查找
-                    syslogpath = SystemUtil.get("syslogpath") + "/" + FyyInitEnv.SystemInformation.SYSTEM_EN_NAME + ".%u.sys.log";
+                    syslogpath = SystemUtil.get("syslogpath") + File.separator + FyyInitEnv.SystemInformation.SYSTEM_EN_NAME + ".%u.sys.log";
                     FyyLogBaseUtils.info("读取日志变量-Dsyslogpath={}", syslogpath);
                 } else {
                     FyyLogBaseUtils.info("默认日志变量-Dsyslogpath={}", syslogpath);
