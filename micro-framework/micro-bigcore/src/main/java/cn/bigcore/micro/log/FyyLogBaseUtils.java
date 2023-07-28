@@ -49,51 +49,7 @@ public class FyyLogBaseUtils {
                 }
             } catch (Exception e) {
             }
-
-            {
-                String startCommad = System.getProperty("sun.java.command");
-                String[] startCmdStr = StrUtil.splitToArray(startCommad, " ");
-                if (startCmdStr != null && startCmdStr.length > 0) {
-                    for (int i = 0; i < startCmdStr.length; i++) {
-                        try {
-                            if (AnnotationUtil.hasAnnotation(ClassUtil.loadClass(startCmdStr[i], false), ClassUtil.loadClass("cn.bigcore.micro.starter.FyyStarter", false))) {
-                                String idkey = AnnotationUtil.getAnnotationValue(ClassUtil.loadClass(startCmdStr[i], false), ClassUtil.loadClass("cn.bigcore.micro.starter.FyyStarter", false), "idkey");
-                                if (StrUtil.isNotBlank(idkey)) {
-                                    startCommad = startCmdStr[i];
-                                    break;
-                                }
-                            }
-                        } catch (Exception e) {
-                            continue;
-                        }
-                    }
-                }
-                try {
-                    Class mainClassC = null;
-                    if (StrUtil.isNotBlank(startCommad)) {
-                        startCommad = StrUtil.subBefore(startCommad, " ", false);
-                    }
-                    if (URLUtil.isJarFileURL(new File(startCommad).toURI().toURL())) {//如果是运行时
-                        java.util.jar.Manifest masin = ManifestUtil.getManifest(new JarFile(new File(startCommad)));
-                        mainClassC = ClassUtil.loadClass(masin.getMainAttributes().getValue("Start-Class"), false);
-                    } else if (ClassUtil.isNormalClass(ClassUtil.loadClass(startCommad, false))) {//如果是非运行时
-                        mainClassC = ClassUtil.loadClass(startCommad, false);
-                    } else {
-                        throw new FyyExceptionError("环境变量[{}]值错误", "sun.java.command");
-                    }
-                    String idkey = AnnotationUtil.getAnnotationValue(mainClassC, ClassUtil.loadClass("cn.bigcore.micro.starter.FyyStarter", false), "idkey");
-                    if (StrUtil.isNotBlank(idkey)) {
-                        FyyInitEnv.SettingInformation.idKey = idkey;
-                    } else {
-                        throw new FyyExceptionError("环境变量[{}]值错误", "idkey");
-                    }
-                } catch (Exception e) {
-                    throw new FyyExceptionError("环境变量[{}]值错误", "idkey");
-                }
-            }
-
-            String syslogpath = SystemUtil.getUserInfo().getHomeDir() + FileUtil.FILE_SEPARATOR + FyyInitEnv.SystemInformation.SYSTEM_EN_NAME + FileUtil.FILE_SEPARATOR + FyyInitEnv.SettingInformation.idKey + FileUtil.FILE_SEPARATOR + FyyInitEnv.SettingInformation.idKey + ".%u.sys.log";
-
+            String syslogpath = SystemUtil.getUserInfo().getHomeDir() + FileUtil.FILE_SEPARATOR + FyyInitEnv.SystemInformation.SYSTEM_EN_NAME + FileUtil.FILE_SEPARATOR + FyyInitEnv.SystemInformation.SYSTEM_EN_NAME + ".%u.sys.log";
             try {
                 FileUtil.mkParentDirs(syslogpath);
             } catch (Exception e) {
@@ -126,10 +82,6 @@ public class FyyLogBaseUtils {
             jdkLogger.addHandler(myConsoleHandler);
             jdkLogger.addHandler(filehandler);
         }
-    }
-
-    public static void main(String[] args) {
-        System.out.println(123);
     }
 
     public static void debug(String str, Object... strs) {
