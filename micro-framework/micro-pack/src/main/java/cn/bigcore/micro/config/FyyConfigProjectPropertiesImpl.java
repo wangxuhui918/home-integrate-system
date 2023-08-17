@@ -31,8 +31,10 @@ import cn.bigcore.micro.utils.properties.FyyPropertiesUtils;
 import cn.bigcore.micro.utils.resource.FyyResourceFindUtils;
 import cn.bigcore.micro.utils.velocity.FyyVelocityUtils;
 
+import java.io.File;
 import java.net.URI;
 import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * @author 汪旭辉
@@ -47,6 +49,9 @@ public class FyyConfigProjectPropertiesImpl implements FyyConfigProjectInterface
         Setting allEnvSetting = new Setting();
         try {
             List<URI> listUrl = FyyResourceFindUtils.findUri("application-*.properties");//Line.env.getName()
+            if (listUrl == null || !listUrl.stream().map(a -> new File(a).getName()).collect(Collectors.toList()).contains(StrUtil.format("application-{}.properties", FyyInitEnv.SettingInformation.runEnv))) {
+                throw new FyyExceptionError("缺失配置文件:application-{}.properties或环境变量-Denv={}配置错误", FyyInitEnv.SettingInformation.runEnv);
+            }
             for (int i = 0; i < listUrl.size(); i++) {
                 String env = ReUtil.findAll("application-(.*?)\\.properties", listUrl.get(i).toString(), 1).get(0);
                 FyyLogBaseUtils.debug("读取到[{}]配置文件", listUrl.get(i).toString());
