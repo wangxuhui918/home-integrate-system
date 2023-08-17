@@ -48,12 +48,11 @@ public class FyyConfigProjectPropertiesImpl implements FyyConfigProjectInterface
         HashMap<String, String> thisEnvPropertiesValue = new HashMap<>();
         Setting allEnvSetting = new Setting();
         List<URI> listUrl = FyyResourceFindUtils.findUri("application-*.properties");//Line.env.getName()
-        if (listUrl == null || !listUrl.stream().map(a -> StrUtil.subAfter(a.getPath(), File.separatorChar, true)).collect(Collectors.toList()).contains(StrUtil.format("application-{}.properties", FyyInitEnv.SettingInformation.runEnv))) {
-            throw new FyyExceptionError("缺失配置文件:application-{}.properties或环境变量-Denv={}配置错误", FyyInitEnv.SettingInformation.runEnv);
-        }
+        List<String> inEnv = new ArrayList<>();
         try {
             for (int i = 0; i < listUrl.size(); i++) {
                 String env = ReUtil.findAll("application-(.*?)\\.properties", listUrl.get(i).toString(), 1).get(0);
+                inEnv.add(env);
                 FyyLogBaseUtils.debug("读取到[{}]配置文件", listUrl.get(i).toString());
                 HashMap<String, String> properties = FyyPropertiesUtils.getProperties("application-" + env + ".properties");
                 Setting o = new Setting();
@@ -76,6 +75,9 @@ public class FyyConfigProjectPropertiesImpl implements FyyConfigProjectInterface
             }
         } catch (Exception e) {
             e.printStackTrace();
+        }
+        if (inEnv == null || inEnv.size() == 0 || !inEnv.contains(FyyInitEnv.SettingInformation.runEnv)) {
+            throw new FyyExceptionError("缺失配置文件:application-{}.properties或环境变量-Denv={}配置错误", FyyInitEnv.SettingInformation.runEnv, FyyInitEnv.SettingInformation.runEnv);
         }
         {
             thisEnvPropertiesValue.clear();
