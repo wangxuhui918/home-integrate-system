@@ -49,7 +49,7 @@ public class FyyConfigProjectPropertiesImpl implements FyyConfigProjectInterface
         Setting allEnvSetting = new Setting();
         try {
             List<URI> listUrl = FyyResourceFindUtils.findUri("application-*.properties");//Line.env.getName()
-            if (listUrl == null || !listUrl.stream().map(a -> new File(a).getName()).collect(Collectors.toList()).contains(StrUtil.format("application-{}.properties", FyyInitEnv.SettingInformation.runEnv))) {
+            if (listUrl == null || !listUrl.stream().map(a -> StrUtil.subAfter(a.getPath(), File.separatorChar, true)).collect(Collectors.toList()).contains(StrUtil.format("application-{}.properties", FyyInitEnv.SettingInformation.runEnv))) {
                 throw new FyyExceptionError("缺失配置文件:application-{}.properties或环境变量-Denv={}配置错误", FyyInitEnv.SettingInformation.runEnv);
             }
             for (int i = 0; i < listUrl.size(); i++) {
