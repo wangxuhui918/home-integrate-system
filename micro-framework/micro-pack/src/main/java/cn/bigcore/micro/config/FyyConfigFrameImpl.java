@@ -61,7 +61,7 @@ public class FyyConfigFrameImpl implements FyyConfigFrameInterface {
             for (int i = 0; i < FyyConfigEntryValues.values().length; i++) {
                 FyyConfigEntryVo m1 = new FyyConfigEntryVo();
                 m1.setName(FyyConfigEntryValues.values()[i].name());
-                m1.setConfigName(FyyConfigEntryValues.values()[i].getConfigName());
+                m1.setConfigName(FyyConfigEntryValues.values()[i].getMark());
                 m1.setContext(FyyConfigEntryValues.values()[i].getContext());
                 properties.add(m1);
             }
@@ -88,14 +88,14 @@ public class FyyConfigFrameImpl implements FyyConfigFrameInterface {
         {//获取核心配置明细
             FyyConfigEntryValues configmain = FyyConfigEntryValues.getByFileName(configFileName);
             for (int j = 0; j < FyyConfigEntryDetailsValues.values().length && configmain != null; j++) {
-                if (FyyConfigEntryDetailsValues.values()[j].getCodeType().getConfigName().equals(configmain.getConfigName())) {
+                if (FyyConfigEntryDetailsValues.values()[j].getCodeType().getMark().equals(configmain.getMark())) {
                     FyyConfigEntryDetailsVo m2 = new FyyConfigEntryDetailsVo();
                     m2.setBeforesuff(FyyConfigEntryDetailsValues.values()[j].getSuff());
                     m2.setKey(FyyConfigEntryDetailsValues.values()[j].getKey());
                     m2.setM(FyyConfigEntryDetailsValues.values()[j].getM());
                     m2.setValue(FyyConfigEntryDetailsValues.values()[j].getValue());
                     m2.setMark(FyyConfigEntryDetailsValues.values()[j].getMark());
-                    m2.setName_en(FyyConfigEntryDetailsValues.values()[j].getCodeType().getConfigName());
+                    m2.setName_en(FyyConfigEntryDetailsValues.values()[j].getCodeType().getMark());
                     properties.add(m2);
                 }
             }

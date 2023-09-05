@@ -6,19 +6,19 @@ package cn.bigcore.micro.base;
 public enum FyyConfigEntryValues {
 
 
-    APOLLO("apollo.ini", ""),//
-    DUBBO("dubbo.ini", ""),//
-    DB("db.ini", ""),//
-    FLYWAY("flyway.ini", ""),//
-    GITLAB("gitlab.ini", ""),//
-    LOGBACK("logback.ini", ""),//
-    MYBATIS("mybatis.ini", ""),//
-    MYBATIS_PLUS("mybatisplus.ini", ""),//
-    MINIO("minio.ini", ""),//
-    REDIS("redis.ini", ""),//
-    SWAGGER("swagger.ini", ""),//
-    SYSTEMCONFIG("systemconfig.ini", ""),//
-    SYSTEMEXTEND("systemextend.ini", ""),//
+    APOLLO("阿波罗"),//
+    DUBBO("DUBBO"),//
+    DB("数据库"),//
+    FLYWAY("数据库增量"),//
+    GITLAB("GIT代码库"),//
+    LOGBACK("日志"),//
+    MYBATIS("持久层"),//
+    MYBATIS_PLUS("持久层工具"),//
+    MINIO("文件桶"),//
+    REDIS("内存库(redis)"),//
+    SWAGGER("API调试"),//
+    SYSTEMCONFIG("系统"),//
+    SYSTEMEXTEND("系统扩展"),//
     MESSAGE("message-${i18n}.xml", "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"no\"?>\n" +
             "<message>\n" +
             "\t\t<member code=\"DEMO01\" conmtext=\"客户基础数据维护成功\" type=\"true\" />\n" +
@@ -30,34 +30,39 @@ public enum FyyConfigEntryValues {
             "</message>"),//
 
 
+
     ;
 
 
-    private String configName;
+    private String mark;
     private String context;
 
+    FyyConfigEntryValues(String mark) {
+        this.mark = mark;
+        this.context = null;
+    }
 
-    FyyConfigEntryValues(String configName, String context) {
-        this.configName = configName;
+    FyyConfigEntryValues(String mark, String context) {
+        this.mark = mark;
         this.context = context;
 
     }
 
     public static FyyConfigEntryValues getByFileName(String configFileName) {
         for (FyyConfigEntryValues o : FyyConfigEntryValues.values()) {
-            if (o.getConfigName().equals(configFileName)) {
+            if (o.getMark().equals(configFileName)) {
                 return o;
             }
         }
         return null;
     }
 
-    public String getConfigName() {
-        return configName;
+    public String getMark() {
+        return mark;
     }
 
-    public void setConfigName(String configName) {
-        this.configName = configName;
+    public void setMark(String mark) {
+        this.mark = mark;
     }
 
 
