@@ -49,6 +49,7 @@ public class FyyLogBaseUtils {
                 }
             } catch (Exception e) {
             }
+            //这里由于先启动,所以无法调整日志所在目录,目前只能先放在用户目录下
             String syslogpath = SystemUtil.getUserInfo().getHomeDir() + FileUtil.FILE_SEPARATOR + FyyInitEnv.SystemInformation.SYSTEM_EN_NAME + FileUtil.FILE_SEPARATOR + FyyInitEnv.SystemInformation.SYSTEM_EN_NAME + ".%u.sys.log";
             try {
                 FileUtil.mkParentDirs(syslogpath);
@@ -76,7 +77,6 @@ public class FyyLogBaseUtils {
                     throw new RuntimeException(e);
                 }
             }
-
             jdkLogger.setLevel(Level.ALL);
             jdkLogger.setUseParentHandlers(false);
             jdkLogger.addHandler(myConsoleHandler);
