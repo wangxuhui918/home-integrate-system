@@ -16,6 +16,7 @@ import cn.bigcore.micro.base.FyyConfigEntryDetailsValues;
 import cn.bigcore.micro.exception.FyyExceptionApiNull;
 import cn.bigcore.micro.exception.FyyExceptionMessageAbstract;
 import cn.bigcore.micro.exception.code.FyyCodeUtils;
+import cn.bigcore.micro.exception.re.ex.FyyExceptionError;
 import cn.bigcore.micro.log.FyyLogBaseUtils;
 import cn.bigcore.micro.outgoing.FyyAuthReturnType;
 import cn.bigcore.micro.outgoing.FyyInputParamInterface;
@@ -43,7 +44,7 @@ public class FyyControllerParamHandV1 {
     @Around("annotationPointCut()")
     public Object annotationAround(ProceedingJoinPoint jp) throws Throwable {
         boolean havingApiAnnataion = AnnotationUtil.hasAnnotation(jp.getTarget().getClass(), FyyRuleController.class);
-
+        MethodSignature ms = (MethodSignature) jp.getSignature();
         if (havingApiAnnataion) {
             Object[] args = jp.getArgs();
             boolean validate = false;
@@ -66,17 +67,20 @@ public class FyyControllerParamHandV1 {
             }
             if (k != null) {
                 try {
-                    MethodSignature ms = (MethodSignature) jp.getSignature();
                     Method targetMethod = jp.getTarget().getClass().getDeclaredMethod(ms.getName(), ms.getParameterTypes());
                     FyyAuthReturnType authReturnType = k.checkAuth(targetMethod);
                     if (authReturnType == FyyAuthReturnType.AuthSuccess) {//鉴权通过
                     } else {//鉴权失败
-                        return cn.bigcore.micro.outgoing.utils.FyyCodeUtils.go(FyyCodeUtils.getBuiltinCode(FyyCodeUtils.getError().getType(), FyyInitEnv.SettingInformation.i18n, authReturnType.getCode(), authReturnType.getName()));
+                        //                        return cn.bigcore.micro.outgoing.utils.FyyCodeUtils.go(FyyCodeUtils.getBuiltinCode(FyyCodeUtils.getError().getType(), FyyInitEnv.SettingInformation.i18n, authReturnType.getCode(), authReturnType.getName()));
+                        throw new FyyExceptionError(FyyCodeUtils.getBuiltinCode(FyyCodeUtils.getError().getType(), FyyInitEnv.SettingInformation.i18n, authReturnType.getCode(), authReturnType.getName()));
                     }
                 } catch (FyyExceptionMessageAbstract e1) {
-                    return cn.bigcore.micro.outgoing.utils.FyyCodeUtils.go(FyyCodeUtils.getError(e1.getMsg()));
+//                    return cn.bigcore.micro.outgoing.utils.FyyCodeUtils.go(FyyCodeUtils.getError(e1.getMsg()));
+//                     throw new FyyExceptionError(FyyCodeUtils.getError(e1.getMsg()));
+                    throw e1;
                 } catch (Exception e) {
-                    return cn.bigcore.micro.outgoing.utils.FyyCodeUtils.go(FyyCodeUtils.getError("未知鉴权异常!"));
+//                    return cn.bigcore.micro.outgoing.utils.FyyCodeUtils.go(FyyCodeUtils.getError("未知鉴权异常!"));
+                    throw new FyyExceptionError(FyyCodeUtils.getError("未知鉴权异常!"));
                 }
             }
         }
