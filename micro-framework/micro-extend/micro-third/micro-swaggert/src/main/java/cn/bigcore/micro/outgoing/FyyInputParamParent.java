@@ -95,7 +95,16 @@ public class FyyInputParamParent<D extends JSONObject> implements FyyInputParamI
 
     @Override
     public void setPageSize(String pageSize) {
-        this.pageSize = pageSize;
+        try {
+            Integer.parseInt(pageSize);
+            this.pageSize = pageSize;
+        } catch (Exception e) {
+            this.pageSize = "0";
+        }
+        //
+        if (FyyInitEnv.ProjectInformation.OPEN_THREAD_PAGE) {
+            FyyThreadReUtils.putParam(FyyKeyBase.PAGE_SIZE.getKeyName(), this.pageSize);
+        }
     }
 
     @Override
@@ -105,6 +114,16 @@ public class FyyInputParamParent<D extends JSONObject> implements FyyInputParamI
 
     @Override
     public void setPageNum(String pageNum) {
-        this.pageNum = pageNum;
+        try {
+            Integer.parseInt(pageNum);
+            this.pageNum = pageNum;
+        } catch (Exception e) {
+            this.pageNum = "0";
+        }
+        //
+        if (FyyInitEnv.ProjectInformation.OPEN_THREAD_PAGE) {
+            FyyThreadReUtils.putParam(FyyKeyBase.PAGE_NUM.getKeyName(), this.pageNum);
+        }
     }
+
 }

@@ -71,6 +71,7 @@ public class FyyInitEnv {
     public static class ProjectInformation {//项目信息
         public static boolean OPEN_THREAD_I18N = true;
         public static boolean OPEN_THREAD_USER = true;
+        public static boolean OPEN_THREAD_PAGE = true;
 
     }
 

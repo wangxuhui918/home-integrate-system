@@ -13,6 +13,9 @@ package cn.bigcore.micro.thread.bean;
  */
 public enum FyyKeyBase {
     I18N("I18N"),//
+    PAGE_SIZE("PAGE_SIZE"),//
+    PAGE_NUM("PAGE_NUM"),//
+    TOTAL("TOTAL"),//
     USERRE("USERRE"),//
 
     ;//

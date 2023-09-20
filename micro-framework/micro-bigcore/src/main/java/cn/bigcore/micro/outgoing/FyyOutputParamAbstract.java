@@ -11,7 +11,13 @@
 
 package cn.bigcore.micro.outgoing;
 
+import cn.bigcore.micro.FyyInitEnv;
+import cn.bigcore.micro.thread.FyyThreadReUtils;
+import cn.bigcore.micro.thread.bean.FyyKeyBase;
+import cn.bigcore.micro.utils.FyyConfigFrameUtils;
+
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * 出参基础类
@@ -29,6 +35,52 @@ public abstract class FyyOutputParamAbstract<T, D> implements Serializable {
     private T codeBody;
     //出参数据
     private D data;
+    //每页记录数
+    private Integer pageSize;
+    //当前页数
+    private Integer pageNum;
+    //分页总数
+    private Long total;
+
+    public Integer getPageSize() {
+        if (FyyInitEnv.ProjectInformation.OPEN_THREAD_USER) {
+            return Integer.parseInt(FyyThreadReUtils.getStrParamByPath(FyyKeyBase.PAGE_SIZE.getKeyName()));
+        }
+        return pageSize;
+    }
+
+    public void setPageSize(Integer pageSize) {
+        this.pageSize = pageSize;
+    }
+
+    public Integer getPageNum() {
+        if (FyyInitEnv.ProjectInformation.OPEN_THREAD_USER) {
+            return Integer.parseInt(FyyThreadReUtils.getStrParamByPath(FyyKeyBase.PAGE_NUM.getKeyName()));
+        }
+        return pageNum;
+    }
+
+    public void setPageNum(Integer pageNum) {
+        this.pageNum = pageNum;
+    }
+
+    public Long getTotal() {
+        if (FyyInitEnv.ProjectInformation.OPEN_THREAD_USER) {
+            try {
+                List<FyyPageTotalInterface> plugins = FyyConfigFrameUtils.getPlugins(FyyPageTotalInterface.class);
+                for (int i = 0; i < plugins.size(); i++) {
+                    return plugins.get(i).getTotal(getPageNum(), getPageSize());
+                }
+            } catch (Exception e) {
+                return 0L;
+            }
+        }
+        return total;
+    }
+
+    public void setTotal(Long total) {
+        this.total = total;
+    }
 
     public String getI18n() {
         return i18n;
