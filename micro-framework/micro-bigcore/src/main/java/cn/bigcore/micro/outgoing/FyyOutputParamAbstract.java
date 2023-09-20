@@ -69,10 +69,13 @@ public abstract class FyyOutputParamAbstract<T, D> implements Serializable {
             try {
                 List<FyyPageTotalInterface> plugins = FyyConfigFrameUtils.getPlugins(FyyPageTotalInterface.class);
                 for (int i = 0; i < plugins.size(); i++) {
-                    return plugins.get(i).getTotal(getPageNum(), getPageSize());
+                    long s = plugins.get(i).getTotal(getPageNum(), getPageSize());
+                    plugins.get(i).remove();
+                    return s;
                 }
             } catch (Exception e) {
                 return 0L;
+            } finally {
             }
         }
         return total;

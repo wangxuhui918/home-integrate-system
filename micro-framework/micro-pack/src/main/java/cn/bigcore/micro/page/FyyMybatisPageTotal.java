@@ -1,11 +1,7 @@
 package cn.bigcore.micro.page;
 
 import cn.bigcore.micro.config.annotation.FyyRuleInjection;
-import cn.bigcore.micro.exception.re.ex.FyyExceptionError;
 import cn.bigcore.micro.outgoing.FyyPageTotalInterface;
-import cn.bigcore.micro.thread.FyyThreadReUtils;
-import cn.bigcore.micro.thread.bean.FyyKeyBase;
-import com.github.pagehelper.PageHelper;
 
 @FyyRuleInjection
 public class FyyMybatisPageTotal implements FyyPageTotalInterface {
@@ -18,6 +14,12 @@ public class FyyMybatisPageTotal implements FyyPageTotalInterface {
      */
     @Override
     public long getTotal(Integer pageNum, Integer pageSize) {
-        return PageHelper.getLocalPage().getTotal();
+        return FyyPageMethod.getLocalPage().getTotal();
     }
+
+    @Override
+    public void remove() {
+        FyyPageMethod.clearPage();
+    }
+
 }

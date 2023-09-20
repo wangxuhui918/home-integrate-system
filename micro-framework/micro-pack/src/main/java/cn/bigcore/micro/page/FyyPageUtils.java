@@ -23,6 +23,8 @@ public class FyyPageUtils {
         if (pageSize <= 0 || pageNum <= 0) {
             throw new FyyExceptionError("分页参数{}&&{}必须>0", "pageSize", "pageNum");
         }
-        return PageHelper.startPage(pageNum, pageSize);
+        Page page = PageHelper.startPage(pageNum, pageSize);
+        FyyPageMethod.setLocalPage(page);
+        return page;
     }
 }
