@@ -7,7 +7,7 @@
 
  <dependency>
     <groupId>cn.bigcore</groupId>
-     <version>11.0.10-RELEASE</version>
+     <version>11.0.11-SNAPSHOT</version>
     <artifactId>micro-snowflake</artifactId>
   </dependency>
 
