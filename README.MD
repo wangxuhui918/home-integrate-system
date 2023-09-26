@@ -28,12 +28,12 @@ pom.xml文件引入parent和dependency节点,如下:
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
-    <groupId>cn.bigcore</groupId>
+    <groupId>com.guoshiyao.rely</groupId>
     <version>11.0.11-SNAPSHOT</version>
     <artifactId>micro-example</artifactId>
     <parent>
         <artifactId>micro-dependencies</artifactId>
-        <groupId>cn.bigcore</groupId>
+        <groupId>com.guoshiyao.rely</groupId>
         <version>11.0.11-SNAPSHOT</version>
     </parent>
 
@@ -44,7 +44,7 @@ pom.xml文件引入parent和dependency节点,如下:
 
     <dependencies>
         <dependency>
-            <groupId>cn.bigcore</groupId>
+            <groupId>com.guoshiyao.rely</groupId>
             <artifactId>micro-pack</artifactId>
             <version>11.0.11-SNAPSHOT</version>
         </dependency>

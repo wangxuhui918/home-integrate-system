@@ -6,7 +6,7 @@
 ```xml
 
  <dependency>
-    <groupId>cn.bigcore</groupId>
+    <groupId>com.guoshiyao.rely</groupId>
      <version>11.0.11-SNAPSHOT</version>
     <artifactId>micro-snowflake</artifactId>
   </dependency>
