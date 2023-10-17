@@ -1,5 +1,7 @@
 package cn.bigcore.micro.base;
 
+import cn.bigcore.micro.FyyProperties;
+
 /**
  * 配置条目值
  */
@@ -28,7 +30,6 @@ public enum FyyConfigEntryValues {
             "\t\t\t\t<member code=\"03\" conmtext=\"{}为不支持的数据库类型\" type=\"false\" />\n" +
             "\t\t</group>\n" +
             "</message>"),//
-
 
 
     ;

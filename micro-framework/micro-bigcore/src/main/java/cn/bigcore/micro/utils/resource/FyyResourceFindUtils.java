@@ -20,17 +20,8 @@ import java.util.List;
  */
 public class FyyResourceFindUtils {
 
-//    public static List<String> findClassesPath(String patternPath) {
-//        if (BaseEv.SettingInformation.resourcetool == null) {
-//            throw new ExceptionError(ResourceFindUtils.class.getName() + "缺失核心实现类!");
-//        }
-//        return BaseEv.SettingInformation.resourcetool.findClassesPath(patternPath);
-//    }
 
     public static List<URI> findUri(String patternPath) {
-        if (FyyInitEnv.resourcetool == null) {
-            throw new FyyExceptionError(FyyResourceFindUtils.class.getName() + "缺失核心实现类!");
-        }
         return FyyInitEnv.resourcetool.find(patternPath);
     }
 }

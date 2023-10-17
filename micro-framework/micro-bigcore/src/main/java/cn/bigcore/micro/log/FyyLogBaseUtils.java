@@ -35,24 +35,19 @@ public class FyyLogBaseUtils {
     private static FileHandler filehandler = null;
 
     static {
+        FyyProperties.main();
         {//jdklogger
-            Level loglevel = Level.FINER;//默认日志级别
-            try {
-                if (StrUtil.isNotBlank(SystemUtil.get("loglevel"))) {//如果日志界别不为空则直接查找,根据名字和值自动查找
-                    loglevel = Level.parse(SystemUtil.get("loglevel"));
-                }
-            } catch (Exception e) {
-            }
+            Level loglevel = Level.parse(FyyProperties.setting.getStr("fyy.system.core.loglevel"));//默认日志级别
             //这里由于先启动,所以无法调整日志所在目录,目前只能先放在用户目录下
-            String syslogpath = SystemUtil.getUserInfo().getHomeDir() + FileUtil.FILE_SEPARATOR + FyyProperties.setting.get("fyy.system.name.en") + FileUtil.FILE_SEPARATOR + FyyProperties.setting.get("fyy.system.name.en") + ".%u.sys.log";
+            String syslogpath = SystemUtil.getUserInfo().getHomeDir() + FileUtil.FILE_SEPARATOR + FyyProperties.setting.get("fyy.system.name.en") + FileUtil.FILE_SEPARATOR + FyyProperties.setting.getStr("fyy.system.core.logfile");
             try {
                 FileUtil.mkParentDirs(syslogpath);
             } catch (Exception e) {
                 e.printStackTrace();
             }
             try {
-                if (StrUtil.isNotBlank(SystemUtil.get("syslogpath"))) {//如果日志界别不为空则直接查找,根据名字和值自动查找
-                    syslogpath = SystemUtil.get("syslogpath") + File.separator + FyyProperties.setting.get("fyy.system.name.en") + ".%u.sys.log";
+                if (StrUtil.isNotBlank(FyyProperties.setting.getStr("fyy.system.core.logfilepath"))) {//如果日志界别不为空则直接查找,根据名字和值自动查找
+                    syslogpath = FyyProperties.setting.getStr("fyy.system.core.logfilepath") + File.separator + FyyProperties.setting.getStr("fyy.system.core.logfile");
                     FyyLogBaseUtils.info("读取日志变量-Dsyslogpath={}", syslogpath);
                 } else {
                     FyyLogBaseUtils.info("默认日志变量-Dsyslogpath={}", syslogpath);

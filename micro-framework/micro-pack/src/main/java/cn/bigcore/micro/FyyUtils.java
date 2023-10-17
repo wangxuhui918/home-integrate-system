@@ -10,7 +10,6 @@
 
 package cn.bigcore.micro;
 
-import cn.bigcore.micro.init.FyyInitStart;
 import cn.bigcore.micro.log.FyyLogBaseUtils;
 import cn.bigcore.micro.line.base.FyyLineManagerInterface;
 import cn.bigcore.micro.utils.FyyConfigFrameUtils;
@@ -36,7 +35,7 @@ public class FyyUtils {
      */
     public static void run() {
         FyyLogBaseUtils.info("[{}]开始加载", FyyProperties.setting.get("fyy.system.name.zh"));
-        FyyInitStart.run();//注册表初始化
+        FyyInitEnv.init();
         List<FyyLineManagerInterface> plugins = FyyConfigFrameUtils.getPlugins(FyyLineManagerInterface.class);
         for (int i = 0; i < plugins.size(); i++) {
             FyyLogBaseUtils.info("总链式处理器[{}]开始处理[{}]", plugins.get(i).getClass(), "before");

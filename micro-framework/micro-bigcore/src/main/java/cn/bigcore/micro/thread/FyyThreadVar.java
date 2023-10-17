@@ -8,6 +8,7 @@
 
 package cn.bigcore.micro.thread;
 
+import cn.bigcore.micro.FyyProperties;
 import cn.hutool.json.JSONException;
 import cn.hutool.json.JSONObject;
 import cn.bigcore.micro.exception.re.ex.FyyExceptionError;
@@ -22,13 +23,8 @@ public class FyyThreadVar extends JSONObject {
     /**
      * 限制最大大小为10KB
      */
-    private final int max = 10;//10KB
+    private final int max = FyyProperties.setting.getInt("fyy.project.core.threadobjectsize");//10KB
 
-
-//    @Override
-//    public JSONObject append(String key, Object value) throws JSONException {
-//        return super.append(key, value);
-//    }
 
     @Override
     public JSONObject set(String key, Object value) throws JSONException {

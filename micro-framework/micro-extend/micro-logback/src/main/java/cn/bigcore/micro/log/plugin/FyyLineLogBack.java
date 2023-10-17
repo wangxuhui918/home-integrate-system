@@ -10,6 +10,7 @@
 
 package cn.bigcore.micro.log.plugin;
 
+import cn.bigcore.micro.FyyProperties;
 import cn.bigcore.micro.line.FyyLineSystemInterface;
 import cn.bigcore.micro.FyyInitEnv;
 import cn.bigcore.micro.config.annotation.FyyRuleInjection;
@@ -28,9 +29,9 @@ public class FyyLineLogBack implements FyyLineSystemInterface {
     public void after() {
         if (FyyInitEnv.setting.getBool(FyyConfigEntryDetailsValues.LOG_ENABLE.getKey())) {
             try {
-                FyyLogBackConfigLoader.load("ching.xml");
+                FyyLogBackConfigLoader.load(FyyProperties.setting.getStr("fyy.extends.logbackfile"));
             } catch (Exception e) {
-                throw new FyyExceptionError("日志管理器{}加载失败!请检查文件是否符合规范!!", "ching.xml");
+                throw new FyyExceptionError("日志管理器{}加载失败!请检查文件是否符合规范!!", FyyProperties.setting.getStr("fyy.extends.logbackfile"));
             }
         }
     }

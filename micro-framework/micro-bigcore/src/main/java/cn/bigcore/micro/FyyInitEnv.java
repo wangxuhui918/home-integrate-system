@@ -69,17 +69,14 @@ public class FyyInitEnv {
     public static FyyReourceInterface resourcetool;
 
     public static void init() {
-        if (resourcetool == null) {
-            throw new FyyExceptionError(FyyReourceInterface.class.getName() + "缺失核心实现类!");
-        }
-        if (projectConf == null) {
-            throw new FyyExceptionError(FyyConfigProjectUtils.class.getName() + "缺失核心实现类!");
-        }
-        if (homeConf == null) {
-            throw new FyyExceptionError(FyyConfigFrameUtils.class.getName() + "缺失核心实现类!");
-        }
-        if (baseEv == null) {
-            throw new FyyExceptionError(FyyInitEnv.class.getName() + ".baseEv 需要实现接口");
+        try {
+            FyyInitEnv.resourcetool = (FyyReourceInterface) ClassUtil.loadClass(FyyProperties.setting.getStr("cn.bigcore.micro.config.FyyReourceInterface"), false).newInstance();
+            FyyInitEnv.baseEv = (FyyInitEnv.FyyInitEnvLoadInterface) ClassUtil.loadClass(FyyProperties.setting.getStr("cn.bigcore.micro.FyyInitEnv.FyyInitEnvLoadInterface"), false).newInstance();
+            FyyInitEnv.homeConf = (FyyConfigFrameInterface) ClassUtil.loadClass(FyyProperties.setting.getStr("cn.bigcore.micro.config.FyyConfigFrameInterface"), false).newInstance();
+            FyyInitEnv.projectConf = (FyyConfigProjectInterface) ClassUtil.loadClass(FyyProperties.setting.getStr("cn.bigcore.micro.config.FyyConfigProjectInterface"), false).newInstance();
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new FyyExceptionError("初始化注册器失败");
         }
         baseEv.load();
     }

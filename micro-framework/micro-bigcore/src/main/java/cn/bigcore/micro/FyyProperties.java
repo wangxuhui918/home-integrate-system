@@ -1,11 +1,14 @@
 package cn.bigcore.micro;
 
 import cn.hutool.setting.Setting;
-
-import java.util.HashMap;
+import cn.hutool.system.SystemUtil;
 
 public class FyyProperties {
     public static final Setting setting = new Setting("fyy.properties");
+
+    public static void main() {
+
+    }
 
     static {
         try {
@@ -13,11 +16,14 @@ public class FyyProperties {
             setting.addSetting(fyyextends);
         } catch (Exception e) {
         }
-    }
-
-    public static void main(String[] args) {
-        String string = "";
-        System.out.println("string = " + FyyProperties.setting.getStr("fyy.project.core.i18n"));
+        try {
+            for (String key : setting.keySet()) {
+                if (SystemUtil.get(key) != null) {
+                    setting.put(key, SystemUtil.get(key));
+                }
+            }
+        } catch (Exception e) {
+        }
     }
 
 }
