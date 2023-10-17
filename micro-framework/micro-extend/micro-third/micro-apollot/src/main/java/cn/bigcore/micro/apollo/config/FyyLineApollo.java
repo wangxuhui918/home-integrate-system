@@ -26,11 +26,11 @@ public class FyyLineApollo implements FyyLineThirdExtendInterface {
 
     @Override
     public void after() {
-        if (FyyInitEnv.SettingInformation.setting.getBool(FyyConfigEntryDetailsValues.APOLLO_BOOTSTRAP_ENABLED.getKey())) {
+        if (FyyInitEnv.setting.getBool(FyyConfigEntryDetailsValues.APOLLO_BOOTSTRAP_ENABLED.getKey())) {
             Config config = ConfigService.getAppConfig();
             Set<String> names = config.getPropertyNames();
             for (String key : names) {
-                FyyInitEnv.SettingInformation.setting.put(key, config.getProperty(key, ""));
+                FyyInitEnv.setting.put(key, config.getProperty(key, ""));
             }
         } else {
 //            BaseEv.SettingInformation.setting.putByGroup(ConfigDetails.APOLLO_BOOTSTRAP_ENABLED.getKey(), BaseEv.SettingInformation.runEnv, "false");

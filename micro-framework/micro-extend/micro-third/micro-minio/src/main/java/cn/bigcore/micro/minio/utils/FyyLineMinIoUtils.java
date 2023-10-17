@@ -24,16 +24,10 @@ import cn.hutool.crypto.SecureUtil;
 import cn.hutool.http.HttpUtil;
 import cn.hutool.json.JSONUtil;
 import io.minio.*;
-import io.minio.errors.ErrorResponseException;
-import io.minio.errors.InvalidResponseException;
-import io.minio.errors.XmlParserException;
 import io.minio.http.Method;
-import org.apache.poi.ss.formula.functions.T;
 
 import java.io.ByteArrayInputStream;
-import java.io.IOException;
 import java.io.InputStream;
-import java.security.NoSuchAlgorithmException;
 import java.util.Date;
 import java.util.HashMap;
 
@@ -179,7 +173,7 @@ public class FyyLineMinIoUtils {
                     .bucket(namespace).object(storagname).build());//60 * 60 * 24 * 9 .expiry(60 * 60 * 24)
             url = StrUtil.subBefore(url, "?", true);
             int px = StrUtil.ordinalIndexOf(url, "/", 3);
-            url = FyyInitEnv.SettingInformation.setting.get(FyyConfigEntryDetailsValues.HOME_MINIO_ENDPOINT.getKey()) + url.substring(px);
+            url = FyyInitEnv.setting.get(FyyConfigEntryDetailsValues.HOME_MINIO_ENDPOINT.getKey()) + url.substring(px);
             {
                 gui.put(FyyLineMinIOGen.storagname, storagname);
                 gui.put(FyyLineMinIOGen.namespace, namespace);

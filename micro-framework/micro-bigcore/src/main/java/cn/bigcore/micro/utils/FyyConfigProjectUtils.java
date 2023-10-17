@@ -21,37 +21,37 @@ import java.util.Map;
 public class FyyConfigProjectUtils {
 
     public static void writeProperties() {
-        FyyInitEnv.SettingInformation.projectConf.writeProperties();
+        FyyInitEnv.projectConf.writeProperties();
     }
 
 
     public static void writeReadMes() {
-        FyyInitEnv.SettingInformation.projectConf.writeFileStructures();
+        FyyInitEnv.projectConf.writeFileStructures();
     }
 
 
     public static boolean installed() {
-        return FyyInitEnv.SettingInformation.projectConf.installed();
+        return FyyInitEnv.projectConf.installed();
     }
 
     public static void install() {
-        FyyInitEnv.SettingInformation.projectConf.install();
+        FyyInitEnv.projectConf.install();
     }
 
     public static String getZoneMessageFileContext() {
-        return FyyInitEnv.SettingInformation.projectConf.getDefaultMessageXmlContexts();
+        return FyyInitEnv.projectConf.getDefaultMessageXmlContexts();
     }
 
     public static Map<String, String> getAllMessageXmlContexts() {
-        return FyyInitEnv.SettingInformation.projectConf.getAllMessageXmlContexts();
+        return FyyInitEnv.projectConf.getAllMessageXmlContexts();
     }
 
     public static Map<String, String> getThisEnvPropertiesValue() {
-        return FyyInitEnv.SettingInformation.projectConf.getThisEnvPropertiesValue();
+        return FyyInitEnv.projectConf.getThisEnvPropertiesValue();
     }
 
     public static HashMap<String, String> reloadPropertiesValue() {
-        return FyyInitEnv.SettingInformation.projectConf.reloadPropertiesValue();
+        return FyyInitEnv.projectConf.reloadPropertiesValue();
     }
 
 }

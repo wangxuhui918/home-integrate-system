@@ -41,7 +41,7 @@ public class FyyLineCreateRunModel implements FyyLineSystemInterface {
      */
     @Override
     public Map<String, String> getProperties() {
-        if (!FyyInitEnv.SettingInformation.isClassModel) {
+        if (!FyyInitEnv.isClassModel) {
             return FyyConfigProjectUtils.getThisEnvPropertiesValue();
         }
         return new HashMap<>();

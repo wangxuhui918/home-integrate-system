@@ -9,6 +9,7 @@
 package cn.bigcore.micro.config;
 
 import cn.bigcore.micro.FyyInitEnv;
+import cn.bigcore.micro.FyyProperties;
 import cn.bigcore.micro.config.config.bean.FyyConfigEntryDetailsVo;
 import cn.bigcore.micro.config.config.bean.FyyConfigEntryVo;
 import cn.bigcore.micro.config.config.bean.FyyConfigFileStructureVo;
@@ -43,7 +44,7 @@ public class FyyConfigProjectIniImpl implements FyyConfigProjectInterface {
         HashMap<String, String> thisEnvPropertiesValue = new HashMap<>();
         Setting allEnvSetting = new Setting();
         try {
-            List<URI> listUrl = FyyResourceFindUtils.findUri(FyyInitEnv.SystemInformation.SYSTEM_EN_NAME + "-*.ini");//Line.env.getName()
+            List<URI> listUrl = FyyResourceFindUtils.findUri(FyyProperties.setting.get("fyy.system.name.en") + "-*.ini");//Line.env.getName()
             for (int i = 0; i < listUrl.size(); i++) {
                 FyyLogBaseUtils.debug("读取到[{}]配置文件", listUrl.get(i).toString());
                 Setting o = new Setting(listUrl.get(i).toURL(), CharsetUtil.CHARSET_UTF_8, true);
@@ -53,7 +54,7 @@ public class FyyConfigProjectIniImpl implements FyyConfigProjectInterface {
                     Set<String> keys = o.getMap(groupName).keySet();
                     for (String key : keys) {
                         try {
-                            o.putByGroup(key, groupName, FyyVelocityUtils.convert(o.getByGroup(key, groupName), FyyInitEnv.SettingInformation.context));
+                            o.putByGroup(key, groupName, FyyVelocityUtils.convert(o.getByGroup(key, groupName), FyyInitEnv.context));
                         } catch (Exception e) {
                             FyyLogBaseUtils.warn("配置[{}]值[{}]转换失败!", key, o.getByGroup(key, groupName));
                         }
@@ -62,9 +63,9 @@ public class FyyConfigProjectIniImpl implements FyyConfigProjectInterface {
                 allEnvSetting.addSetting(o);
             }
 
-            if (StrUtil.isNotBlank(FyyInitEnv.SettingInformation.runEnv)) {//塞入默认值
-                List<String> envs = new ArrayList<>(Arrays.asList(FyyInitEnv.SettingInformation.configEnv));
-                envs.add(FyyInitEnv.SettingInformation.runEnv);
+            if (StrUtil.isNotBlank(FyyInitEnv.runEnv)) {//塞入默认值
+                List<String> envs = new ArrayList<>(Arrays.asList(FyyInitEnv.configEnv));
+                envs.add(FyyInitEnv.runEnv);
                 for (String envName : envs) {
                     for (FyyConfigEntryDetailsValues o : FyyConfigEntryDetailsValues.values()) {
                         String groupname = o.getCodeType().name() + "-" + envName;
@@ -77,10 +78,10 @@ public class FyyConfigProjectIniImpl implements FyyConfigProjectInterface {
             {
                 thisEnvPropertiesValue.clear();
                 List<String> groups = allEnvSetting.getGroups();
-                FyyLogBaseUtils.info("加载环境[{}]配置", FyyInitEnv.SettingInformation.runEnv);
+                FyyLogBaseUtils.info("加载环境[{}]配置", FyyInitEnv.runEnv);
                 for (int j = 0; j < groups.size(); j++) {
                     String s = groups.get(j);
-                    if (s.contains("-" + FyyInitEnv.SettingInformation.runEnv)) {
+                    if (s.contains("-" + FyyInitEnv.runEnv)) {
                         thisEnvPropertiesValue.putAll(allEnvSetting.getMap(s));
                     }
                 }
@@ -97,7 +98,7 @@ public class FyyConfigProjectIniImpl implements FyyConfigProjectInterface {
         try {
             List<URI> listUri = FyyResourceFindUtils.findUri("message-*.xml");//Line.env.getName()
             for (int i = 0; i < listUri.size(); i++) {
-                if (!listUri.get(i).toString().contains("-" + FyyInitEnv.SettingInformation.i18n)) {
+                if (!listUri.get(i).toString().contains("-" +FyyProperties.setting.getStr("fyy.project.core.i18n"))) {
                     String name = StrUtil.subBetween(listUri.get(i).toString(), "message-", ".xml");
                     String context =
                             FileUtil.readString(listUri.get(i).toURL(), CharsetUtil.CHARSET_UTF_8);
@@ -113,7 +114,7 @@ public class FyyConfigProjectIniImpl implements FyyConfigProjectInterface {
     @Override
     public String getDefaultMessageXmlContexts() {
         try {
-            return ResourceUtil.readUtf8Str(StrUtil.format("message-{}.xml", FyyInitEnv.SettingInformation.i18n));
+            return ResourceUtil.readUtf8Str(StrUtil.format("message-{}.xml", FyyProperties.setting.getStr("fyy.project.core.i18n")));
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -128,13 +129,13 @@ public class FyyConfigProjectIniImpl implements FyyConfigProjectInterface {
 
     @Override
     public boolean installed() {
-        String file = FyyInitEnv.WorkDir.projectresourcepath + FileUtil.FILE_SEPARATOR + "install" + FileUtil.FILE_SEPARATOR + "installed.txt";
+        String file = FyyInitEnv.projectresourcepath + FileUtil.FILE_SEPARATOR + "install" + FileUtil.FILE_SEPARATOR + "installed.txt";
         return FileUtil.exist(file);
     }
 
     @Override
     public boolean install() {
-        String file = FyyInitEnv.WorkDir.projectresourcepath + FileUtil.FILE_SEPARATOR + "install" + FileUtil.FILE_SEPARATOR + "installed.txt";
+        String file = FyyInitEnv.projectresourcepath + FileUtil.FILE_SEPARATOR + "install" + FileUtil.FILE_SEPARATOR + "installed.txt";
         FileUtil.writeUtf8String("v1-" + DateUtil.now(), file);
         return true;
     }
@@ -147,9 +148,9 @@ public class FyyConfigProjectIniImpl implements FyyConfigProjectInterface {
             String path = "";
             String context = inf.getContext();
             if (inf.getResourceType().equals(FyyConfigResourceType.SOURCE_TYPE)) {
-                path = FyyInitEnv.WorkDir.projectcodesourcepath + ClassUtil.getPackagePath(FyyInitEnv.WorkDir.mainClassC) + FileUtil.FILE_SEPARATOR + inf.getPath();
+                path = FyyInitEnv.projectcodesourcepath + ClassUtil.getPackagePath(FyyInitEnv.mainClassC) + FileUtil.FILE_SEPARATOR + inf.getPath();
             } else if (inf.getResourceType().equals(FyyConfigResourceType.RESOURCE_TYPE)) {
-                path = FyyInitEnv.WorkDir.projectresourcepath + FileUtil.FILE_SEPARATOR + inf.getPath();
+                path = FyyInitEnv.projectresourcepath + FileUtil.FILE_SEPARATOR + inf.getPath();
             }
             if (!FileUtil.exist(path)) {
                 FileUtil.writeUtf8String(context, path);
@@ -160,15 +161,15 @@ public class FyyConfigProjectIniImpl implements FyyConfigProjectInterface {
 
     @Override
     public void writeProperties() {
-        if (!FyyInitEnv.SettingInformation.isClassModel) {
+        if (!FyyInitEnv.isClassModel) {
             FyyLogBaseUtils.err("开发摸下才可进行初始化,系统已停止");
             System.exit(-1);
         }
-        List<String> envs = new ArrayList<>(Arrays.asList(FyyInitEnv.SettingInformation.configEnv));
-        envs.add(FyyInitEnv.SettingInformation.runEnv);
+        List<String> envs = new ArrayList<>(Arrays.asList(FyyInitEnv.configEnv));
+        envs.add(FyyInitEnv.runEnv);
 
         for (String envName : envs) {
-            if (FyyInitEnv.SettingInformation.autoUpdate || !FyyConfigProjectUtils.installed() || ((FyyInitEnv.SettingInformation.daemonRoot.getDevelop_user_id()).equals(envName) && FyyInitEnv.SettingInformation.isClassModel)) {//数据库未初始化,手动更新配置
+            if (FyyInitEnv.autoUpdate || !FyyConfigProjectUtils.installed() || ((FyyInitEnv.daemonRoot.getDevelop_user_id()).equals(envName) && FyyInitEnv.isClassModel)) {//数据库未初始化,手动更新配置
                 List<FyyConfigEntryVo> listMainConfig = FyyConfigFrameUtils.getPropertiesMain();
                 List<String> lineStr = new ArrayList<>();
                 for (int k = 0; k < listMainConfig.size(); k++) {
@@ -178,20 +179,20 @@ public class FyyConfigProjectIniImpl implements FyyConfigProjectInterface {
                         lineStr.add(StrUtil.format("[{}-{}]", mainConfig.getName(), envName));//格式为 code-env
                         for (int i = 0; i < listProperties.size(); i++) {
                             FyyConfigEntryDetailsVo o = listProperties.get(i);
-                            lineStr.add(FyyVelocityUtils.convert(o.getMark(), FyyInitEnv.SettingInformation.context));
+                            lineStr.add(FyyVelocityUtils.convert(o.getMark(), FyyInitEnv.context));
                             lineStr.add(StrUtil.blankToDefault(o.getBeforesuff(), "") + o.getKey() + o.getM() + o.getValue());
                         }
                     } else if (StrUtil.isNotBlank(mainConfig.getContext())) {
-                        String name_en = FyyVelocityUtils.convert(mainConfig.getConfigName(), FyyInitEnv.SettingInformation.context);
-                        String context = FyyVelocityUtils.convert(mainConfig.getContext(), FyyInitEnv.SettingInformation.context);
-                        String file = FyyInitEnv.WorkDir.projectresourcepath + FileUtil.FILE_SEPARATOR + name_en;
+                        String name_en = FyyVelocityUtils.convert(mainConfig.getConfigName(), FyyInitEnv.context);
+                        String context = FyyVelocityUtils.convert(mainConfig.getContext(), FyyInitEnv.context);
+                        String file = FyyInitEnv.projectresourcepath + FileUtil.FILE_SEPARATOR + name_en;
                         if (!FileUtil.exist(file)) {
                             FileUtil.writeUtf8String(context, file);
                         }
                     }
                 }
                 {//写入文件
-                    String file = FyyInitEnv.WorkDir.projectresourcepath + FileUtil.FILE_SEPARATOR + FyyInitEnv.SystemInformation.SYSTEM_EN_NAME + "-" + envName + ".ini";
+                    String file = FyyInitEnv.projectresourcepath + FileUtil.FILE_SEPARATOR + FyyProperties.setting.get("fyy.system.name.en") + "-" + envName + ".ini";
                     if (!FileUtil.exist(file)) {
                         FileUtil.writeUtf8Lines(lineStr, file);
                     }

@@ -29,14 +29,14 @@ public class FyyLineMinIOGen {
 
     public static void intiConect() {
         if (client == null) {
-            namespace_re = FyyInitEnv.SettingInformation.setting.get(FyyConfigEntryDetailsValues.HOME_MINIO_NAMESPACE_RE.getKey());
-            client = MinioClient.builder().endpoint(FyyInitEnv.SettingInformation.setting.get(FyyConfigEntryDetailsValues.HOME_MINIO_ENDPOINT.getKey())).credentials(FyyInitEnv.SettingInformation.setting.get(FyyConfigEntryDetailsValues.HOME_MINIO_ACCESSKEY.getKey()), FyyInitEnv.SettingInformation.setting.get(FyyConfigEntryDetailsValues.HOME_MINIO_SECRETKEY.getKey())).build();
+            namespace_re = FyyInitEnv.setting.get(FyyConfigEntryDetailsValues.HOME_MINIO_NAMESPACE_RE.getKey());
+            client = MinioClient.builder().endpoint(FyyInitEnv.setting.get(FyyConfigEntryDetailsValues.HOME_MINIO_ENDPOINT.getKey())).credentials(FyyInitEnv.setting.get(FyyConfigEntryDetailsValues.HOME_MINIO_ACCESSKEY.getKey()), FyyInitEnv.setting.get(FyyConfigEntryDetailsValues.HOME_MINIO_SECRETKEY.getKey())).build();
         }
     }
 
     public static void checkMinIOState() {
         if (client == null) {
-            throw new FyyExceptionError("MinIO连接失败,请检查相关参数是否正常,{},{},{},{}", FyyInitEnv.SettingInformation.setting.get(FyyConfigEntryDetailsValues.HOME_MINIO_NAMESPACE_RE.getKey()), FyyInitEnv.SettingInformation.setting.get(FyyConfigEntryDetailsValues.HOME_MINIO_ENDPOINT.getKey()), FyyInitEnv.SettingInformation.setting.get(FyyConfigEntryDetailsValues.HOME_MINIO_ACCESSKEY.getKey()), FyyInitEnv.SettingInformation.setting.get(FyyConfigEntryDetailsValues.HOME_MINIO_SECRETKEY.getKey()));
+            throw new FyyExceptionError("MinIO连接失败,请检查相关参数是否正常,{},{},{},{}", FyyInitEnv.setting.get(FyyConfigEntryDetailsValues.HOME_MINIO_NAMESPACE_RE.getKey()), FyyInitEnv.setting.get(FyyConfigEntryDetailsValues.HOME_MINIO_ENDPOINT.getKey()), FyyInitEnv.setting.get(FyyConfigEntryDetailsValues.HOME_MINIO_ACCESSKEY.getKey()), FyyInitEnv.setting.get(FyyConfigEntryDetailsValues.HOME_MINIO_SECRETKEY.getKey()));
         }
     }
 
@@ -50,7 +50,7 @@ public class FyyLineMinIOGen {
             boolean isExist = client.bucketExists(BucketExistsArgs.builder().bucket(bucketName).build());
             if (!isExist) {
                 client.makeBucket(MakeBucketArgs.builder().bucket(bucketName).build());
-                if (FyyInitEnv.SettingInformation.setting.getBool(FyyConfigEntryDetailsValues.HOME_MINIO_NAMESPACE_ACCESS_OPEN.getKey())) {
+                if (FyyInitEnv.setting.getBool(FyyConfigEntryDetailsValues.HOME_MINIO_NAMESPACE_ACCESS_OPEN.getKey())) {
                     client.setBucketPolicy(SetBucketPolicyArgs.builder().bucket(bucketName).config(bp1).build());
                 } else {
                     client.setBucketPolicy(SetBucketPolicyArgs.builder().bucket(bucketName).build());

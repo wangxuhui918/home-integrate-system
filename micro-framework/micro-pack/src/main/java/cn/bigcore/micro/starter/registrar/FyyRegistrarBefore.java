@@ -22,10 +22,10 @@ public class FyyRegistrarBefore implements ImportSelector {
     public String[] selectImports(AnnotationMetadata annotationmetadata) {
         FyyUtils.run();
         String[] all = new String[0];
-        if (FyyInitEnv.SettingInformation.iocclasses != null && FyyInitEnv.SettingInformation.iocclasses.size() > 0) {
-            String[] selecterExtends = new String[FyyInitEnv.SettingInformation.iocclasses.size()];
-            for (int i = 0; i < FyyInitEnv.SettingInformation.iocclasses.size(); i++) {
-                Class reloadClass = FyyInitEnv.SettingInformation.iocclasses.get(i);
+        if (FyyInitEnv.iocclasses != null && FyyInitEnv.iocclasses.size() > 0) {
+            String[] selecterExtends = new String[FyyInitEnv.iocclasses.size()];
+            for (int i = 0; i < FyyInitEnv.iocclasses.size(); i++) {
+                Class reloadClass = FyyInitEnv.iocclasses.get(i);
                 selecterExtends[i] = reloadClass.getTypeName();
             }
             all = ArrayUtil.addAll(all, selecterExtends);

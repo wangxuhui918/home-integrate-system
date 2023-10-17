@@ -11,6 +11,7 @@
 package cn.bigcore.micro.hand;
 
 import cn.bigcore.micro.FyyInitEnv;
+import cn.bigcore.micro.FyyProperties;
 import cn.bigcore.micro.annotation.FyyRuleController;
 import cn.bigcore.micro.base.FyyConfigEntryDetailsValues;
 import cn.bigcore.micro.exception.FyyExceptionApiNull;
@@ -57,7 +58,7 @@ public class FyyControllerParamHandV1 {
             }
             if (k == null) {//无InputParamAb拦截的情况
                 try {
-                    String className = FyyInitEnv.SettingInformation.setting.get(FyyConfigEntryDetailsValues.SYSTEM_INPUTPARAMAB_CLASS.getKey());
+                    String className = FyyInitEnv.setting.get(FyyConfigEntryDetailsValues.SYSTEM_INPUTPARAMAB_CLASS.getKey());
                     k = (FyyInputParamInterface) ClassUtil.loadClass(className, false).newInstance();
                 } catch (Exception e) {
                 }
@@ -72,7 +73,7 @@ public class FyyControllerParamHandV1 {
                     if (authReturnType == FyyAuthReturnType.AuthSuccess) {//鉴权通过
                     } else {//鉴权失败
                         //                        return cn.bigcore.micro.outgoing.utils.FyyCodeUtils.go(FyyCodeUtils.getBuiltinCode(FyyCodeUtils.getError().getType(), FyyInitEnv.SettingInformation.i18n, authReturnType.getCode(), authReturnType.getName()));
-                        throw new FyyExceptionError(FyyCodeUtils.getBuiltinCode(FyyCodeUtils.getError().getType(), FyyInitEnv.SettingInformation.i18n, authReturnType.getCode(), authReturnType.getName()));
+                        throw new FyyExceptionError(FyyCodeUtils.getBuiltinCode(FyyCodeUtils.getError().getType(), FyyProperties.setting.getStr("fyy.project.core.i18n"), authReturnType.getCode(), authReturnType.getName()));
                     }
                 } catch (FyyExceptionMessageAbstract e1) {
 //                    return cn.bigcore.micro.outgoing.utils.FyyCodeUtils.go(FyyCodeUtils.getError(e1.getMsg()));

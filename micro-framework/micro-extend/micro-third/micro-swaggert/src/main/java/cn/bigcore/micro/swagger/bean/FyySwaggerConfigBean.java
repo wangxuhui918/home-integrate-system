@@ -47,7 +47,7 @@ public class FyySwaggerConfigBean implements WebMvcConfigurer {
                 //  定义是否开启swagger，false为关闭，可以通过变量控制,默认为true
                 .enable(true).select()
                 //RequestHandlerSelectors 配置要扫描接口的方式
-                .apis(RequestHandlerSelectors.basePackage(FyyInitEnv.SettingInformation.setting.get(FyyConfigEntryDetailsValues.HOME_SWAGGER_BASEPACKAGE.getKey())))
+                .apis(RequestHandlerSelectors.basePackage(FyyInitEnv.setting.get(FyyConfigEntryDetailsValues.HOME_SWAGGER_BASEPACKAGE.getKey())))
                 //paths() 过滤什么路径
                 .paths(PathSelectors.any()).build().globalRequestParameters(parameters);
         return doc;
@@ -57,7 +57,7 @@ public class FyySwaggerConfigBean implements WebMvcConfigurer {
         //作者信息
         springfox.documentation.service.Contact contact = new springfox.documentation.service.Contact("wanguhui918",
                 "www.guoshiyao.com", "wangxuhui918@163.om");
-        return new ApiInfo(FyyInitEnv.SettingInformation.setting.get(FyyConfigEntryDetailsValues.HOME_SWAGGER_NAME.getKey()), "你要快快长大哦", "1.0", "urn:tos", contact,
+        return new ApiInfo(FyyInitEnv.setting.get(FyyConfigEntryDetailsValues.HOME_SWAGGER_NAME.getKey()), "你要快快长大哦", "1.0", "urn:tos", contact,
                 "Apache 2.0", "http://www.apache.org/licenses/LICENSE-2.0", new ArrayList());
     }
 

@@ -20,11 +20,11 @@ public class FyyInitStart {
     public static void run() {
 
         //
-        FyyInitEnv.SettingInformation.resourcetool = new FyyResource();
-        FyyInitEnv.SettingInformation.baseEv = new FyyInitEnvLoad();
-        FyyInitEnv.SettingInformation.homeConf = new FyyConfigFrameImpl();
-        FyyInitEnv.SettingInformation.projectConf = new FyyConfigProjectPropertiesImpl();
-        FyyInitEnv.SettingInformation.init();
+        FyyInitEnv.resourcetool = new FyyResource();
+        FyyInitEnv.baseEv = new FyyInitEnvLoad();
+        FyyInitEnv.homeConf = new FyyConfigFrameImpl();
+        FyyInitEnv.projectConf = new FyyConfigProjectPropertiesImpl();
+        FyyInitEnv.init();
     }
 }
 

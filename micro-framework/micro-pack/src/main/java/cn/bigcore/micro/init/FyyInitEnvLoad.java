@@ -9,6 +9,7 @@
 package cn.bigcore.micro.init;
 
 import cn.bigcore.micro.FyyInitEnv;
+import cn.bigcore.micro.FyyProperties;
 import cn.bigcore.micro.daemon.FyyProjectConfigRoot;
 import cn.bigcore.micro.daemon.FyyProjectDaemonRoot;
 import cn.bigcore.micro.starter.FyyStarter;
@@ -19,7 +20,6 @@ import cn.hutool.core.io.FileUtil;
 import cn.hutool.core.io.ManifestUtil;
 import cn.hutool.core.lang.Console;
 import cn.hutool.core.net.NetUtil;
-import cn.hutool.core.util.ArrayUtil;
 import cn.hutool.core.util.ClassUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.core.util.URLUtil;
@@ -38,7 +38,7 @@ import java.util.jar.JarFile;
 import java.util.regex.Pattern;
 
 
-public class FyyInitEnvLoad implements FyyInitEnv.SettingInformation.FyyInitEnvLoadInterface {
+public class FyyInitEnvLoad implements FyyInitEnv.FyyInitEnvLoadInterface {
     @Override
     public void load() {
         FyyLogBaseUtils.debug("开始处理配置类[{}}", FyyInitEnvLoad.class.getName());
@@ -155,7 +155,7 @@ public class FyyInitEnvLoad implements FyyInitEnv.SettingInformation.FyyInitEnvL
 //                }
             }
             {
-                workHomeDir = SystemUtil.getUserInfo().getHomeDir() + FileUtil.FILE_SEPARATOR + FyyInitEnv.SystemInformation.SYSTEM_EN_NAME + FileUtil.FILE_SEPARATOR + idkey + FileUtil.FILE_SEPARATOR;
+                workHomeDir = SystemUtil.getUserInfo().getHomeDir() + FileUtil.FILE_SEPARATOR + FyyProperties.setting.get("fyy.system.name.en") + FileUtil.FILE_SEPARATOR + idkey + FileUtil.FILE_SEPARATOR;
             }
         }
 
@@ -203,7 +203,7 @@ public class FyyInitEnvLoad implements FyyInitEnv.SettingInformation.FyyInitEnvL
         {
             daemonRoot = null;
             try {
-                String daemonJson = FileUtil.readUtf8String(FyyInitEnv.WorkDir.MAIN_CONFIG);
+                String daemonJson = FileUtil.readUtf8String(FyyInitEnv.MAIN_CONFIG);
                 daemonRoot = JSONUtil.toBean(daemonJson, FyyProjectDaemonRoot.class);
             } catch (Exception e) {
             }
@@ -211,7 +211,7 @@ public class FyyInitEnvLoad implements FyyInitEnv.SettingInformation.FyyInitEnvL
                 if (isClassModel) {
                     daemonRoot = new FyyProjectDaemonRoot();
                     while (true) {
-                        FyyLogBaseUtils.warn("[{}]系统在本机首次运行,文件[{}]需要写入用户标识(例如:中文姓名,英文姓名[只能为中文,英文,数字]),请输入并点击Enter", FyyInitEnv.SystemInformation.SYSTEM_EN_NAME, FyyInitEnv.WorkDir.MAIN_CONFIG);
+                        FyyLogBaseUtils.warn("[{}]系统在本机首次运行,文件[{}]需要写入用户标识(例如:中文姓名,英文姓名[只能为中文,英文,数字]),请输入并点击Enter", FyyProperties.setting.get("fyy.system.name.en"), FyyInitEnv.MAIN_CONFIG);
                         String develop_user_id = Console.input();
                         String pattern = "^[\\u4e00-\\u9fa5,A-Za-z0-9]{0,}";
                         boolean isMatch = Pattern.matches(pattern, develop_user_id);
@@ -220,11 +220,11 @@ public class FyyInitEnvLoad implements FyyInitEnv.SettingInformation.FyyInitEnvL
                             break;
                         }
                     }
-                    FileUtil.writeUtf8String(JSONUtil.formatJsonStr(JSONUtil.toJsonStr(daemonRoot)), FyyInitEnv.WorkDir.MAIN_CONFIG);
+                    FileUtil.writeUtf8String(JSONUtil.formatJsonStr(JSONUtil.toJsonStr(daemonRoot)), FyyInitEnv.MAIN_CONFIG);
                 } else {
                     daemonRoot = new FyyProjectDaemonRoot();
-                    daemonRoot.setDevelop_user_id(mainMac + FyyInitEnv.WorkDir.systemUserName);
-                    FileUtil.writeUtf8String(JSONUtil.formatJsonStr(JSONUtil.toJsonStr(daemonRoot)), FyyInitEnv.WorkDir.MAIN_CONFIG);
+                    daemonRoot.setDevelop_user_id(mainMac + FyyInitEnv.systemUserName);
+                    FileUtil.writeUtf8String(JSONUtil.formatJsonStr(JSONUtil.toJsonStr(daemonRoot)), FyyInitEnv.MAIN_CONFIG);
                 }
             }
             if (!daemonRoot.getProject_config().containsKey(idkey)) {
@@ -233,9 +233,9 @@ public class FyyInitEnvLoad implements FyyInitEnv.SettingInformation.FyyInitEnvL
                 configRoot.setProject_name_cn(idkey);
                 configRoot.setPrject_application_properties_path("");
                 daemonRoot.getProject_config().put(idkey, configRoot);
-                FileUtil.writeUtf8String(JSONUtil.formatJsonStr(JSONUtil.toJsonStr(daemonRoot)), FyyInitEnv.WorkDir.MAIN_CONFIG);
+                FileUtil.writeUtf8String(JSONUtil.formatJsonStr(JSONUtil.toJsonStr(daemonRoot)), FyyInitEnv.MAIN_CONFIG);
             }
-            FyyInitEnv.SettingInformation.daemonRoot = daemonRoot;
+            FyyInitEnv.daemonRoot = daemonRoot;
             FyyLogBaseUtils.info("获取到用户标识:[{}}", JSONUtil.toJsonStr(daemonRoot));
         }
 
@@ -243,32 +243,32 @@ public class FyyInitEnvLoad implements FyyInitEnv.SettingInformation.FyyInitEnvL
         {
             //
             FyyLogBaseUtils.debug("配置类赋值开始[{}}", FyyInitEnvLoad.class.getName());
-            FyyInitEnv.SettingInformation.idKey = idkey;
-            FyyInitEnv.SettingInformation.i18n = i18n;
-            FyyInitEnv.WorkDir.projectPackage = StrUtil.isNotBlank(projectPackage) ? projectPackage : ClassUtil.getPackage(ClassUtil.loadClass(mainClass, false));
-            FyyInitEnv.WorkDir.workHomeDir = workHomeDir;
-            FyyInitEnv.SettingInformation.autoUpdate = updateProperties;
-            FyyInitEnv.SettingInformation.configEnv = configEnv;
-            FyyInitEnv.SettingInformation.runEnv = StrUtil.blankToDefault(runEnv, daemonRoot.getDevelop_user_id());
-            FyyInitEnv.WorkDir.jarpath = jarpath;
-            FyyInitEnv.SettingInformation.isClassModel = isClassModel;
-            FyyInitEnv.WorkDir.mainClassC = mainClassC;
-            FyyInitEnv.SettingInformation.mainClass = mainClass;
-            FyyInitEnv.WorkDir.projectresourcepath = projectresourcepath;
-            FyyInitEnv.WorkDir.projectcodesourcepath = projectcodesourcepath;
-            FyyInitEnv.SettingInformation.macSet.addAll(macSet);
-            FyyInitEnv.SettingInformation.mainMac = mainMac;
+            FyyProperties.setting.set("fyy.project.core.default_key", idkey);
+            FyyProperties.setting.set("fyy.project.core.i18n", i18n);
+            FyyInitEnv.projectPackage = StrUtil.isNotBlank(projectPackage) ? projectPackage : ClassUtil.getPackage(ClassUtil.loadClass(mainClass, false));
+            FyyInitEnv.workHomeDir = workHomeDir;
+            FyyInitEnv.autoUpdate = updateProperties;
+            FyyInitEnv.configEnv = configEnv;
+            FyyInitEnv.runEnv = StrUtil.blankToDefault(runEnv, daemonRoot.getDevelop_user_id());
+            FyyInitEnv.jarpath = jarpath;
+            FyyInitEnv.isClassModel = isClassModel;
+            FyyInitEnv.mainClassC = mainClassC;
+            FyyInitEnv.mainClass = mainClass;
+            FyyInitEnv.projectresourcepath = projectresourcepath;
+            FyyInitEnv.projectcodesourcepath = projectcodesourcepath;
+            FyyInitEnv.macSet.addAll(macSet);
+            FyyInitEnv.mainMac = mainMac;
 //            FyyInitEnv.SettingInformation.UK = uk;
         }
         {
             FyyLogBaseUtils.debug("公共模型赋值开始[{}}", FyyInitEnvLoad.class.getName());
-            FyyInitEnv.SettingInformation.context.put("idKey", FyyInitEnv.SettingInformation.idKey);
-            FyyInitEnv.SettingInformation.context.put("mainClass", FyyInitEnv.SettingInformation.mainClass);
-            FyyInitEnv.SettingInformation.context.put("isdev", FyyInitEnv.SettingInformation.isClassModel);
-            FyyInitEnv.SettingInformation.context.put("i18n", FyyInitEnv.SettingInformation.i18n);
-            FyyInitEnv.SettingInformation.context.put("env", FyyInitEnv.SettingInformation.runEnv);
-            FyyInitEnv.SettingInformation.context.put("projectPackage", FyyInitEnv.WorkDir.projectPackage);
-            FyyInitEnv.SettingInformation.context.put("workHomeDir", FyyInitEnv.WorkDir.workHomeDir);
+            FyyInitEnv.context.put("idKey", FyyProperties.setting.getStr("fyy.project.core.default_key"));
+            FyyInitEnv.context.put("mainClass", FyyInitEnv.mainClass);
+            FyyInitEnv.context.put("isdev", FyyInitEnv.isClassModel);
+            FyyInitEnv.context.put("i18n", FyyProperties.setting.getStr("fyy.project.core.i18n"));
+            FyyInitEnv.context.put("env", FyyInitEnv.runEnv);
+            FyyInitEnv.context.put("projectPackage", FyyInitEnv.projectPackage);
+            FyyInitEnv.context.put("workHomeDir", FyyInitEnv.workHomeDir);
         }
 
     }

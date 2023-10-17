@@ -22,7 +22,7 @@ public class FyyMybatisMapperConfiguration {
     public MapperScannerConfigurer mapperScannerConfigurer() {
         MapperScannerConfigurer mapperScannerConfigurer = new MapperScannerConfigurer();
         mapperScannerConfigurer.setSqlSessionFactoryBeanName("sqlSessionFactory");
-        mapperScannerConfigurer.setBasePackage(FyyInitEnv.SettingInformation.setting.get(FyyConfigEntryDetailsValues.HOME_MYBATIS_BASEPACKAGE.getKey()));
+        mapperScannerConfigurer.setBasePackage(FyyInitEnv.setting.get(FyyConfigEntryDetailsValues.HOME_MYBATIS_BASEPACKAGE.getKey()));
         return mapperScannerConfigurer;
     }
 }

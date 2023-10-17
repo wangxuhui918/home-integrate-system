@@ -28,9 +28,9 @@ public class FyyResourceFindUtils {
 //    }
 
     public static List<URI> findUri(String patternPath) {
-        if (FyyInitEnv.SettingInformation.resourcetool == null) {
+        if (FyyInitEnv.resourcetool == null) {
             throw new FyyExceptionError(FyyResourceFindUtils.class.getName() + "缺失核心实现类!");
         }
-        return FyyInitEnv.SettingInformation.resourcetool.find(patternPath);
+        return FyyInitEnv.resourcetool.find(patternPath);
     }
 }

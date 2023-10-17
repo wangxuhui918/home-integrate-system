@@ -129,10 +129,10 @@ public class FyyLineApolloUtils {
             alueO.setId(evalue);
             alueO.setName(memo);
             maps.put(ekey, alueO);
-            for (String env : FyyInitEnv.SettingInformation.configEnv) {
+            for (String env : FyyInitEnv.configEnv) {
                 properties.put(env, maps);
             }
-            properties.put(FyyInitEnv.SettingInformation.runEnv, maps);
+            properties.put(FyyInitEnv.runEnv, maps);
         }
         FyyLineApolloBean.updateOneProperties(appid, apolloUrl, cookieString, properties, null);
         FyyLineApolloBean.logout(apolloUrl, cookieString);

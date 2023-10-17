@@ -10,6 +10,7 @@
 
 package cn.bigcore.micro.exception;
 
+import cn.bigcore.micro.FyyProperties;
 import cn.bigcore.micro.exception.code.bean.FyyMessageCode;
 import cn.bigcore.micro.exception.code.bean.FyyMessageType;
 import cn.bigcore.micro.exception.code.impl.FyyCodeImpl;
@@ -53,7 +54,7 @@ public class FyyCodeRe extends FyyCodeImpl {
 
     private void init(String code, FyyI18n i18n, String... messages) {
         String i18nCode = "";
-        if (FyyInitEnv.ProjectInformation.OPEN_THREAD_I18N && (i18n == null || StrUtil.isBlank(i18n.getI18nCode()))) {//获取线程变量
+        if (FyyProperties.setting.getBool("fyy.project.core.open_thread_i18n") && (i18n == null || StrUtil.isBlank(i18n.getI18nCode()))) {//获取线程变量
             try {
                 i18nCode = FyyThreadReUtils.getStrParamByPath(FyyKeyBase.I18N.getKeyName());
             } catch (Exception e) {
@@ -61,12 +62,12 @@ public class FyyCodeRe extends FyyCodeImpl {
             }
         }
         if (StrUtil.isBlank(i18nCode)) {
-            i18nCode = FyyInitEnv.SettingInformation.i18n;
-            FyyLogBaseUtils.warn(FyyCodeRe.class, "线程上下文i18nCode为空,采用默认值:", FyyInitEnv.SettingInformation.i18n);
+            i18nCode = FyyProperties.setting.getStr("fyy.project.core.i18n");
+            FyyLogBaseUtils.warn(FyyCodeRe.class, "线程上下文i18nCode为空,采用默认值:", FyyProperties.setting.getStr("fyy.project.core.i18n"));
         }
         FyyMessageCode messageCodeVo = null;
         try {
-            messageCodeVo = FyyInitEnv.SettingInformation.messages.get(i18nCode).get(code);
+            messageCodeVo = FyyInitEnv.messages.get(i18nCode).get(code);
         } catch (Exception e) {
         }
         if (messageCodeVo == null) {

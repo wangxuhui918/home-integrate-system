@@ -13,19 +13,13 @@
  */
 package cn.bigcore.micro.log;
 
-import cn.bigcore.micro.FyyInitEnv;
-import cn.bigcore.micro.exception.re.ex.FyyExceptionError;
+import cn.bigcore.micro.FyyProperties;
 import cn.bigcore.micro.log.base.FyyLogFormatter;
-import cn.hutool.core.annotation.AnnotationUtil;
 import cn.hutool.core.io.FileUtil;
-import cn.hutool.core.io.ManifestUtil;
-import cn.hutool.core.util.ClassUtil;
 import cn.hutool.core.util.StrUtil;
-import cn.hutool.core.util.URLUtil;
 import cn.hutool.system.SystemUtil;
 
 import java.io.File;
-import java.util.jar.JarFile;
 import java.util.logging.ConsoleHandler;
 import java.util.logging.FileHandler;
 import java.util.logging.Level;
@@ -50,7 +44,7 @@ public class FyyLogBaseUtils {
             } catch (Exception e) {
             }
             //这里由于先启动,所以无法调整日志所在目录,目前只能先放在用户目录下
-            String syslogpath = SystemUtil.getUserInfo().getHomeDir() + FileUtil.FILE_SEPARATOR + FyyInitEnv.SystemInformation.SYSTEM_EN_NAME + FileUtil.FILE_SEPARATOR + FyyInitEnv.SystemInformation.SYSTEM_EN_NAME + ".%u.sys.log";
+            String syslogpath = SystemUtil.getUserInfo().getHomeDir() + FileUtil.FILE_SEPARATOR + FyyProperties.setting.get("fyy.system.name.en") + FileUtil.FILE_SEPARATOR + FyyProperties.setting.get("fyy.system.name.en") + ".%u.sys.log";
             try {
                 FileUtil.mkParentDirs(syslogpath);
             } catch (Exception e) {
@@ -58,7 +52,7 @@ public class FyyLogBaseUtils {
             }
             try {
                 if (StrUtil.isNotBlank(SystemUtil.get("syslogpath"))) {//如果日志界别不为空则直接查找,根据名字和值自动查找
-                    syslogpath = SystemUtil.get("syslogpath") + File.separator + FyyInitEnv.SystemInformation.SYSTEM_EN_NAME + ".%u.sys.log";
+                    syslogpath = SystemUtil.get("syslogpath") + File.separator + FyyProperties.setting.get("fyy.system.name.en") + ".%u.sys.log";
                     FyyLogBaseUtils.info("读取日志变量-Dsyslogpath={}", syslogpath);
                 } else {
                     FyyLogBaseUtils.info("默认日志变量-Dsyslogpath={}", syslogpath);

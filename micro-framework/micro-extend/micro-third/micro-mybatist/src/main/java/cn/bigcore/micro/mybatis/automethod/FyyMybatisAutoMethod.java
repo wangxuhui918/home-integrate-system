@@ -71,7 +71,7 @@ public class FyyMybatisAutoMethod {
         } catch (Exception e) {
         }
 
-        if (myAnnotation != null && input != null && FyyInitEnv.SettingInformation.methTree.get(methFullPath) == null) {
+        if (myAnnotation != null && input != null && FyyInitEnv.methTree.get(methFullPath) == null) {
             if (myAnnotation.mapper().equals(FyyMybatisNull.class)) {
                 throw new FyyExceptionError("RuleAnnotationAutoMethod注解mapper不允许为空");
             }
@@ -102,15 +102,15 @@ public class FyyMybatisAutoMethod {
             Tree<Class> className = new Tree<>();
             className.setId(myAnnotation.mapper());//id为mapper
             className.setName(domainClass);//name 为 domain
-            FyyInitEnv.SettingInformation.methTree.put(methFullPath, className);
+            FyyInitEnv.methTree.put(methFullPath, className);
         }
 
 
-        if (myAnnotation != null && input != null && FyyInitEnv.SettingInformation.methTree.get(methFullPath) != null) {
-            Mapper mapper = (Mapper) FyyBean.getBean(FyyInitEnv.SettingInformation.methTree.get(methFullPath).getId());
+        if (myAnnotation != null && input != null && FyyInitEnv.methTree.get(methFullPath) != null) {
+            Mapper mapper = (Mapper) FyyBean.getBean(FyyInitEnv.methTree.get(methFullPath).getId());
             if (myAnnotation.method() == FyyMybatisMethod.pageSelect) {
                 Object inputvo = input.getData();
-                Object domain = ClassUtil.loadClass(FyyInitEnv.SettingInformation.methTree.get(methFullPath).getName().toString(), false).newInstance();
+                Object domain = ClassUtil.loadClass(FyyInitEnv.methTree.get(methFullPath).getName().toString(), false).newInstance();
 //                Object vo = input.getData().getClass().newInstance();
                 Page page = PageHelper.startPage(Integer.parseInt(input.getPageNum()), Integer.parseInt(input.getPageSize()));
                 HashMap<String, Object> pageData = new HashMap<>();
@@ -125,29 +125,29 @@ public class FyyMybatisAutoMethod {
                 }
                 return pageData;
             } else if (myAnnotation.method() == FyyMybatisMethod.andSelect) {
-                Object domain = ClassUtil.loadClass(FyyInitEnv.SettingInformation.methTree.get(methFullPath).getName().toString(), false).newInstance();
+                Object domain = ClassUtil.loadClass(FyyInitEnv.methTree.get(methFullPath).getName().toString(), false).newInstance();
                 List returnlist = new ArrayList<>();
                 {
                     returnlist = BeanUtil.copyToList(mapper.select(domain), input.getData().getClass());
                 }
                 return returnlist;
             } else if (myAnnotation.method() == FyyMybatisMethod.add) {
-                Object domain = ClassUtil.loadClass(FyyInitEnv.SettingInformation.methTree.get(methFullPath).getName().toString(), false).newInstance();
+                Object domain = ClassUtil.loadClass(FyyInitEnv.methTree.get(methFullPath).getName().toString(), false).newInstance();
                 Object inputvo = input.getData();
                 BeanUtil.copyProperties(inputvo, domain);
                 return mapper.insert(domain);
             } else if (myAnnotation.method() == FyyMybatisMethod.queryByPrimaryKey) {
-                Object domain = ClassUtil.loadClass(FyyInitEnv.SettingInformation.methTree.get(methFullPath).getName().toString(), false).newInstance();
+                Object domain = ClassUtil.loadClass(FyyInitEnv.methTree.get(methFullPath).getName().toString(), false).newInstance();
                 Object inputvo = input.getData();
                 BeanUtil.copyProperties(inputvo, domain);
                 return mapper.selectByPrimaryKey(domain);
             } else if (myAnnotation.method() == FyyMybatisMethod.deleteByPrimaryKey) {
-                Object domain = ClassUtil.loadClass(FyyInitEnv.SettingInformation.methTree.get(methFullPath).getName().toString(), false).newInstance();
+                Object domain = ClassUtil.loadClass(FyyInitEnv.methTree.get(methFullPath).getName().toString(), false).newInstance();
                 Object inputvo = input.getData();
                 BeanUtil.copyProperties(inputvo, domain);
                 return mapper.deleteByPrimaryKey(domain);
             } else if (myAnnotation.method() == FyyMybatisMethod.updateByPrimaryKeySelective) {
-                Object domain = ClassUtil.loadClass(FyyInitEnv.SettingInformation.methTree.get(methFullPath).getName().toString(), false).newInstance();
+                Object domain = ClassUtil.loadClass(FyyInitEnv.methTree.get(methFullPath).getName().toString(), false).newInstance();
                 Object inputvo = input.getData();
                 BeanUtil.copyProperties(inputvo, domain);
                 return mapper.updateByPrimaryKeySelective(domain);

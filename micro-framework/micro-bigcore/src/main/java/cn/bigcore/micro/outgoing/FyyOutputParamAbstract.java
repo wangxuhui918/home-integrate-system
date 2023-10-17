@@ -12,6 +12,7 @@
 package cn.bigcore.micro.outgoing;
 
 import cn.bigcore.micro.FyyInitEnv;
+import cn.bigcore.micro.FyyProperties;
 import cn.bigcore.micro.thread.FyyThreadReUtils;
 import cn.bigcore.micro.thread.bean.FyyKeyBase;
 import cn.bigcore.micro.utils.FyyConfigFrameUtils;
@@ -43,7 +44,7 @@ public abstract class FyyOutputParamAbstract<T, D> implements Serializable {
     private Long total;
 
     public Integer getPageSize() {
-        if (FyyInitEnv.ProjectInformation.OPEN_THREAD_USER) {
+        if (FyyProperties.setting.getBool("fyy.project.core.open_thread_user")) {
             return Integer.parseInt(FyyThreadReUtils.getStrParamByPath(FyyKeyBase.PAGE_SIZE.getKeyName()));
         }
         return pageSize;
@@ -54,7 +55,7 @@ public abstract class FyyOutputParamAbstract<T, D> implements Serializable {
     }
 
     public Integer getPageNum() {
-        if (FyyInitEnv.ProjectInformation.OPEN_THREAD_USER) {
+        if (FyyProperties.setting.getBool("fyy.project.core.open_thread_user")) {
             return Integer.parseInt(FyyThreadReUtils.getStrParamByPath(FyyKeyBase.PAGE_NUM.getKeyName()));
         }
         return pageNum;
@@ -65,7 +66,7 @@ public abstract class FyyOutputParamAbstract<T, D> implements Serializable {
     }
 
     public Long getTotal() {
-        if (FyyInitEnv.ProjectInformation.OPEN_THREAD_USER) {
+        if (FyyProperties.setting.getBool("fyy.project.core.open_thread_user")) {
             try {
                 List<FyyPageTotalInterface> plugins = FyyConfigFrameUtils.getPlugins(FyyPageTotalInterface.class);
                 for (int i = 0; i < plugins.size(); i++) {

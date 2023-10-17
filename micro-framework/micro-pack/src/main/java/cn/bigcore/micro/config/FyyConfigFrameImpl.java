@@ -47,7 +47,7 @@ public class FyyConfigFrameImpl implements FyyConfigFrameInterface {
     public <T> List<String> getPlugins(Class<T> a) {//获取功能插件列表
         List<String> returnlist = new ArrayList<>();
         List<T> plugins = FyyAnnotationTools.getRuleOn(FyyRuleInjection.class, a, FyyInitEnv.PUBLIC_CORE_PACKAGE);//加載扩展插件属性信息
-        plugins.addAll(FyyAnnotationTools.getRuleOn(FyyRuleInjection.class, a, FyyInitEnv.WorkDir.projectPackage));//加載扩展插件属性信息
+        plugins.addAll(FyyAnnotationTools.getRuleOn(FyyRuleInjection.class, a, FyyInitEnv.projectPackage));//加載扩展插件属性信息
         for (int i = 0; i < plugins.size(); i++) {
             returnlist.add(plugins.get(i).getClass().getName());
         }
@@ -68,7 +68,7 @@ public class FyyConfigFrameImpl implements FyyConfigFrameInterface {
         }
         {
             List<FyyConfigPropertiesInterface> plugins = FyyAnnotationTools.getRuleOn(FyyRuleInjection.class, FyyConfigPropertiesInterface.class, FyyInitEnv.PUBLIC_CORE_PACKAGE);//加載扩展插件属性信息
-            plugins.addAll(FyyAnnotationTools.getRuleOn(FyyRuleInjection.class, FyyConfigPropertiesInterface.class, FyyInitEnv.WorkDir.projectPackage));//加載扩展插件属性信息
+            plugins.addAll(FyyAnnotationTools.getRuleOn(FyyRuleInjection.class, FyyConfigPropertiesInterface.class, FyyInitEnv.projectPackage));//加載扩展插件属性信息
             for (int i = 0; i < plugins.size(); i++) {
                 FyyConfigPropertiesInterface ob = plugins.get(i);
                 FyyConfigEntryVo fyyConfigEntryVo = ob.getFyyConfigEntry();
@@ -102,7 +102,7 @@ public class FyyConfigFrameImpl implements FyyConfigFrameInterface {
         }
         {//获取擴展配置明细
             List<FyyConfigPropertiesInterface> plugins = FyyAnnotationTools.getRuleOn(FyyRuleInjection.class, FyyConfigPropertiesInterface.class, FyyInitEnv.PUBLIC_CORE_PACKAGE);//加載扩展插件属性信息
-            plugins.addAll(FyyAnnotationTools.getRuleOn(FyyRuleInjection.class, FyyConfigPropertiesInterface.class, FyyInitEnv.WorkDir.projectPackage));//加載扩展插件属性信息
+            plugins.addAll(FyyAnnotationTools.getRuleOn(FyyRuleInjection.class, FyyConfigPropertiesInterface.class, FyyInitEnv.projectPackage));//加載扩展插件属性信息
             for (int i = 0; i < plugins.size(); i++) {
                 FyyConfigPropertiesInterface ob = plugins.get(i);
                 FyyConfigEntryVo fyyConfigEntryVo = ob.getFyyConfigEntry();

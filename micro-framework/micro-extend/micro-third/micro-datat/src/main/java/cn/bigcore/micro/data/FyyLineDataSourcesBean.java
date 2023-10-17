@@ -35,49 +35,49 @@ public class FyyLineDataSourcesBean {
     //    @ConditionalOnMissingBean(DataSource.class) //取消这个注释 容器中如果没有这个类,那么自动配置这个类PropertiesValue.
     public DruidDataSource druidDataSource() {
         DruidDataSource druidDataSource = new DruidDataSource();
-        druidDataSource.setUrl(FyyInitEnv.SettingInformation.setting.get(FyyConfigEntryDetailsValues.HOME_DB_URL.getKey()));
-        druidDataSource.setUsername(FyyInitEnv.SettingInformation.setting.get(FyyConfigEntryDetailsValues.HOME_DB_USERNAME.getKey()));
-        druidDataSource.setPassword(FyyInitEnv.SettingInformation.setting.get(FyyConfigEntryDetailsValues.HOME_DB_PASSWORD.getKey()));
+        druidDataSource.setUrl(FyyInitEnv.setting.get(FyyConfigEntryDetailsValues.HOME_DB_URL.getKey()));
+        druidDataSource.setUsername(FyyInitEnv.setting.get(FyyConfigEntryDetailsValues.HOME_DB_USERNAME.getKey()));
+        druidDataSource.setPassword(FyyInitEnv.setting.get(FyyConfigEntryDetailsValues.HOME_DB_PASSWORD.getKey()));
 
-        if (FyyInitEnv.SettingInformation.setting.containsKey(FyyConfigEntryDetailsValues.HOME_DB_DRIVERCLASSNAME.getKey())) {
-            druidDataSource.setDriverClassName(FyyInitEnv.SettingInformation.setting.get(FyyConfigEntryDetailsValues.HOME_DB_DRIVERCLASSNAME.getKey()));
-        } else if (StrUtil.isNotBlank(FyyInitEnv.WorkDir.main_jdbc_jar_fullpath)) {
+        if (FyyInitEnv.setting.containsKey(FyyConfigEntryDetailsValues.HOME_DB_DRIVERCLASSNAME.getKey())) {
+            druidDataSource.setDriverClassName(FyyInitEnv.setting.get(FyyConfigEntryDetailsValues.HOME_DB_DRIVERCLASSNAME.getKey()));
+        } else if (StrUtil.isNotBlank(FyyInitEnv.main_jdbc_jar_fullpath)) {
             FyyLogBaseUtils.info("开始联机驱动!");
             try {
-                URL url = new URL("file://" + FyyInitEnv.WorkDir.main_jdbc_jar_fullpath); // 这里需要重点看URLClassLoader用法，
+                URL url = new URL("file://" + FyyInitEnv.main_jdbc_jar_fullpath); // 这里需要重点看URLClassLoader用法，
                 URLClassLoader loader = new URLClassLoader(new URL[]{url}); // URL跟我们日常见到的格式用法不太一样
                 druidDataSource.setDriverClassLoader(loader);
             } catch (Exception ex) {
                 ex.printStackTrace();
-                throw new FyyExceptionError("联机驱动{}失败!", FyyInitEnv.WorkDir.main_jdbc_jar_fullpath);
+                throw new FyyExceptionError("联机驱动{}失败!", FyyInitEnv.main_jdbc_jar_fullpath);
             }
         }
 
-        druidDataSource.setMaxActive(FyyInitEnv.SettingInformation.setting.getInt(FyyConfigEntryDetailsValues.HOME_DB_MAXACTIVE.getKey()));
-        druidDataSource.setInitialSize(FyyInitEnv.SettingInformation.setting.getInt(FyyConfigEntryDetailsValues.HOME_DB_INITIALSIZE.getKey()));
-        druidDataSource.setMaxWait(FyyInitEnv.SettingInformation.setting.getInt(FyyConfigEntryDetailsValues.HOME_DB_MAXWAIT.getKey()));
-        druidDataSource.setMinIdle(FyyInitEnv.SettingInformation.setting.getInt(FyyConfigEntryDetailsValues.HOME_DB_MINIDLE.getKey()));
-        druidDataSource.setTimeBetweenEvictionRunsMillis(FyyInitEnv.SettingInformation.setting.getInt(FyyConfigEntryDetailsValues.HOME_DB_TIMEBETWEENEVICTIONRUNSMILLIS.getKey()));
+        druidDataSource.setMaxActive(FyyInitEnv.setting.getInt(FyyConfigEntryDetailsValues.HOME_DB_MAXACTIVE.getKey()));
+        druidDataSource.setInitialSize(FyyInitEnv.setting.getInt(FyyConfigEntryDetailsValues.HOME_DB_INITIALSIZE.getKey()));
+        druidDataSource.setMaxWait(FyyInitEnv.setting.getInt(FyyConfigEntryDetailsValues.HOME_DB_MAXWAIT.getKey()));
+        druidDataSource.setMinIdle(FyyInitEnv.setting.getInt(FyyConfigEntryDetailsValues.HOME_DB_MINIDLE.getKey()));
+        druidDataSource.setTimeBetweenEvictionRunsMillis(FyyInitEnv.setting.getInt(FyyConfigEntryDetailsValues.HOME_DB_TIMEBETWEENEVICTIONRUNSMILLIS.getKey()));
         druidDataSource
-                .setMinEvictableIdleTimeMillis(FyyInitEnv.SettingInformation.setting.getInt(FyyConfigEntryDetailsValues.HOME_DB_MINEVICTABLEIDLETIMEMILLIS.getKey()));
-        druidDataSource.setValidationQuery(FyyInitEnv.SettingInformation.setting.get(FyyConfigEntryDetailsValues.HOME_DB_VALIDATIONQUERY.getKey()));
-        druidDataSource.setTestWhileIdle(FyyInitEnv.SettingInformation.setting.getBool(FyyConfigEntryDetailsValues.HOME_DB_TESTWHILEIDLE.getKey()));
-        druidDataSource.setTestOnBorrow(FyyInitEnv.SettingInformation.setting.getBool(FyyConfigEntryDetailsValues.HOME_DB_TESTONBORROW.getKey()));
-        druidDataSource.setTestOnReturn(FyyInitEnv.SettingInformation.setting.getBool(FyyConfigEntryDetailsValues.HOME_DB_TESTONRETURN.getKey()));
-        druidDataSource.setPoolPreparedStatements(FyyInitEnv.SettingInformation.setting.getBool(FyyConfigEntryDetailsValues.HOME_DB_POOLPREPAREDSTATEMENTS.getKey()));
-        druidDataSource.setRemoveAbandoned(FyyInitEnv.SettingInformation.setting.getBool(FyyConfigEntryDetailsValues.HOME_DB_REMOVEABANDONED.getKey()));
-        druidDataSource.setRemoveAbandonedTimeout(FyyInitEnv.SettingInformation.setting.getInt(FyyConfigEntryDetailsValues.HOME_DB_REMOVEABANDONEDTIMEOUT.getKey()));
-        druidDataSource.setNumTestsPerEvictionRun(FyyInitEnv.SettingInformation.setting.getInt(FyyConfigEntryDetailsValues.HOME_DB_NUMTESTSPEREVICTIONRUN.getKey()));
+                .setMinEvictableIdleTimeMillis(FyyInitEnv.setting.getInt(FyyConfigEntryDetailsValues.HOME_DB_MINEVICTABLEIDLETIMEMILLIS.getKey()));
+        druidDataSource.setValidationQuery(FyyInitEnv.setting.get(FyyConfigEntryDetailsValues.HOME_DB_VALIDATIONQUERY.getKey()));
+        druidDataSource.setTestWhileIdle(FyyInitEnv.setting.getBool(FyyConfigEntryDetailsValues.HOME_DB_TESTWHILEIDLE.getKey()));
+        druidDataSource.setTestOnBorrow(FyyInitEnv.setting.getBool(FyyConfigEntryDetailsValues.HOME_DB_TESTONBORROW.getKey()));
+        druidDataSource.setTestOnReturn(FyyInitEnv.setting.getBool(FyyConfigEntryDetailsValues.HOME_DB_TESTONRETURN.getKey()));
+        druidDataSource.setPoolPreparedStatements(FyyInitEnv.setting.getBool(FyyConfigEntryDetailsValues.HOME_DB_POOLPREPAREDSTATEMENTS.getKey()));
+        druidDataSource.setRemoveAbandoned(FyyInitEnv.setting.getBool(FyyConfigEntryDetailsValues.HOME_DB_REMOVEABANDONED.getKey()));
+        druidDataSource.setRemoveAbandonedTimeout(FyyInitEnv.setting.getInt(FyyConfigEntryDetailsValues.HOME_DB_REMOVEABANDONEDTIMEOUT.getKey()));
+        druidDataSource.setNumTestsPerEvictionRun(FyyInitEnv.setting.getInt(FyyConfigEntryDetailsValues.HOME_DB_NUMTESTSPEREVICTIONRUN.getKey()));
         druidDataSource
-                .setMaxOpenPreparedStatements(FyyInitEnv.SettingInformation.setting.getInt(FyyConfigEntryDetailsValues.HOME_DB_MAXOPENPREPAREDSTATEMENTS.getKey()));
+                .setMaxOpenPreparedStatements(FyyInitEnv.setting.getInt(FyyConfigEntryDetailsValues.HOME_DB_MAXOPENPREPAREDSTATEMENTS.getKey()));
 //		druidDataSource.allowMultiQueries
 //		druidDataSource.setstatv
         System.setProperty("spring.datasource.druid.web-stat-filter.enabled", "true");
         System.setProperty("spring.datasource.druid.web-stat-filter.exclusions",
                 "*.js,*.gif,*.jpg,*.png,*.css,*.ico,/druid/*");
-        FyyInitEnv.SettingInformation.dataSource = druidDataSource;
+        FyyInitEnv.dataSource = druidDataSource;
         try {
-            druidDataSource.setFilters(FyyInitEnv.SettingInformation.setting.get(FyyConfigEntryDetailsValues.HOME_DB_FILTERS.getKey()));
+            druidDataSource.setFilters(FyyInitEnv.setting.get(FyyConfigEntryDetailsValues.HOME_DB_FILTERS.getKey()));
         } catch (SQLException e) {
             throw new FyyExceptionError("设置数据库参数filters错误,请检查,系统退出!");
 

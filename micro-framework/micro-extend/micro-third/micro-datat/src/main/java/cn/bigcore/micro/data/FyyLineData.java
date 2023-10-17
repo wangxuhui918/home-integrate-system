@@ -24,7 +24,7 @@ public class FyyLineData implements FyyLineThirdExtendInterface {
 
     @Override
     public List<Class> writeClasss() {
-        if (FyyInitEnv.SettingInformation.setting.getBool(FyyConfigEntryDetailsValues.DB_ENABLE.getKey())) {
+        if (FyyInitEnv.setting.getBool(FyyConfigEntryDetailsValues.DB_ENABLE.getKey())) {
             return Arrays.asList(new Class[]{FyyLineDataSourcesBean.class});
         } else {
             return new ArrayList<>();

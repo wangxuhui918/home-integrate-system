@@ -48,7 +48,7 @@ public class FyyLineFlyway implements FyyLineThirdExtendInterface {
 //        } catch (Exception e) {
 //            return new ArrayList<>();
 //        }
-        if (FyyInitEnv.SettingInformation.setting.getBool(FyyConfigEntryDetailsValues.FLYWAYDB_ENABLE.getKey())) {
+        if (FyyInitEnv.setting.getBool(FyyConfigEntryDetailsValues.FLYWAYDB_ENABLE.getKey())) {
             return Arrays.asList(new Class[]{FyyLineFlywayBean.class});
         } else {
             return new ArrayList<>();
@@ -66,22 +66,22 @@ public class FyyLineFlyway implements FyyLineThirdExtendInterface {
         {
             String key = FyyConfigEntryDetailsValues.HOME_FLYWAYDB_URL.getKey();
             if (!setting.containsKey(key)) {
-                if (FyyInitEnv.SettingInformation.setting.get(FyyConfigEntryDetailsValues.HOME_DB_URL.getKey()) != null)
-                    setting.put(key, (FyyInitEnv.SettingInformation.setting.get(FyyConfigEntryDetailsValues.HOME_DB_URL.getKey())));
+                if (FyyInitEnv.setting.get(FyyConfigEntryDetailsValues.HOME_DB_URL.getKey()) != null)
+                    setting.put(key, (FyyInitEnv.setting.get(FyyConfigEntryDetailsValues.HOME_DB_URL.getKey())));
             }
         }
         {
             String key = FyyConfigEntryDetailsValues.HOME_FLYWAYDB_USERNAME.getKey();
             if (!setting.containsKey(key)) {
-                if (FyyInitEnv.SettingInformation.setting.get(FyyConfigEntryDetailsValues.HOME_DB_USERNAME.getKey()) != null)
-                    setting.put(key, (FyyInitEnv.SettingInformation.setting.get(FyyConfigEntryDetailsValues.HOME_DB_USERNAME.getKey())));
+                if (FyyInitEnv.setting.get(FyyConfigEntryDetailsValues.HOME_DB_USERNAME.getKey()) != null)
+                    setting.put(key, (FyyInitEnv.setting.get(FyyConfigEntryDetailsValues.HOME_DB_USERNAME.getKey())));
             }
         }
         {
             String key = FyyConfigEntryDetailsValues.HOME_FLYWAYDB_PASSWORD.getKey();
             if (!setting.containsKey(key)) {
-                if (FyyInitEnv.SettingInformation.setting.get(FyyConfigEntryDetailsValues.HOME_DB_PASSWORD.getKey()) != null)
-                    setting.put(key, (FyyInitEnv.SettingInformation.setting.get(FyyConfigEntryDetailsValues.HOME_DB_PASSWORD.getKey())));
+                if (FyyInitEnv.setting.get(FyyConfigEntryDetailsValues.HOME_DB_PASSWORD.getKey()) != null)
+                    setting.put(key, (FyyInitEnv.setting.get(FyyConfigEntryDetailsValues.HOME_DB_PASSWORD.getKey())));
             }
         }
 
