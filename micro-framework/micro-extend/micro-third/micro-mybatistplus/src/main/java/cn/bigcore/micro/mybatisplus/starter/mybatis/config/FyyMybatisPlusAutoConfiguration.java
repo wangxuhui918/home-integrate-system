@@ -11,8 +11,8 @@
 package cn.bigcore.micro.mybatisplus.starter.mybatis.config;
 
 import cn.bigcore.micro.FyyInitEnv;
-import cn.bigcore.micro.base.FyyConfigEntryDetailsValues;
-import cn.bigcore.micro.exception.re.ex.FyyExceptionError;
+import cn.bigcore.micro.base.frame.impl.FyyConfigEntryDetailsValues;
+import cn.bigcore.micro.base.exception.type.FyyExceptionError;
 import com.github.pagehelper.PageInterceptor;
 import org.apache.ibatis.plugin.Interceptor;
 import org.apache.ibatis.session.SqlSessionFactory;

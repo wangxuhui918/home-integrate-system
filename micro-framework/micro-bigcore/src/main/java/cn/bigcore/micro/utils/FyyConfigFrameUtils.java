@@ -9,11 +9,11 @@
 package cn.bigcore.micro.utils;
 
 import cn.bigcore.micro.FyyInitEnv;
-import cn.bigcore.micro.config.config.bean.FyyConfigEntryDetailsVo;
-import cn.bigcore.micro.config.config.bean.FyyConfigEntryVo;
+import cn.bigcore.micro.base.frame.FyyConfigEntryDetailsVo;
+import cn.bigcore.micro.base.frame.FyyConfigEntryVo;
 import cn.bigcore.micro.log.FyyLogBaseUtils;
 import cn.hutool.core.util.ClassUtil;
-import cn.bigcore.micro.config.config.bean.FyyConfigFileStructureVo;
+import cn.bigcore.micro.base.frame.FyyConfigFileStructureVo;
 
 import java.util.ArrayList;
 import java.util.List;

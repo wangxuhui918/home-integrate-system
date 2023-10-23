@@ -11,15 +11,12 @@
 package cn.bigcore.micro.swagger.plugin;
 
 import cn.bigcore.micro.FyyInitEnv;
-import cn.bigcore.micro.base.FyyConfigEntryDetailsValues;
+import cn.bigcore.micro.annotation.type.FyyRuleInjection;
+import cn.bigcore.micro.base.frame.impl.FyyConfigEntryDetailsValues;
 import cn.bigcore.micro.line.FyyLineThirdExtendInterface;
-import cn.bigcore.micro.swagger.bean.FyyWebMvcConfigurationSupport;
 import cn.bigcore.micro.swagger.bean.FyySwaggerConfigBean;
+import cn.bigcore.micro.swagger.bean.FyyWebMvcConfigurationSupport;
 import cn.hutool.setting.Setting;
-import cn.bigcore.micro.config.annotation.FyyRuleInjection;
-import cn.bigcore.micro.hand.FyyControllerParamHandV1;
-import cn.bigcore.micro.hand.FyyControllerExceptionHandV1;
-import cn.bigcore.micro.hand.FyyControllerResponseHandV1;
 
 import java.util.*;
 
@@ -33,8 +30,7 @@ public class FyyLineSwagger implements FyyLineThirdExtendInterface {
 //        if (AnnotationTools.getRuleClassForAnno(Controller.class, BaseEv.WorkDir.projectPackage) > 0) {
             LinkedHashMap<String, List<Class>> map = new LinkedHashMap<>();
             return Arrays.asList(new Class[]{FyySwaggerConfigBean.class,
-                    FyyWebMvcConfigurationSupport.class,
-                    FyyControllerParamHandV1.class, FyyControllerExceptionHandV1.class, FyyControllerResponseHandV1.class});
+                    FyyWebMvcConfigurationSupport.class});
         } else {
             return new ArrayList<>();
         }

@@ -18,7 +18,7 @@ import cn.hutool.core.util.StrUtil;
 import cn.bigcore.micro.FyyInitEnv;
 import cn.bigcore.micro.line.base.FyyLineManagerInterface;
 import cn.bigcore.micro.line.base.FyyLineRuntimeModelInterface;
-import cn.bigcore.micro.config.annotation.FyyRuleInjection;
+import cn.bigcore.micro.annotation.type.FyyRuleInjection;
 import cn.bigcore.micro.utils.FyyConfigFrameUtils;
 
 import java.util.HashMap;

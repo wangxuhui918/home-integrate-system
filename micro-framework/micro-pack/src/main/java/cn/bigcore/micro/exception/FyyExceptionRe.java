@@ -10,6 +10,8 @@
 
 package cn.bigcore.micro.exception;
 
+import cn.bigcore.micro.base.exception.FyyExceptionMessageAbstract;
+
 public class FyyExceptionRe extends FyyExceptionMessageAbstract {
     private static final long serialVersionUID = 42L;
 

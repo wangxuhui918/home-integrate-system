@@ -9,12 +9,14 @@
 package cn.bigcore.micro.config;
 
 import cn.bigcore.micro.FyyInitEnv;
-import cn.bigcore.micro.base.FyyConfigEntryDetailsValues;
-import cn.bigcore.micro.base.FyyConfigEntryValues;
-import cn.bigcore.micro.config.annotation.FyyRuleInjection;
-import cn.bigcore.micro.config.config.bean.FyyConfigEntryDetailsVo;
-import cn.bigcore.micro.config.config.bean.FyyConfigEntryVo;
-import cn.bigcore.micro.config.config.bean.FyyConfigFileStructureVo;
+import cn.bigcore.micro.base.frame.impl.FyyConfigEntryDetailsValues;
+import cn.bigcore.micro.base.frame.impl.FyyConfigEntryValues;
+import cn.bigcore.micro.annotation.type.FyyRuleInjection;
+import cn.bigcore.micro.base.frame.FyyConfigEntryDetailsVo;
+import cn.bigcore.micro.base.frame.FyyConfigEntryVo;
+import cn.bigcore.micro.base.frame.FyyConfigFileStructureVo;
+import cn.bigcore.micro.config.frame.config.FyyConfigFrameInterface;
+import cn.bigcore.micro.config.project.FyyConfigPropertiesInterface;
 import cn.bigcore.micro.utils.FyyAnnotationTools;
 
 import java.util.ArrayList;

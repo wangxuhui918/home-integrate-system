@@ -12,8 +12,9 @@
 package cn.bigcore.micro.outgoing;
 
 import cn.bigcore.micro.FyyInitEnv;
+import cn.bigcore.micro.outgoing.page.FyyPageTotalInterface;
 import cn.bigcore.micro.thread.FyyThreadReUtils;
-import cn.bigcore.micro.thread.bean.FyyKeyBase;
+import cn.bigcore.micro.base.thread.FyyKeyBase;
 import cn.bigcore.micro.utils.FyyConfigFrameUtils;
 
 import java.io.Serializable;

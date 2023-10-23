@@ -11,11 +11,11 @@
 package cn.bigcore.micro.mybatisplus.plugin;
 
 import cn.bigcore.micro.FyyInitEnv;
-import cn.bigcore.micro.base.FyyConfigEntryDetailsValues;
+import cn.bigcore.micro.base.frame.impl.FyyConfigEntryDetailsValues;
 import cn.bigcore.micro.line.FyyLineThirdExtendInterface;
 import cn.bigcore.micro.mybatisplus.starter.mybatis.config.FyyMybatisMapperConfiguration;
 import cn.hutool.setting.Setting;
-import cn.bigcore.micro.config.annotation.FyyRuleInjection;
+import cn.bigcore.micro.annotation.type.FyyRuleInjection;
 import cn.bigcore.micro.mybatisplus.starter.mybatis.config.FyyMybatisPlusAutoConfiguration;
 
 import java.util.*;

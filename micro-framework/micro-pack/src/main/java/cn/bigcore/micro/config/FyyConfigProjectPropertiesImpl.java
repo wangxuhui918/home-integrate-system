@@ -8,10 +8,11 @@
 
 package cn.bigcore.micro.config;
 
-import cn.bigcore.micro.config.config.bean.FyyConfigEntryVo;
-import cn.bigcore.micro.config.config.bean.FyyConfigResourceType;
-import cn.bigcore.micro.daemon.FyyProjectConfigRoot;
-import cn.bigcore.micro.exception.re.ex.FyyExceptionError;
+import cn.bigcore.micro.base.frame.FyyConfigEntryVo;
+import cn.bigcore.micro.base.frame.impl.FyyConfigResourceType;
+import cn.bigcore.micro.config.project.FyyConfigProjectInterface;
+import cn.bigcore.micro.base.daemon.FyyProjectConfigRoot;
+import cn.bigcore.micro.base.exception.type.FyyExceptionError;
 import cn.bigcore.micro.utils.FyyConfigProjectUtils;
 import cn.bigcore.micro.log.FyyLogBaseUtils;
 import cn.hutool.core.date.DateUtil;
@@ -23,9 +24,9 @@ import cn.hutool.core.util.ReUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.setting.Setting;
 import cn.bigcore.micro.FyyInitEnv;
-import cn.bigcore.micro.config.config.bean.FyyConfigEntryDetailsVo;
-import cn.bigcore.micro.config.config.bean.FyyConfigFileStructureVo;
-import cn.bigcore.micro.base.FyyConfigEntryDetailsValues;
+import cn.bigcore.micro.base.frame.FyyConfigEntryDetailsVo;
+import cn.bigcore.micro.base.frame.FyyConfigFileStructureVo;
+import cn.bigcore.micro.base.frame.impl.FyyConfigEntryDetailsValues;
 import cn.bigcore.micro.utils.FyyConfigFrameUtils;
 import cn.bigcore.micro.utils.properties.FyyPropertiesUtils;
 import cn.bigcore.micro.utils.resource.FyyResourceFindUtils;

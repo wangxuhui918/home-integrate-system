@@ -10,7 +10,7 @@
 package cn.bigcore.micro.utils.resource;
 
 import cn.bigcore.micro.FyyInitEnv;
-import cn.bigcore.micro.exception.re.ex.FyyExceptionError;
+import cn.bigcore.micro.base.exception.type.FyyExceptionError;
 
 import java.net.URI;
 import java.util.List;

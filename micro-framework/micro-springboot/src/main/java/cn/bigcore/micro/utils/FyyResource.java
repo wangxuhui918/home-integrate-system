@@ -10,7 +10,7 @@
 package cn.bigcore.micro.utils;
 
 import cn.bigcore.micro.FyyInitEnv;
-import cn.bigcore.micro.config.FyyReourceInterface;
+import cn.bigcore.micro.config.frame.resource.FyyReourceInterface;
 import cn.hutool.core.io.FileUtil;
 import cn.hutool.core.util.StrUtil;
 import org.springframework.core.io.Resource;

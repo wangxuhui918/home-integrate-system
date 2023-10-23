@@ -1,10 +1,9 @@
 package cn.bigcore.example;
 
-import cn.bigcore.micro.config.FyyConfigProjectPropertiesImpl;
-import cn.bigcore.micro.config.FyyConfigPropertiesInterface;
-import cn.bigcore.micro.config.annotation.FyyRuleInjection;
-import cn.bigcore.micro.config.config.bean.FyyConfigEntryDetailsVo;
-import cn.bigcore.micro.config.config.bean.FyyConfigEntryVo;
+import cn.bigcore.micro.config.project.FyyConfigPropertiesInterface;
+import cn.bigcore.micro.annotation.type.FyyRuleInjection;
+import cn.bigcore.micro.base.frame.FyyConfigEntryDetailsVo;
+import cn.bigcore.micro.base.frame.FyyConfigEntryVo;
 
 import java.util.Arrays;
 import java.util.List;

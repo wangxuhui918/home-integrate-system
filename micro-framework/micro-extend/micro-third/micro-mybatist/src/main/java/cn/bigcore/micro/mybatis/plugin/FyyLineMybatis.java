@@ -11,13 +11,13 @@
 package cn.bigcore.micro.mybatis.plugin;
 
 import cn.bigcore.micro.FyyInitEnv;
-import cn.bigcore.micro.base.FyyConfigEntryDetailsValues;
+import cn.bigcore.micro.base.frame.impl.FyyConfigEntryDetailsValues;
 import cn.bigcore.micro.line.FyyLineThirdExtendInterface;
 import cn.bigcore.micro.mybatis.automethod.FyyMybatisAutoMethod;
 import cn.bigcore.micro.mybatis.starter.mybatis.config.FyyMybatisMapperConfiguration;
 import cn.bigcore.micro.mybatis.starter.mybatis.config.FyyTkMybatisAutoConfiguration;
 import cn.hutool.setting.Setting;
-import cn.bigcore.micro.config.annotation.FyyRuleInjection;
+import cn.bigcore.micro.annotation.type.FyyRuleInjection;
 
 import java.util.*;
 

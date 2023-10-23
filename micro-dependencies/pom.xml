@@ -4,7 +4,9 @@
   ~  * http://license.coscl.org.cn/MulanPSL2
   ~  * 汪旭辉
   ~  */
-  --><project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  -->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.guoshiyao.rely</groupId>
     <artifactId>micro-dependencies</artifactId>
@@ -58,6 +60,7 @@
         <aspectjweaver.version>1.9.7</aspectjweaver.version>
         <jedis.version>3.7.0</jedis.version>
         <swaggerannotations.version>2.1.11</swaggerannotations.version>
+        <swaggerannotations.annotations.version>1.5.20</swaggerannotations.annotations.version>
         <fastjson.version>1.2.83</fastjson.version>
 
     </properties>
@@ -335,6 +338,12 @@
                 <artifactId>swagger-annotations</artifactId>
                 <version>${swaggerannotations.version}</version>
             </dependency>
+            <dependency>
+                <groupId>io.swagger</groupId>
+                <artifactId>swagger-annotations</artifactId>
+                <version>${swaggerannotations.annotations.version}</version>
+            </dependency>
+
             <dependency>
                 <groupId>com.alibaba</groupId>
                 <artifactId>fastjson</artifactId>

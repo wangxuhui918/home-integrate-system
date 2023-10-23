@@ -8,7 +8,7 @@
 
 package cn.bigcore.micro.user;
 
-import cn.bigcore.micro.auth.FyyUserInterface;
+import cn.bigcore.micro.auth.user.FyyUserInterface;
 
 import java.io.Serializable;
 import java.util.Map;

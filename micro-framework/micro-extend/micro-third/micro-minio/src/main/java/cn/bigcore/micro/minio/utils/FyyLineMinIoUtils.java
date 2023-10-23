@@ -11,8 +11,8 @@
 package cn.bigcore.micro.minio.utils;
 
 import cn.bigcore.micro.FyyInitEnv;
-import cn.bigcore.micro.base.FyyConfigEntryDetailsValues;
-import cn.bigcore.micro.exception.re.ex.FyyExceptionError;
+import cn.bigcore.micro.base.frame.impl.FyyConfigEntryDetailsValues;
+import cn.bigcore.micro.base.exception.type.FyyExceptionError;
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.io.FastByteArrayOutputStream;
@@ -24,16 +24,10 @@ import cn.hutool.crypto.SecureUtil;
 import cn.hutool.http.HttpUtil;
 import cn.hutool.json.JSONUtil;
 import io.minio.*;
-import io.minio.errors.ErrorResponseException;
-import io.minio.errors.InvalidResponseException;
-import io.minio.errors.XmlParserException;
 import io.minio.http.Method;
-import org.apache.poi.ss.formula.functions.T;
 
 import java.io.ByteArrayInputStream;
-import java.io.IOException;
 import java.io.InputStream;
-import java.security.NoSuchAlgorithmException;
 import java.util.Date;
 import java.util.HashMap;
 

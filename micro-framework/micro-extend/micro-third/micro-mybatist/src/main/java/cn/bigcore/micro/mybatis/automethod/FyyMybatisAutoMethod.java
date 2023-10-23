@@ -14,7 +14,7 @@ import cn.bigcore.micro.FyyInitEnv;
 import cn.bigcore.micro.bean.FyyBean;
 import cn.bigcore.micro.mybatis.annotation.FyyMybatisRuleInjectionMehtod;
 import cn.bigcore.micro.mybatis.annotation.bean.FyyMybatisNull;
-import cn.bigcore.micro.exception.re.ex.FyyExceptionError;
+import cn.bigcore.micro.base.exception.type.FyyExceptionError;
 import cn.bigcore.micro.mybatis.annotation.bean.FyyMybatisMethod;
 import cn.hutool.core.bean.BeanUtil;
 import cn.hutool.core.lang.tree.Tree;

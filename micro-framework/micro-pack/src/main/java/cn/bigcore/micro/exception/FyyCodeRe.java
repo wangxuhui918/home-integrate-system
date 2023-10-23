@@ -10,17 +10,17 @@
 
 package cn.bigcore.micro.exception;
 
-import cn.bigcore.micro.exception.code.bean.FyyMessageCode;
-import cn.bigcore.micro.exception.code.bean.FyyMessageType;
-import cn.bigcore.micro.exception.code.impl.FyyCodeImpl;
+import cn.bigcore.micro.base.message.FyyMessageCode;
+import cn.bigcore.micro.base.message.FyyMessageType;
+import cn.bigcore.micro.exception.impl.FyyCodeImpl;
 import cn.bigcore.micro.i18n.FyyI18n;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.json.JSONUtil;
 import cn.bigcore.micro.FyyInitEnv;
-import cn.bigcore.micro.exception.code.bean.FyyMessageEnum;
+import cn.bigcore.micro.base.message.FyyMessageEnum;
 import cn.bigcore.micro.log.FyyLogBaseUtils;
 import cn.bigcore.micro.thread.FyyThreadReUtils;
-import cn.bigcore.micro.thread.bean.FyyKeyBase;
+import cn.bigcore.micro.base.thread.FyyKeyBase;
 
 /**
  * 自定义消息码

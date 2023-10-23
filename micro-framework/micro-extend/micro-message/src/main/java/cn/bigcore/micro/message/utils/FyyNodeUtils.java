@@ -10,8 +10,8 @@
 
 package cn.bigcore.micro.message.utils;
 
-import cn.bigcore.micro.exception.code.bean.FyyMessageCode;
-import cn.bigcore.micro.exception.code.bean.FyyMessageEnum;
+import cn.bigcore.micro.base.message.FyyMessageCode;
+import cn.bigcore.micro.base.message.FyyMessageEnum;
 import cn.hutool.core.util.XmlUtil;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;

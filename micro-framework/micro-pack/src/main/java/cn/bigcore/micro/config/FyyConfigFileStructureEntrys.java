@@ -1,6 +1,6 @@
 package cn.bigcore.micro.config;
 
-import cn.bigcore.micro.config.config.bean.FyyConfigResourceType;
+import cn.bigcore.micro.base.frame.impl.FyyConfigResourceType;
 
 public enum FyyConfigFileStructureEntrys {
 

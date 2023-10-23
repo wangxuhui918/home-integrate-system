@@ -12,7 +12,7 @@ package cn.bigcore.micro.dubbo.config.tx;
 
 import com.alibaba.dubbo.config.ConsumerConfig;
 import cn.bigcore.micro.FyyInitEnv;
-import cn.bigcore.micro.base.FyyConfigEntryDetailsValues;
+import cn.bigcore.micro.base.frame.impl.FyyConfigEntryDetailsValues;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
 

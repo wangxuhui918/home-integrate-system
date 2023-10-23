@@ -10,7 +10,7 @@ package cn.bigcore.micro.thread;
  */
 
 
-import cn.bigcore.micro.thread.bean.FyyKeyBase;
+import cn.bigcore.micro.base.thread.FyyKeyBase;
 import cn.hutool.json.JSONObject;
 
 /**

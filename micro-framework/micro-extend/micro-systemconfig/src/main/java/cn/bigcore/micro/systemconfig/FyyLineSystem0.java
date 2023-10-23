@@ -12,7 +12,7 @@ package cn.bigcore.micro.systemconfig;
 
 import cn.bigcore.micro.bean.FyyBean;
 import cn.bigcore.micro.line.FyyLineSystemInterface;
-import cn.bigcore.micro.config.annotation.FyyRuleInjection;
+import cn.bigcore.micro.annotation.type.FyyRuleInjection;
 
 import java.util.*;
 

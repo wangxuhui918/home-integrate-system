@@ -11,7 +11,7 @@
 
 package cn.bigcore.micro.outgoing;
 
-import cn.bigcore.micro.exception.code.FyyCodeInterface;
+import cn.bigcore.micro.exception.FyyCodeInterface;
 
 /**
  * @param <T> 消息码实体类

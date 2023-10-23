@@ -13,6 +13,7 @@ package cn.bigcore.micro.init;
 import cn.bigcore.micro.config.FyyConfigProjectPropertiesImpl;
 import cn.bigcore.micro.FyyInitEnv;
 import cn.bigcore.micro.config.FyyConfigFrameImpl;
+import cn.bigcore.micro.outgoing.impl.FyyOutRe;
 import cn.bigcore.micro.utils.FyyResource;
 
 public class FyyInitStart {
@@ -20,6 +21,7 @@ public class FyyInitStart {
     public static void run() {
 
         //
+        FyyInitEnv.SettingInformation.fyyMessageDataOutInterface = new FyyOutRe();
         FyyInitEnv.SettingInformation.resourcetool = new FyyResource();
         FyyInitEnv.SettingInformation.baseEv = new FyyInitEnvLoad();
         FyyInitEnv.SettingInformation.homeConf = new FyyConfigFrameImpl();

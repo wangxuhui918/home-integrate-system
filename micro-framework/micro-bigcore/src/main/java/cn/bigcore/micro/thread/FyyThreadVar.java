@@ -10,7 +10,7 @@ package cn.bigcore.micro.thread;
 
 import cn.hutool.json.JSONException;
 import cn.hutool.json.JSONObject;
-import cn.bigcore.micro.exception.re.ex.FyyExceptionError;
+import cn.bigcore.micro.base.exception.type.FyyExceptionError;
 import cn.bigcore.micro.log.FyyLogBaseUtils;
 
 

@@ -10,7 +10,7 @@
 package cn.bigcore.micro.config.newplugin;
 
 import cn.bigcore.micro.FyyInitEnv;
-import cn.bigcore.micro.config.annotation.FyyRuleInjection;
+import cn.bigcore.micro.annotation.type.FyyRuleInjection;
 import cn.bigcore.micro.utils.FyyConfigProjectUtils;
 import cn.bigcore.micro.line.FyyLineSystemInterface;
 

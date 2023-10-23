@@ -1,7 +1,7 @@
 package cn.bigcore.micro.page;
 
-import cn.bigcore.micro.config.annotation.FyyRuleInjection;
-import cn.bigcore.micro.outgoing.FyyPageTotalInterface;
+import cn.bigcore.micro.annotation.type.FyyRuleInjection;
+import cn.bigcore.micro.outgoing.page.FyyPageTotalInterface;
 
 @FyyRuleInjection
 public class FyyMybatisPageTotal implements FyyPageTotalInterface {

@@ -11,7 +11,8 @@
 
 package cn.bigcore.micro.outgoing;
 
-import cn.bigcore.micro.auth.FyyUserInterface;
+import cn.bigcore.micro.auth.user.FyyUserInterface;
+import cn.bigcore.micro.base.auth.FyyAuthReturnType;
 
 import java.lang.reflect.Method;
 

@@ -8,11 +8,12 @@
 
 package cn.bigcore.micro;
 
-import cn.bigcore.micro.config.FyyReourceInterface;
-import cn.bigcore.micro.config.FyyConfigProjectInterface;
-import cn.bigcore.micro.daemon.FyyProjectDaemonRoot;
+import cn.bigcore.micro.config.frame.resource.FyyReourceInterface;
+import cn.bigcore.micro.config.project.FyyConfigProjectInterface;
+import cn.bigcore.micro.base.daemon.FyyProjectDaemonRoot;
+import cn.bigcore.micro.outgoing.FyyMessageDataOutInterface;
 import cn.bigcore.micro.utils.FyyConfigProjectUtils;
-import cn.bigcore.micro.exception.code.bean.FyyMessageCode;
+import cn.bigcore.micro.base.message.FyyMessageCode;
 import cn.bigcore.micro.i18n.FyyI18n;
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.io.FileUtil;
@@ -22,9 +23,9 @@ import cn.hutool.core.util.StrUtil;
 import cn.hutool.db.nosql.redis.RedisDS;
 import cn.hutool.setting.Setting;
 import cn.hutool.system.SystemUtil;
-import cn.bigcore.micro.config.FyyConfigFrameInterface;
+import cn.bigcore.micro.config.frame.config.FyyConfigFrameInterface;
 import cn.bigcore.micro.utils.FyyConfigFrameUtils;
-import cn.bigcore.micro.exception.re.ex.FyyExceptionError;
+import cn.bigcore.micro.base.exception.type.FyyExceptionError;
 import org.apache.velocity.VelocityContext;
 
 import javax.sql.DataSource;
@@ -119,8 +120,12 @@ public class FyyInitEnv {
         public static FyyConfigFrameInterface homeConf;//按需调整
         public static FyyConfigProjectInterface projectConf;
         public static FyyReourceInterface resourcetool;
+        public static FyyMessageDataOutInterface fyyMessageDataOutInterface;
 
         public static void init() {
+            if (fyyMessageDataOutInterface == null) {
+                throw new FyyExceptionError(FyyMessageDataOutInterface.class.getName() + "缺失核心实现类!");
+            }
             if (resourcetool == null) {
                 throw new FyyExceptionError(FyyReourceInterface.class.getName() + "缺失核心实现类!");
             }
