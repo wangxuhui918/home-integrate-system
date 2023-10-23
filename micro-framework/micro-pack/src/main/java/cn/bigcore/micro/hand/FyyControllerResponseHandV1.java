@@ -11,7 +11,7 @@
 package cn.bigcore.micro.hand;
 
 import cn.bigcore.micro.annotation.FyyRuleController;
-import cn.bigcore.micro.exception.FyyCodeUtils;
+import cn.bigcore.micro.exception.FyyExceptionUtils;
 import cn.bigcore.micro.outgoing.FyyOutputParamAbstract;
 import cn.hutool.core.util.ClassUtil;
 import cn.hutool.json.JSONUtil;
@@ -39,23 +39,23 @@ public class FyyControllerResponseHandV1 implements ResponseBodyAdvice<Object> {
         Class type = returnType.getMethod().getReturnType();
 
         if (body == null) {//如果值为空的
-            return cn.bigcore.micro.outgoing.utils.FyyCodeUtils.go(FyyCodeUtils.getinfo());
+            return cn.bigcore.micro.outgoing.utils.FyyCodeUtils.go(FyyExceptionUtils.getinfo());
         } else if (body instanceof FyyOutputParamAbstract) {//如果返回值直接为理想类型的,直接返回
             return body;
         } else if (ClassUtil.isSimpleValueType(body.getClass())) {//如果为基础类型,返回拼写
-            return cn.bigcore.micro.outgoing.utils.FyyCodeUtils.go(FyyCodeUtils.getinfo(), JSONUtil.parse(new DefaultKeyValue(null, body)));
+            return cn.bigcore.micro.outgoing.utils.FyyCodeUtils.go(FyyExceptionUtils.getinfo(), JSONUtil.parse(new DefaultKeyValue(null, body)));
         } else if (body instanceof Object) {//如果为其他复杂对象,直接进行转换
-            return cn.bigcore.micro.outgoing.utils.FyyCodeUtils.go(FyyCodeUtils.getinfo(), JSONUtil.parse(body));
+            return cn.bigcore.micro.outgoing.utils.FyyCodeUtils.go(FyyExceptionUtils.getinfo(), JSONUtil.parse(body));
         }
 
         if (type.getName().equals("void")) {//如果返回值为 void  null 直接返回 true
-            return cn.bigcore.micro.outgoing.utils.FyyCodeUtils.go(FyyCodeUtils.getinfo());
+            return cn.bigcore.micro.outgoing.utils.FyyCodeUtils.go(FyyExceptionUtils.getinfo());
         } else if (ClassUtil.isAssignable(type, FyyOutputParamAbstract.class)) {
             return body;
         } else if (ClassUtil.isSimpleValueType(type)) {//如果为基础类型,返回拼写
-            return cn.bigcore.micro.outgoing.utils.FyyCodeUtils.go(FyyCodeUtils.getinfo(), JSONUtil.parse(new DefaultKeyValue(null, body)));
+            return cn.bigcore.micro.outgoing.utils.FyyCodeUtils.go(FyyExceptionUtils.getinfo(), JSONUtil.parse(new DefaultKeyValue(null, body)));
         } else if (type.getName().equals(Object.class.getName())) {//如果为其他复杂对象,直接进行转换
-            return cn.bigcore.micro.outgoing.utils.FyyCodeUtils.go(FyyCodeUtils.getinfo(), JSONUtil.parse(body));
+            return cn.bigcore.micro.outgoing.utils.FyyCodeUtils.go(FyyExceptionUtils.getinfo(), JSONUtil.parse(body));
         }
         return body;//其他基础类型
     }

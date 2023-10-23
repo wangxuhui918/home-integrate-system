@@ -11,7 +11,7 @@
 package cn.bigcore.micro.outgoing.impl;
 
 import cn.bigcore.micro.exception.FyyCodeInterface;
-import cn.bigcore.micro.exception.FyyCodeUtils;
+import cn.bigcore.micro.exception.FyyExceptionUtils;
 import cn.bigcore.micro.outgoing.FyyInputParamInterface;
 import cn.bigcore.micro.outgoing.FyyMessageDataOutInterface;
 import cn.bigcore.micro.outgoing.FyyOutputParamAbstract;
@@ -48,7 +48,7 @@ public class FyyOutRe implements FyyMessageDataOutInterface<JSON, JSON> {
             if (exception != null) {
                 except_mess_txt = ExceptionUtil.getRootCauseMessage(exception);
             }
-            code = FyyCodeUtils.getError(except_mess_txt);
+            code = FyyExceptionUtils.getError(except_mess_txt);
         } else {
             returninfo.setI18n(code.getI18n());
         }

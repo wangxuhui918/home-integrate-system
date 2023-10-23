@@ -12,7 +12,7 @@ package cn.bigcore.micro.base.exception.type;
 
 import cn.bigcore.micro.base.exception.FyyExceptionMessageAbstract;
 import cn.bigcore.micro.exception.FyyCodeInterface;
-import cn.bigcore.micro.exception.FyyCodeUtils;
+import cn.bigcore.micro.exception.FyyExceptionUtils;
 
 /**
  * 文本异常抛出
@@ -32,7 +32,7 @@ public class FyyExceptionError extends FyyExceptionMessageAbstract {
      * @readme mark 入参为[?你好!] [张三] 格式化结果为 [张三你好!]
      */
     public FyyExceptionError(String text, Object... format) {
-        super(FyyCodeUtils.getError(text, format));
+        super(FyyExceptionUtils.getError(text, format));
     }
 
     public FyyExceptionError(FyyCodeInterface msgInfo) {

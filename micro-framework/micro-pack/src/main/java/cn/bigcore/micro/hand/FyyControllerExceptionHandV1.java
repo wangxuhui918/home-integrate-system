@@ -13,7 +13,7 @@ package cn.bigcore.micro.hand;
 import cn.bigcore.micro.annotation.FyyRuleController;
 import cn.bigcore.micro.base.exception.FyyExceptionApiNull;
 import cn.bigcore.micro.base.exception.FyyExceptionMessageAbstract;
-import cn.bigcore.micro.exception.FyyCodeUtils;
+import cn.bigcore.micro.exception.FyyExceptionUtils;
 import cn.bigcore.micro.outgoing.impl.FyyOutputParamRe;
 import cn.hutool.core.util.StrUtil;
 import org.slf4j.Logger;
@@ -30,7 +30,7 @@ public class FyyControllerExceptionHandV1 {
     @ExceptionHandler(Exception.class)
     public FyyOutputParamRe exception(Exception ex) {
         if (ex instanceof FyyExceptionApiNull) {//如果为ExceptionApiNull空,则直接返回空数据
-            return cn.bigcore.micro.outgoing.utils.FyyCodeUtils.go(FyyCodeUtils.getinfo());
+            return cn.bigcore.micro.outgoing.utils.FyyCodeUtils.go(FyyExceptionUtils.getinfo());
         }
         if (ex instanceof FyyExceptionMessageAbstract && StrUtil.isNotBlank(((FyyExceptionMessageAbstract) ex).getClassName())) {//自定义异常,有异常码
             ex.printStackTrace();

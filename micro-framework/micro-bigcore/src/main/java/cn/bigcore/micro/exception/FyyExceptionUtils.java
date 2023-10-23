@@ -9,7 +9,7 @@ import cn.hutool.core.util.StrUtil;
 /**
  * 获取基础消息码工具类
  */
-public class FyyCodeUtils {
+public class FyyExceptionUtils {
     /**
      * 内置消息码成功
      *

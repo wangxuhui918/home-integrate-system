@@ -15,7 +15,7 @@ import cn.bigcore.micro.annotation.FyyRuleController;
 import cn.bigcore.micro.base.frame.impl.FyyConfigEntryDetailsValues;
 import cn.bigcore.micro.base.exception.FyyExceptionApiNull;
 import cn.bigcore.micro.base.exception.FyyExceptionMessageAbstract;
-import cn.bigcore.micro.exception.FyyCodeUtils;
+import cn.bigcore.micro.exception.FyyExceptionUtils;
 import cn.bigcore.micro.base.exception.type.FyyExceptionError;
 import cn.bigcore.micro.log.FyyLogBaseUtils;
 import cn.bigcore.micro.base.auth.FyyAuthReturnType;
@@ -74,7 +74,7 @@ public class FyyControllerParamHandV1 {
                     if (authReturnType == FyyAuthReturnType.AuthSuccess) {//鉴权通过
                     } else {//鉴权失败
                         //                        return cn.bigcore.micro.outgoing.utils.FyyCodeUtils.go(FyyCodeUtils.getBuiltinCode(FyyCodeUtils.getError().getType(), FyyInitEnv.SettingInformation.i18n, authReturnType.getCode(), authReturnType.getName()));
-                        throw new FyyExceptionError(FyyCodeUtils.getBuiltinCode(FyyCodeUtils.getError().getType(), FyyInitEnv.SettingInformation.i18n, authReturnType.getCode(), authReturnType.getName()));
+                        throw new FyyExceptionError(FyyExceptionUtils.getBuiltinCode(FyyExceptionUtils.getError().getType(), FyyInitEnv.SettingInformation.i18n, authReturnType.getCode(), authReturnType.getName()));
                     }
                 } catch (FyyExceptionMessageAbstract e1) {
 //                    return cn.bigcore.micro.outgoing.utils.FyyCodeUtils.go(FyyCodeUtils.getError(e1.getMsg()));
@@ -82,7 +82,7 @@ public class FyyControllerParamHandV1 {
                     throw e1;
                 } catch (Exception e) {
 //                    return cn.bigcore.micro.outgoing.utils.FyyCodeUtils.go(FyyCodeUtils.getError("未知鉴权异常!"));
-                    throw new FyyExceptionError(FyyCodeUtils.getError("未知鉴权异常!"));
+                    throw new FyyExceptionError(FyyExceptionUtils.getError("未知鉴权异常!"));
                 }
             }
         }
