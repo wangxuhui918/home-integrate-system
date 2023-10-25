@@ -8,7 +8,7 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.guoshiyao.rely</groupId>
-        <version>11.0.11-SNAPSHOT</version>
+        <version>11.0.11-RELEASE</version>
         <artifactId>micro-framework</artifactId>
     </parent>
     <artifactId>micro-extend</artifactId>

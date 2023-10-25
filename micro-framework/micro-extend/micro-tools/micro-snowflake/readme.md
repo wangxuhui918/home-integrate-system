@@ -7,7 +7,7 @@
 
  <dependency>
     <groupId>com.guoshiyao.rely</groupId>
-     <version>11.0.11-SNAPSHOT</version>
+     <version>11.0.11-RELEASE</version>
     <artifactId>micro-snowflake</artifactId>
   </dependency>
 

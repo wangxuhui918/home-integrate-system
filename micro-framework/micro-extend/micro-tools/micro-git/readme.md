@@ -7,7 +7,7 @@
  <dependency>
     <groupId>com.guoshiyao.rely</groupId>
     <artifactId>micro-git</artifactId>
-    <version>11.0.11-SNAPSHOT</version>
+    <version>11.0.11-RELEASE</version>
  </dependency>
 
 ```

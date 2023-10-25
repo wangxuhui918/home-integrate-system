@@ -10,14 +10,14 @@
     <artifactId>micro-framework</artifactId>
     <packaging>pom</packaging>
     <name>micro-framework</name>
-    <version>11.0.11-SNAPSHOT</version>
+    <version>11.0.11-RELEASE</version>
 
     <dependencyManagement>
         <dependencies>
             <dependency>
                 <groupId>com.guoshiyao.rely</groupId>
                 <artifactId>micro-dependencies</artifactId>
-                <version>11.0.11-SNAPSHOT</version>
+                <version>11.0.11-RELEASE</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
