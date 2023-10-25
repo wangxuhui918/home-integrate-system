@@ -8,7 +8,7 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>com.guoshiyao.rely</groupId>
-        <version>11.0.11-RELEASE</version>
+        <version>11.0.12-SNAPSHOT</version>
         <artifactId>micro-extend</artifactId>
     </parent>
     <artifactId>micro-logback</artifactId>
@@ -19,7 +19,7 @@
 
         <dependency>
             <groupId>com.guoshiyao.rely</groupId>
-            <version>11.0.11-RELEASE</version>
+            <version>11.0.12-SNAPSHOT</version>
             <artifactId>micro-springboot</artifactId>
         </dependency>
         <dependency>

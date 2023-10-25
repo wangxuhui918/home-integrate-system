@@ -29,12 +29,12 @@ pom.xml文件引入parent和dependency节点,如下:
 
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.guoshiyao.rely</groupId>
-    <version>11.0.11-RELEASE</version>
+    <version>11.0.12-SNAPSHOT</version>
     <artifactId>micro-example</artifactId>
     <parent>
         <artifactId>micro-dependencies</artifactId>
         <groupId>com.guoshiyao.rely</groupId>
-        <version>11.0.11-RELEASE</version>
+        <version>11.0.12-SNAPSHOT</version>
     </parent>
 
     <properties>
@@ -46,7 +46,7 @@ pom.xml文件引入parent和dependency节点,如下:
         <dependency>
             <groupId>com.guoshiyao.rely</groupId>
             <artifactId>micro-pack</artifactId>
-            <version>11.0.11-RELEASE</version>
+            <version>11.0.12-SNAPSHOT</version>
         </dependency>
     </dependencies>
 
