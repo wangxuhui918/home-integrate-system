@@ -5,7 +5,7 @@
 ```xml
 
  <dependency>
-    <groupId>com.guoshiyao.rely</groupId>
+    <groupId>cn.bigcore</groupId>
     <artifactId>micro-git</artifactId>
     <version>11.0.12-SNAPSHOT</version>
  </dependency>

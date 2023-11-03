@@ -7,12 +7,12 @@
   --><project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
-    <groupId>com.guoshiyao.rely</groupId>
+    <groupId>cn.bigcore</groupId>
     <version>11.0.12-SNAPSHOT</version>
     <artifactId>micro-example</artifactId>
     <parent>
         <artifactId>micro-dependencies</artifactId>
-        <groupId>com.guoshiyao.rely</groupId>
+        <groupId>cn.bigcore</groupId>
         <version>11.0.12-SNAPSHOT</version>
     </parent>
 
@@ -23,12 +23,12 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.guoshiyao.rely</groupId>
+            <groupId>cn.bigcore</groupId>
             <artifactId>micro-pack</artifactId>
             <version>11.0.12-SNAPSHOT</version>
         </dependency>
         <!--        <dependency>-->
-        <!--            <groupId>com.guoshiyao.rely</groupId>-->
+        <!--            <groupId>cn.bigcore</groupId>-->
         <!--            <artifactId>micro-all</artifactId>-->
         <!--            <version>11.0.2-SNAPSHOT</version>-->
         <!--        </dependency>-->

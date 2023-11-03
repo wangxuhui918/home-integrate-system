@@ -7,7 +7,7 @@
   --><project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>com.guoshiyao.rely</groupId>
+        <groupId>cn.bigcore</groupId>
         <artifactId>micro-framework</artifactId>
         <version>11.0.12-SNAPSHOT</version>
     </parent>
@@ -16,120 +16,120 @@
     <dependencies>
         <!--        自定义工具类项目-->
         <dependency>
-            <groupId>com.guoshiyao.rely</groupId>
+            <groupId>cn.bigcore</groupId>
             <artifactId>micro-git</artifactId>
             <version>11.0.12-SNAPSHOT</version>
         </dependency>
         <dependency>
-            <groupId>com.guoshiyao.rely</groupId>
+            <groupId>cn.bigcore</groupId>
             <artifactId>micro-snowflake</artifactId>
             <version>11.0.12-SNAPSHOT</version>
         </dependency>
 
         <!--        自定义组件-->
         <dependency>
-            <groupId>com.guoshiyao.rely</groupId>
+            <groupId>cn.bigcore</groupId>
             <version>11.0.12-SNAPSHOT</version>
             <artifactId>micro-springboot</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.guoshiyao.rely</groupId>
+            <groupId>cn.bigcore</groupId>
             <version>11.0.12-SNAPSHOT</version>
             <artifactId>micro-bigcore</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.guoshiyao.rely</groupId>
+            <groupId>cn.bigcore</groupId>
             <version>11.0.12-SNAPSHOT</version>
             <artifactId>micro-systemconfig</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.guoshiyao.rely</groupId>
+            <groupId>cn.bigcore</groupId>
             <version>11.0.12-SNAPSHOT</version>
             <artifactId>micro-message</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.guoshiyao.rely</groupId>
+            <groupId>cn.bigcore</groupId>
             <version>11.0.12-SNAPSHOT</version>
             <artifactId>micro-springboot</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.guoshiyao.rely</groupId>
+            <groupId>cn.bigcore</groupId>
             <version>11.0.12-SNAPSHOT</version>
             <artifactId>micro-actut</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.guoshiyao.rely</groupId>
+            <groupId>cn.bigcore</groupId>
             <version>11.0.12-SNAPSHOT</version>
             <artifactId>micro-apollot</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.guoshiyao.rely</groupId>
+            <groupId>cn.bigcore</groupId>
             <version>11.0.12-SNAPSHOT</version>
             <artifactId>micro-datat</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.guoshiyao.rely</groupId>
+            <groupId>cn.bigcore</groupId>
             <version>11.0.12-SNAPSHOT</version>
             <artifactId>micro-dubbot</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.guoshiyao.rely</groupId>
+            <groupId>cn.bigcore</groupId>
             <version>11.0.12-SNAPSHOT</version>
             <artifactId>micro-faitht</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.guoshiyao.rely</groupId>
+            <groupId>cn.bigcore</groupId>
             <version>11.0.12-SNAPSHOT</version>
             <artifactId>micro-logback</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.guoshiyao.rely</groupId>
+            <groupId>cn.bigcore</groupId>
             <version>11.0.12-SNAPSHOT</version>
             <artifactId>micro-mybatist</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.guoshiyao.rely</groupId>
+            <groupId>cn.bigcore</groupId>
             <version>11.0.12-SNAPSHOT</version>
             <artifactId>micro-mybatistplus</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.guoshiyao.rely</groupId>
+            <groupId>cn.bigcore</groupId>
             <version>11.0.12-SNAPSHOT</version>
             <artifactId>micro-swaggert</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.guoshiyao.rely</groupId>
+            <groupId>cn.bigcore</groupId>
             <version>11.0.12-SNAPSHOT</version>
             <artifactId>micro-swaggert</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.guoshiyao.rely</groupId>
+            <groupId>cn.bigcore</groupId>
             <version>11.0.12-SNAPSHOT</version>
             <artifactId>micro-flywayt</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.guoshiyao.rely</groupId>
+            <groupId>cn.bigcore</groupId>
             <version>11.0.12-SNAPSHOT</version>
             <artifactId>micro-createconfig</artifactId>
         </dependency>
 
         <dependency>
-            <groupId>com.guoshiyao.rely</groupId>
+            <groupId>cn.bigcore</groupId>
             <version>11.0.12-SNAPSHOT</version>
             <artifactId>micro-redis</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.guoshiyao.rely</groupId>
+            <groupId>cn.bigcore</groupId>
             <version>11.0.12-SNAPSHOT</version>
             <artifactId>micro-minio</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.guoshiyao.rely</groupId>
+            <groupId>cn.bigcore</groupId>
             <artifactId>micro-git</artifactId>
             <version>11.0.12-SNAPSHOT</version>
         </dependency>
         <dependency>
-            <groupId>com.guoshiyao.rely</groupId>
+            <groupId>cn.bigcore</groupId>
             <artifactId>micro-snowflake</artifactId>
             <version>11.0.12-SNAPSHOT</version>
         </dependency>
