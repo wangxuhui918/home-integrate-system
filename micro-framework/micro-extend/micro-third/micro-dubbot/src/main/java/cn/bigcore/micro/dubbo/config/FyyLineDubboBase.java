@@ -10,13 +10,13 @@
 
 package cn.bigcore.micro.dubbo.config;
 
+import cn.bigcore.micro.FyyInitEnv;
+import cn.bigcore.micro.base.frame.impl.FyyConfigEntryDetailsValues;
 import com.alibaba.dubbo.config.ApplicationConfig;
 import com.alibaba.dubbo.config.ProtocolConfig;
 import com.alibaba.dubbo.config.ProviderConfig;
 import com.alibaba.dubbo.config.RegistryConfig;
 import com.alibaba.dubbo.config.spring.AnnotationBean;
-import cn.bigcore.micro.FyyInitEnv;
-import cn.bigcore.micro.base.frame.impl.FyyConfigEntryDetailsValues;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
 
@@ -46,11 +46,7 @@ public class FyyLineDubboBase {
         sddf.setDispatcher("all");
 //        }
         String protocolthreadpool = FyyInitEnv.SettingInformation.setting.get(FyyConfigEntryDetailsValues.HOME_DUBBO_PROTOCOLCONFIG_THREADPOOL.getKey());
-//        if (protocolthreadpool != null && !protocolthreadpool.trim().equals("")) {
         sddf.setThreadpool(protocolthreadpool);
-//        } else {
-//            sddf.setThreadpool("fixed");
-//        }
         sddf.setPayload(83886080);
         return sddf;
     }

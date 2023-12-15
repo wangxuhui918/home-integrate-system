@@ -32,25 +32,6 @@ public class FyyIdUtils {
     // 各种元数据
     protected FyyIdMeta idMeta;
 
-//    public static void main(String[] args) {
-//        IdUtils.workerId = 3;
-//        System.out.println(IdUtils.genId());
-//    }
-//    /**
-//     * 构造
-//     *
-//     * @param workerId 机器ID((0-1023)
-//     */
-//    public IdServiceUtils(long workerId) {
-//        if (workerId > IdMeta.MAX_ID || workerId < 0) {
-//            throw new IllegalArgumentException(
-//                    String.format("worker Id can't be greater than %d or less than 0", IdMeta.MAX_ID));
-//        }
-//        this.workerId = workerId;
-//        log.info("worker starting. timestamp left shift {},  worker id bits {}, sequence bits {}, workerid {}",
-//                IdMeta.TIMESTAMP_LEFT_SHIFT_BITS, IdMeta.ID_BITS, IdMeta.SEQUENCE_BITS, workerId);
-//    }
-
     /**
      * 生成ID（线程安全）
      *

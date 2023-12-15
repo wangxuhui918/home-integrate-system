@@ -54,13 +54,6 @@ public class FyyLineDubbo implements FyyLineThirdExtendInterface {
     @Override
     public void callSetting(Setting setting) {
 
-
-//        {
-//            String key = ConfigDetails.HOME_DUBBO_PROTOCOLCONFIG_THREADPOOL.getKey();
-//            if (!setting.containsKey(key)) {
-//                setting.put(key, ConfigDetails.HOME_DUBBO_PROTOCOLCONFIG_THREADPOOL.getValue());
-//            }
-//        }
     }
 
 }

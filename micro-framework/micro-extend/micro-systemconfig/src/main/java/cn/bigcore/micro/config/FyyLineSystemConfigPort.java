@@ -37,15 +37,6 @@ public class FyyLineSystemConfigPort implements FyyLineSystemInterface {
 
     @Override
     public Map<String, String> getProperties() {
-
-//
-//
-//        {
-//            String key = ConfigDetails.SYSTEM_INPUTPARAMAB_CLASS.getKey();
-//            if (!BaseEv.SettingInformation.setting.containsKey(key)) {
-//                BaseEv.SettingInformation.setting.put(key, ConfigDetails.SYSTEM_INPUTPARAMAB_CLASS.getValue());
-//            }
-//        }
         return new HashMap<>();
     }
 

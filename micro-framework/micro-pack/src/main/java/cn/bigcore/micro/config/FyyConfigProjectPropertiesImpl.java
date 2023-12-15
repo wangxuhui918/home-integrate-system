@@ -8,13 +8,21 @@
 
 package cn.bigcore.micro.config;
 
-import cn.bigcore.micro.base.frame.FyyConfigEntryVo;
-import cn.bigcore.micro.base.frame.impl.FyyConfigResourceType;
-import cn.bigcore.micro.config.project.FyyConfigProjectInterface;
+import cn.bigcore.micro.FyyInitEnv;
 import cn.bigcore.micro.base.daemon.FyyProjectConfigRoot;
 import cn.bigcore.micro.base.exception.type.FyyExceptionError;
-import cn.bigcore.micro.utils.FyyConfigProjectUtils;
+import cn.bigcore.micro.base.frame.FyyConfigEntryDetailsVo;
+import cn.bigcore.micro.base.frame.FyyConfigEntryVo;
+import cn.bigcore.micro.base.frame.FyyConfigFileStructureVo;
+import cn.bigcore.micro.base.frame.impl.FyyConfigEntryDetailsValues;
+import cn.bigcore.micro.base.frame.impl.FyyConfigResourceType;
+import cn.bigcore.micro.config.project.FyyConfigProjectInterface;
 import cn.bigcore.micro.log.FyyLogBaseUtils;
+import cn.bigcore.micro.utils.FyyConfigFrameUtils;
+import cn.bigcore.micro.utils.FyyConfigProjectUtils;
+import cn.bigcore.micro.utils.properties.FyyPropertiesUtils;
+import cn.bigcore.micro.utils.resource.FyyResourceFindUtils;
+import cn.bigcore.micro.utils.velocity.FyyVelocityUtils;
 import cn.hutool.core.date.DateUtil;
 import cn.hutool.core.io.FileUtil;
 import cn.hutool.core.io.resource.ResourceUtil;
@@ -23,14 +31,6 @@ import cn.hutool.core.util.ClassUtil;
 import cn.hutool.core.util.ReUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.setting.Setting;
-import cn.bigcore.micro.FyyInitEnv;
-import cn.bigcore.micro.base.frame.FyyConfigEntryDetailsVo;
-import cn.bigcore.micro.base.frame.FyyConfigFileStructureVo;
-import cn.bigcore.micro.base.frame.impl.FyyConfigEntryDetailsValues;
-import cn.bigcore.micro.utils.FyyConfigFrameUtils;
-import cn.bigcore.micro.utils.properties.FyyPropertiesUtils;
-import cn.bigcore.micro.utils.resource.FyyResourceFindUtils;
-import cn.bigcore.micro.utils.velocity.FyyVelocityUtils;
 
 import java.net.URI;
 import java.util.*;
@@ -192,7 +192,6 @@ public class FyyConfigProjectPropertiesImpl implements FyyConfigProjectInterface
                     FyyConfigEntryVo mainConfig = listMainConfig.get(k);
                     List<FyyConfigEntryDetailsVo> listProperties = FyyConfigFrameUtils.getPropertiesDetails(mainConfig.getConfigName());
                     if (listProperties != null && listProperties.size() > 0) {
-//                        lineStr.add(StrUtil.format("[{}-{}]", mainConfig.getName(), envName));//格式为 code-env
                         for (int i = 0; i < listProperties.size(); i++) {
                             FyyConfigEntryDetailsVo o = listProperties.get(i);
                             lineStr.add(FyyVelocityUtils.convert(o.getMark(), FyyInitEnv.SettingInformation.context));
