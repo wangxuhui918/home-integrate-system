@@ -37,12 +37,12 @@ public class FyyLogBaseUtils {
     static {
         {//jdklogger
             Level loglevel = Level.FINER;//默认日志级别
-            try {
-                if (StrUtil.isNotBlank(SystemUtil.get("loglevel"))) {//如果日志界别不为空则直接查找,根据名字和值自动查找
-                    loglevel = Level.parse(SystemUtil.get("loglevel"));
-                }
-            } catch (Exception e) {
-            }
+//            try {
+//                if (StrUtil.isNotBlank(SystemUtil.get("loglevel"))) {//如果日志界别不为空则直接查找,根据名字和值自动查找
+//                    loglevel = Level.parse(SystemUtil.get("loglevel"));
+//                }
+//            } catch (Exception e) {
+//            }
             //这里由于先启动,所以无法调整日志所在目录,目前只能先放在用户目录下
             String syslogpath = SystemUtil.getUserInfo().getHomeDir() + FileUtil.FILE_SEPARATOR + FyyInitEnv.SystemInformation.SYSTEM_EN_NAME + FileUtil.FILE_SEPARATOR + FyyInitEnv.SystemInformation.SYSTEM_EN_NAME + ".%u.sys.log";
             try {
@@ -50,16 +50,16 @@ public class FyyLogBaseUtils {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            try {
-                if (StrUtil.isNotBlank(SystemUtil.get("syslogpath"))) {//如果日志界别不为空则直接查找,根据名字和值自动查找
-                    syslogpath = SystemUtil.get("syslogpath") + File.separator + FyyInitEnv.SystemInformation.SYSTEM_EN_NAME + ".%u.sys.log";
-                    FyyLogBaseUtils.info("读取日志变量-Dsyslogpath={}", syslogpath);
-                } else {
-                    FyyLogBaseUtils.info("默认日志变量-Dsyslogpath={}", syslogpath);
-                }
-            } catch (Exception e) {
-                FyyLogBaseUtils.info("默认日志变量-Dsyslogpath={}", syslogpath);
-            }
+//            try {
+//                if (StrUtil.isNotBlank(SystemUtil.get("syslogpath"))) {//如果日志界别不为空则直接查找,根据名字和值自动查找
+//                    syslogpath = SystemUtil.get("syslogpath") + File.separator + FyyInitEnv.SystemInformation.SYSTEM_EN_NAME + ".%u.sys.log";
+//                    FyyLogBaseUtils.info("读取日志变量-Dsyslogpath={}", syslogpath);
+//                } else {
+//                    FyyLogBaseUtils.info("默认日志变量-Dsyslogpath={}", syslogpath);
+//                }
+//            } catch (Exception e) {
+//                FyyLogBaseUtils.info("默认日志变量-Dsyslogpath={}", syslogpath);
+//            }
             {
                 try {
                     filehandler = new FileHandler(syslogpath, 1024000, 16);
