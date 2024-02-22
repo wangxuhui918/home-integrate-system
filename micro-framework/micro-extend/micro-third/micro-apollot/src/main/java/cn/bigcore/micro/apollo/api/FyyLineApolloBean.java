@@ -100,7 +100,7 @@ public class FyyLineApolloBean {
     public static boolean findNameSpaceExist(String appid, String apolloUrl, String targetCookieString) {
         boolean isexist = false;
         try {
-            String url = apolloUrl + "/apps/" + appid + "/envs/" + FyyInitEnv.SettingInformation.runEnv + "/clusters/default/namespaces";
+            String url = apolloUrl + "/apps/" + appid + "/envs/" + FyyInitEnv.ProjectInformation.runEnv + "/clusters/default/namespaces";
             String body = HttpRequest.get(url).cookie(targetCookieString).execute().body();
             isexist = !JSONUtil.parse(body).getByPath("message").toString().contains("not exist");
         } catch (Exception e) {
@@ -138,7 +138,7 @@ public class FyyLineApolloBean {
     public static void getPropertieLines(String appid, String apolloUrl,
                                          HashMap<String, HashMap<String, Tree<Object>>> values, String cookieString, TreeInterface treeinterface) {
         //获取源app参数
-        String[] NAP = new String[]{FyyInitEnv.SettingInformation.runEnv};
+        String[] NAP = new String[]{FyyInitEnv.ProjectInformation.runEnv};
 
         if (treeinterface != null && treeinterface.setNameSpace() != null) {
             NAP = treeinterface.setNameSpace();

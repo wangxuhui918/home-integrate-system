@@ -28,7 +28,7 @@ public class FyyLogFormatter extends Formatter {
         builder.append(DateUtil.format(new DateTime(), "yyyy-MM-dd HH:mm:ss.SSS"));
         builder.append(" ");
         builder.append(arg0.getLevel()).append("  ");
-        builder.append(StrUtil.format("[{}] ", FyyInitEnv.SystemInformation.SYSTEM_CHINA_NAME));
+        builder.append(StrUtil.format("[{}] ", FyyInitEnv.FrameInformation.CHINA_NAME));
         builder.append(StrUtil.format("[{}] ", "built in log manager"));
 //        builder.append(StrUtil.format("[{}] ", arg0.getSourceMethodName()));
 //        builder.append(StrUtil.format("[{}] ", arg0.getSourceClassName()));

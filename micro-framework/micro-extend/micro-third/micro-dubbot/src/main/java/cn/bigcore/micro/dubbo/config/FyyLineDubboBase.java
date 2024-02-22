@@ -26,9 +26,9 @@ public class FyyLineDubboBase {
     @Bean
     @ConditionalOnMissingBean(ProtocolConfig.class) // 容器中如果没有这个类,那么自动配置这个类
     public ProtocolConfig protocolconfig() {
-        ProtocolConfig sddf = new ProtocolConfig(FyyInitEnv.SettingInformation.setting.get(FyyConfigEntryDetailsValues.HOME_DUBBO_REFERENCE_AGREEMENT.getKey()),
-                FyyInitEnv.SettingInformation.setting.getInt(FyyConfigEntryDetailsValues.HOME_DUBBO_REFERENCE_PORT.getKey()));
-        sddf.setHost(FyyInitEnv.SettingInformation.setting.get(FyyConfigEntryDetailsValues.HOME_DUBBO_REFERENCE_HOST.getKey()));
+        ProtocolConfig sddf = new ProtocolConfig(FyyInitEnv.ProjectInformation.setting.get(FyyConfigEntryDetailsValues.HOME_DUBBO_REFERENCE_AGREEMENT.getKey()),
+                FyyInitEnv.ProjectInformation.setting.getInt(FyyConfigEntryDetailsValues.HOME_DUBBO_REFERENCE_PORT.getKey()));
+        sddf.setHost(FyyInitEnv.ProjectInformation.setting.get(FyyConfigEntryDetailsValues.HOME_DUBBO_REFERENCE_HOST.getKey()));
 
         //		Dispatcher
 //		all 所有消息都派发到线程池，包括请求，响应，连接事件，断开事件，心跳等。
@@ -40,12 +40,12 @@ public class FyyLineDubboBase {
 //		fixed 固定大小线程池，启动时建立线程，不关闭，一直持有。(缺省)
 //		cached 缓存线程池，空闲一分钟自动删除，需要时重建。
 //		limited 可伸缩线程池，但池中的线程数只会增长不会收缩。(为避免收缩时突然来了大流量引起的性能问题)
-        Integer protocolthreadsnum = FyyInitEnv.SettingInformation.setting.getInt(FyyConfigEntryDetailsValues.HOME_DUBBO_PROTOCOLCONFIG_THREADS.getKey());
+        Integer protocolthreadsnum = FyyInitEnv.ProjectInformation.setting.getInt(FyyConfigEntryDetailsValues.HOME_DUBBO_PROTOCOLCONFIG_THREADS.getKey());
 //        if (protocolthreadsnum != null) {
         sddf.setThreads(protocolthreadsnum);
         sddf.setDispatcher("all");
 //        }
-        String protocolthreadpool = FyyInitEnv.SettingInformation.setting.get(FyyConfigEntryDetailsValues.HOME_DUBBO_PROTOCOLCONFIG_THREADPOOL.getKey());
+        String protocolthreadpool = FyyInitEnv.ProjectInformation.setting.get(FyyConfigEntryDetailsValues.HOME_DUBBO_PROTOCOLCONFIG_THREADPOOL.getKey());
         sddf.setThreadpool(protocolthreadpool);
         sddf.setPayload(83886080);
         return sddf;
@@ -55,7 +55,7 @@ public class FyyLineDubboBase {
     @ConditionalOnMissingBean(AnnotationBean.class) // 容器中如果没有这个类,那么自动配置这个类
     public AnnotationBean annotationbean() {
         AnnotationBean sddf = new AnnotationBean();
-        sddf.setPackage(FyyInitEnv.SettingInformation.setting.get(FyyConfigEntryDetailsValues.HOME_DUBBO_REFERENCE_PACKAGE.getKey()));
+        sddf.setPackage(FyyInitEnv.ProjectInformation.setting.get(FyyConfigEntryDetailsValues.HOME_DUBBO_REFERENCE_PACKAGE.getKey()));
         return sddf;
     }
 
@@ -73,9 +73,9 @@ public class FyyLineDubboBase {
     @Bean
     @ConditionalOnMissingBean(value = {RegistryConfig.class}) // 容器中如果没有这个类,那么自动配置这个类
     public RegistryConfig registryconfig() {
-        RegistryConfig sddf = new RegistryConfig(FyyInitEnv.SettingInformation.setting.get(FyyConfigEntryDetailsValues.HOME_DUBBO_REFERENCE_URL.getKey()));
-        sddf.setProtocol(FyyInitEnv.SettingInformation.setting.get(FyyConfigEntryDetailsValues.HOME_DUBBO_REFERENCE_AGREEMENT.getKey()));
-        sddf.setTimeout(FyyInitEnv.SettingInformation.setting.getInt(FyyConfigEntryDetailsValues.HOME_DUBBO_REFERENCE_TIMEOUT.getKey()));
+        RegistryConfig sddf = new RegistryConfig(FyyInitEnv.ProjectInformation.setting.get(FyyConfigEntryDetailsValues.HOME_DUBBO_REFERENCE_URL.getKey()));
+        sddf.setProtocol(FyyInitEnv.ProjectInformation.setting.get(FyyConfigEntryDetailsValues.HOME_DUBBO_REFERENCE_AGREEMENT.getKey()));
+        sddf.setTimeout(FyyInitEnv.ProjectInformation.setting.getInt(FyyConfigEntryDetailsValues.HOME_DUBBO_REFERENCE_TIMEOUT.getKey()));
         sddf.setClient("curator");
         sddf.setCheck(false);
         return sddf;
@@ -85,7 +85,7 @@ public class FyyLineDubboBase {
     @ConditionalOnMissingBean(ApplicationConfig.class) // 容器中如果没有这个类,那么自动配置这个类
     public ApplicationConfig applicationconfig(RegistryConfig registryconfig) {
         ApplicationConfig sddf = new ApplicationConfig();
-        sddf.setName(FyyInitEnv.SettingInformation.setting.get(FyyConfigEntryDetailsValues.HOME_DUBBO_REFERENCE_AGREEMENT.getKey()));
+        sddf.setName(FyyInitEnv.ProjectInformation.setting.get(FyyConfigEntryDetailsValues.HOME_DUBBO_REFERENCE_AGREEMENT.getKey()));
         sddf.setRegistry(registryconfig);
         sddf.setQosEnable(false);
         //		sddf.setQosAcceptForeignIp(false);

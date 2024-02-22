@@ -21,12 +21,12 @@ public class FyyInitStart {
     public static void run() {
 
         //
-        FyyInitEnv.SettingInformation.fyyMessageDataOutInterface = new FyyOutRe();
-        FyyInitEnv.SettingInformation.resourcetool = new FyyResource();
-        FyyInitEnv.SettingInformation.baseEv = new FyyInitEnvLoad();
-        FyyInitEnv.SettingInformation.homeConf = new FyyConfigFrameImpl();
-        FyyInitEnv.SettingInformation.projectConf = new FyyConfigProjectPropertiesImpl();
-        FyyInitEnv.SettingInformation.init();
+        FyyInitEnv.ProjectInformation.fyyMessageDataOutInterface = new FyyOutRe();
+        FyyInitEnv.ProjectInformation.resourcetool = new FyyResource();
+        FyyInitEnv.ProjectInformation.baseEv = new FyyInitEnvLoad();
+        FyyInitEnv.ProjectInformation.homeConf = new FyyConfigFrameImpl();
+        FyyInitEnv.ProjectInformation.projectConf = new FyyConfigProjectPropertiesImpl();
+        FyyInitEnv.ProjectInformation.init();
     }
 }
 

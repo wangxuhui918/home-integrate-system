@@ -26,7 +26,7 @@ import java.util.List;
 public class FyyConfigFrameUtils {
 
     public static <T> List<T> getPlugins(Class<T> a) {
-        List<String> plugins = FyyInitEnv.SettingInformation.homeConf.getPlugins(a);
+        List<String> plugins = FyyInitEnv.ProjectInformation.homeConf.getPlugins(a);
         List<T> returnlist = new ArrayList<>();
         for (int i = 0; i < plugins.size(); i++) {
             Class class0 = ClassUtil.loadClass(plugins.get(i), false);
@@ -41,14 +41,14 @@ public class FyyConfigFrameUtils {
     }
 
     public static List<FyyConfigFileStructureVo> getFileStructures() {
-        return FyyInitEnv.SettingInformation.homeConf.getFileStructures();
+        return FyyInitEnv.ProjectInformation.homeConf.getFileStructures();
     }
 
     public static List<FyyConfigEntryVo> getPropertiesMain() {//获取配置明细
-        return FyyInitEnv.SettingInformation.homeConf.getPropertiesMain();
+        return FyyInitEnv.ProjectInformation.homeConf.getPropertiesMain();
     }
 
     public static List<FyyConfigEntryDetailsVo> getPropertiesDetails(String configFileName) {//获取配置明细
-        return FyyInitEnv.SettingInformation.homeConf.getPropertiesDetails(configFileName);
+        return FyyInitEnv.ProjectInformation.homeConf.getPropertiesDetails(configFileName);
     }
 }

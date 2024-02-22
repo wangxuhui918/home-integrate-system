@@ -33,7 +33,7 @@ public class FyyResource implements FyyReourceInterface {
             Resource[] source = resourceLoader.getResources("classpath*:" + patternPath);
             for (Resource resource : source) {
                 String path = resource.getURL().toString();
-                if (FyyInitEnv.SettingInformation.isClassModel) {
+                if (FyyInitEnv.ProjecEnvInformation.isClassModel) {
                     path = StrUtil.subAfter(path, "classes" + FileUtil.FILE_SEPARATOR, true);
                 } else {
                     path = StrUtil.subAfter(path, "classes!" + FileUtil.FILE_SEPARATOR, true);

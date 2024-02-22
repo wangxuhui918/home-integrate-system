@@ -46,7 +46,7 @@ public class FyyLineDefaultManager implements FyyLineManagerInterface {
     @Override
     public void before() {
 
-        if (FyyInitEnv.SettingInformation.isClassModel) {//仅在class模式下需要处理的东西
+        if (FyyInitEnv.ProjecEnvInformation.isClassModel) {//仅在class模式下需要处理的东西
             for (int i = 0; i < classmodelconfigrerules.size(); i++) {
                 FyyLineSourceModelInterface info = classmodelconfigrerules.get(i);
                 FyyLogBaseUtils.debug("功能处理器[{}]开始处理[{}]", info.getClass(), "before");
@@ -74,7 +74,7 @@ public class FyyLineDefaultManager implements FyyLineManagerInterface {
                 FyyLineRuntimeModelInterface info = runmodelconfigrerules.get(i);
                 FyyLogBaseUtils.debug("功能处理器[{}]开始处理[{}]", info.getClass(), "writeProperties");
                 if (info instanceof FyyLineSystemInterface) {
-                    FyyInitEnv.SettingInformation.setting.putAll(info.getProperties());
+                    FyyInitEnv.ProjectInformation.setting.putAll(info.getProperties());
                 }
             }
             //读取第三方参数
@@ -82,13 +82,13 @@ public class FyyLineDefaultManager implements FyyLineManagerInterface {
                 FyyLineRuntimeModelInterface info = runmodelconfigrerules.get(i);
                 FyyLogBaseUtils.debug("功能处理器[{}]开始处理[{}]", info.getClass(), "writeProperties");
                 if (info instanceof FyyLineThirdExtendInterface) {
-                    FyyInitEnv.SettingInformation.setting.putAll(info.getProperties());
+                    FyyInitEnv.ProjectInformation.setting.putAll(info.getProperties());
                 }
             }
             for (int i = 0; i < classmodelconfigrerules.size(); i++) {
                 FyyLineSourceModelInterface info = classmodelconfigrerules.get(i);
                 FyyLogBaseUtils.debug("功能处理器[{}]开始处理[{}]", info.getClass(), "writeProperties");
-                FyyInitEnv.SettingInformation.setting.putAll(info.getProperties());
+                FyyInitEnv.ProjectInformation.setting.putAll(info.getProperties());
             }
         }
         //额外参数处理器,比如配置参数变动值
@@ -98,7 +98,7 @@ public class FyyLineDefaultManager implements FyyLineManagerInterface {
             if (info1 instanceof FyyLineThirdExtendInterface) {
                 for (FyyLineRuntimeModelInterface info : runmodelconfigrerules) {
                     if (info instanceof FyyLineThirdExtendInterface) {
-                        ((FyyLineThirdExtendInterface) info).callSetting(FyyInitEnv.SettingInformation.setting);
+                        ((FyyLineThirdExtendInterface) info).callSetting(FyyInitEnv.ProjectInformation.setting);
                     }
                 }
             }
@@ -106,15 +106,15 @@ public class FyyLineDefaultManager implements FyyLineManagerInterface {
         {
             FyyLogBaseUtils.debug("首次压入环境变量[{}]开始", "System.setProperty");
             {
-                Map<String, String> notBlankMap = MapUtil.filter(new HashMap<>(FyyInitEnv.SettingInformation.setting), t -> StrUtil.isNotBlank(t.getValue()));
+                Map<String, String> notBlankMap = MapUtil.filter(new HashMap<>(FyyInitEnv.ProjectInformation.setting), t -> StrUtil.isNotBlank(t.getValue()));
                 FyyLogBaseUtils.debug("清空并重新压入项目变量");
-                FyyInitEnv.SettingInformation.setting.clear();
-                FyyInitEnv.SettingInformation.setting.putAll(notBlankMap);
+                FyyInitEnv.ProjectInformation.setting.clear();
+                FyyInitEnv.ProjectInformation.setting.putAll(notBlankMap);
             }
             //写入系统变量
-            for (String key : FyyInitEnv.SettingInformation.setting.keySet()) {//防止一些额外的变量未写入到系统参数中
-                FyyLogBaseUtils.debug("压入系统变量[{}]:[{}]", key, FyyInitEnv.SettingInformation.setting.get(key));
-                System.setProperty(key, FyyInitEnv.SettingInformation.setting.get(key));
+            for (String key : FyyInitEnv.ProjectInformation.setting.keySet()) {//防止一些额外的变量未写入到系统参数中
+                FyyLogBaseUtils.debug("压入系统变量[{}]:[{}]", key, FyyInitEnv.ProjectInformation.setting.get(key));
+                System.setProperty(key, FyyInitEnv.ProjectInformation.setting.get(key));
             }
         }
 
@@ -130,21 +130,21 @@ public class FyyLineDefaultManager implements FyyLineManagerInterface {
             FyyLineRuntimeModelInterface info = runmodelconfigrerules.get(i);
             FyyLogBaseUtils.debug("功能处理器[{}]开始处理[{}]", info.getClass(), "writeClasss");
             if (info instanceof FyyLineSystemInterface) {
-                FyyInitEnv.SettingInformation.iocclasses.addAll(info.writeClasss());
+                FyyInitEnv.ProjecEnvInformation.iocclasses.addAll(info.writeClasss());
             }
         }
         for (int i = 0; i < runmodelconfigrerules.size(); i++) {
             FyyLineRuntimeModelInterface info = runmodelconfigrerules.get(i);
             FyyLogBaseUtils.debug("功能处理器[{}]开始处理[{}]", info.getClass(), "writeClasss");
             if (info instanceof FyyLineThirdExtendInterface) {
-                FyyInitEnv.SettingInformation.iocclasses.addAll(info.writeClasss());
+                FyyInitEnv.ProjecEnvInformation.iocclasses.addAll(info.writeClasss());
             }
         }
-        if (FyyInitEnv.SettingInformation.isClassModel) {//提前处理非Jar模式需要处理的东西
+        if (FyyInitEnv.ProjecEnvInformation.isClassModel) {//提前处理非Jar模式需要处理的东西
             for (int i = 0; i < classmodelconfigrerules.size(); i++) {
                 FyyLineSourceModelInterface info = classmodelconfigrerules.get(i);
                 FyyLogBaseUtils.debug("功能处理器[{}]开始处理[{}]", info.getClass(), "writeClasss");
-                FyyInitEnv.SettingInformation.iocclasses.addAll(info.writeClasss());
+                FyyInitEnv.ProjecEnvInformation.iocclasses.addAll(info.writeClasss());
             }
         }
 
@@ -154,7 +154,7 @@ public class FyyLineDefaultManager implements FyyLineManagerInterface {
             info.after();
         }
 
-        if (FyyInitEnv.SettingInformation.isClassModel) {//提前处理非Jar模式需要处理的东西
+        if (FyyInitEnv.ProjecEnvInformation.isClassModel) {//提前处理非Jar模式需要处理的东西
             for (int i = 0; i < classmodelconfigrerules.size(); i++) {
                 FyyLineSourceModelInterface info = classmodelconfigrerules.get(i);
                 FyyLogBaseUtils.debug("功能处理器[{}]开始处理[{}]", info.getClass(), "after");
@@ -164,15 +164,15 @@ public class FyyLineDefaultManager implements FyyLineManagerInterface {
         {
             FyyLogBaseUtils.debug("二次压入系统变量[{}]开始", "System.setProperty");
             {
-                Map<String, String> notBlankMap = MapUtil.filter(new HashMap<>(FyyInitEnv.SettingInformation.setting), t -> StrUtil.isNotBlank(t.getValue()));
+                Map<String, String> notBlankMap = MapUtil.filter(new HashMap<>(FyyInitEnv.ProjectInformation.setting), t -> StrUtil.isNotBlank(t.getValue()));
                 FyyLogBaseUtils.debug("清空并重新压入项目变量");
-                FyyInitEnv.SettingInformation.setting.clear();
-                FyyInitEnv.SettingInformation.setting.putAll(notBlankMap);
+                FyyInitEnv.ProjectInformation.setting.clear();
+                FyyInitEnv.ProjectInformation.setting.putAll(notBlankMap);
             }
             //写入系统变量
-            for (String key : FyyInitEnv.SettingInformation.setting.keySet()) {//防止一些额外的变量未写入到系统参数中
-                FyyLogBaseUtils.debug("压入系统变量[{}]:[{}]", key, FyyInitEnv.SettingInformation.setting.get(key));
-                System.setProperty(key, FyyInitEnv.SettingInformation.setting.get(key));
+            for (String key : FyyInitEnv.ProjectInformation.setting.keySet()) {//防止一些额外的变量未写入到系统参数中
+                FyyLogBaseUtils.debug("压入系统变量[{}]:[{}]", key, FyyInitEnv.ProjectInformation.setting.get(key));
+                System.setProperty(key, FyyInitEnv.ProjectInformation.setting.get(key));
             }
         }
     }

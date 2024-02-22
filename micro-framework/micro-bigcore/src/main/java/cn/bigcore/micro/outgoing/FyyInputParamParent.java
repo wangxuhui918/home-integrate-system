@@ -60,7 +60,7 @@ public class FyyInputParamParent<D extends JSONObject> implements FyyInputParamI
 
     @ApiModelProperty(hidden = true)
     public void setUserRe(FyyUserInterface userRe) {
-        if (FyyInitEnv.ProjectInformation.OPEN_THREAD_USER) {
+        if (FyyInitEnv.ProjecEnvInformation.OPEN_THREAD_USER) {
             FyyThreadReUtils.putParam(FyyKeyBase.USERRE.getKeyName(), JSONUtil.parseObj(userRe));
         }
         this.userRe = userRe;
@@ -68,7 +68,7 @@ public class FyyInputParamParent<D extends JSONObject> implements FyyInputParamI
 
     @ApiModelProperty(hidden = true)
     public void setI18n(String i18n) {
-        if (FyyInitEnv.ProjectInformation.OPEN_THREAD_I18N) {
+        if (FyyInitEnv.ProjecEnvInformation.OPEN_THREAD_I18N) {
             FyyThreadReUtils.putParam(FyyKeyBase.I18N.getKeyName(), i18n);
         }
         this.i18n = i18n;
@@ -103,7 +103,7 @@ public class FyyInputParamParent<D extends JSONObject> implements FyyInputParamI
             this.pageSize = "0";
         }
         //
-        if (FyyInitEnv.ProjectInformation.OPEN_THREAD_PAGE) {
+        if (FyyInitEnv.ProjecEnvInformation.OPEN_THREAD_PAGE) {
             FyyThreadReUtils.putParam(FyyKeyBase.PAGE_SIZE.getKeyName(), this.pageSize);
         }
     }
@@ -122,7 +122,7 @@ public class FyyInputParamParent<D extends JSONObject> implements FyyInputParamI
             this.pageNum = "0";
         }
         //
-        if (FyyInitEnv.ProjectInformation.OPEN_THREAD_PAGE) {
+        if (FyyInitEnv.ProjecEnvInformation.OPEN_THREAD_PAGE) {
             FyyThreadReUtils.putParam(FyyKeyBase.PAGE_NUM.getKeyName(), this.pageNum);
         }
     }

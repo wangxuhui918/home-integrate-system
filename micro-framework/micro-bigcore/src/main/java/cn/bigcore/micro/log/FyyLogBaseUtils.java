@@ -19,7 +19,6 @@ import cn.hutool.core.io.FileUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.system.SystemUtil;
 
-import java.io.File;
 import java.util.logging.ConsoleHandler;
 import java.util.logging.FileHandler;
 import java.util.logging.Level;
@@ -44,7 +43,7 @@ public class FyyLogBaseUtils {
 //            } catch (Exception e) {
 //            }
             //这里由于先启动,所以无法调整日志所在目录,目前只能先放在用户目录下
-            String syslogpath = SystemUtil.getUserInfo().getHomeDir() + FileUtil.FILE_SEPARATOR + FyyInitEnv.SystemInformation.SYSTEM_EN_NAME + FileUtil.FILE_SEPARATOR + FyyInitEnv.SystemInformation.SYSTEM_EN_NAME + ".%u.sys.log";
+            String syslogpath = SystemUtil.getUserInfo().getHomeDir() + FileUtil.FILE_SEPARATOR + FyyInitEnv.FrameInformation.ENGLISH_NAME + FileUtil.FILE_SEPARATOR + FyyInitEnv.FrameInformation.ENGLISH_NAME + ".%u.sys.log";
             try {
                 FileUtil.mkParentDirs(syslogpath);
             } catch (Exception e) {

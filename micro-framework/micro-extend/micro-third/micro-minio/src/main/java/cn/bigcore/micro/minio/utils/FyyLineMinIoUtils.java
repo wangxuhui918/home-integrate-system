@@ -173,7 +173,7 @@ public class FyyLineMinIoUtils {
                     .bucket(namespace).object(storagname).build());//60 * 60 * 24 * 9 .expiry(60 * 60 * 24)
             url = StrUtil.subBefore(url, "?", true);
             int px = StrUtil.ordinalIndexOf(url, "/", 3);
-            url = FyyInitEnv.SettingInformation.setting.get(FyyConfigEntryDetailsValues.HOME_MINIO_ENDPOINT.getKey()) + url.substring(px);
+            url = FyyInitEnv.ProjectInformation.setting.get(FyyConfigEntryDetailsValues.HOME_MINIO_ENDPOINT.getKey()) + url.substring(px);
             {
                 gui.put(FyyLineMinIOGen.storagname, storagname);
                 gui.put(FyyLineMinIOGen.namespace, namespace);

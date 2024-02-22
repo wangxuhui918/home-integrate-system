@@ -30,7 +30,7 @@ public class FyyLineMinIO implements FyyLineThirdExtendInterface {
     @Override
     public List<Class> writeClasss() {
         //第0 个数据库
-        if (FyyInitEnv.SettingInformation.setting.getBool(FyyConfigEntryDetailsValues.MINIO_ENABLE.getKey())) {
+        if (FyyInitEnv.ProjectInformation.setting.getBool(FyyConfigEntryDetailsValues.MINIO_ENABLE.getKey())) {
             FyyLineMinIOGen.intiConect();
         }
         return new ArrayList<>();

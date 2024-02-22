@@ -23,7 +23,7 @@ public class FyyLineDubboAuto3 {
     @ConditionalOnMissingBean(ConsumerConfig.class) // 容器中如果没有这个类,那么自动配置这个类
     public ConsumerConfig consumerconfig() {
         ConsumerConfig sddf = new ConsumerConfig();
-        sddf.setTimeout(FyyInitEnv.SettingInformation.setting.getInt(FyyConfigEntryDetailsValues.HOME_DUBBO_REFERENCE_TIMEOUT.getKey()));
+        sddf.setTimeout(FyyInitEnv.ProjectInformation.setting.getInt(FyyConfigEntryDetailsValues.HOME_DUBBO_REFERENCE_TIMEOUT.getKey()));
         sddf.setCheck(false);
         sddf.setFilter("transactionFilter");
         return sddf;

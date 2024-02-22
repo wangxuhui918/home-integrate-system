@@ -26,7 +26,7 @@ public class FyyLineSwagger implements FyyLineThirdExtendInterface {
 
     @Override
     public List<Class> writeClasss() {
-        if (FyyInitEnv.SettingInformation.setting.getBool(FyyConfigEntryDetailsValues.SWAGGER_ENABLE.getKey())) {
+        if (FyyInitEnv.ProjectInformation.setting.getBool(FyyConfigEntryDetailsValues.SWAGGER_ENABLE.getKey())) {
 //        if (AnnotationTools.getRuleClassForAnno(Controller.class, BaseEv.WorkDir.projectPackage) > 0) {
             LinkedHashMap<String, List<Class>> map = new LinkedHashMap<>();
             return Arrays.asList(new Class[]{FyySwaggerConfigBean.class,

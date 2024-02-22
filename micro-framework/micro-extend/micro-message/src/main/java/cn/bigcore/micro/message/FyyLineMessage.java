@@ -33,7 +33,7 @@ public class FyyLineMessage implements FyyLineMessageInterface {
     public void before() {
         HashMap<String, HashMap<String, FyyMessageCode>> maps = new HashMap<>();
         String readString = FyyConfigProjectUtils.getZoneMessageFileContext();
-        FyyNodeUtils.getI18nMessageContext(readString, FyyInitEnv.SettingInformation.i18n, maps);
+        FyyNodeUtils.getI18nMessageContext(readString, FyyInitEnv.ProjectInformation.i18n, maps);
         try {
             Map<String, String> othermessage = FyyConfigProjectUtils.getAllMessageXmlContexts();
             for (String key : othermessage.keySet()) {
@@ -43,7 +43,7 @@ public class FyyLineMessage implements FyyLineMessageInterface {
         } catch (Exception e) {
 
         }
-        FyyInitEnv.SettingInformation.messages.putAll(maps);
+        FyyInitEnv.ProjectInformation.messages.putAll(maps);
     }
 
     @Override

@@ -35,7 +35,7 @@ public class FyyUtils {
      * @readme
      */
     public static void run() {
-        FyyLogBaseUtils.info("[{}]开始加载", FyyInitEnv.SystemInformation.SYSTEM_CHINA_NAME);
+        FyyLogBaseUtils.info("[{}]开始加载", FyyInitEnv.FrameInformation.CHINA_NAME);
         FyyInitStart.run();//注册表初始化
         List<FyyLineManagerInterface> plugins = FyyConfigFrameUtils.getPlugins(FyyLineManagerInterface.class);
         for (int i = 0; i < plugins.size(); i++) {
@@ -50,7 +50,7 @@ public class FyyUtils {
             FyyLogBaseUtils.info("总链式处理器[{}]开始处理[{}]", plugins.get(i).getClass(), "after");
             plugins.get(i).after();
         }
-        FyyLogBaseUtils.info("[{}]加载完成", FyyInitEnv.SystemInformation.SYSTEM_CHINA_NAME);
+        FyyLogBaseUtils.info("[{}]加载完成", FyyInitEnv.FrameInformation.CHINA_NAME);
 
 
     }

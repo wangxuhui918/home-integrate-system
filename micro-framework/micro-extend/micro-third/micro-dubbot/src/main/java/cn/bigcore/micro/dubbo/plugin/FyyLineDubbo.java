@@ -29,7 +29,7 @@ public class FyyLineDubbo implements FyyLineThirdExtendInterface {
     @Override
     public List<Class> writeClasss() {
 //        if (AnnotationTools.getRuleClassForAnno(Service.class, BaseEv.WorkDir.projectPackage) > 0) {
-        if (FyyInitEnv.SettingInformation.setting.getBool(FyyConfigEntryDetailsValues.DUBBO_ENABLED.getKey())) {
+        if (FyyInitEnv.ProjectInformation.setting.getBool(FyyConfigEntryDetailsValues.DUBBO_ENABLED.getKey())) {
             return Arrays.asList(new Class[]{FyyLineDubboBase.class, FyyLineDubboConsumer.class});
         } else {
             return new ArrayList<>();

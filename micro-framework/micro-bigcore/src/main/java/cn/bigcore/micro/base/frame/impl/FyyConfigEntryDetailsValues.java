@@ -161,7 +161,7 @@ public enum FyyConfigEntryDetailsValues {
 
 
     public T getSeetingValue(Class<T> classs) {
-        return (T) FyyInitEnv.SettingInformation.setting.getObj(this.getKey());
+        return (T) FyyInitEnv.ProjectInformation.setting.getObj(this.getKey());
     }
 
     public FyyConfigEntryValues getCodeType() {
@@ -190,7 +190,7 @@ public enum FyyConfigEntryDetailsValues {
     }
 
     public String getValue() {
-        return FyyVelocityUtils.convert(value, FyyInitEnv.SettingInformation.context);
+        return FyyVelocityUtils.convert(value, FyyInitEnv.ProjectInformation.context);
     }
 
     public void setValue(String value) {

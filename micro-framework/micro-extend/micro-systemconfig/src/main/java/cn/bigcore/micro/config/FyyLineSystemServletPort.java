@@ -51,11 +51,11 @@ public class FyyLineSystemServletPort {
     @Bean
     public MultipartConfigElement multipartConfigElement() {
         MultipartConfigFactory factory = new MultipartConfigFactory();
-        if (FyyInitEnv.SettingInformation.setting.getBool(FyyConfigEntryDetailsValues.SERVLET_MULTIPART_ENABLE.getKey())) {
-            factory.setLocation(FyyInitEnv.SettingInformation.setting.get(FyyConfigEntryDetailsValues.SERVLET_MULTIPART_LOCATION.getKey()));
-            factory.setMaxFileSize(DataSize.of(FyyInitEnv.SettingInformation.setting.getInt(FyyConfigEntryDetailsValues.SERVLET_MULTIPART_MAX_FILE_SIZE.getKey()), DataUnit.MEGABYTES));
-            factory.setMaxRequestSize(DataSize.of(FyyInitEnv.SettingInformation.setting.getInt(FyyConfigEntryDetailsValues.SERVLET_MULTIPART_MAX_REQUEST_SIZE.getKey()), DataUnit.MEGABYTES));
-            factory.setFileSizeThreshold(DataSize.of(FyyInitEnv.SettingInformation.setting.getInt(FyyConfigEntryDetailsValues.SERVLET_MULTIPART_FILE_SIZE_THRESHOLD.getKey()), DataUnit.MEGABYTES));
+        if (FyyInitEnv.ProjectInformation.setting.getBool(FyyConfigEntryDetailsValues.SERVLET_MULTIPART_ENABLE.getKey())) {
+            factory.setLocation(FyyInitEnv.ProjectInformation.setting.get(FyyConfigEntryDetailsValues.SERVLET_MULTIPART_LOCATION.getKey()));
+            factory.setMaxFileSize(DataSize.of(FyyInitEnv.ProjectInformation.setting.getInt(FyyConfigEntryDetailsValues.SERVLET_MULTIPART_MAX_FILE_SIZE.getKey()), DataUnit.MEGABYTES));
+            factory.setMaxRequestSize(DataSize.of(FyyInitEnv.ProjectInformation.setting.getInt(FyyConfigEntryDetailsValues.SERVLET_MULTIPART_MAX_REQUEST_SIZE.getKey()), DataUnit.MEGABYTES));
+            factory.setFileSizeThreshold(DataSize.of(FyyInitEnv.ProjectInformation.setting.getInt(FyyConfigEntryDetailsValues.SERVLET_MULTIPART_FILE_SIZE_THRESHOLD.getKey()), DataUnit.MEGABYTES));
         }
         return factory.createMultipartConfig();
     }

@@ -59,7 +59,7 @@ public class FyyControllerParamHandV1 {
             }
             if (k == null) {//无InputParamAb拦截的情况
                 try {
-                    String className = FyyInitEnv.SettingInformation.setting.get(FyyConfigEntryDetailsValues.SYSTEM_INPUTPARAMAB_CLASS.getKey());
+                    String className = FyyInitEnv.ProjectInformation.setting.get(FyyConfigEntryDetailsValues.SYSTEM_INPUTPARAMAB_CLASS.getKey());
                     k = (FyyInputParamInterface) ClassUtil.loadClass(className, false).newInstance();
                 } catch (Exception e) {
                 }
@@ -74,7 +74,7 @@ public class FyyControllerParamHandV1 {
                     if (authReturnType == FyyAuthReturnType.AuthSuccess) {//鉴权通过
                     } else {//鉴权失败
                         //                        return cn.bigcore.micro.outgoing.utils.FyyCodeUtils.go(FyyCodeUtils.getBuiltinCode(FyyCodeUtils.getError().getType(), FyyInitEnv.SettingInformation.i18n, authReturnType.getCode(), authReturnType.getName()));
-                        throw new FyyExceptionError(FyyExceptionUtils.getBuiltinCode(FyyExceptionUtils.getError().getType(), FyyInitEnv.SettingInformation.i18n, authReturnType.getCode(), authReturnType.getName()));
+                        throw new FyyExceptionError(FyyExceptionUtils.getBuiltinCode(FyyExceptionUtils.getError().getType(), FyyInitEnv.ProjectInformation.i18n, authReturnType.getCode(), authReturnType.getName()));
                     }
                 } catch (FyyExceptionMessageAbstract e1) {
 //                    return cn.bigcore.micro.outgoing.utils.FyyCodeUtils.go(FyyCodeUtils.getError(e1.getMsg()));

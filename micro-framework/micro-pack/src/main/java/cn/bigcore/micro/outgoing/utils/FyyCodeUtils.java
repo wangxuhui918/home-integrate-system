@@ -19,25 +19,25 @@ import cn.bigcore.micro.outgoing.impl.FyyOutputParamRe;
 public class FyyCodeUtils {
 
     public static FyyOutputParamRe go(FyyCodeInterface code) {
-        FyyOutputParamAbstract<FyyCodeInterface, JSON> result = FyyInitEnv.SettingInformation.fyyMessageDataOutInterface.go(null, code, null, null);
+        FyyOutputParamAbstract<FyyCodeInterface, JSON> result = FyyInitEnv.ProjectInformation.fyyMessageDataOutInterface.go(null, code, null, null);
         FyyOutputParamRe re = extractedConvertToRe(result);
         return re;
     }
 
     public static FyyOutputParamRe go(FyyCodeInterface code, cn.hutool.json.JSON data) {
-        FyyOutputParamAbstract<FyyCodeInterface, JSON> result = FyyInitEnv.SettingInformation.fyyMessageDataOutInterface.go(null, code, data, null);
+        FyyOutputParamAbstract<FyyCodeInterface, JSON> result = FyyInitEnv.ProjectInformation.fyyMessageDataOutInterface.go(null, code, data, null);
         FyyOutputParamRe re = extractedConvertToRe(result);
         return re;
     }
 
     public static FyyOutputParamRe go(Exception exception, cn.hutool.json.JSON data) {
-        FyyOutputParamAbstract<FyyCodeInterface, JSON> result = FyyInitEnv.SettingInformation.fyyMessageDataOutInterface.go(null, null, data, exception);
+        FyyOutputParamAbstract<FyyCodeInterface, JSON> result = FyyInitEnv.ProjectInformation.fyyMessageDataOutInterface.go(null, null, data, exception);
         FyyOutputParamRe re = extractedConvertToRe(result);
         return re;
     }
 
     public static FyyOutputParamRe go(Exception exception) {
-        FyyOutputParamAbstract<FyyCodeInterface, JSON> result = FyyInitEnv.SettingInformation.fyyMessageDataOutInterface.go(null, null, null, exception);
+        FyyOutputParamAbstract<FyyCodeInterface, JSON> result = FyyInitEnv.ProjectInformation.fyyMessageDataOutInterface.go(null, null, null, exception);
         FyyOutputParamRe re = extractedConvertToRe(result);
         return re;
     }

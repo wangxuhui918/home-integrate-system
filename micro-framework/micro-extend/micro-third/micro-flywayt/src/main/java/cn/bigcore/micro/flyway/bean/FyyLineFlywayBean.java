@@ -23,10 +23,10 @@ public class FyyLineFlywayBean {
 //        System.setProperty("spring.flyway.baseline-on-migrate", "true");
 //        System.setProperty("spring.flyway.out-of-order", "true");
 //        System.setProperty("spring.flyway.validate-on-migrate", "false");
-        String dbUrl = FyyInitEnv.SettingInformation.setting.get(FyyConfigEntryDetailsValues.HOME_FLYWAYDB_URL.getKey());
-        String dbUserName = FyyInitEnv.SettingInformation.setting.get(FyyConfigEntryDetailsValues.HOME_FLYWAYDB_USERNAME.getKey());
-        String dbPassword = FyyInitEnv.SettingInformation.setting.get(FyyConfigEntryDetailsValues.HOME_FLYWAYDB_PASSWORD.getKey());
-        String table = FyyInitEnv.SettingInformation.setting.get(FyyConfigEntryDetailsValues.HOME_FLYWAYDB_TABLE.getKey());
+        String dbUrl = FyyInitEnv.ProjectInformation.setting.get(FyyConfigEntryDetailsValues.HOME_FLYWAYDB_URL.getKey());
+        String dbUserName = FyyInitEnv.ProjectInformation.setting.get(FyyConfigEntryDetailsValues.HOME_FLYWAYDB_USERNAME.getKey());
+        String dbPassword = FyyInitEnv.ProjectInformation.setting.get(FyyConfigEntryDetailsValues.HOME_FLYWAYDB_PASSWORD.getKey());
+        String table = FyyInitEnv.ProjectInformation.setting.get(FyyConfigEntryDetailsValues.HOME_FLYWAYDB_TABLE.getKey());
         //flyway_schema_history
         // 创建Flyway实例
         Flyway flyway = Flyway.configure().dataSource(dbUrl, dbUserName, dbPassword).table(table).load();

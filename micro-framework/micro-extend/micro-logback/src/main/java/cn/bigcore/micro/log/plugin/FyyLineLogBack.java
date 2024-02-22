@@ -26,7 +26,7 @@ public class FyyLineLogBack implements FyyLineSystemInterface {
 
     @Override
     public void after() {
-        if (FyyInitEnv.SettingInformation.setting.getBool(FyyConfigEntryDetailsValues.LOG_ENABLE.getKey())) {
+        if (FyyInitEnv.ProjectInformation.setting.getBool(FyyConfigEntryDetailsValues.LOG_ENABLE.getKey())) {
             try {
                 FyyLogBackConfigLoader.load("ching.xml");
             } catch (Exception e) {

@@ -41,7 +41,7 @@ public class FyyLineMybatis implements FyyLineThirdExtendInterface {
 //                throw new ExceptionError("db.url  jar 包,请选择合适的 jar 包引入!!");
 //            }
 //        }
-        if (FyyInitEnv.SettingInformation.setting.getBool(FyyConfigEntryDetailsValues.MYBATIS_ENABLE.getKey())) {
+        if (FyyInitEnv.ProjectInformation.setting.getBool(FyyConfigEntryDetailsValues.MYBATIS_ENABLE.getKey())) {
             return Arrays.asList(new Class[]{FyyMybatisMapperConfiguration.class, FyyTkMybatisAutoConfiguration.class, FyyMybatisAutoMethod.class});
         }
         return new ArrayList<>();
