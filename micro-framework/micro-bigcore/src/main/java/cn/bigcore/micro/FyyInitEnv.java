@@ -35,8 +35,6 @@ public class FyyInitEnv {
      * 框架
      */
     public static class FrameInformation {
-        //        public final static String PACKAGE = StrUtil.sub(ClassUtil.getPackage(FyyInitEnv.class), 0,
-//                StrUtil.ordinalIndexOf(ClassUtil.getPackage(FyyInitEnv.class), ".", 2));//框架核心包
         //系统信息
         public final static String CHINA_NAME = "帆有云系统";//系统中文名
         public final static String ENGLISH_NAME = "fyy";//系统英文名
