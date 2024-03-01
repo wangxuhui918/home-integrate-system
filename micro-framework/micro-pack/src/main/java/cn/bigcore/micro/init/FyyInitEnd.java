@@ -32,8 +32,8 @@ public class FyyInitEnd implements CommandLineRunner {
         FyyLogBaseUtils.info("用户目录 : {} [key]:[{}] ", FyyInitEnv.FrameInformation.USER_HOME, "FyyInitEnv..userHomeDir");
         FyyLogBaseUtils.info("运行用户名 : {} [key]:[{}] ", FyyInitEnv.FrameInformation.USER_NAME, "FyyInitEnv..systemUserName");
 //        FyyLogBaseUtils.info("核心包 : {} [key]:[{}] ", FyyInitEnv.FrameInformation.PACKAGE, "FyyInitEnv..corePacket");
-        FyyLogBaseUtils.info("项目源码目录 : {} [key]:[{}] ", FyyInitEnv.WorkDir.projectresourcepath, "FyyInitEnv..projectresourcepath");
-        FyyLogBaseUtils.info("项目资源目录 : {} [key]:[{}] ", FyyInitEnv.WorkDir.projectcodesourcepath, "FyyInitEnv..projectcodesourcepath");
+        FyyLogBaseUtils.info("项目源码目录 : {} [key]:[{}] ", FyyInitEnv.WorkDir.PROJECT_RESOURCEPATH, "FyyInitEnv..projectresourcepath");
+        FyyLogBaseUtils.info("项目资源目录 : {} [key]:[{}] ", FyyInitEnv.WorkDir.PROJECT_CODESOURCEPATH, "FyyInitEnv..projectcodesourcepath");
         FyyLogBaseUtils.info("系统托管类 : {} [key]:[{}] ", FyyInitEnv.ProjecEnvInformation.iocclasses.size() + "", "FyyInitEnv..iocclasses");
         FyyLogBaseUtils.info("项目参数 : {} [key]:[{}] ", FyyInitEnv.ProjectInformation.setting.size() + "", "FyyInitEnv..setting");
         FyyLogBaseUtils.info("默认模板引擎参数 : {} [key]:[{}] ", FyyInitEnv.ProjectInformation.context + "", "FyyInitEnv..context");

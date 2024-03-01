@@ -145,13 +145,13 @@ public class FyyConfigProjectPropertiesImpl implements FyyConfigProjectInterface
 
     @Override
     public boolean installed() {
-        String file = FyyInitEnv.WorkDir.projectresourcepath + FileUtil.FILE_SEPARATOR + "install" + FileUtil.FILE_SEPARATOR + "installed.txt";
+        String file = FyyInitEnv.WorkDir.PROJECT_RESOURCEPATH + FileUtil.FILE_SEPARATOR + "install" + FileUtil.FILE_SEPARATOR + "installed.txt";
         return FileUtil.exist(file);
     }
 
     @Override
     public boolean install() {
-        String file = FyyInitEnv.WorkDir.projectresourcepath + FileUtil.FILE_SEPARATOR + "install" + FileUtil.FILE_SEPARATOR + "installed.txt";
+        String file = FyyInitEnv.WorkDir.PROJECT_RESOURCEPATH + FileUtil.FILE_SEPARATOR + "install" + FileUtil.FILE_SEPARATOR + "installed.txt";
         FileUtil.writeUtf8String("v1-" + DateUtil.now(), file);
         return true;
     }
@@ -164,9 +164,9 @@ public class FyyConfigProjectPropertiesImpl implements FyyConfigProjectInterface
             String path = "";
             String context = inf.getContext();
             if (inf.getResourceType().equals(FyyConfigResourceType.SOURCE_TYPE)) {
-                path = FyyInitEnv.WorkDir.projectcodesourcepath + ClassUtil.getPackagePath(FyyInitEnv.WorkDir.mainClassC) + FileUtil.FILE_SEPARATOR + inf.getPath();
+                path = FyyInitEnv.WorkDir.PROJECT_CODESOURCEPATH + ClassUtil.getPackagePath(FyyInitEnv.WorkDir.mainClassC) + FileUtil.FILE_SEPARATOR + inf.getPath();
             } else if (inf.getResourceType().equals(FyyConfigResourceType.RESOURCE_TYPE)) {
-                path = FyyInitEnv.WorkDir.projectresourcepath + FileUtil.FILE_SEPARATOR + inf.getPath();
+                path = FyyInitEnv.WorkDir.PROJECT_RESOURCEPATH + FileUtil.FILE_SEPARATOR + inf.getPath();
             }
             if (!FileUtil.exist(path)) {
                 FileUtil.writeUtf8String(context, path);
@@ -200,14 +200,14 @@ public class FyyConfigProjectPropertiesImpl implements FyyConfigProjectInterface
                     } else if (StrUtil.isNotBlank(mainConfig.getContext())) {
                         String name_en = FyyVelocityUtils.convert(mainConfig.getConfigName(), FyyInitEnv.ProjectInformation.context);
                         String context = FyyVelocityUtils.convert(mainConfig.getContext(), FyyInitEnv.ProjectInformation.context);
-                        String file = FyyInitEnv.WorkDir.projectresourcepath + FileUtil.FILE_SEPARATOR + name_en;
+                        String file = FyyInitEnv.WorkDir.PROJECT_RESOURCEPATH + FileUtil.FILE_SEPARATOR + name_en;
                         if (!FileUtil.exist(file)) {
                             FileUtil.writeUtf8String(context, file);
                         }
                     }
                 }
                 {//写入文件
-                    String file = FyyInitEnv.WorkDir.projectresourcepath + FileUtil.FILE_SEPARATOR + "application-" + envName + ".properties";
+                    String file = FyyInitEnv.WorkDir.PROJECT_RESOURCEPATH + FileUtil.FILE_SEPARATOR + "application-" + envName + ".properties";
                     if (!FileUtil.exist(file)) {
                         FileUtil.writeUtf8Lines(lineStr, file);
                     }

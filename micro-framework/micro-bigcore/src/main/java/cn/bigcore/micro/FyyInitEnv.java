@@ -104,8 +104,8 @@ public class FyyInitEnv {
     }
 
     public static class WorkDir {//各种工作目录,class路径,jar路径
-        public static String projectresourcepath = "";//工程资源目录
-        public static String projectcodesourcepath = "";//工程源码目录
+        public static String PROJECT_RESOURCEPATH = "";//工程资源目录
+        public static String PROJECT_CODESOURCEPATH = "";//工程源码目录
         public static String jarpath = "";//jarpath 当前jar包所在目录,仅限于isdev=false
         public static String projectPackage = FrameInformation.PACKAGE;//默认扫描包
         public static String workHomeDir = "";//获取当前用户目录

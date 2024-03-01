@@ -253,8 +253,8 @@ public class FyyInitEnvLoad implements FyyInitEnv.ProjectInformation.FyyInitEnvL
             FyyInitEnv.ProjecEnvInformation.isClassModel = isClassModel;
             FyyInitEnv.WorkDir.mainClassC = mainClassC;
             FyyInitEnv.ProjectInformation.mainClass = mainClass;
-            FyyInitEnv.WorkDir.projectresourcepath = projectresourcepath;
-            FyyInitEnv.WorkDir.projectcodesourcepath = projectcodesourcepath;
+            FyyInitEnv.WorkDir.PROJECT_RESOURCEPATH = projectresourcepath;
+            FyyInitEnv.WorkDir.PROJECT_CODESOURCEPATH = projectcodesourcepath;
             FyyInitEnv.ProjecEnvInformation.macSet.addAll(macSet);
             FyyInitEnv.ProjectInformation.mainMac = mainMac;
 //            FyyInitEnv.SettingInformation.UK = uk;
