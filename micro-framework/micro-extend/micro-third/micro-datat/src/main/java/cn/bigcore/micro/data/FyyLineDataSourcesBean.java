@@ -41,15 +41,15 @@ public class FyyLineDataSourcesBean {
 
         if (FyyInitEnv.ProjectInformation.setting.containsKey(FyyConfigEntryDetailsValues.HOME_DB_DRIVERCLASSNAME.getKey())) {
             druidDataSource.setDriverClassName(FyyInitEnv.ProjectInformation.setting.get(FyyConfigEntryDetailsValues.HOME_DB_DRIVERCLASSNAME.getKey()));
-        } else if (StrUtil.isNotBlank(FyyInitEnv.WorkDir.main_jdbc_jar_fullpath)) {
+        } else if (StrUtil.isNotBlank(FyyInitEnv.WorkDir.MAIN_JDBC_JAR_FULLPATH)) {
             FyyLogBaseUtils.info("开始联机驱动!");
             try {
-                URL url = new URL("file://" + FyyInitEnv.WorkDir.main_jdbc_jar_fullpath); // 这里需要重点看URLClassLoader用法，
+                URL url = new URL("file://" + FyyInitEnv.WorkDir.MAIN_JDBC_JAR_FULLPATH); // 这里需要重点看URLClassLoader用法，
                 URLClassLoader loader = new URLClassLoader(new URL[]{url}); // URL跟我们日常见到的格式用法不太一样
                 druidDataSource.setDriverClassLoader(loader);
             } catch (Exception ex) {
                 ex.printStackTrace();
-                throw new FyyExceptionError("联机驱动{}失败!", FyyInitEnv.WorkDir.main_jdbc_jar_fullpath);
+                throw new FyyExceptionError("联机驱动{}失败!", FyyInitEnv.WorkDir.MAIN_JDBC_JAR_FULLPATH);
             }
         }
 

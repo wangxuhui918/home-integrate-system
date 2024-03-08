@@ -244,14 +244,14 @@ public class FyyInitEnvLoad implements FyyInitEnv.ProjectInformation.FyyInitEnvL
             FyyLogBaseUtils.debug("配置类赋值开始[{}}", FyyInitEnvLoad.class.getName());
             FyyInitEnv.ProjectInformation.idKey = idkey;
             FyyInitEnv.ProjectInformation.i18n = i18n;
-            FyyInitEnv.WorkDir.projectPackage = StrUtil.isNotBlank(projectPackage) ? projectPackage : ClassUtil.getPackage(ClassUtil.loadClass(mainClass, false));
-            FyyInitEnv.WorkDir.workHomeDir = workHomeDir;
+            FyyInitEnv.WorkDir.PROJECT_PACKAGE = StrUtil.isNotBlank(projectPackage) ? projectPackage : ClassUtil.getPackage(ClassUtil.loadClass(mainClass, false));
+            FyyInitEnv.WorkDir.WORK_HOME_DIR = workHomeDir;
             FyyInitEnv.ProjectInformation.autoUpdate = updateProperties;
             FyyInitEnv.ProjecEnvInformation.configEnv = configEnv;
             FyyInitEnv.ProjectInformation.runEnv = StrUtil.blankToDefault(runEnv, daemonRoot.getDevelop_user_id());
-            FyyInitEnv.WorkDir.jarpath = jarpath;
+            FyyInitEnv.WorkDir.JAR_PATH = jarpath;
             FyyInitEnv.ProjecEnvInformation.isClassModel = isClassModel;
-            FyyInitEnv.WorkDir.mainClassC = mainClassC;
+            FyyInitEnv.WorkDir.MAIN_CLASS_C = mainClassC;
             FyyInitEnv.ProjectInformation.mainClass = mainClass;
             FyyInitEnv.WorkDir.PROJECT_RESOURCEPATH = projectresourcepath;
             FyyInitEnv.WorkDir.PROJECT_CODESOURCEPATH = projectcodesourcepath;
@@ -266,8 +266,8 @@ public class FyyInitEnvLoad implements FyyInitEnv.ProjectInformation.FyyInitEnvL
             FyyInitEnv.ProjectInformation.context.put("isdev", FyyInitEnv.ProjecEnvInformation.isClassModel);
             FyyInitEnv.ProjectInformation.context.put("i18n", FyyInitEnv.ProjectInformation.i18n);
             FyyInitEnv.ProjectInformation.context.put("env", FyyInitEnv.ProjectInformation.runEnv);
-            FyyInitEnv.ProjectInformation.context.put("projectPackage", FyyInitEnv.WorkDir.projectPackage);
-            FyyInitEnv.ProjectInformation.context.put("workHomeDir", FyyInitEnv.WorkDir.workHomeDir);
+            FyyInitEnv.ProjectInformation.context.put("projectPackage", FyyInitEnv.WorkDir.PROJECT_PACKAGE);
+            FyyInitEnv.ProjectInformation.context.put("workHomeDir", FyyInitEnv.WorkDir.WORK_HOME_DIR);
         }
 
     }

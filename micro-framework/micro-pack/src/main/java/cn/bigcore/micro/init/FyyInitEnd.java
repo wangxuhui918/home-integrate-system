@@ -45,15 +45,15 @@ public class FyyInitEnd implements CommandLineRunner {
         FyyLogBaseUtils.info("支持运行环境 : {} [key]:[{}] ", JSONUtil.toJsonStr(FyyInitEnv.ProjecEnvInformation.configEnv), "FyyInitEnv..runEnv");
         FyyLogBaseUtils.info("当前主启动类 : {} [key]:[{}] ", FyyInitEnv.ProjectInformation.mainClass, "FyyInitEnv..mainClass");
         FyyLogBaseUtils.info("当前主Mac地址 : {} [key]:[{}] ", FyyInitEnv.ProjectInformation.mainMac, "FyyInitEnv..mainMac");
-        FyyLogBaseUtils.info("jar包所在目录 : {} [key]:[{}] ", FyyInitEnv.WorkDir.jarpath, "FyyInitEnv..jarpath");
-        FyyLogBaseUtils.info("项目包路径 : {} [key]:[{}] ", FyyInitEnv.WorkDir.projectPackage, "FyyInitEnv..projectPackage");
+        FyyLogBaseUtils.info("jar包所在目录 : {} [key]:[{}] ", FyyInitEnv.WorkDir.JAR_PATH, "FyyInitEnv..jarpath");
+        FyyLogBaseUtils.info("项目包路径 : {} [key]:[{}] ", FyyInitEnv.WorkDir.PROJECT_PACKAGE, "FyyInitEnv..projectPackage");
         FyyLogBaseUtils.info("运行状态(true[开发模式],false[运行时模式]) : {} [key]:[{}] ", FyyInitEnv.ProjecEnvInformation.isClassModel + "", "FyyInitEnv..isClassModel");
         FyyLogBaseUtils.info("默认数据库资源池 : {} [key]:[{}] ", FyyInitEnv.ProjectInformation.dataSource == null ? "" : FyyInitEnv.ProjectInformation.dataSource.toString(), "FyyInitEnv..dataSource");
-        FyyLogBaseUtils.info("项目工作目录 : {} [key]:[{}] ", FyyInitEnv.WorkDir.workHomeDir, "FyyInitEnv..workHomeDir");
+        FyyLogBaseUtils.info("项目工作目录 : {} [key]:[{}] ", FyyInitEnv.WorkDir.WORK_HOME_DIR, "FyyInitEnv..workHomeDir");
         FyyLogBaseUtils.info("PC标记 : {} [key]:[{}] ", JSONUtil.toJsonStr(FyyInitEnv.ProjectInformation.daemonRoot), "FyyInitEnv.SettingInformation.daemonRoot");
         FyyLogBaseUtils.info("是否自动更新 : {} [key]:[{}] ", FyyInitEnv.ProjectInformation.autoUpdate + "", "FyyInitEnv..autoUpdate");
         FyyLogBaseUtils.info("默认redis连接池 : {} [key]:[{}] ", FyyInitEnv.ProjectInformation.redisds == null ? "" : FyyInitEnv.ProjectInformation.redisds.toString(), "FyyInitEnv..redisds");
-        FyyLogBaseUtils.info("默认jdbc_jar包路径 : {} [key]:[{}] ", FyyInitEnv.WorkDir.main_jdbc_jar_fullpath, "FyyInitEnv..main_jdbc_jar_fullpath");
+        FyyLogBaseUtils.info("默认jdbc_jar包路径 : {} [key]:[{}] ", FyyInitEnv.WorkDir.MAIN_JDBC_JAR_FULLPATH, "FyyInitEnv..main_jdbc_jar_fullpath");
         FyyLogBaseUtils.info("swagger 地址 : {} ", "http://127.0.0.1:" + FyyInitEnv.ProjectInformation.setting.get(FyyConfigEntryDetailsValues.SERVER_PORT.getKey()) + "/swagger-ui/index.html");
 
 

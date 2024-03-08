@@ -106,11 +106,11 @@ public class FyyInitEnv {
     public static class WorkDir {//各种工作目录,class路径,jar路径
         public static String PROJECT_RESOURCEPATH = "";//工程资源目录
         public static String PROJECT_CODESOURCEPATH = "";//工程源码目录
-        public static String jarpath = "";//jarpath 当前jar包所在目录,仅限于isdev=false
-        public static String projectPackage = FrameInformation.PACKAGE;//默认扫描包
-        public static String workHomeDir = "";//获取当前用户目录
-        public static String main_jdbc_jar_fullpath = "";
-        public static Class mainClassC = null;//启动类
+        public static String JAR_PATH = "";//jarpath 当前jar包所在目录,仅限于isdev=false
+        public static String PROJECT_PACKAGE = FrameInformation.PACKAGE;//默认扫描包
+        public static String WORK_HOME_DIR = "";//获取当前用户目录
+        public static String MAIN_JDBC_JAR_FULLPATH = "";
+        public static Class MAIN_CLASS_C = null;//启动类
     }
 
 

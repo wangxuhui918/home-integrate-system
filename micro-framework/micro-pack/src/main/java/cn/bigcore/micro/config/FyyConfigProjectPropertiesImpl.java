@@ -164,7 +164,7 @@ public class FyyConfigProjectPropertiesImpl implements FyyConfigProjectInterface
             String path = "";
             String context = inf.getContext();
             if (inf.getResourceType().equals(FyyConfigResourceType.SOURCE_TYPE)) {
-                path = FyyInitEnv.WorkDir.PROJECT_CODESOURCEPATH + ClassUtil.getPackagePath(FyyInitEnv.WorkDir.mainClassC) + FileUtil.FILE_SEPARATOR + inf.getPath();
+                path = FyyInitEnv.WorkDir.PROJECT_CODESOURCEPATH + ClassUtil.getPackagePath(FyyInitEnv.WorkDir.MAIN_CLASS_C) + FileUtil.FILE_SEPARATOR + inf.getPath();
             } else if (inf.getResourceType().equals(FyyConfigResourceType.RESOURCE_TYPE)) {
                 path = FyyInitEnv.WorkDir.PROJECT_RESOURCEPATH + FileUtil.FILE_SEPARATOR + inf.getPath();
             }
